@@ -42,7 +42,12 @@ jobs:
         run: |
           wget https://github.com/homothetyhk/HollowKnight.MenuChanger/releases/latest/download/MenuChanger.zip -O MenuChanger.zip
           unzip -o MenuChanger.zip -d References
-     
+      
+      - name: Fetch MoreLocations
+        run: |
+          wget https://github.com/BadMagic100/MoreLocations/releases/latest/download/MoreLocations.zip -O MoreLocations.zip
+          unzip -o MoreLocations.zip -d References   
+      
       - name: Fetch RandoSettingsManager
         run: |
           wget https://github.com/BadMagic100/RandoSettingsManager/releases/latest/download/RandoSettingsManager.zip -O RandoSettingsManager.zip
@@ -72,14 +77,14 @@ jobs:
         run: sudo apt-get install -y nuget mono-devel mono-xbuild
 
       - name: Restore packages
-        run: nuget restore GodhomeRandomizer.csproj
+        run: nuget restore BreakableWallRandomizer.csproj
 
       - name: Build project
         run: dotnet build --configuration Release
 
       - name: Get SHA256 of zipped mod
         id: get_hash
-        run: echo "::set-output name=hash::$(sha256sum Output/GodhomeRandomizer.zip | cut -d ' ' -f 1)"
+        run: echo "::set-output name=hash::$(sha256sum Output/BreakableWallRandomizer.zip | cut -d ' ' -f 1)"
 
       - name: Get Assembly version
         id: get_version
@@ -103,6 +108,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: Output/GodhomeRandomizer.zip
-          asset_name: GodhomeRandomizer.zip
+          asset_path: Output/BreakableWallRandomizer.zip
+          asset_name: BreakableWallRandomizer.zip
           asset_content_type: application/zip
