@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BreakableWallRandomizer", "BreakableWallRandomizer.csproj", "{D52BBAB2-E35E-4A6F-B72A-C3FFCB487390}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{100BDB9F-8936-425C-91FC-7781074BF9BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{100BDB9F-8936-425C-91FC-7781074BF9BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{100BDB9F-8936-425C-91FC-7781074BF9BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{100BDB9F-8936-425C-91FC-7781074BF9BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D52BBAB2-E35E-4A6F-B72A-C3FFCB487390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D52BBAB2-E35E-4A6F-B72A-C3FFCB487390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D52BBAB2-E35E-4A6F-B72A-C3FFCB487390}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D52BBAB2-E35E-4A6F-B72A-C3FFCB487390}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD83F273-D79B-49E0-87DD-D271ACB87EDB}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,2879 @@
+[
+    {
+        "name": "Wall-Lower_Hive_Entrance",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Abyss_03_c",
+        "x": 1.92,
+        "y": -0.15,
+        "persistentBool": "",
+        "sprite": "break_wall_deepnest_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Abyss_03_c[right1] | Abyss_03_c",
+        "logicOverrides": {
+            "Abyss_03_c[right1]": "Abyss_03_c[right1] | (ORIG) + Wall-Lower_Hive_Entrance"
+        },
+        "logicSubstitutions": {
+            "Abyss_03_c": {
+                "Abyss_03_c[right1]": "(Abyss_03_c[right1] + Wall-Lower_Hive_Entrance)"
+            }
+        }
+    },
+    {
+        "name": "Wall-Hidden_Station",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Abyss_05",
+        "x": 1.5,
+        "y": -0.4,
+        "persistentBool": "",
+        "sprite": "abyss_break_wall_palace_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Abyss_05[right1] | Abyss_05",
+        "logicOverrides": {
+            "Abyss_05[right1]": "Abyss_05[right1] | (ORIG) + Wall-Hidden_Station"
+        },
+        "logicSubstitutions": {
+            "Abyss_05": {
+                "Abyss_05[right1]": "(Abyss_05[right1] + Wall-Hidden_Station)"
+            }
+        }
+    },
+    {
+        "name": "Plank-Lifeblood_Core",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Abyss_08",
+        "x": 0.0,
+        "y": -0.59,
+        "persistentBool": "",
+        "sprite": "ancient_one_way_wall_270deg",
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
+        "exit": true,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Abyss_08[right1] + (PRECISEMOVEMENT | LEFTDASH) + (RIGHTSUPERDASH + (RIGHTCLAW | WINGS))) | (Abyss_08[right1] + (PRECISEMOVEMENT | FULLDASH + WINGS) + Plank-Lifeblood_Core)",
+        "logicOverrides": {
+            "Lifeblood_Core": "(ORIG) | Abyss_08[right1] + LEFTDASH + RIGHTSUPERDASH + (RIGHTCLAW | WINGS) + Plank-Lifeblood_Core",
+            "Arcane_Egg-Lifeblood_Core": "(ORIG) | (Abyss_08[right1] + (PRECISEMOVEMENT | FULLDASH + WINGS) + Plank-Lifeblood_Core)"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Basin_Pale_Ore",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Abyss_17",
+        "x": 0.38,
+        "y": -0.22,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_mushroom_270deg",
+        "alsoDestroy": [
+            "/Secret Mask (1)"
+        ],
+        "exit": true,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Abyss_17[top1] + (ANYCLAW | WINGS | DAMAGEBOOSTS + $TAKEDAMAGE)) | (Abyss_17[top1] + Plank-Basin_Pale_Ore)",
+        "logicOverrides": {
+            "Pale_Ore-Basin": "(ORIG) | (Abyss_17[top1] + Plank-Basin_Pale_Ore) + (LEFTCLAW | WINGS)"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Broken_Vessel_Shortcut",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Abyss_19",
+        "x": 0.22,
+        "y": -0.15,
+        "persistentBool": "",
+        "sprite": "infected_knight_break_wall_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Abyss_19[bot1] + (ANYCLAW | WINGS) | Abyss_19[right1] + Plank-Broken_Vessel_Shortcut",
+        "logicOverrides": {
+            "Defeated_Broken_Vessel": "(ORIG) | (Abyss_19[right1] + (Plank-Broken_Vessel_Shortcut) + COMBAT[Broken_Vessel])",
+            "Abyss_19[left1]": "(ORIG) | (Abyss_19[right1] + (Plank-Broken_Vessel_Shortcut) + Defeated_Broken_Vessel)"
+        },
+        "logicSubstitutions": {
+            "Abyss_19": {
+                "Abyss_19[right1]": "(Abyss_19[right1] + Plank-Broken_Vessel_Shortcut)"
+            },
+            "Abyss_19[right1]": {
+                "Abyss_19[bot1]": "(Abyss_19[bot1] + Plank-Broken_Vessel_Shortcut)",
+                "Abyss_19[bot2]": "(Abyss_19[bot2] + Plank-Broken_Vessel_Shortcut)"
+            }
+        }
+    },
+    {
+        "name": "Plank-Grimm_Exit",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Cliffs_01",
+        "x": 0.86,
+        "y": -1.05,
+        "persistentBool": "",
+        "sprite": "ancient_wall_cliffs_270deg",
+        "alsoDestroy": [
+            "/Breakable Wall/Masks"
+        ],
+        "exit": true,
+        "groupWalls": [],
+        "group": "Grimm_Walls",
+        "logic": "(Cliffs_01[right1] | Cliffs_01[right2]) + (Plank-Grimm_Exit | Wall-Grimm_Outer) | Cliffs_01[right4] + Wall-Grimm_Inner",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Grimm_Inner",
+        "gameObject": "/Breakable Wall grimm",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Cliffs_01",
+        "x": 1.0,
+        "y": -1.05,
+        "persistentBool": "",
+        "sprite": "clif_break_02_0deg",
+        "alsoDestroy": [
+            "/Breakable Wall/Masks"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Grimm_Walls",
+        "logic": "(Cliffs_01[right1] | Cliffs_01[right2] | Cliffs_01[right3] + (ANYCLAW | WINGS | (FULLDASH + ENEMYPOGOS))) + (Plank-Grimm_Exit | Wall-Grimm_Outer) | Cliffs_01[right4] + Wall-Grimm_Inner",
+        "logicOverrides": {},
+        "logicSubstitutions": {
+            "Cliffs_02": {
+                "Cliffs_02[bot1]": "(Cliffs_02[bot1] + Plank-Cliff's_Pass)"
+            },
+            "Cliffs_02[bot2]": {
+                "Cliffs_02[bot1]": "(Cliffs_02[bot1] + Plank-Cliff's_Pass)"
+            }
+        }
+    },
+    {
+        "name": "Wall-Grimm_Outer",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Cliffs_01",
+        "x": 0.86,
+        "y": -0.85,
+        "persistentBool": "",
+        "sprite": "clif_break_02_0deg",
+        "alsoDestroy": [
+            "/Breakable Wall/Masks"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Grimm_Walls",
+        "logic": "(Cliffs_01[right1] | Cliffs_01[right2] | Cliffs_01[right3] + (ANYCLAW | WINGS | (FULLDASH + ENEMYPOGOS))) | Cliffs_01[right4] + Wall-Grimm_Inner + (ANYCLAW | Plank-Grimm_Exit + (WINGS | LEFTDASH + ENEMYPOGOS))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Cliff's_Pass",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Cliffs_02",
+        "x": 0.8,
+        "y": 0.22,
+        "persistentBool": "",
+        "sprite": "ancient_wall_cliffs_270deg",
+        "alsoDestroy": [
+            "Secret Mask (2)"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Cliffs_02[bot1] + (ANYCLAW | WINGS) | (Cliffs_02 + Plank-Cliff's_Pass)",
+        "logicOverrides": {},
+        "logicSubstitutions": {
+            "Cliffs_02": {
+                "Cliffs_02[bot1]": "(Cliffs_02[bot1] + Plank-Cliff's_Pass)"
+            },
+            "Cliffs_02[bot2]": {
+                "Cliffs_02[bot1]": "(Cliffs_02[bot1] + Plank-Cliff's_Pass)"
+            }
+        }
+    },
+    {
+        "name": "Plank-Nailsmith",
+        "gameObject": "/break wall bits/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Ruins1_04",
+        "x": -0.77,
+        "y": -0.4,
+        "persistentBool": "",
+        "sprite": "gg_break_wall_nailsmith_269deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Ruins1_04[bot1] | Ruins1_04[right1] + Plank-Nailsmith",
+        "logicOverrides": {
+            "Ruins1_04[bot1]": "(ORIG) | Ruins1_04[right1] + Plank-Nailsmith | Ruins1_04[door1] + Plank-Nailsmith"
+        },
+        "logicSubstitutions": {
+            "Ruins1_04[right1]": {
+                "Ruins1_04[bot1]": "(Ruins1_04[bot1] + Plank-Nailsmith)"
+            },
+            "Ruins1_04[door1]": {
+                "Ruins1_04[bot1]": "(Ruins1_04[bot1] + Plank-Nailsmith)"
+            }
+        }
+    },
+    {
+        "name": "Plank-Sly",
+        "gameObject": "/_Scenery/Break Floor 1",
+        "fsmType": "break_floor",
+        "sceneName": "Crossroads_04",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_0deg",
+        "alsoDestroy": [
+            "/Secret Mask"
+        ],
+        "exit": true,
+        "groupWalls": [],
+        "group": "",
+        "logic": "((Crossroads_04[top1] | Crossroads_04[left1]) + (Plank-Sly | Defeated_Gruz_Mother)) | Crossroads_04[right1] | Crossroads_04[door_Mender_House] | Crossroads_04[door1] | Crossroads_04[door_charmshop]",
+        "logicOverrides": {},
+        "logicSubstitutions": {
+            "Boss_Geo-Gruz_Mother": {
+                "Crossroads_04[door_Mender_House]": "(Crossroads_04[door_Mender_House] + Plank-Sly)",
+                "Crossroads_04[door1]": "(Crossroads_04[door1] + Plank-Sly)",
+                "Crossroads_04[door_charmshop]": "(Crossroads_04[door_charmshop] + Plank-Sly)",
+                "Crossroads_04[right1]": "(Crossroads_04[right1] + Plank-Sly)"
+            },
+            "Crossroads_04[left1]": {
+                "Crossroads_04[door_Mender_House]": "(Crossroads_04[door_Mender_House] + Plank-Sly)",
+                "Crossroads_04[door1]": "(Crossroads_04[door1] + Plank-Sly)",
+                "Crossroads_04[door_charmshop]": "(Crossroads_04[door_charmshop] + Plank-Sly)",
+                "Crossroads_04[right1]": "(Crossroads_04[right1] + Plank-Sly)"
+            },
+            "Crossroads_04[top1]": {
+                "Crossroads_04[door_Mender_House]": "(Crossroads_04[door_Mender_House] + Plank-Sly)",
+                "Crossroads_04[door1]": "(Crossroads_04[door1] + Plank-Sly)",
+                "Crossroads_04[door_charmshop]": "(Crossroads_04[door_charmshop] + Plank-Sly)",
+                "Crossroads_04[right1]": "(Crossroads_04[right1] + Plank-Sly)"             
+            },
+            "Defeated_Gruz_Mother": {
+                "Crossroads_04[door_Mender_House]": "(Crossroads_04[door_Mender_House] + Plank-Sly)",
+                "Crossroads_04[door1]": "(Crossroads_04[door1] + Plank-Sly)",
+                "Crossroads_04[door_charmshop]": "(Crossroads_04[door_charmshop] + Plank-Sly)",
+                "Crossroads_04[right1]": "(Crossroads_04[right1] + Plank-Sly)"
+            }
+        }
+    },
+    {
+        "name": "Wall-Crossroads_Grub",
+        "gameObject": "/_Scenery/Break Wall 2",
+        "fsmType": "FSM",
+        "sceneName": "Crossroads_03",
+        "x": 0.0,
+        "y": 0.05,
+        "persistentBool": "",
+        "sprite": "cr10_break_wall_0deg",
+        "alsoDestroy": [
+            "_Scenery/crossroads_03_mask"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Crossroads_03",
+        "logicOverrides": {
+            "Grub-Crossroads_Stag": "(ORIG) + Wall-Crossroads_Grub"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Crossroads_Aspid_Arena",
+        "gameObject": "/Break Wall 2",
+        "fsmType": "FSM",
+        "sceneName": "Crossroads_08",
+        "x": -0.06,
+        "y": 0.13,
+        "persistentBool": "",
+        "sprite": "cr10_break_wall_0deg",
+        "alsoDestroy": [
+            "break_wall_masks"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Crossroads_08",
+        "logicOverrides": {
+            "Geo_Rock-Crossroads_Aspid_Arena_Hidden": "(ORIG) + (Wall-Crossroads_Aspid_Arena | (RIGHTCLAW | OBSCURESKIPS) + WINGS)"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Crossroads_Tall_Room",
+        "gameObject": "/Breakable Wall_Silhouette",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Crossroads_07",
+        "x": 0.21,
+        "y": 0.63,
+        "persistentBool": "",
+        "sprite": "sil_break_wall_01_90deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Crossroads_07 + ((RIGHTCLAW | WINGS) + UPWALLBREAK | MARKOFPRIDE + UPSLASH | SCREAM)",
+        "logicOverrides": {
+            "Geo_Rock-Crossroads_Root": "(ORIG) + Wall-Crossroads_Tall_Room",
+            "Whispering_Root-Crossroads": "(ORIG) + Wall-Crossroads_Tall_Room"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Fluke_Hermit",
+        "gameObject": "/Breakable Grate",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Room_GG_Shortcut",
+        "x": 0.45,
+        "y": 0.6,
+        "persistentBool": "",
+        "sprite": "gg_grate_break_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Room_GG_Shortcut + (SWIM | FULLCLAW + RIGHTSUPERDASH + ACIDSKIPS) | Bench-Hermit's_Approach?FALSE",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Brooding_Mawlek",
+        "gameObject": "/Break Floor 1",
+        "fsmType": "break_floor",
+        "sceneName": "Crossroads_09",
+        "x": 0.41,
+        "y": -0.06,
+        "persistentBool": "crossroadsMawlekWall",
+        "sprite": "ancient_wall_pieces_0000_a_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Crossroads_09[right1] | Crossroads_09[left1] + Defeated_Brooding_Mawlek",
+        "logicOverrides": {
+            "Opened_Mawlek_Wall": "Plank-Brooding_Mawlek",
+            "Crossroads_09[right1]": "(ORIG) + Plank-Brooding_Mawlek"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Maggot_Room",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Crossroads_10",
+        "x": 0.35,
+        "y": 0.3,
+        "persistentBool": "",
+        "sprite": "cr10_break_wall_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Crossroads_10[left1] | Crossroads_10[right1]) + Defeated_False_Knight + ANYCLAW",
+        "logicOverrides": {
+            "Defeated_Failed_Champion": "(ORIG) + Wall-Maggot_Room"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Crossroads_Mask_Shard",
+        "gameObject": "/Break Floor 1",
+        "fsmType": "break_floor",
+        "sceneName": "Crossroads_13",
+        "x": -0.18,
+        "y": 0.05,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_270deg",
+        "alsoDestroy": [],
+        "exit": true,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Crossroads_13[left1] | Crossroads_13[right1]) + (ANYCLAW | WINGS | ENEMYPOGOS)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Crossroads_Soul_Totem",
+        "gameObject": "/Breakable Wall Waterways",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Crossroads_18",
+        "x": 0.03,
+        "y": -0.11,
+        "persistentBool": "",
+        "sprite": "break_wall_ancient_variant_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Crossroads_18",
+        "logicOverrides": {
+            "Soul_Totem-Crossroads_Goam_Journal": "(ORIG) + Wall-Crossroads_Soul_Totem"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Glowing_Womb",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Crossroads_21",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "cr21_break_wall_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Crossroads_21[top1] | Crossroads_21[left1] | Crossroads_21[right1]",
+        "logicOverrides": {
+            "Crossroads_21[left1]": "Crossroads_21[left1] | Crossroads_21[right1] | (Crossroads_21[top1] + Wall-Glowing_Womb)",
+            "Crossroads_21[right1]": "Crossroads_21[right1] | Crossroads_21[left1] | (Crossroads_21[top1] + Wall-Glowing_Womb)"
+        },
+        "logicSubstitutions": {
+            "Crossroads_21": {
+                "Crossroads_21[left1]": "Crossroads_21[left1] + Wall-Glowing_Womb",
+                "Crossroads_21[right1]": "Crossroads_21[right1] + Wall-Glowing_Womb"
+            }
+        }
+    },
+    {
+        "name": "Plank-Crossroads_Vessel_Fragment",
+        "gameObject": "/_Props/Break Floor 1",
+        "fsmType": "break_floor",
+        "sceneName": "Crossroads_37",
+        "x": 0.05,
+        "y": -0.03,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_0deg",
+        "alsoDestroy": [
+            "Mask Bottom",
+            "Mask Bottom 2"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Crossroads_37[right1]",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Deepnest_Exit",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Deepnest_01",
+        "x": -0.22,
+        "y": -0.15,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_mushroom_270deg",
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_01[bot1] | (Deepnest_01[left1] | Deepnest_01[right1]) + Plank-Deepnest_Exit",
+        "logicOverrides": {},
+        "logicSubstitutions": {
+            "Deepnest_01": {
+                "Deepnest_01[bot1]": "(Deepnest_01[bot1] + Plank-Deepnest_Exit)"
+            }
+        }
+    },
+    {
+        "name": "Plank-Upper_Deepnest",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Deepnest_01b",
+        "x": 0.18,
+        "y": 0.2,
+        "persistentBool": "",
+        "sprite": "deep_crumble_floor_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_01b[right1] | Deepnest_01b[top2] + Plank-Upper_Deepnest",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Deepnest_Mimics",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Deepnest_02",
+        "x": 0.12,
+        "y": 0.22,
+        "persistentBool": "",
+        "sprite": "break_wall_deepnest_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_02[left1] | (Deepnest_02[left2] + ANYCLAW) | (Deepnest_02[right1] + Wall-Deepnest_Mimics)",
+        "logicOverrides": {
+            "Deepnest_02[right1]": "Deepnest_02[right1] | (ORIG) + Wall-Deepnest_Mimics"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Deepnest_Springs_Grub",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Deepnest_03",
+        "x": -0.4,
+        "y": -0.66,
+        "persistentBool": "",
+        "sprite": "break_wall_deepnest_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "logic": "Deepnest_03[left2] | Deepnest_03 + (LEFTSUPERDASH | WINGS | LEFTCLAW + ($SHADESKIP | $SLOPEBALL[before:ROOMSOUL]))",
+        "logicOverrides": {
+            "Deepnest_03[left2]": "Deepnest_03[left2] | (ORIG) + Wall-Deepnest_Springs_Grub"
+        },
+        "logicSubstitutions": {
+            "Deepnest_03": {
+                "Deepnest_03[left2]": "(Deepnest_03[left2] + Wall-Deepnest_Springs_Grub)"
+            }
+        }
+    },
+    {
+        "name": "Plank-Nosk_Exit",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Deepnest_31",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "deep_crumble_floor_270deg",
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Nosk_Walls",
+        "logic": "Deepnest_31[right1] + Plank-Nosk_Exit | Deepnest_31[right2] + (RIGHTCLAW | LEFTCLAW + (WINGS | BACKGROUNDPOGOS) | (ANYCLAW | WINGS) + Wall-Nosk_Outer + Wall-Nosk_Inner)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Nosk_Outer",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Deepnest_31",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_wall_deepnest_0deg",
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Nosk_Walls",
+        "logic": "Deepnest_31[right1] + (LEFTSLASH | UPSLASH | SCREAM | LEFTFIREBALL | ANYCLAW | WINGS | LEFTDASH | (RIGHTSPELLAIRSTALL?SPELLAIRSTALL) + $CASTSPELL[3]) | Deepnest_31[right2] + ((RIGHTCLAW | LEFTCLAW + (WINGS | BACKGROUNDPOGOS)) + Plank-Nosk_Exit | (ANYCLAW | WINGS) + Wall-Nosk_Inner)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Nosk_Inner",
+        "gameObject": "/Breakable Wall (1)",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Deepnest_31",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_wall_deepnest_0deg",
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Nosk_Walls",
+        "logic": "Deepnest_31[right1] + (ANYCLAW | WINGS | LEFTDASH | (RIGHTSPELLAIRSTALL?SPELLAIRSTALL) + $CASTSPELL[3]) + Wall-Nosk_Outer | Deepnest_31[right2] + (ANYCLAW | WINGS)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Garpede_Soul_Totem",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Deepnest_38",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_wall_deepnest_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_38[bot1] + (RIGHTCLAW | WINGS)",
+        "logicOverrides": {
+            "Soul_Totem-Deepnest_Vessel": "(ORIG) + Wall-Garpede_Soul_Totem"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Weaver's_Den_Entrance",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Deepnest_39",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_wall_deepnest_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_39[door1] | (Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39[right1] + (FULLCLAW | WINGS + ANYCLAW | ENEMYPOGOS + (ANYCLAW | WINGS))) + ((LANTERN | (NOLANTERN ? FALSE)) | DARKROOMS) + (RIGHTDASH | WINGS | RIGHTCLAW + (RIGHTSUPERDASH | SPELLAIRSTALL + $CASTSPELL[1,1,before:ROOMSOUL,after:ROOMSOUL]))",
+        "logicOverrides": {
+            "Deepnest_39[door1]": "(ORIG) + Wall-Weaver's_Den_Entrance"
+        },
+        "logicSubstitutions": {
+            "Deepnest_39": {
+                "Deepnest_39[door1]": "(Deepnest_39[door1] + Wall-Weaver's_Den_Entrance)"
+            }
+        }
+    },
+    {
+        "name": "Plank-Deepnest_Dark_Room_Egg",
+        "gameObject": "/One Way Wall (1)",
+        "fsmType": "break_floor",
+        "sceneName": "Deepnest_39",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "collapser_very_short_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(LANTERN | NOLANTERN?FALSE | DARKROOMS) + (Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39[door1] + Wall-Weaver's_Den_Entrance | Deepnest_39[right1] + (LEFTCLAW | WINGS + RIGHTCLAW | (WINGS | RIGHTCLAW) + ENEMYPOGOS | Plank-Deepnest_Dark_Room_Egg))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Deepnest_Dark_Room_Geo",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Deepnest_39",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "collapser_very_short_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "((LANTERN | (NOLANTERN ? FALSE)) | DARKROOMS) + ((Deepnest_39 + (RIGHTCLAW | (WINGS + (LEFTCLAW | ENEMYPOGOS)))) | Deepnest_39[top1] | (Deepnest_39[left1] + (RIGHTCLAW | WINGS | RIGHTDASH)))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Village_Right_Exit",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Deepnest_41",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "collapser_short_270deg",
+        "alsoDestroy": [],
+        "exit": true,
+        "groupWalls": [],
+        "group": "Village_Walls",
+        "logic": "(Deepnest_41[left1] | Deepnest_41[right1] + (WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | BACKGROUNDPOGOS) | LEFTCLAW) | Deepnest_41 + Plank-Village_Right_Exit) + (LANTERN | NOLANTERN?FALSE | DARKROOMS)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Village_Top_Exit",
+        "gameObject": "/One Way Wall (1)",
+        "fsmType": "break_floor",
+        "sceneName": "Deepnest_41",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "exit": true,
+        "groupWalls": [],
+        "group": "Village_Walls",
+        "logic": "(Deepnest_41 + (WINGS + (SIDESLASH | UPSLASH | LEFTCLAW) | RIGHTCLAW | LEFTCLAW + ENEMYPOGOS) | Deepnest_41[right1] + ANYCLAW + Plank-Village_Top_Exit) + (LANTERN | NOLANTERN?FALSE | DARKROOMS)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Village_Top_Climb",
+        "gameObject": "/One Way Wall (2)",
+        "fsmType": "break_floor",
+        "sceneName": "Deepnest_41",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "exit": true,
+        "groupWalls": [],
+        "group": "Village_Walls",
+        "logic": "(Deepnest_41[left2] + (FULLCLAW | WINGS + (RIGHTCLAW | LEFTCLAW + ENEMYPOGOS)) | Deepnest_41 + Plank-Village_Top_Climb + ANYCLAW) + (LANTERN | NOLANTERN?FALSE | DARKROOMS)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Midwife",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Deepnest_41",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_wall_deepnest_0deg",
+        "alsoDestroy": [],
+        "exit": true,
+        "groupWalls": [],
+        "group": "Village_Walls",
+        "logic": "Deepnest_41[left2] + (LANTERN | NOLANTERN?FALSE | DARKROOMS)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Sharp_Shadow",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Deepnest_44",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_deep_quake_270deg",
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
+        "exit": true,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Plank-Sharp_Shadow + Deepnest_44[top1]) | (Deepnest_44[top1] + RIGHTSHADOWDASH + (LEFTSHADOWDASH | DAMAGEBOOSTS + ($TAKEDAMAGE + $TAKEDAMAGE + $TAKEDAMAGE | LEFTDASH + $TAKEDAMAGE + $TAKEDAMAGE | QUAKE + $CASTSPELL[2] + $TAKEDAMAGE)))",
+        "logicOverrides": {
+            "Sharp_Shadow": "(ORIG) | (Plank-Sharp_Shadow + Deepnest_44[top1])"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Weaver's_Den",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Deepnest_45_v02",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_wall_loom_355deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_45_v02[left1] + (RIGHTCLAW | WINGS + (LEFTCLAW | ENEMYPOGOS)) + (LEFTDASH + WINGS | LEFTSUPERDASH | $SHRIEKPOGO[3,before:AREASOUL]) + (ANYCLAW | LEFTSLASH | UPSLASH | (FIREBALL | SCREAM) + $CASTSPELL[before:ROOMSOUL])",
+        "logicOverrides": {
+            "Geo_Chest-Weavers_Den": "(ORIG) + Wall-Weaver's_Den"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Weaver's_Den_Secret",
+        "gameObject": "/Breakable Wall Waterways",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Deepnest_45_v02",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "Loom_wall_0003_1_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_45_v02[left1] + (RIGHTCLAW | WINGS + (LEFTCLAW | ENEMYPOGOS)) + (LEFTDASH + WINGS | LEFTSUPERDASH | $SHRIEKPOGO[3,before:AREASOUL]) + (LEFTDASH | SPIKETUNNELS) + Wall-Weaver's_Den",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-White_Palace_Shortcut",
+        "gameObject": "/Breakable Wall Waterways",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "White_Palace_12",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "waterway_break_wall_acid_02_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "White_Palace_12[bot1] + (SPIKETUNNELS | RIGHTDASH | (RIGHTSUPERDASH + LEFTCLAW) | WINGS) + RIGHTCLAW + LEFTSUPERDASH",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-White_Palace_Shortcut_Exit",
+        "gameObject": "/Break Floor 1",
+        "fsmType": "break_floor",
+        "sceneName": "White_Palace_12",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "collapser_short_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "White_Palace_12[bot1] + (SPIKETUNNELS | RIGHTDASH | (RIGHTSUPERDASH + LEFTCLAW) | WINGS) + RIGHTCLAW + LEFTSUPERDASH + Wall-White_Palace_Shortcut",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Path_of_Pain_Entrance",
+        "gameObject": "/Breakable Wall Ruin Lift",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "White_Palace_06",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "collapser_short_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "White_Palace_06[bot1] | White_Palace_06[left1] | White_Palace_06[top1]",
+        "logicOverrides": {
+            "White_Palace_06[left1]": "(ORIG) + Wall-Path_of_Pain_Entrance"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-White_Palace_Throne",
+        "gameObject": "/Breakable Wall Waterways",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "White_Palace_09",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ancient_one_way_wall_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "White_Palace_09[right1] + (LEFTSUPERDASH + (FULLCLAW | WINGS) | RIGHTCLAW + LEFTDASH + OBSCURESKIPS + PRECISEMOVEMENT + ($SHRIEKPOGO[1,1,1,1,1] | LEFTSHARPSHADOW + $SHRIEKPOGO[1,1,1,1]))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Hive_Exit",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Deepnest_East_01",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ext_0002_hive_break_1_12deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_East_01[right1] | Deepnest_East_01[top1] + Plank-Hive_Exit | Deepnest_East_01[bot1] + (LEFTCLAW | WINGS | ENEMYPOGOS | RIGHTCLAW + OBSCURESKIPS) + Plank-Hive_Exit",
+        "logicOverrides": {
+            "Deepnest_East_01[right1]": "(ORIG) | Deepnest_East_01[top1] + Plank-Hive_Exit | Deepnest_East_01[bot1] + (LEFTCLAW | WINGS | ENEMYPOGOS | RIGHTCLAW + OBSCURESKIPS) + Plank-Hive_Exit"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Edge_Tram_Exit",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Deepnest_East_02",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "outskirtsWall",
+        "sprite": "ancient_wall_pieces_0000_a_deep_quake_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_East_02",
+        "logicOverrides": {
+            "Deepnest_East_02[right1]": "(ORIG) + Plank-Edge_Tram_Exit",
+            "Opened_Lower_Kingdom's_Edge_Wall": "Plank-Edge_Tram_Exit"
+        },
+        "logicSubstitutions": {
+            "Deepnest_East_03[left2]": {
+                "Opened_Lower_Kingdom's_Edge_Wall": "Plank-Edge_Tram_Exit"
+            }
+        }
+    },
+    {
+        "name": "Wall-Bardoon's_Butt",
+        "gameObject": "/Breakable Wall Waterways",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Deepnest_East_04",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_wall_deepnest_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_East_04",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Quickslash_Exit",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Deepnest_East_06",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_deep_quake_269deg",
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_East_06[bot1] | Plank-Quickslash_Exit + ((Deepnest_East_06[door1] + LEFTCLAW) | (Deepnest_East_06[left1] + RIGHTCLAW) | Deepnest_East_06[top1])",
+        "logicOverrides": {
+            "Deepnest_East_06[bot1]": "(ORIG) | Plank-Quickslash_Exit + ((Deepnest_East_06[door1] + LEFTCLAW) | (Deepnest_East_06[left1] + RIGHTCLAW) | Deepnest_East_06[top1])"
+        },
+        "logicSubstitutions": {
+            "Geo_Rock-Kingdom's_Edge_Oro_Far_Left": {
+                "Deepnest_East_06[bot1]": "(Deepnest_East_06[bot1] + Plank-Quickslash_Exit)"
+            },
+            "Geo_Rock-Kingdom's_Edge_Oro_Middle_Left": {
+                "Deepnest_East_06[bot1]": "(Deepnest_East_06[bot1] + Plank-Quickslash_Exit)"
+            },
+            "Deepnest_East_06[door1]": {
+                "Deepnest_East_06[bot1]": "(Deepnest_East_06[bot1] + Plank-Quickslash_Exit)"
+            },
+            "Deepnest_East_06[left1]": {
+                "Deepnest_East_06[bot1]": "(Deepnest_East_06[bot1] + Plank-Quickslash_Exit)"
+            },
+            "Deepnest_East_06[top1]": {
+                "Deepnest_East_06[bot1]": "(Deepnest_East_06[bot1] + Plank-Quickslash_Exit)"
+            },
+            "Deepnest_East_06[right1]": {
+                "Deepnest_East_06[bot1]": "(Deepnest_East_06[bot1] + Plank-Quickslash_Exit)"
+            }
+        }
+    },
+    {
+        "name": "Wall-North_Edge_Hoppers",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Deepnest_East_08",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_wall_deepnest_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_East_08[top1] | Deepnest_East_08[right1]",
+        "logicOverrides": {
+            "King's_Idol-Great_Hopper": "(ORIG) + Wall-North_Edge_Hoppers"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Colo_Shortcut",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Deepnest_East_09",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_cave_270deg",
+        "alsoDestroy": [
+            "/Secret Mask"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_East_09[right1] | (Deepnest_East_09[left1] + Plank-Colo_Shortcut) | (Deepnest_East_09[bot1] + (ANYCLAW | WINGS))",
+        "logicOverrides": {
+            "Deepnest_East_09[left1]": "Deepnest_East_09[left1] | ((ORIG) + Plank-Colo_Shortcut)"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Edge_Camp_Grub",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Deepnest_East_11",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_wall_deepnest_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_East_11",
+        "logicOverrides": {
+            "Grub-Kingdom's_Edge_Camp": "(ORIG) + Wall-Edge_Camp_Grub"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Edge_Camp",
+        "gameObject": "/Breakable Wall top",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Deepnest_East_11",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_wall_deepnest_90deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_East_11[top1] + (SIDESLASH | CYCLONE | GREATSLASH | (FIREBALL | QUAKE) + $CASTSPELL) | Deepnest_East_11[right1] + (LEFTCLAW | WINGS + BACKGROUNDPOGOS) + UPWALLBREAK | (Deepnest_East_11[left1] | Deepnest_East_11[bot1]) + (WINGS | FULLCLAW + $SHADESKIP | ENEMYPOGOS + DANGEROUSSKIPS) + (LEFTCLAW | WINGS + BACKGROUNDPOGOS) + UPWALLBREAK",
+        "logicOverrides": {
+            "Broke_Camp_Bench_Wall": "Wall-Edge_Camp"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-420_Geo_Rock",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Deepnest_East_14",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_wall_deepnest_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_East_14[door1] | Deepnest_East_14[top2] + Broke_Oro_Quake_Floor_2 + Broke_Oro_Quake_Floor_3 + (RIGHTCLAW | WINGS | LEFTCLAW + ENEMYPOGOS | LEFTDASH + RIGHTDASH + DAMAGEBOOSTS + ENEMYPOGOS + COMPLEXSKIPS + $TAKEDAMAGE + $TAKEDAMAGE) + (RIGHTDASH | PRECISEMOVEMENT) | Deepnest_East_14[left1] + (RIGHTDASH | SPIKETUNNELS)",
+        "logicOverrides": {
+            "Deepnest_East_14[door1]": "(ORIG) + Wall-420_Geo_Rock"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Den_Secret_Entrance",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Deepnest_Spider_Town",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "s_town_crumble_floor_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_Spider_Town[left1] + WINGS + (RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH | RIGHTSPELLAIRSTALL?SPELLAIRSTALL + $CASTSPELL[1]) | LEFTCLAW + RIGHTSUPERDASH) | Bench-Beast's_Den + ANYCLAW + Plank-Den_Secret_Entrance | Deepnest_Spider_Town[left1] + (WINGS + ANYCLAW | FULLCLAW + (COMBAT[Left_Devout] | COMBAT[Any_Devout])) + Plank-Den_Secret_Entrance",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Hornet_Exit",
+        "gameObject": "/Break Floor 1",
+        "fsmType": "break_floor",
+        "sceneName": "Fungus1_04",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "crumble_floor_fungus_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Defeated_Hornet_1 + (DASH | WINGS)) | (Fungus1_04[right1] + Plank-Hornet_Exit)",
+        "logicOverrides": {
+            "Fungus1_04[left1]": "(ORIG) | Fungus1_04[right1] + (Plank-Hornet_Exit + (WINGS | LEFTDASH | ACID | SPELLAIRSTALL + $CASTSPELL[1,1]))",
+            "Fungus1_04[right1]": "Fungus1_04[right1] | (ORIG) + Plank-Hornet_Exit"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Greenpath_Stag",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Fungus1_22",
+        "x": 0.11,
+        "y": 0.68,
+        "persistentBool": "",
+        "sprite": "grass_break_wall_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Fungus1_22[left1] | Fungus1_22[top1]",
+        "logicOverrides": {
+            "Wanderer's_Journal-Greenpath_Stag": "(ORIG) + Wall-Greenpath_Stag"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Fungal_Core",
+        "gameObject": "/Break Floor 1",
+        "fsmType": "break_floor",
+        "sceneName": "Fungus2_29",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "fungd_mush_01_0001_a_break_floor_270deg",
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Fungus2_29[right1] + Plank-Fungal_Core | Fungus2_29[bot1] + (ANYCLAW | WINGS | (LONGNAIL | MARKOFPRIDE) + ENEMYPOGOS)",
+        "logicOverrides": {
+            "Rancid_Egg-Fungal_Core": "(ORIG) | Fungus2_29[right1] + Plank-Fungal_Core + (LEFTCLAW | (((RIGHTCLAW + ENEMYPOGOS) | LEFTSUPERDASH) + WINGS))",
+            "Geo_Rock-Fungal_Core_Entrance": "(ORIG) | Fungus2_29[right1] + Plank-Fungal_Core + (LEFTCLAW | (((RIGHTCLAW + ENEMYPOGOS) | LEFTSUPERDASH) + WINGS))",
+            "Soul_Totem-Fungal_Core": "(ORIG) | Fungus2_29[right1] + Plank-Fungal_Core + (LEFTCLAW | (((RIGHTCLAW + ENEMYPOGOS) | LEFTSUPERDASH) + WINGS))",
+            "Fungus2_29[bot1]": "(ORIG) | Fungus2_29[right1] + Plank-Fungal_Core",
+            "Fungus2_29[right1]": "Fungus2_29[right1] | (ORIG) + Plank-Fungal_Core | Fungus2_29[bot1] + (LEFTCLAW | (((RIGHTCLAW + ENEMYPOGOS) | LEFTSUPERDASH) + WINGS))"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Baldur_Shell",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Fungus1_28",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_mushroom_270deg",
+        "alsoDestroy": [
+            "mask_01",
+            "Secret Mask"
+        ],
+        "exit": true,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Fungus1_28[left1] | Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | $SHADESKIP)) + LEFTBALDURS | (Fungus1_28[left1] | Fungus1_28[left2]) + Plank-Baldur_Shell_Upper",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Baldur_Shell_Upper",
+        "gameObject": "/One Way Wall (1)",
+        "fsmType": "break_floor",
+        "sceneName": "Fungus1_28",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "rock__break_floor_270deg",
+        "alsoDestroy": [
+            "mask_01",
+            "Secret Mask"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Fungus1_28[left1] | Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | $SHADESKIP)) + Defeated_Right_Cliffs_Baldur + (WINGS + ANYCLAW | FULLCLAW) | Fungus1_28[left1] + Plank-Baldur_Shell_Upper",
+        "logicOverrides": {},
+        "logicSubstitutions": {
+            "Fungus1_28[left1]": {
+                "Defeated_Right_Cliffs_Baldur": "(Defeated_Right_Cliffs_Baldur + Plank-Baldur_Shell_Upper)"
+            },
+            "Grub-Howling_Cliffs": {
+                "Defeated_Right_Cliffs_Baldur": "(Defeated_Right_Cliffs_Baldur + Plank-Baldur_Shell_Upper)"
+            }
+        }
+    },
+    {
+        "name": "Wall-Greenpath_Toll",
+        "gameObject": "/_Props/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Fungus1_31",
+        "x": -0.11,
+        "y": 0.43,
+        "persistentBool": "",
+        "sprite": "grass_break_wall_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Fungus1_31[top1] | Fungus1_31[bot1] | Fungus1_31[right1]",
+        "logicOverrides": {
+            "Geo_Rock-Greenpath_Toll_Hidden": "(ORIG) + Wall-Greenpath_Toll"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Greenpath_Lifeblood",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Fungus1_32",
+        "x": -0.55,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "grass_break_wall_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Fungus1_32[bot1] | Fungus1_32[top1] | Fungus1_32[left1]",
+        "logicOverrides": {
+            "Lifeblood_Cocoon-Greenpath": "(ORIG) + Wall-Greenpath_Lifeblood"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Unn_Shortcut",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Fungus1_Slug",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_mushroom_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Fungus1_Slug[right1] + (ACID | FULLSKIPACID) + (ANYCLAW | Plank-Unn_Shortcut)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Unn_Exit",
+        "gameObject": "/One Way Wall (1)",
+        "fsmType": "break_floor",
+        "sceneName": "Fungus1_Slug",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_mushroom_270deg",
+        "alsoDestroy": [],
+        "exit": true,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Fungus1_Slug[right1] + (ACID | FULLSKIPACID) + (ANYCLAW | Plank-Unn_Exit)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Fungal_Bouncy_Shortcut",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Fungus2_10",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_mushroom_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Fungus2_10[right2] | Fungus2_10[right1] | Fungus2_10[bot1]",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Mantis_Lifeblood",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Fungus2_15",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "fung_break_wall_02_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Fungus2_15[top3] | Fungus2_15[right1] | Fungus2_15[left1]) + (LEFTCLAW + WINGS | RIGHTCLAW + LEFTSUPERDASH)",
+        "logicOverrides": {
+            "Lifeblood_Cocoon-Mantis_Village": "(ORIG) + Wall-Mantis_Lifeblood"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Spore_Shroom",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Fungus2_20",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_mushroom_270deg",
+        "alsoDestroy": [],
+        "exit": true,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Fungus2_20[left1] + Wall-Deepnest_Fungal | Fungus2_20[right1]) + (RIGHTCLAW | WINGS) + (ACID | RIGHTDASH | (LEFTCLAW + RIGHTSUPERDASH)) + ANYCLAW",
+        "logicOverrides": {
+            "Spore_Shroom": "(ORIG) | ((Fungus2_20[left1] + Wall-Deepnest_Fungal | Fungus2_20[right1]) + Plank-Spore_Shroom)"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Deepnest_Fungal",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Deepnest_01",
+        "x": 57.6,
+        "y": 19.4,
+        "persistentBool": "deepnestWall",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_01[bot1] | (Deepnest_01[left1] | Deepnest_01[right1]) + Plank-Deepnest_Exit",
+        "logicOverrides": {
+            "Fungus2_20[left1]": "(ORIG) + Wall-Deepnest_Fungal",
+            "Deepnest_01[right1]": "(ORIG) + Wall-Deepnest_Fungal"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Petra_Arena",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Fungus3_05",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "crumble_floor_fungus_270deg",
+        "alsoDestroy": [
+            "/Secret Mask (1)"
+        ],
+        "exit": true,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Fungus3_05[left1] | Fungus3_05[right1]) + ((WINGS | (LEFTDASH | RIGHTCLAW + LEFTSUPERDASH | RIGHTSPELLAIRSTALL?AIRSTALL + $CASTSPELL[2,before:ROOMSOUL,after:ROOMSOUL]) + (RIGHTDASH | RIGHTSUPERDASH | LEFTSPELLAIRSTALL?AIRSTALL + (LEFTCLAW + $CASTSPELL[1] | $CASTSPELL[2,1]))) + (RIGHTCLAW | LEFTCLAW + WINGS) | Plank-Petra_Arena)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Moss_Prophet",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Fungus3_39",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "one_way_fung_266deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Fungus3_39[left1] | (Fungus3_39[right1] + Plank-Moss_Prophet)",
+        "logicOverrides": {
+            "Geo_Rock-Love_Key": "(ORIG) | (Fungus3_39[right1] + Plank-Moss_Prophet)"
+        },
+        "logicSubstitutions": {
+            "Fungus3_39[right1]": {
+                "Fungus3_39[left1]": "(Fungus3_39[left1] + Plank-Moss_Prophet)"
+            },
+            "Fungus3_39[left1]": {
+                "Fungus3_39[right1]": "(Fungus3_39[right1] + Plank-Moss_Prophet)"
+            }
+        }
+    },
+    {
+        "name": "Plank-Outside_Overgrown_Mound",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Fungus3_44",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "crumble_floor_fungus_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Fungus3_44[door1]",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Archives_Outer",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Fungus3_47",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "oneWayArchive",
+        "sprite": "ancient_wall_pieces_0000_a_mushroom_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Fungus3_47",
+        "logicOverrides": {
+            "Fungus3_47[left1]": "(ORIG) + Plank-Archives_Outer"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Hive_Knight",
+        "gameObject": "/Break Floor 1",
+        "fsmType": "break_floor",
+        "sceneName": "Hive_03_c",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_hive_90deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Hive_03_c[right2] | (Hive_03_c + Plank-Hive_Knight + WINGS)",
+        "logicOverrides": {
+            "Hive_03_c[right2]": "(ORIG) | (Hive_03_c + Plank-Hive_Knight + WINGS)"
+        },
+        "logicSubstitutions": {
+            "Hive_03_c": {
+                "Hive_03_c[right2]": "(Hive_03_c[right2] + Plank-Hive_Knight)"
+            }
+        }
+    },
+    {
+        "name": "Wall-Deep_Focus",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Mines_05",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "mine_break_wall_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Mines_05",
+        "logicOverrides": {
+            "Mines_05[left2]": "(ORIG) + Wall-Deep_Focus"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Peak_Mimic",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Mines_16",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "mine_break_wall_02_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Mines_16[top1] + (ANYCLAW | WINGS | ENEMYPOGOS + DANGEROUSSKIPS)",
+        "logicOverrides": {
+            "Geo_Rock-Crystal_Peak_Mimic_Grub": "(ORIG) + Wall-Peak_Mimic",
+            "Grub-Crystal_Peak_Mimic": "(ORIG) + Wall-Peak_Mimic"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Crystal_Crown",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Mines_25",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "mine_break_wall_03_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Mines_25[left1] + (FULLCLAW | WINGS + ANYCLAW) | Mines_25[top1] + (ANYCLAW | (FIREBALL | SCREAM) + $CASTSPELL[before:ROOMSOUL] | CYCLONE)",
+        "logicOverrides": {
+            "Geo_Rock-Hallownest_Crown_Hidden": "(ORIG) + Wall-Crystal_Crown"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Crystal_Crown",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Mines_25",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_cave_270deg",
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Mines_25[top1] | Mines_25[left1] + (LEFTCLAW + (ENEMYPOGOS | BACKGROUNDPOGOS | WINGS) | RIGHTCLAW + WINGS | ENEMYPOGOS + BACKGROUNDPOGOS + $SHRIEKPOGO[5])) + Broke_Hallownest's_Crown_Quake_Floor | (Mines_25[left1] + (LEFTCLAW + (ENEMYPOGOS | BACKGROUNDPOGOS | WINGS) | RIGHTCLAW | WINGS + ENEMYPOGOS) | Mines_25[top1]) + Plank-Crystal_Crown",
+        "logicOverrides": {
+            "Geo_Rock-Hallownest_Crown_Dive": "(ORIG) | ((Mines_25[left1] + (FULLCLAW | WINGS + ANYCLAW) | Mines_25[top1]) + Plank-Crystal_Crown + ANYCLAW)"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Peak_Toll",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Mines_33",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_cave_270deg",
+        "alsoDestroy": [],
+        "exit": true,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Mines_33[left1] | Mines_33[right1]) + (LANTERN | NOLANTERN?NONE) | Mines_33[right1] + Plank-Peak_Toll + DARKROOMS",
+        "logicOverrides": {
+            "Geo_Rock-Crystal_Peak_Entrance": "(ORIG) | Mines_33[right1] + Plank-Peak_Toll + (DARKROOMS | (LANTERN | (NOLANTERN ? FALSE)))"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Crystallized_Mound",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Mines_35",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "shaman_one_way_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Mines_35[left1] + Broke_Crystallized_Mound_Quake_Floor + (LEFTCLAW | RIGHTCLAW + PRECISEMOVEMENT + (RIGHTDASH | OBSCURESKIPS + DIFFICULTSKIPS) | WINGS + OBSCURESKIPS)) | Mines_35[left1] + Plank-Crystallized_Mound",
+        "logicOverrides": {
+            "Descending_Dark": "(ORIG) | Mines_35[left1] + Plank-Crystallized_Mound",
+            "Grub-Crystallized_Mound": "(ORIG) | Mines_35[left1] + Plank-Crystallized_Mound + (RIGHTCLAW | WINGS + LEFTCLAW + BACKGROUNDPOGOS)",
+            "Soul_Totem-Crystallized_Mound": "(ORIG) | Mines_35[left1] + Plank-Crystallized_Mound + (RIGHTCLAW | WINGS + LEFTCLAW + BACKGROUNDPOGOS) + LEFTDASH"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Below_Xero",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "RestingGrounds_06",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "rg_wall_break_02_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "RestingGrounds_06[left1] | RestingGrounds_06[right1] | RestingGrounds_06[top1]",
+        "logicOverrides": {
+            "Soul_Totem-Below_Xero": "(ORIG) + Wall-Below_Xero"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Catacombs_Grey_Mourner",
+        "gameObject": "/Breakable Wall (5)",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "RestingGrounds_10",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "rest_grounds_break_wall_90deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Catacombs_Walls",
+        "logic": "RestingGrounds_10 + Wall-Catacombs_Right_1",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Catacombs_Right_1",
+        "gameObject": "/Breakable Wall (7)",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "RestingGrounds_10",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "rest_grounds_break_wall_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Catacombs_Walls",
+        "logic": "RestingGrounds_10",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Catacombs_Right_2",
+        "gameObject": "/Breakable Wall (6)",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "RestingGrounds_10",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "rest_grounds_break_wall_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Catacombs_Walls",
+        "logic": "RestingGrounds_10 + Wall-Catacombs_Right_1",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Catacombs_2",
+        "gameObject": "/Breakable Wall (2)",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "RestingGrounds_10",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "rest_grounds_break_wall_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Catacombs_Walls",
+        "logic": "RestingGrounds_10 + Wall-Catacombs_3",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Catacombs_Grub",
+        "gameObject": "/Breakable Wall (4)",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "RestingGrounds_10",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "rest_grounds_break_wall_91deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Catacombs_Walls",
+        "logic": "RestingGrounds_10 + (LEFTCLAW | WINGS) + UPWALLBREAK + Wall-Catacombs_Right_1",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Catacombs_Middle",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "RestingGrounds_10",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "rest_grounds_break_wall_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Catacombs_Walls",
+        "logic": "RestingGrounds_10 + Wall-Catacombs_3 + Wall-Catacombs_2",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Catacombs_Elevator",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "RestingGrounds_10",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "restingGroundsCryptWall",
+        "sprite": "rock__break_floor_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Catacombs_Walls",
+        "logic": "RestingGrounds_10",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Catacombs_Soul_Eater",
+        "gameObject": "/Breakable Wall (8)",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "RestingGrounds_10",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "rest_grounds_break_wall_90deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Catacombs_Walls",
+        "logic": "(RestingGrounds_10 + Wall-Catacombs_Middle | RestingGrounds_10[top2] + Wall-Catacombs_Grey_Mourner) + (ANYCLAW | WINGS) + UPWALLBREAK + Wall-Catacombs_Right_2",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Catacombs_3",
+        "gameObject": "/Breakable Wall (3)",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "RestingGrounds_10",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "rest_grounds_break_wall_90deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Catacombs_Walls",
+        "logic": "RestingGrounds_10 + UPWALLBREAK",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Colosseum_Spring",
+        "gameObject": "/Breakable Wall_Silhouette",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Room_Colosseum_02",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "col_break_wall_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Room_Colosseum_02[top1] | Room_Colosseum_02[top2]",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Pale_Lurker",
+        "gameObject": "/Breakable Wall_Silhouette",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Room_Colosseum_Spectate",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "col_break_wall_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Room_Colosseum_Spectate[bot1]",
+        "logicOverrides": {
+            "Room_Colosseum_Spectate[right1]": "(ORIG) + Wall-Pale_Lurker"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Overgrown_Mound",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Room_Fungus_Shaman",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "crumble_floor_fungus_270deg",
+        "alsoDestroy": [],
+        "exit": true,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Room_Fungus_Shaman[left1]",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Shade_Soul_Shortcut",
+        "gameObject": "/Breakable Wall Ruin Lift",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Ruins1_31",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_wall_unique_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Ruins1_31",
+        "logicOverrides": {
+            "Ruins1_31": "(ORIG) | (Ruins1_31[bot1] | Ruins1_31[left1]) + Wall-Shade_Soul_Shortcut + (ANYCLAW | WINGS | RIGHTSLASH | GREATSLASH | CYCLONE | RIGHTDASHSLASH)"
+        },
+        "logicSubstitutions": {
+            "Ruins1_31[bot1]": {
+                "Ruins1_31": "(Ruins1_31 + Wall-Shade_Soul_Shortcut)"
+            },
+            "Ruins1_31[left1]": {
+                "Ruins1_31": "(Ruins1_31 + Wall-Shade_Soul_Shortcut)"
+            }
+        }
+    },
+    {
+        "name": "Wall-Chandelier",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Ruins2_03",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ruin_break_roof_90deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Ruins2_03[bot1] + (((SCREAM | QUAKE>1 + PRECISEMOVEMENT + OBSCURESKIPS + DANGEROUSSKIPS) + $CASTSPELL) | (ANYCLAW | WINGS) + UPWALLBREAK)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Pleasure_House",
+        "gameObject": "/Breakable Wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Ruins_Bathhouse",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "bathHouseWall",
+        "sprite": "bath_break_wall_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Ruins_Bathhouse[door1] | Ruins_Bathhouse[right1]",
+        "logicOverrides": {
+            "Ruins_Bathhouse[right1]": "(ORIG) + Wall-Pleasure_House",
+            "Opened_Pleasure_House_Wall": "Wall-Pleasure_House"
+        },
+        "logicSubstitutions": {
+            "Ruins2_10b[left1]": {
+                "Opened_Pleasure_House_Wall": "Wall-Pleasure_House"
+            }
+        }
+    },
+    {
+        "name": "Plank-Pleasure_House",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Ruins_Elevator",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "one way wall_elev_270deg",
+        "alsoDestroy": [],
+        "exit": true,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Ruins_Elevator[left1] | Ruins_Elevator[left2]",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Tuk",
+        "gameObject": "/Breakable Wall Waterways",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Waterways_01",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "waterways_break_wall_01_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Waterways_01[right1] | Waterways_01 + (RIGHTCLAW | WINGS | LEFTCLAW + RIGHTSUPERDASH | ENEMYPOGOS) | Waterways_01[top1] + RIGHTDASH",
+        "logicOverrides": {
+            "Waterways_01[right1]": "(ORIG) + Wall-Tuk"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Waterways_Bench",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Waterways_02",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_294deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Waterways_02[top3] + Broke_Waterways_Bench_Quake_Floor_3 | Waterways_02 + (LEFTCLAW | WINGS + RIGHTCLAW | ENEMYPOGOS + DANGEROUSSKIPS + (WINGS | RIGHTCLAW)))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Waterways_Grub",
+        "gameObject": "/Breakable Wall Waterways",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Waterways_04",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "waterways_break_wall_01_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Waterways_04[right1] + (RIGHTCLAW | SWIM | CYCLONE | (FIREBALL | SCREAM) + $CASTSPELL[before:ROOMSOUL]) | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) + (RIGHTCLAW | SWIM | CYCLONE | (FIREBALL | SCREAM) + $CASTSPELL[before:ROOMSOUL]) | Waterways_04[left2] + (SWIM | RIGHTSKIPACID)",
+        "logicOverrides": {
+            "Grub-Waterways_Main": "(ORIG) + Wall-Waterways_Grub"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Dung_Defender",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Waterways_05",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "dungDefenderWallBroken",
+        "sprite": "ancient_wall_pieces_0000_a_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Waterways_05[bot1] + (ANYCLAW | WINGS) + Defeated_Dung_Defender | Waterways_05[bot2] | Waterways_05[right1] + Plank-Dung_Defender",
+        "logicOverrides": {
+            "Opened_Dung_Defender_Wall": "Plank-Dung_Defender"
+        },
+        "logicSubstitutions": {
+            "Abyss_01[left1]": {
+                "Opened_Dung_Defender_Wall": "Plank-Dung_Defender"
+            }
+        }
+    },
+    {
+        "name": "Plank-Isma's_Grove",
+        "gameObject": "/One Way Wall",
+        "fsmType": "break_floor",
+        "sceneName": "Waterways_07",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "waterway_break_wall_acid_02_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Waterways_07[top1]",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Junk_Pit_Exit",
+        "gameObject": "/Break Floor 1",
+        "fsmType": "break_floor",
+        "sceneName": "Waterways_08",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_270deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Waterways_08[left2] + Wall-Junk_Pit_Entrance | (Waterways_08[top1] | Bench-Fort_Flukefey?NONE + (WINGS + ENEMYPOGOS | WINGS + ANYCLAW | SWIM + ENEMYPOGOS + LEFTCLAW)) + Plank-Junk_Pit_Exit",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Junk_Pit_Entrance",
+        "gameObject": "/Breakable Wall Waterways",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "Waterways_08",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "_0017_waterway_arch_break wall_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Waterways_08[left2] | (Waterways_08[top1] | Bench-Fort_Flukefey?NONE + (WINGS + ENEMYPOGOS | WINGS + ANYCLAW | SWIM + ENEMYPOGOS + LEFTCLAW)) + Plank-Junk_Pit_Exit",
+        "logicOverrides": {
+            "Waterways_08[left2]": "(ORIG) + Wall-Junk_Pit_Entrance"
+        },
+        "logicSubstitutions": {
+            "Soul_Totem-Waterways_Flukemarm": {
+                "Waterways_08[left2]": "(Waterways_08[left2] + Wall-Junk_Pit_Entrance)"
+            },
+            "Geo_Rock-Waterways_Flukemarm": {
+                "Waterways_08[left2]": "(Waterways_08[left2] + Wall-Junk_Pit_Entrance)"
+            },
+            "Waterways_08[top1]": {
+                "Waterways_08[left2]": "(Waterways_08[left2] + Wall-Junk_Pit_Entrance)"
+            },
+            "Waterways_08[left1]": {
+                "Waterways_08[left2]": "(Waterways_08[left2] + Wall-Junk_Pit_Entrance)"
+            }
+        }
+    },
+    {
+        "name": "Dive_Floor-Basin_Grub",
+        "gameObject": "/Quake Floor",
+        "fsmType": "quake_floor",
+        "sceneName": "Abyss_17",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Abyss_17[top1] + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logicOverrides": {
+            "Broke_Basin_Grub_Quake_Floor": "Dive_Floor-Basin_Grub"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Joni",
+        "gameObject": "/Quake Floor",
+        "fsmType": "quake_floor",
+        "sceneName": "Cliffs_04",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Cliffs_04[right1] + (DARKROOMS | (LANTERN | (NOLANTERN ? FALSE))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logicOverrides": {
+            "Broke_Cliffs_Dark_Room_Quake_Floor": "Dive_Floor-Joni"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Goam",
+        "gameObject": "/Quake Floor",
+        "fsmType": "quake_floor",
+        "sceneName": "Crossroads_52",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Crossroads_52[left1] + QUAKE + $CASTSPELL[before:ITEMSOUL]",
+        "logicOverrides": {
+            "Broke_Goam_Entry_Quake_Floor": "Dive_Floor-Goam"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Lower_Edge",
+        "gameObject": "/Quake Floor",
+        "fsmType": "quake_floor",
+        "sceneName": "Deepnest_East_02",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_East_02 + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logicOverrides": {
+            "Broke_Lower_Edge_Quake_Floor": "Dive_Floor-Lower_Edge"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Oro_Second",
+        "gameObject": "/Quake Floor (1)",
+        "fsmType": "quake_floor",
+        "sceneName": "Deepnest_East_14",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_East_14[top2] + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logicOverrides": {
+            "Broke_Oro_Quake_Floor_2": "Dive_Floor-Oro_Second"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Oro_Third",
+        "gameObject": "/Quake Floor (2)",
+        "fsmType": "quake_floor",
+        "sceneName": "Deepnest_East_14",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_East_14[top2] + Dive_Floor-Oro_Second + (RIGHTCLAW | WINGS | LEFTCLAW + ENEMYPOGOS) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logicOverrides": {
+            "Broke_Oro_Quake_Floor_3": "Dive_Floor-Oro_Third"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Oro",
+        "gameObject": "/Quake Floor",
+        "fsmType": "quake_floor",
+        "sceneName": "Deepnest_East_16",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Deepnest_East_16[left1] | Deepnest_East_16[bot1]) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logicOverrides": {
+            "Broke_Oro_Quake_Floor_1": "Dive_Floor-Oro"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-420_Rock_1",
+        "gameObject": "/quake floors/Quake Floor",
+        "fsmType": "quake_floor",
+        "sceneName": "Deepnest_East_17",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "420_Rock",
+        "logic": "Deepnest_East_17[left1] + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logicOverrides": {
+            "Broke_420_Rock_Quake_Floor_1": "Dive_Floor-420_Rock_1"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-420_Rock_2",
+        "gameObject": "/quake floors/Quake Floor (1)",
+        "fsmType": "quake_floor",
+        "sceneName": "Deepnest_East_17",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "420_Rock",
+        "logic": "Deepnest_East_17[left1] + Dive_Floor-420_Rock_1 + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logicOverrides": {
+            "Broke_420_Rock_Quake_Floor_2": "Dive_Floor-420_Rock_2"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-420_Rock_3",
+        "gameObject": "/quake floors/Quake Floor (5)",
+        "fsmType": "quake_floor",
+        "sceneName": "Deepnest_East_17",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "420_Rock",
+        "logic": "Deepnest_East_17[left1] + Dive_Floor-420_Rock_1 + Dive_Floor-420_Rock_2 + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logicOverrides": {
+            "Broke_420_Rock_Quake_Floor_3": "Dive_Floor-420_Rock_3"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-420_Rock_4",
+        "gameObject": "/quake floors/Quake Floor (9)",
+        "fsmType": "quake_floor",
+        "sceneName": "Deepnest_East_17",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "420_Rock",
+        "logic": "Deepnest_East_17[left1] + Dive_Floor-420_Rock_1 + Dive_Floor-420_Rock_2 + Dive_Floor-420_Rock_3 + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logicOverrides": {
+            "Broke_420_Rock_Quake_Floor_4": "Dive_Floor-420_Rock_4"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-420_Rock_5",
+        "gameObject": "/quake floors/Quake Floor (10)",
+        "fsmType": "quake_floor",
+        "sceneName": "Deepnest_East_17",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "420_Rock",
+        "logic": "Deepnest_East_17[left1] + Dive_Floor-420_Rock_1 + Dive_Floor-420_Rock_2 + Dive_Floor-420_Rock_3 + Dive_Floor-420_Rock_4 + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logicOverrides": {
+            "Broke_420_Rock_Quake_Floor_5": "Dive_Floor-420_Rock_5"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-420_Rock_6",
+        "gameObject": "/quake floors/Quake Floor (2)",
+        "fsmType": "quake_floor",
+        "sceneName": "Deepnest_East_17",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "420_Rock",
+        "logic": "Deepnest_East_17[left1] + Dive_Floor-420_Rock_1 + Dive_Floor-420_Rock_2 + Dive_Floor-420_Rock_3 + Dive_Floor-420_Rock_4 + Dive_Floor-420_Rock_5 + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logicOverrides": {
+            "Broke_420_Rock_Quake_Floor_6": "Dive_Floor-420_Rock_6"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-420_Rock_7",
+        "gameObject": "/quake floors/Quake Floor (3)",
+        "fsmType": "quake_floor",
+        "sceneName": "Deepnest_East_17",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "420_Rock",
+        "logic": "Deepnest_East_17[left1] + Dive_Floor-420_Rock_1 + Dive_Floor-420_Rock_2 + Dive_Floor-420_Rock_3 + Dive_Floor-420_Rock_4 + Dive_Floor-420_Rock_5 + Dive_Floor-420_Rock_6 + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logicOverrides": {
+            "Broke_420_Rock_Quake_Floor_7": "Dive_Floor-420_Rock_7"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-420_Rock_8",
+        "gameObject": "/quake floors/Quake Floor (8)",
+        "fsmType": "quake_floor",
+        "sceneName": "Deepnest_East_17",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "420_Rock",
+        "logic": "Deepnest_East_17[left1] + Dive_Floor-420_Rock_1 + Dive_Floor-420_Rock_2 + Dive_Floor-420_Rock_3 + Dive_Floor-420_Rock_4 + Dive_Floor-420_Rock_5 + Dive_Floor-420_Rock_6 + Dive_Floor-420_Rock_7 + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logicOverrides": {
+            "Broke_420_Rock_Quake_Floor_8": "Dive_Floor-420_Rock_8"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-420_Rock_9",
+        "gameObject": "/quake floors/Quake Floor (4)",
+        "fsmType": "quake_floor",
+        "sceneName": "Deepnest_East_17",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "420_Rock",
+        "logic": "Deepnest_East_17[left1] + Dive_Floor-420_Rock_1 + Dive_Floor-420_Rock_2 + Dive_Floor-420_Rock_3 + Dive_Floor-420_Rock_4 + Dive_Floor-420_Rock_5 + Dive_Floor-420_Rock_6 + Dive_Floor-420_Rock_7 + Dive_Floor-420_Rock_8 + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logicOverrides": {
+            "Broke_420_Rock_Quake_Floor_9": "Dive_Floor-420_Rock_9"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-420_Rock_10",
+        "gameObject": "/quake floors/Quake Floor (6)",
+        "fsmType": "quake_floor",
+        "sceneName": "Deepnest_East_17",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "420_Rock",
+        "logic": "Deepnest_East_17[left1] + Dive_Floor-420_Rock_1 + Dive_Floor-420_Rock_2 + Dive_Floor-420_Rock_3 + Dive_Floor-420_Rock_4 + Dive_Floor-420_Rock_5 + Dive_Floor-420_Rock_6 + Dive_Floor-420_Rock_7 + Dive_Floor-420_Rock_8 + Dive_Floor-420_Rock_9 + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logicOverrides": {
+            "Broke_420_Rock_Quake_Floor_10": "Dive_Floor-420_Rock_10"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-420_Rock_11",
+        "gameObject": "/quake floors/Quake Floor (7)",
+        "fsmType": "quake_floor",
+        "sceneName": "Deepnest_East_17",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "420_Rock",
+        "logic": "Deepnest_East_17[left1] + Dive_Floor-420_Rock_1 + Dive_Floor-420_Rock_2 + Dive_Floor-420_Rock_3 + Dive_Floor-420_Rock_4 + Dive_Floor-420_Rock_5 + Dive_Floor-420_Rock_6 + Dive_Floor-420_Rock_7 + Dive_Floor-420_Rock_8 + Dive_Floor-420_Rock_9 + Dive_Floor-420_Rock_10 + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logicOverrides": {
+            "Broke_420_Rock_Quake_Floor_11": "Dive_Floor-420_Rock_11"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Edge_Journal_Exit",
+        "gameObject": "/Quake Floor (2)",
+        "fsmType": "quake_floor",
+        "sceneName": "Deepnest_East_18",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Deepnest_East_18[top1] + $CASTSPELL[1] | Deepnest_East_18 + (ANYCLAW | WINGS) + $CASTSPELL[1,before:ROOMSOUL]) + Dive_Floor-Edge_Journal + QUAKE | Deepnest_East_18 + Dive_Floor-Edge_Journal_Exit + (LEFTCLAW | WINGS + RIGHTCLAW) + QUAKE + $CASTSPELL[1,before:ROOMSOUL]",
+        "logicOverrides": {
+            "Wanderer's_Journal-Kingdom's_Edge_Requires_Dive": "(ORIG) | (Deepnest_East_18 + (LEFTCLAW | (WINGS + RIGHTCLAW)) + Dive_Floor-Edge_Journal_Exit)"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Edge_Journal",
+        "gameObject": "/Quake Floor (1)",
+        "fsmType": "quake_floor",
+        "sceneName": "Deepnest_East_18",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Deepnest_East_18 + (ANYCLAW | WINGS | Deepnest_East_18[top1]) + QUAKE + $CASTSPELL",
+        "logicOverrides": {
+            "Broke_Edge_Journal_Quake_Floor": "Dive_Floor-Edge_Journal"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Pilgrim's_Way",
+        "gameObject": "/Quake Floor",
+        "fsmType": "quake_floor",
+        "sceneName": "Fungus2_21",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Fungus2_21[right1] + (FULLCLAW + (LEFTDASH | LEFTSUPERDASH) | ANYCLAW + WINGS) + QUAKE + $CASTSPELL[before:ITEMSOUL]",
+        "logicOverrides": {
+            "Broke_Pilgrim's_Way_Quake_Floor": "Dive_Floor-Pilgrim's_Way"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Peak_Entrance",
+        "gameObject": "/_Scenery/mine_1_quake_floor",
+        "fsmType": "Detect Quake",
+        "sceneName": "Mines_01",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "roof_05_351deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Mines_01[left1] + QUAKE + $CASTSPELL",
+        "logicOverrides": {
+            "Broke_Crystal_Peak_Entrance_Quake_Floor": "Dive_Floor-Peak_Entrance"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Peak_Egg",
+        "gameObject": "/Quake Floor",
+        "fsmType": "quake_floor",
+        "sceneName": "Mines_20",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Mines_20 + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logicOverrides": {
+            "Broke_Crystal_Peak_Dive_Egg_Quake_Floor": "Dive_Floor-Peak_Egg"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Crystal_Crown",
+        "gameObject": "/Quake Floor",
+        "fsmType": "quake_floor",
+        "sceneName": "Mines_25",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Mines_25[left1] + (FULLCLAW | WINGS + ANYCLAW) | Mines_25[top1]) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logicOverrides": {
+            "Broke_Hallownest's_Crown_Quake_Floor": "Dive_Floor-Crystal_Crown"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Crystallized_Mound",
+        "gameObject": "/_Scenery/mine_1_quake_floor",
+        "fsmType": "Detect Quake",
+        "sceneName": "Mines_35",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "roof_05_351deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Mines_35[left1] + QUAKE + $CASTSPELL",
+        "logicOverrides": {
+            "Broke_Crystallized_Mound_Quake_Floor": "Dive_Floor-Crystallized_Mound"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Broken_Coffin",
+        "gameObject": "/Quake Floor",
+        "fsmType": "quake_floor",
+        "sceneName": "RestingGrounds_05",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "RestingGrounds_05 + QUAKE + $CASTSPELL",
+        "logicOverrides": {
+            "Broke_Resting_Grounds_Quake_Floor": "Dive_Floor-Broken_Coffin"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Above_Soul_Warrior",
+        "gameObject": "/Quake Floor Glass (2)",
+        "fsmType": "quake_floor",
+        "sceneName": "Ruins1_30",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor_glass",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Ruins1_30 + QUAKE + ((Ruins1_30[left1] | Ruins1_30[left2] | Ruins1_30[right1]) + $CASTSPELL[1,before:ROOMSOUL] | Ruins1_30[bot1] + $CASTSPELL[1])",
+        "logicOverrides": {
+            "Broke_Sanctum_Glass_Floor": "Dive_Floor-Above_Soul_Warrior"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Sanctum_Escape_1",
+        "gameObject": "/Quake Floor Glass",
+        "fsmType": "quake_floor",
+        "sceneName": "Ruins1_30",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor_glass",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Ruins1_30[left2] + (LEFTCLAW | (RIGHTCLAW | WINGS) + BACKGROUNDPOGOS | RIGHTCLAW + WINGS) | Ruins1_30 + Dive_Floor-Sanctum_Escape_1 + Dive_Floor-Sanctum_Escape_2 + ANYCLAW) + QUAKE + $CASTSPELL[1,before:ROOMSOUL]",
+        "logicOverrides": {
+            "Broke_Sanctum_Escape_Quake_Floor_1": "Dive_Floor-Sanctum_Escape_1"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Sanctum_Escape_2",
+        "gameObject": "/Quake Floor Glass (1)",
+        "fsmType": "quake_floor",
+        "sceneName": "Ruins1_30",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor_glass",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Ruins1_30[left2] + Dive_Floor-Sanctum_Escape_1 + (LEFTCLAW | (RIGHTCLAW | WINGS) + BACKGROUNDPOGOS | RIGHTCLAW + WINGS) | Ruins1_30 + Dive_Floor-Sanctum_Escape_2 + (ANYCLAW | WINGS)) + QUAKE + $CASTSPELL[1,before:ROOMSOUL]",
+        "logicOverrides": {
+            "Broke_Sanctum_Escape_Quake_Floor_2": "Dive_Floor-Sanctum_Escape_2"
+        },
+        "logicSubstitutions": {
+            "Ruins1_30": {
+                "Ruins1_30[left2]": "(Ruins1_30[left2] + Dive_Floor-Sanctum_Escape_1 + Dive_Floor-Sanctum_Escape_2)"
+            }
+        }
+    },
+    {
+        "name": "Dive_Floor-Inner_Sanctum_1",
+        "gameObject": "/Quake Floor Glass",
+        "fsmType": "quake_floor",
+        "sceneName": "Ruins1_32",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor_glass",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Inner_Sanctum",
+        "logic": "Ruins1_32[right1] + (ANYCLAW | $SHRIEKPOGO[before:AREASOUL]) + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Inner_Sanctum_2",
+        "gameObject": "/Quake Floor Glass (1)",
+        "fsmType": "quake_floor",
+        "sceneName": "Ruins1_32",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor_glass",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Inner_Sanctum",
+        "logic": "(Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + QUAKE + $CASTSPELL[before:ROOMSOUL]) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS))) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Inner_Sanctum_Seal",
+        "gameObject": "/Quake Floor Glass (2)",
+        "fsmType": "quake_floor",
+        "sceneName": "Ruins1_32",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor_glass",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Inner_Sanctum",
+        "logic": "(Ruins1_32[right1] + ANYCLAW + QUAKE + $CASTSPELL[before:ROOMSOUL] + Dive_Floor-Inner_Sanctum_1 + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Inner_Sanctum_Lever",
+        "gameObject": "/Quake Floor Glass (3)",
+        "fsmType": "quake_floor",
+        "sceneName": "Ruins1_32",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor_glass",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Inner_Sanctum",
+        "logic": "(Ruins1_32[right1] + ANYCLAW + QUAKE + $CASTSPELL[before:ROOMSOUL] + Dive_Floor-Inner_Sanctum_1 + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ANYCLAW + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Inner_Sanctum_Bottom",
+        "gameObject": "/Quake Floor Glass (4)",
+        "fsmType": "quake_floor",
+        "sceneName": "Ruins1_32",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor_glass",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Inner_Sanctum",
+        "logic": "(Ruins1_32[right1] + ANYCLAW + QUAKE + $CASTSPELL[before:ROOMSOUL] + Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_1 + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + (Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom)))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Inner_Sanctum_Cenda",
+        "gameObject": "/Quake Floor",
+        "fsmType": "quake_floor",
+        "sceneName": "Ruins1_32",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Inner_Sanctum",
+        "logic": "Ruins1_32[right1] + ANYCLAW + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Inner_Sanctum_Grub",
+        "gameObject": "/Quake Floor (1)",
+        "fsmType": "quake_floor",
+        "sceneName": "Ruins1_32",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Inner_Sanctum",
+        "logic": "Ruins1_32[right1] + ANYCLAW + QUAKE + $CASTSPELL[before:ROOMSOUL] + Broke_Quake_Floor_After_Soul_Master_1",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Watcher's_Spire",
+        "gameObject": "/Quake Floor Glass",
+        "fsmType": "quake_floor",
+        "sceneName": "Ruins2_01_b",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "mage_lord_room_0003_floor_wing_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Ruins2_01_b + QUAKE + $CASTSPELL",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Above_Waterways_Bench",
+        "gameObject": "/Quake Floor (1)",
+        "fsmType": "quake_floor",
+        "sceneName": "Waterways_02",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Waterways_02[top3] + QUAKE + $CASTSPELL",
+        "logicOverrides": {
+            "Broke_Waterways_Bench_Quake_Floor_3": "Dive_Floor-Above_Waterways_Bench"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Waterways_Bench_1",
+        "gameObject": "/Quake Floor",
+        "fsmType": "quake_floor",
+        "sceneName": "Waterways_04",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(Waterways_04[right1] | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) | Waterways_04[left2] + (RIGHTCLAW | WINGS + ENEMYPOGOS) + (SWIM | RIGHTSKIPACID)) + QUAKE + $CASTSPELL",
+        "logicOverrides": {
+            "Broke_Waterways_Bench_Quake_Floor_1": "Dive_Floor-Waterways_Bench_1"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Waterways_Bench_2",
+        "gameObject": "/Quake Floor (1)",
+        "fsmType": "quake_floor",
+        "sceneName": "Waterways_04",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Waterways_04[bot1] | (Waterways_04[right1] | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) | Waterways_04[left2] + (RIGHTCLAW | WINGS + ENEMYPOGOS) + (SWIM | RIGHTSKIPACID)) + Broke_Waterways_Bench_Quake_Floor_1 + QUAKE + $CASTSPELL",
+        "logicOverrides": {
+            "Broke_Waterways_Bench_Quake_Floor_2": "Dive_Floor-Waterways_Bench_1 + Dive_Floor-Waterways_Bench_2"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Flukemarm",
+        "gameObject": "/Quake Floor",
+        "fsmType": "quake_floor",
+        "sceneName": "Waterways_02",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Waterways_02[bot1] | (Waterways_02[top1] | Waterways_02[top2] + (ANYCLAW | WINGS | SWIM) | Waterways_02[top3] + Broke_Waterways_Bench_Quake_Floor_3 | Waterways_02[bot1] | Waterways_02[bot2] + (ANYCLAW | WINGS | SWIM)) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logicOverrides": {
+            "Broke_Flukemarm_Quake_Floor": "Dive_Floor-Flukemarm"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Dung_Defender",
+        "gameObject": "/Quake Floor",
+        "fsmType": "quake_floor",
+        "sceneName": "Waterways_05",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Waterways_05[bot2] | (Waterways_05[right1] | Waterways_05[bot1] + (ANYCLAW | WINGS) + Defeated_Dung_Defender) + QUAKE + $CASTSPELL",
+        "logicOverrides": {
+            "Broke_Dung_Defender_Quake_Floor": "Dive_Floor-Dung_Defender"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-White_Palace_Nursery",
+        "gameObject": "/Quake Floor",
+        "fsmType": "quake_floor",
+        "sceneName": "White_Palace_09",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "*Soul_Totem-White_Palace_Final + QUAKE + $CASTSPELL",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-White_Palace_Shortcut",
+        "gameObject": "/Quake Floor",
+        "fsmType": "quake_floor",
+        "sceneName": "White_Palace_15",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "*Soul_Totem-White_Palace_Right",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-King's_Pass",
+        "gameObject": "/_Scenery/Break Floor 1",
+        "fsmType": "break_floor",
+        "sceneName": "Tutorial_01",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "ancient_wall_pieces_0000_a_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "King's_Pass_Walls",
+        "logic": "Tutorial_01",
+        "logicOverrides": {
+            "Geo_Rock-King's_Pass_Above_Fury": "(ORIG + Plank-King's_Pass) | (Tutorial_01 + (RIGHTCLAW | WINGS + RIGHTDASH + LONGMARK + BACKGROUNDPOGOS))",
+            "Geo_Rock-King's_Pass_Collapse": "(ORIG + Plank-King's_Pass) | (Tutorial_01 + (FULLCLAW | WINGS))",
+            "Lore_Tabler-King's_Pass_Fury": "(ORIG + Plank-King's_Pass) | (Tutorial_01 + (ANYCLAW | WINGS))",
+            "Fury_of_the_Fallen": "(ORIG + Plank-King's_Pass) | (Tutorial_01 + (ANYCLAW | WINGS))"
+        },
+        "logicSubstitutions": {}
+    }
+]

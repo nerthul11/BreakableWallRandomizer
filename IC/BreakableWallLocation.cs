@@ -1,49 +1,112 @@
-﻿using System.Linq;
-using ItemChanger.Locations;
-using ItemChanger;
-using Satchel;
-using ItemChanger.Util;
-using UnityEngine;
+﻿using BreakableWallRandomizer.Modules;
 using HutongGames.PlayMaker.Actions;
+using ItemChanger;
+using ItemChanger.Locations;
+using ItemChanger.Tags;
+using ItemChanger.Util;
+using Satchel;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
 
-namespace BreakableWallRandomiser.IC
+namespace BreakableWallRandomizer.IC
 {
-    public class BreakableWallLocation : ExistingContainerLocation
+    [Serializable]
+    public class BreakableWallLocation : AutoLocation
     {
         public string objectName;
         public string fsmType;
-        public ICManager.WallData wallData;
-
-        protected override void OnLoad()
+        public List<string> alsoDestroy;
+        public bool exit;
+        public List<CondensedWallObject> groupWalls;
+        public BreakableWallLocation(
+            string name, string sceneName, string objectName, string fsmType, List<string> alsoDestroy, 
+            float x, float y,  bool exit, List<CondensedWallObject> groupWalls
+        )
         {
-            Events.AddFsmEdit(sceneName, new(objectName, fsmType), ModifyWallBehaviour);
-            foreach (var secondaryWall in wallData.secondaryWalls)
+            this.name = name;
+            this.sceneName = sceneName;
+            this.objectName = objectName;
+            this.fsmType = fsmType;
+            this.alsoDestroy = alsoDestroy;
+            this.exit = exit;
+            this.groupWalls = groupWalls;
+            flingType = FlingType.DirectDeposit;
+            tags = [BreakableWallLocationTag(x, y)];
+        }
+
+        private InteropTag BreakableWallLocationTag(float x, float y)
+        {
+            // Define sprite by location type
+            string sprite = "";
+            if (name.StartsWith("Wall-"))
+                sprite = "mine_break_wall_03_0deg";
+            if (name.StartsWith("Plank-"))
+                sprite = "wood_plank_02";
+            if (name.StartsWith("Dive_Floor-"))
+                sprite = "break_floor";
+            
+            // Replace map for pinless-maps
+            string mapSceneName = sceneName;
+            Dictionary<string, string> sceneOverride = [];
+            sceneOverride.Add("Room_GG_Shortcut", "GG_Waterways");
+            sceneOverride.Add("Deepnest_East_17", "Deepnest_East_14");
+            if (sceneOverride.ContainsKey(sceneName))
+                mapSceneName = sceneOverride[sceneName];
+
+            InteropTag tag = new();
+            tag.Properties["ModSource"] = "BreakableWallRandomizer";
+            tag.Properties["PoolGroup"] = $"{name.Split('-')[0].Replace('_', ' ')}s";
+            tag.Properties["PinSprite"] = new WallSprite(sprite);
+            tag.Properties["VanillaItem"] = name;
+            tag.Properties["MapLocations"] = new (string, float, float)[] {(mapSceneName, x, y)};
+            tag.Message = "RandoSupplementalMetadata";
+            return tag;
+        }
+        protected override void OnLoad()
+        {           
+            if (groupWalls.Count > 0)
             {
-                Events.AddFsmEdit(secondaryWall.sceneName, new(secondaryWall.gameObject, secondaryWall.fsmType ?? fsmType), ModifyWallBehaviour);
+                foreach (CondensedWallObject wall in groupWalls)
+                    Events.AddFsmEdit(wall.sceneName, new(wall.gameObject, wall.fsmType ?? fsmType), ModifyWallBehaviour);
+            }
+            else
+            {
+                Events.AddFsmEdit(sceneName, new(objectName, fsmType), ModifyWallBehaviour);
+                if (name == "Wall-Deepnest_Fungal")
+                    Events.AddFsmEdit(SceneNames.Fungus2_20, new("/Breakable Wall Waterways", fsmType), ModifyWallBehaviour);
+                if (name == "Plank-King's_Pass")
+                    Events.AddFsmEdit(sceneName, new("Collapser Tute 01", "collapse tute"), ManageKPCollapse);
             }
         }
 
         protected override void OnUnload()
         {
-            Events.RemoveFsmEdit(sceneName, new(objectName, fsmType), ModifyWallBehaviour);
-            foreach(var secondaryWall in wallData.secondaryWalls)
+            if (groupWalls != null)
             {
-                Events.RemoveFsmEdit(secondaryWall.sceneName, new(secondaryWall.gameObject, secondaryWall.fsmType ?? fsmType), ModifyWallBehaviour);
+                foreach (CondensedWallObject wall in groupWalls)
+                    Events.RemoveFsmEdit(wall.sceneName, new(wall.gameObject, wall.fsmType ?? fsmType), ModifyWallBehaviour);
+            }
+            else
+            {            
+                Events.RemoveFsmEdit(sceneName, new(objectName, fsmType), ModifyWallBehaviour);
+                if (name == "Wall-Fungal_Deepnest_Two_Way")
+                    Events.RemoveFsmEdit(SceneNames.Fungus2_20, new("/Breakable Wall Waterways", fsmType), ModifyWallBehaviour);
+                if (name == "Plank-King's_Pass")
+                    Events.RemoveFsmEdit(sceneName, new("Collapser Tute 01", "collapse tute"), ManageKPCollapse);
+  
             }
         }
 
         private void MakeWallPassable(GameObject go)
         {
-            if (wallData.alsoDestroy != null)
+            foreach (var objectName in alsoDestroy)
             {
-                foreach (var objectName in wallData.alsoDestroy)
+                try
                 {
-                    try
-                    {
-                        var obj = GameObject.Find(objectName);
-                        GameObject.Destroy(obj);
-                    } catch { }
-                }
+                    var obj = GameObject.Find(objectName);
+                    GameObject.Destroy(obj);
+                } catch { }
             }
             Recursive_MakeWallPassable(go);
         }
@@ -80,7 +143,7 @@ namespace BreakableWallRandomiser.IC
 
             if (go.name.Contains("Camera"))
             {
-                UnityEngine.GameObject.Destroy(go);
+                GameObject.Destroy(go);
             }
 
             for (var i = 0; i < go.transform.childCount; i++)
@@ -91,13 +154,11 @@ namespace BreakableWallRandomiser.IC
 
         private void ModifyWallBehaviour(PlayMakerFSM fsm)
         {
-            if (wallData.destroyUnconditionally != null)
-            {
-                foreach(var destroy in wallData.destroyUnconditionally)
-                {
-                    GameObject.Destroy(GameObject.Find(destroy));
-                }
-            } 
+            if (name.Contains("White_Palace") || name.Contains("Path_of_Pain"))
+                BreakableWallModule.Instance.vanillaWalls.RemoveAll(wall => wall.name == name);
+
+            if (name == "Wall-Shade_Soul_Shortcut")
+                GameObject.Destroy(GameObject.Find("/Breakable Wall Ruin Lift/Masks"));
 
             // The wall will delete itself based on its state if we don't do this.
             if (fsmType == "break_floor" || fsmType == "FSM")
@@ -106,7 +167,16 @@ namespace BreakableWallRandomiser.IC
             }
             else if (fsmType == "breakable_wall_v2")
             {
-                fsm.ChangeTransition("Activated?", "ACTIVATE", "Ruin Lift?");
+                // Shade Soul Shortcut is the only example of a two-way wall that can be accessed from both sides but
+                // destroyed only from one of them. TC made stuff happen to prevent players from destroying it from
+                // the left end - behaviour we'll preserve but only if the item isn't obtained.
+                if (name == "Wall-Shade_Soul_Shortcut" && BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(name))
+                {
+                    fsm.ChangeTransition("Activated?", "ACTIVATE", "Initiate");
+                    fsm.ChangeTransition("Activated?", "FINISHED", "Initiate");
+                }
+                else
+                    fsm.ChangeTransition("Activated?", "ACTIVATE", "Ruin Lift?");
             } else if (fsmType == "quake_floor")
             {
                 fsm.ChangeTransition("Init", "ACTIVATE", "Solid");
@@ -139,20 +209,23 @@ namespace BreakableWallRandomiser.IC
 
                 Placement.AddVisitFlag(VisitState.Opened);
 
-                if (BreakableWallRandomiser.saveData.unlockedBreakableWalls.Contains(wallData.getTermNames()[0]))
+                if (BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(name))
                 {
                     // Delete the wall entirely.
-                    if (fsmType == "quake_floor") { fsm.SetState("Destroy"); }
-                    else if (fsmType == "Detect Quake") { fsm.SetState("Break 2"); }
-                    else { fsm.SetState("Break"); }
+                    if (fsmType == "quake_floor") 
+                        fsm.SetState("Destroy");
+                    else if (fsmType == "Detect Quake") 
+                        fsm.SetState("Break 2");
+                    else 
+                        fsm.SetState("Break");
                 }
             });
 
             // If we already unlocked this wall, and items are still left there, make it passable.
-            if (BreakableWallRandomiser.saveData.unlockedBreakableWalls.Contains(wallData.getTermNames()[0]))
+            if (BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(name))
             {
                 // If items are left, make wall semi-transparent and passable
-                if (Placement.Items.Any(x => !x.IsObtained()))
+                if (!Placement.AllObtained())
                 {
                     MakeWallPassable(fsm.gameObject);
                 }
@@ -177,7 +250,7 @@ namespace BreakableWallRandomiser.IC
             // If we didn't unlock this door yet...
             {
                 // ...and we already obtained the item at this location, set the wall to an unhittable state:
-                if (Placement.Items.All(x => x.IsObtained()))
+                if (Placement.AllObtained())
                 {
                     fsm.SetState("GiveItem");
                 }
@@ -218,7 +291,7 @@ namespace BreakableWallRandomiser.IC
 
                     fsm.InsertCustomAction("BreakSameScene", () =>
                     {
-                        if (Placement.Items.Any(x => !x.IsObtained()))
+                        if (Placement.AllObtained())
                         {
                             MakeWallPassable(fsm.gameObject);
                             fsm.SetState(originalIdleStateName);
@@ -252,6 +325,35 @@ namespace BreakableWallRandomiser.IC
             } else if (fsmType == "Detect Quake")
             {
                 fsm.ChangeTransition("Quake Hit", "FINISHED", "GiveItem");
+            }
+        }
+
+        private void ManageKPCollapse(PlayMakerFSM fsm)
+        {
+            if (BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(name))
+            {
+                fsm.ChangeTransition("Init", "FINISHED", "Activate");   
+            }
+            else
+            {
+                fsm.ChangeTransition("Init", "ACTIVATE", "Idle");
+                fsm.AddState("Give item");
+                fsm.AddCustomAction("Give item", () => {
+                    ItemUtility.GiveSequentially(Placement.Items, Placement, new GiveInfo()
+                    {
+                        FlingType = FlingType.DirectDeposit,
+                        MessageType = MessageType.Corner,
+                    });
+                });
+                fsm.ChangeTransition("Crumble", "BREAK", "Give item");
+                if (Placement.GetUIName() == name.Replace("_", " ").Replace("-", " - "))
+                {
+                    fsm.AddCustomAction("Give item", () => {
+                        var obj = GameObject.Find(objectName);
+                        GameObject.Destroy(obj);
+                    });
+                    fsm.AddTransition("Give item", "FINISHED", "Break");
+                }
             }
         }
     }

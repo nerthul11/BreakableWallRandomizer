@@ -1,0 +1,168 @@
+[
+    {
+        "name": "Wall_Group-Grimm_Walls",
+        "gameObject": "",
+        "fsmType": "",
+        "sceneName": "Cliffs_01",
+        "x": 0.93,
+        "y": -0.95,
+        "persistentBool": "",
+        "sprite": "clif_break_02_0deg",
+        "alsoDestroy": [
+            "/Breakable Wall/Masks"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Grimm_Walls",
+        "logic": "Cliffs_01[right4] + Wall-Grimm_Inner | (Cliffs_01[right1] | Cliffs_01[right2] | Cliffs_01[right3] + (ANYCLAW | WINGS | FULLDASH + ENEMYPOGOS)) + (Plank-Grimm_Exit | Wall-Grimm_Outer)",
+        "logicOverrides": {
+            "Cliffs_01[right4]": "Cliffs_01[right4] | ORIG + Wall-Grimm_Inner + (Wall-Grimm_Outer | Plank-Grimm_Exit)"
+        },
+        "logicSubstitutions": {
+            "Cliffs_01": {
+                "Cliffs_01[right4]": "Cliffs_01[right4] + Wall-Grimm_Inner + (Plank-Grimm_Exit | (Wall-Grimm_Outer + ANYCLAW))"
+            },
+            "Lore_Tablet-Howling_Cliffs": {
+                "Cliffs_01[right1]": "(Cliffs_01[right1] + (Wall-Grimm_Outer | Plank-Grimm_Exit))",
+                "Cliffs_01[right2]": "(Cliffs_01[right2] + (Wall-Grimm_Outer | Plank-Grimm_Exit))",
+                "Cliffs_01[right3]": "(Cliffs_01[right3] + (Wall-Grimm_Outer | Plank-Grimm_Exit))",
+                "Cliffs_01[right4]": "(Cliffs_01[right4] + Wall-Grimm_Inner + ANYCLAW)"
+            },
+            "Wanderer's_Journal-Cliffs": {
+                "Cliffs_01[right1]": "(Cliffs_01[right1] + (Wall-Grimm_Outer | Plank-Grimm_Exit))",
+                "Cliffs_01[right2]": "(Cliffs_01[right2] + (Wall-Grimm_Outer | Plank-Grimm_Exit))",
+                "Cliffs_01[right3]": "(Cliffs_01[right3] + (Wall-Grimm_Outer | Plank-Grimm_Exit))",
+                "Cliffs_01[right4]": "(Cliffs_01[right4] + Wall-Grimm_Inner)"
+            }
+        }
+    },
+    {
+        "name": "Wall_Group-Nosk_Walls",
+        "gameObject": "",
+        "fsmType": "",
+        "sceneName": "Deepnest_31",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_wall_deepnest_0deg",
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Nosk_Walls",
+        "logic": "Deepnest_31[right1] + (LEFTSLASH | UPSLASH | SCREAM | LEFTFIREBALL | ANYCLAW | WINGS | LEFTDASH | (RIGHTSPELLAIRSTALL?SPELLAIRSTALL) + $CASTSPELL[3] | Plank-Nosk_Exit) | Deepnest_31[right2] + (ANYCLAW | WINGS)",
+        "logicOverrides": {
+            "Deepnest_31[right2]": "Deepnest_31[right2] | ((ORIG) + Wall-Nosk_Outer + Wall-Nosk_Inner) | ((ORIG) + Plank-Nosk_Exit)",
+            "Geo_Rock-Deepnest_Nosk_1": "Deepnest_31[right1] + (ANYCLAW | WINGS | LEFTDASH | (RIGHTSPELLAIRSTALL?SPELLAIRSTALL) + $CASTSPELL[3]) + Wall-Nosk_Outer | Deepnest_31[right2] + ((ANYCLAW | WINGS) + Wall-Nosk_Inner | (RIGHTCLAW | LEFTCLAW + (WINGS | BACKGROUNDPOGOS)) + Plank-Nosk_Exit + Wall-Nosk_Outer)",
+            "Geo_Rock-Deepnest_Nosk_2": "Deepnest_31[right1] + (ANYCLAW | WINGS | LEFTDASH | (RIGHTSPELLAIRSTALL?SPELLAIRSTALL) + $CASTSPELL[3]) + Wall-Nosk_Outer | Deepnest_31[right2] + ((ANYCLAW | WINGS) + Wall-Nosk_Inner | (RIGHTCLAW | LEFTCLAW + (WINGS | BACKGROUNDPOGOS)) + Plank-Nosk_Exit + Wall-Nosk_Outer)",
+            "Geo_Rock-Deepnest_Nosk_3": "Deepnest_31[right2]",
+            "Grub-Deepnest_Nosk": "Deepnest_31[right1] | Deepnest_31[right2] + ((RIGHTCLAW | LEFTCLAW + (WINGS | BACKGROUNDPOGOS)) + Plank-Nosk_Exit | (ANYCLAW | WINGS) + Wall-Nosk_Outer + Wall-Nosk_Inner)"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall_Group-Village_Walls",
+        "gameObject": "",
+        "fsmType": "",
+        "sceneName": "Deepnest_41",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_wall_deepnest_0deg",
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Village_Walls",
+        "logic": "((Deepnest_41 + (Plank-Village_Right_Exit | WINGS + (SIDESLASH | UPSLASH | LEFTCLAW) | RIGHTCLAW | LEFTCLAW + ENEMYPOGOS)) | Deepnest_41[left2] | (Deepnest_41[right1] + (WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | BACKGROUNDPOGOS) | ANYCLAW + Plank-Village_Top_Exit))) + (LANTERN | NOLANTERN?FALSE | DARKROOMS)",
+        "logicOverrides": {},
+        "logicSubstitutions": {
+            "Deepnest_41[left1]": {
+                "Deepnest_41[left2]": "(Deepnest_41[left2] + Plank-Village_Top_Exit + Plank-Village_Top_Climb)"
+            },
+            "Deepnest_41[right1]": {
+                "Deepnest_41[left2]": "(Deepnest_41[left2] + Plank-Village_Top_Exit + Plank-Village_Top_Climb)"
+            }
+        }
+    },
+    {
+        "name": "Wall_Group-Catacombs_Walls",
+        "gameObject": "",
+        "fsmType": "",
+        "sceneName": "RestingGrounds_10",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "restingGroundsCryptWall",
+        "sprite": "rest_grounds_break_wall_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Catacombs_Walls",
+        "logic": "RestingGrounds_10",
+        "logicOverrides": {
+            "Geo_Chest-Resting_Grounds": "(ORIG) + Wall-Catacombs_Right_1",
+            "Geo_Rock-Resting_Grounds_Catacombs_Grub": "(ORIG) + Wall-Catacombs_Right_1 + Wall-Catacombs_Grub",
+            "Geo_Rock-Resting_Grounds_Catacombs_Left": "(ORIG) + Wall-Catacombs_2 + Wall-Catacombs_3",
+            "Grub-Resting_Grounds": "(ORIG) + Wall-Catacombs_Right_1 + Wall-Catacombs_Grub",
+            "Hallownest_Seal-Resting_Grounds_Catacombs": "(ORIG) + Wall-Catacombs_Middle + Wall-Catacombs_2 + Wall-Catacombs_3",
+            "Opened_Resting_Grounds_Catacombs_Wall": "Plank-Catacombs_Elevator",
+            "RestingGrounds_10[left1]": "(ORIG) + Plank-Catacombs_Elevator",
+            "RestingGrounds_10[top2]": "RestingGrounds_10[top2] + (LEFTCLAW | WINGS + PRECISEMOVEMENT | RIGHTCLAW) | (ORIG) + Wall-Catacombs_Right_1 + Wall-Catacombs_Grey_Mourner",
+            "Soul_Eater": "(ORIG) + Wall-Catacombs_Soul_Eater + Wall-Catacombs_Right_1 + Wall-Catacombs_Right_2",
+            "Wanderer's_Journal-Resting_Grounds_Catacombs": "(ORIG) + Wall-Catacombs_Right_1 + Wall-Catacombs_Right_2"
+        },
+        "logicSubstitutions": {
+            "RestingGrounds_10": {
+                "RestingGrounds_10[left1]": "RestingGrounds_10[left1] + Plank-Catacombs_Elevator",
+                "RestingGrounds_10[top2]": "RestingGrounds_10[top2] + Wall-Catacombs_Right_1 + Wall-Catacombs_Grey_Mourner"
+            },
+            "Ruins2_10[right1]": {
+                "Opened_Resting_Grounds_Catacombs_Wall": "Plank-Catacombs_Elevator"
+            }
+        }
+    },
+    {
+        "name": "Wall_Group-420_Rock",
+        "gameObject": "",
+        "fsmType": "",
+        "sceneName": "Deepnest_East_17",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "420_Rock",
+        "logic": "Deepnest_East_17[left1] + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall_Group-Inner_Sanctum",
+        "gameObject": "",
+        "fsmType": "",
+        "sceneName": "Deepnest_East_17",
+        "x": 0.0,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor_glass",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Inner_Sanctum",
+        "logic": "(Ruins1_32[right1] + (ANYCLAW | $SHRIEKPOGO[before:AREASOUL]) + QUAKE + $CASTSPELL[before:AREASOUL]) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom)))",
+        "logicOverrides": {
+            "Broke_Quake_Floor_After_Soul_Master_1": "Dive_Floor-Inner_Sanctum_1",
+            "Broke_Quake_Floor_After_Soul_Master_2": "Dive_Floor-Inner_Sanctum_2",
+            "Broke_Quake_Floor_After_Soul_Master_3": "Dive_Floor-Inner_Sanctum_Grub",
+            "Broke_Quake_Floor_After_Soul_Master_4": "Dive_Floor-Inner_Sanctum_Bottom",
+            "Broke_Sanctum_Geo_Rock_Quake_Floor": "Dive_Floor-Inner_Sanctum_Cenda",
+            "Hallownest_Seal-Soul_Sanctum": "(ORIG + Dive_Floor-Inner_Sanctum_Seal) | Ruins1_32[right2] + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS))",
+            "Ruins1_32[right1]": "(ORIG) | (Ruins1_32[right2] + Dive_Floor-Inner_Sanctum_2 + ((RIGHTCLAW | ENEMYPOGOS) + Lever-Sanctum_West_Upper?TRUE | (RIGHTCLAW + (WINGS | ENEMYPOGOS)) + Dive_Floor-Inner_Sanctum_1) + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub)))" 
+        },
+        "logicSubstitutions": {}
+    }
+]

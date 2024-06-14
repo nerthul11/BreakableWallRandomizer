@@ -1,23 +1,24 @@
-﻿using System;
-using UnityEngine;
-using ItemChanger;
+﻿using ItemChanger;
 using ItemChanger.Internal;
+using Newtonsoft.Json;
+using System;
+using UnityEngine;
 
-namespace BreakableWallRandomiser.IC
+namespace BreakableWallRandomizer.IC
 {
     [Serializable]
     public class WallSprite : ISprite
     {
-        private static SpriteManager EmbeddedSpriteManager = new(typeof(WallSprite).Assembly, "BreakableWallRandomiser.Resources.Sprites.");
-
-        public string key;
+        private static SpriteManager EmbeddedSpriteManager = new(typeof(WallSprite).Assembly, "BreakableWallRandomizer.Resources.Sprites.");
+        public string Key { get; set; }
         public WallSprite(string key)
         {
-            this.key = key;
+            if (!string.IsNullOrEmpty(key))
+                Key = key;
         }
 
-        [Newtonsoft.Json.JsonIgnore]
-        public Sprite Value => EmbeddedSpriteManager.GetSprite(key);
+        [JsonIgnore]
+        public Sprite Value => EmbeddedSpriteManager.GetSprite(Key);
         public ISprite Clone() => (ISprite)MemberwiseClone();
     }
 }
