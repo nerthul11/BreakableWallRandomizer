@@ -1,7 +1,13 @@
+using System.Collections.Generic;
+using System.Linq;
 using BreakableWallRandomizer.IC.Shop;
 using ItemChanger;
+using ItemChanger.Extensions;
 using ItemChanger.Locations;
 using ItemChanger.Tags;
+using ItemChanger.Util;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace BreakableWallRandomizer.IC
 {
@@ -20,7 +26,7 @@ namespace BreakableWallRandomizer.IC
                 Displayers = [
                     new WallCostSupport("Wall", "mine_break_wall_03_0deg"), 
                     new WallCostSupport("Plank", "wood_plank_02"), 
-                    new WallCostSupport("Dive", "break_floor")
+                    new WallCostSupport("Dive", "break_floor_glass")
                 ]
             };
             tags = [ShopTag()];
@@ -51,19 +57,62 @@ namespace BreakableWallRandomizer.IC
 
         private void PreventMylaZombie(On.DeactivateIfPlayerdataFalse.orig_OnEnable orig, DeactivateIfPlayerdataFalse self)
         {
-            if ((self.gameObject.name.Contains("Zombie Myla") || string.Equals(self.gameObject.name, "Myla Crazy NPC")) && !Placement.AllObtained())
+            bool AllObtained = true;
+            foreach (AbstractItem item in Placement.Items)
+            {
+                if (!item.WasEverObtained()) 
+                    AllObtained = false;
+            }
+
+            if (AllObtained && (self.gameObject.name.Contains("Zombie Myla") || string.Equals(self.gameObject.name, "Myla Crazy NPC")))
             {
                 self.gameObject.SetActive(false);
                 return;
+            }
+            else if (self.gameObject.name.Contains("Zombie Myla") || string.Equals(self.gameObject.name, "Myla Crazy NPC"))
+            {
+                GameObject myla = self.gameObject;
+                if (Placement.CheckVisitedAny(VisitState.Accepted) && !Placement.AllObtained())
+                    {
+                        Container c = Container.GetContainer(Container.Shiny);
+
+                        ContainerInfo info = new(c.Name, Placement, flingType, (Placement as ItemChanger.Placements.ISingleCostPlacement)?.Cost);
+                        GameObject shiny = c.GetNewContainer(info);
+
+                        c.ApplyTargetContext(shiny, myla.transform.position.x, myla.transform.position.y, 0f);
+                        ShinyUtility.FlingShinyRandomly(shiny.LocateMyFSM("Shiny Control"));
+                    }
             }
             orig(self);
         }
 
         private void ForceMyla(On.DeactivateIfPlayerdataTrue.orig_OnEnable orig, DeactivateIfPlayerdataTrue self)
         {
-            if (string.Equals(self.gameObject.name, "Miner") && !Placement.AllObtained())
+            bool AllObtained = true;
+            foreach (AbstractItem item in Placement.Items)
+            {
+                if (!item.WasEverObtained()) 
+                    AllObtained = false;
+            }
+
+            if (string.Equals(self.gameObject.name, "Miner") && GameManager.instance.sceneName == sceneName && AllObtained)
                 return;
+
             orig(self);
+        }
+
+        private void MakeShinyForRespawnedItems(GameObject myla)
+        {
+            if (Placement.CheckVisitedAny(VisitState.Accepted) && !Placement.AllObtained())
+            {
+                Container c = Container.GetContainer(Container.Shiny);
+
+                ContainerInfo info = new(c.Name, Placement, flingType, (Placement as ItemChanger.Placements.ISingleCostPlacement)?.Cost);
+                GameObject shiny = c.GetNewContainer(info);
+
+                c.ApplyTargetContext(shiny, myla.transform.position.x, myla.transform.position.y, 0f);
+                ShinyUtility.FlingShinyLeft(shiny.LocateMyFSM("Shiny Control"));
+            }
         }
     }
 }

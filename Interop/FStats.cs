@@ -1,16 +1,15 @@
+using BreakableWallRandomizer.IC;
+using BreakableWallRandomizer.Manager;
+using BreakableWallRandomizer.Modules;
 using FStats;
 using FStats.StatControllers;
 using FStats.Util;
-using BreakableWallRandomizer.Manager;
-using BreakableWallRandomizer.Modules;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
-using Newtonsoft.Json;
-using System.IO;
-using BreakableWallRandomizer.IC;
-using RandomizerMod.Settings;
 
 namespace BreakableWallRandomizer.Interop
 {
@@ -36,23 +35,7 @@ namespace BreakableWallRandomizer.Interop
             List<WallObject> wallList = jsonSerializer.Deserialize<List<WallObject>>(new JsonTextReader(reader));
             BreakableWallModule module = BreakableWallModule.Instance;
             foreach (WallObject wall in wallList)
-            {
-                // Filter randomized walls. We don't care about if they're grouped or not here.
-                bool include = wall.name.StartsWith("Wall") && module.Settings.RockWalls;
-                include = include || (wall.name.StartsWith("Plank") && module.Settings.WoodenPlanks);
-                include = include || (wall.name.StartsWith("Dive_Floor") && module.Settings.DiveFloors);
-                if (wall.name.Contains("King's_Pass"))
-                    include = include && module.Settings.KingsPass;
-                include = include && !(wall.exit && module.Settings.SoftlockWalls);
-
-                // To be improved - Always include WP walls as vanilla and remove them from vanilla list using the location.
-                // Ideally it would be done directly using generation settings.
-                if (wall.name.Contains("White_Palace") || wall.name.Contains("Path_of_Pain"))
-                    include = false;
-                
-                if (!include)
-                    module.vanillaWalls.Add(new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType));
-            }
+                module.vanillaWalls.Add(new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType));
         }
     }
 

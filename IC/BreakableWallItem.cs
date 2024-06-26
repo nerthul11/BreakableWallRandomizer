@@ -45,7 +45,7 @@ namespace BreakableWallRandomizer.IC
             if (name.StartsWith("Plank-"))
                 sprite = "wood_plank_02";
             if (name.StartsWith("Dive_Floor-"))
-                sprite = "break_floor";
+                sprite = "break_floor_glass";
               
             InteropTag tag = new();
             tag.Properties["ModSource"] = "BreakableWallRandomizer";

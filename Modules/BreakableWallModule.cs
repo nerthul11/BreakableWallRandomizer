@@ -5,6 +5,7 @@ using ItemChanger.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace BreakableWallRandomizer.Modules
 {
@@ -30,11 +31,22 @@ namespace BreakableWallRandomizer.Modules
         public override void Initialize() 
         {
             On.GameManager.BeginSceneTransition += VanillaTracker;
+            if (ItemChangerMod.Modules?.Get<InventoryTracker>() is InventoryTracker it)
+                it.OnGenerateFocusDesc += AddWallProgress;
         }
 
         public override void Unload() 
         {
             On.GameManager.BeginSceneTransition -= VanillaTracker;
+            if (ItemChangerMod.Modules?.Get<InventoryTracker>() is InventoryTracker it)
+                it.OnGenerateFocusDesc -= AddWallProgress;
+        }
+
+        private void AddWallProgress(StringBuilder builder)
+        {
+            builder.AppendLine($"Broken walls: {UnlockedWalls.Count}");
+            builder.AppendLine($"Broken planks: {UnlockedPlanks.Count}");
+            builder.AppendLine($"Broken dives: {UnlockedDives.Count}");
         }
 
         private void VanillaTracker(On.GameManager.orig_BeginSceneTransition orig, GameManager self, GameManager.SceneLoadInfo info)
@@ -61,9 +73,9 @@ namespace BreakableWallRandomizer.Modules
                 {
                     if (wallType == "Wall" && !UnlockedWalls.Contains(wall.name))
                         UnlockedWalls.Add(wall.name);
-                    if (wallType == "Plank" && !UnlockedWalls.Contains(wall.name))
+                    if (wallType == "Plank" && !UnlockedPlanks.Contains(wall.name))
                         UnlockedPlanks.Add(wall.name);
-                    if (wallType == "Dive_Floor" && !UnlockedWalls.Contains(wall.name))
+                    if (wallType == "Dive_Floor" && !UnlockedDives.Contains(wall.name))
                         UnlockedDives.Add(wall.name);
                 }
                 CompletedChallenges();
@@ -130,9 +142,12 @@ namespace BreakableWallRandomizer.Modules
                 completed.Add("All Buried Geo Dives");
             if (sanctumWallCount == 7)
                 completed.Add("All Inner Soul Sanctum Dives");
-            // All Walls
-            // All Planks
-            // All Floors
+            if (UnlockedWalls.Count == 53)
+                completed.Add("All Walls broken.");
+            if (UnlockedPlanks.Count == 49)
+                completed.Add("All Walls broken.");
+            if (UnlockedDives.Count == 44)
+                completed.Add("All Walls broken.");
 
             OnAchievedBreakableWall?.Invoke(completed);
         }

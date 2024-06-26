@@ -7,8 +7,8 @@ using BreakableWallRandomizer.IC.Shop;
 using ItemChanger;
 using ItemChanger.Locations;
 using Newtonsoft.Json;
-using RandomizerCore.Extensions;
 using RandomizerCore.Logic;
+using RandomizerMod.Logging;
 using RandomizerMod.RC;
 using RandomizerMod.Settings;
 
@@ -18,44 +18,12 @@ namespace BreakableWallRandomizer.Manager
     {
         internal static void Hook()
         {
-            DefineObjects();
             RequestBuilder.OnUpdate.Subscribe(-500f, DefineShopRef);
             RequestBuilder.OnUpdate.Subscribe(-400f, DefineGroups);
             RequestBuilder.OnUpdate.Subscribe(-100f, RandomizeShopCost);
             RequestBuilder.OnUpdate.Subscribe(0f, AddMylaShop);
             RequestBuilder.OnUpdate.Subscribe(1f, AddWalls);
-        }
-
-        private static void DefineObjects()
-        {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            JsonSerializer jsonSerializer = new() {TypeNameHandling = TypeNameHandling.Auto};
-            
-            using Stream stream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Data.BreakableWallObjects.json");
-            StreamReader reader = new(stream);
-            List<WallObject> wallList = jsonSerializer.Deserialize<List<WallObject>>(new JsonTextReader(reader));
-
-            foreach (WallObject wall in wallList)
-            {
-                BreakableWallItem wallItem = new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType, wall.persistentBool, wall.sprite, wall.groupWalls);
-                BreakableWallLocation wallLocation = new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType, wall.alsoDestroy, wall.x, wall.y, wall.exit, wall.groupWalls);
-                Finder.DefineCustomItem(wallItem);
-                Finder.DefineCustomLocation(wallLocation);
-            }
-
-            using Stream gstream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Data.WallGroups.json");
-            StreamReader greader = new(gstream);
-            List<WallObject> groupList = jsonSerializer.Deserialize<List<WallObject>>(new JsonTextReader(greader));
-
-            foreach (WallObject group in groupList)
-            {
-                BreakableWallItem groupItem = new(group.name, group.sceneName, group.gameObject, group.fsmType, group.persistentBool, group.sprite, group.groupWalls);
-                BreakableWallLocation groupLocation = new(group.name, group.sceneName, group.gameObject, group.fsmType, group.alsoDestroy, group.x, group.y, group.exit, group.groupWalls);
-                Finder.DefineCustomItem(groupItem);
-                Finder.DefineCustomLocation(groupLocation);
-            }
-
-            Finder.DefineCustomLocation(new WallShop());
+            SettingsLog.AfterLogSettings += AddFileSettings;
         }
 
         private static void DefineGroups(RequestBuilder rb)
@@ -163,27 +131,27 @@ namespace BreakableWallRandomizer.Manager
                         int termNo = rng.Next(3);
                         if (termNo == 0 && !usedTerms.Contains("Walls")) // Walls
                         {
-                            int wallCount = 50;
-                            int minCost = (int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost);
-                            int maxCost = (int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost);
+                            int wallCount = 53;
+                            int minCost = Math.Max((int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost), 1);
+                            int maxCost = Math.Max((int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost), 1);
                             usedTerms.Add("Walls");
                             rl.AddCost(new WallLogicCost(lm.GetTermStrict("Broken_Walls"), rng.Next(minCost, maxCost), amount => new WallCost(amount)));
                         }
 
                         if (termNo == 1 && !usedTerms.Contains("Planks")) // Planks
                         {
-                            int wallCount = 50;
-                            int minCost = (int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost);
-                            int maxCost = (int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost);
+                            int wallCount = 49;
+                            int minCost = Math.Max( (int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost), 1);
+                            int maxCost = Math.Max( (int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost), 1);
                             usedTerms.Add("Planks");
                             rl.AddCost(new WallLogicCost(lm.GetTermStrict("Broken_Planks"), rng.Next(minCost, maxCost), amount => new PlankCost(amount)));
                         }
 
                         if (termNo == 2 && !usedTerms.Contains("Dives")) // Dives
                         {
-                            int wallCount = 50;
-                            int minCost = (int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost);
-                            int maxCost = (int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost);
+                            int wallCount = 44;
+                            int minCost = Math.Max( (int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost), 1);
+                            int maxCost = Math.Max( (int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost), 1);
                             usedTerms.Add("Dives");
                             rl.AddCost(new WallLogicCost(lm.GetTermStrict("Broken_Dive_Floors"), rng.Next(minCost, maxCost), amount => new DiveCost(amount)));
                         }
@@ -329,6 +297,15 @@ namespace BreakableWallRandomizer.Manager
                     }
                 }
             }
+        }
+
+        private static void AddFileSettings(LogArguments args, TextWriter tw)
+        {
+            // Log settings into the settings file
+            tw.WriteLine("Breakable Wall Randomizer Settings:");
+            using JsonTextWriter jtw = new(tw) { CloseOutput = false };
+            RandomizerMod.RandomizerData.JsonUtil._js.Serialize(jtw, BWR_Manager.Settings);
+            tw.WriteLine();
         }
     }    
 }

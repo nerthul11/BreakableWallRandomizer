@@ -44,7 +44,7 @@ namespace BreakableWallRandomizer.IC
             if (name.StartsWith("Plank-"))
                 sprite = "wood_plank_02";
             if (name.StartsWith("Dive_Floor-"))
-                sprite = "break_floor";
+                sprite = "break_floor_glass";
             
             // Replace map for pinless-maps
             string mapSceneName = sceneName;
@@ -82,7 +82,7 @@ namespace BreakableWallRandomizer.IC
 
         protected override void OnUnload()
         {
-            if (groupWalls != null)
+            if (groupWalls.Count > 0)
             {
                 foreach (CondensedWallObject wall in groupWalls)
                     Events.RemoveFsmEdit(wall.sceneName, new(wall.gameObject, wall.fsmType ?? fsmType), ModifyWallBehaviour);
@@ -154,8 +154,8 @@ namespace BreakableWallRandomizer.IC
 
         private void ModifyWallBehaviour(PlayMakerFSM fsm)
         {
-            if (name.Contains("White_Palace") || name.Contains("Path_of_Pain"))
-                BreakableWallModule.Instance.vanillaWalls.RemoveAll(wall => wall.name == name);
+            // If a location is present, it means that it's not vanilla
+            BreakableWallModule.Instance.vanillaWalls.RemoveAll(wall => wall.name == name);
 
             if (name == "Wall-Shade_Soul_Shortcut")
                 GameObject.Destroy(GameObject.Find("/Breakable Wall Ruin Lift/Masks"));

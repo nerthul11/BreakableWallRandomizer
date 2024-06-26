@@ -27,7 +27,10 @@ namespace BreakableWallRandomizer.Interop
 
         public LogicCost Next(LogicManager lm, Random rng)
         {
-            return new WallLogicCost(lm.GetTermStrict("Broken_Walls"), rng.Next(1, 2), amount => new WallCost(amount));
+            int wallCount = 53;
+            int minCost = (int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost);
+            int maxCost = (int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost);
+            return new WallLogicCost(lm.GetTermStrict("Broken_Walls"), rng.Next(minCost, maxCost), amount => new WallCost(amount));
         }
 
         public void PreRandomize(Random rng) { }
@@ -39,7 +42,10 @@ namespace BreakableWallRandomizer.Interop
 
         public LogicCost Next(LogicManager lm, Random rng)
         {
-            return new WallLogicCost(lm.GetTermStrict("Broken_Planks"), rng.Next(1, 2), amount => new PlankCost(amount));
+            int wallCount = 49;
+            int minCost = (int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost);
+            int maxCost = (int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost);
+            return new WallLogicCost(lm.GetTermStrict("Broken_Planks"), rng.Next(minCost, maxCost), amount => new PlankCost(amount));
         }
 
         public void PreRandomize(Random rng) { }
@@ -51,7 +57,10 @@ namespace BreakableWallRandomizer.Interop
 
         public LogicCost Next(LogicManager lm, Random rng)
         {
-            return new WallLogicCost(lm.GetTermStrict("Broken_Dive_Floors"), rng.Next(1, 2), amount => new DiveCost(amount));
+            int wallCount = 44;
+            int minCost = (int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost);
+            int maxCost = (int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost);
+            return new WallLogicCost(lm.GetTermStrict("Broken_Dive_Floors"), rng.Next(minCost, maxCost), amount => new DiveCost(amount));
         }
 
         public void PreRandomize(Random rng) { }
