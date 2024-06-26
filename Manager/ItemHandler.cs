@@ -195,12 +195,12 @@ namespace BreakableWallRandomizer.Manager
             foreach (WallObject wall in wallList)
             {
                 bool include = wall.name.StartsWith("Wall") && BWR_Manager.Settings.RockWalls;
-                include = include || (wall.name.StartsWith("Plank") && BWR_Manager.Settings.WoodenPlankWalls);
+                include = include || (wall.name.StartsWith("Plank") && BWR_Manager.Settings.WoodenPlanks);
                 include = include || (wall.name.StartsWith("Dive_Floor") && BWR_Manager.Settings.DiveFloors);
                 if (wall.name.Contains("White_Palace") || wall.name.Contains("Path_of_Pain"))
                     include = include && rb.gs.LongLocationSettings.WhitePalaceRando != LongLocationSettings.WPSetting.ExcludeWhitePalace;
                 if (wall.name.Contains("King's_Pass"))
-                    include = include && BWR_Manager.Settings.KingsPass;
+                    include = BWR_Manager.Settings.KingsPass;
                 include = include && !(wall.exit && BWR_Manager.Settings.ExcludeWallsWhichMaySoftlockYou);
 
                 if (include)
@@ -249,7 +249,7 @@ namespace BreakableWallRandomizer.Manager
                         if (wall.group == group.name.Split('-')[1])
                         {
                             bool include = wall.name.StartsWith("Wall") && BWR_Manager.Settings.RockWalls;
-                            include = include || (wall.name.StartsWith("Plank") && BWR_Manager.Settings.WoodenPlankWalls);
+                            include = include || (wall.name.StartsWith("Plank") && BWR_Manager.Settings.WoodenPlanks);
                             include = include || (wall.name.StartsWith("Dive_Floor") && BWR_Manager.Settings.DiveFloors);
                             if (wall.name.Contains("White_Palace") || wall.name.Contains("Path_of_Pain"))
                                 include = include && rb.gs.LongLocationSettings.WhitePalaceRando != LongLocationSettings.WPSetting.ExcludeWhitePalace;

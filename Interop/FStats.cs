@@ -68,7 +68,7 @@ namespace BreakableWallRandomizer.Interop
             
             yield return new()
             {
-                Title = "Godhome Randomizer Timeline",
+                Title = "Breakable Wall Randomizer Timeline",
                 MainStat = $"{BreakableWallMarks.Count}",
                 StatColumns = Columnize(rows),
                 Priority = BuiltinScreenPriorityValues.ExtensionStats

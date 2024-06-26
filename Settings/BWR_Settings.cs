@@ -3,7 +3,7 @@ namespace BreakableWallRandomizer.Settings
     public class BWR_Settings
     {
         public bool Enabled = false;
-        public bool WoodenPlankWalls = false;
+        public bool WoodenPlanks = false;
         public bool RockWalls = false;
         public bool DiveFloors = false;
         public bool KingsPass = false;
