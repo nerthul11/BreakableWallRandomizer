@@ -142,11 +142,11 @@ namespace BreakableWallRandomizer.Modules
                 completed.Add("All Buried Geo Dives");
             if (sanctumWallCount == 7)
                 completed.Add("All Inner Soul Sanctum Dives");
-            if (UnlockedWalls.Count == 53)
+            if (UnlockedWalls.Count == BWR_Manager.TotalWalls)
                 completed.Add("All Walls broken.");
-            if (UnlockedPlanks.Count == 49)
+            if (UnlockedPlanks.Count == BWR_Manager.TotalPlanks)
                 completed.Add("All Walls broken.");
-            if (UnlockedDives.Count == 44)
+            if (UnlockedDives.Count == BWR_Manager.TotalDives)
                 completed.Add("All Walls broken.");
 
             OnAchievedBreakableWall?.Invoke(completed);

@@ -59,6 +59,7 @@ namespace BreakableWallRandomizer.Settings
             itemPanel.Add(shopMEF.ElementLookup[nameof(MylaShopSettings.Enabled)]);
             itemPanel.Add(shopMEF.ElementLookup[nameof(MylaShopSettings.IncludeInJunkShop)]);
             itemPanel.Add(costPanel);
+            itemPanel.Add(shopMEF.ElementLookup[nameof(MylaShopSettings.Tolerance)]);
 
             itemPanel.ResetNavigation();
             itemPanel.SymSetNeighbor(Neighbor.Up, shopPage.backButton);

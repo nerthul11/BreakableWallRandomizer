@@ -46,6 +46,8 @@ namespace BreakableWallRandomizer.IC
                 sprite = "wood_plank_02";
             if (name.StartsWith("Dive_Floor-"))
                 sprite = "break_floor_glass";
+            if (name.StartsWith("Wall_Group-"))
+                sprite = "mine_break_wall_03_0deg";
               
             InteropTag tag = new();
             tag.Properties["ModSource"] = "BreakableWallRandomizer";
@@ -62,8 +64,8 @@ namespace BreakableWallRandomizer.IC
             {
                 foreach (CondensedWallObject wall in groupWalls)
                 {
-                    if (!BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(name))
-                        BreakableWallModule.Instance.UnlockedBreakableWalls.Add(name);
+                    if (!BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(wall.name))
+                        BreakableWallModule.Instance.UnlockedBreakableWalls.Add(wall.name);
                     if (wall.name.StartsWith("Wall") && !BreakableWallModule.Instance.UnlockedWalls.Contains(name))
                         BreakableWallModule.Instance.UnlockedWalls.Add(wall.name);
                     if (wall.name.StartsWith("Plank") && !BreakableWallModule.Instance.UnlockedPlanks.Contains(name))
@@ -78,7 +80,8 @@ namespace BreakableWallRandomizer.IC
             }
             else
             {
-                BreakableWallModule.Instance.UnlockedBreakableWalls.Add(name);
+                if (!BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(name))
+                    BreakableWallModule.Instance.UnlockedBreakableWalls.Add(name);
                 if (name.StartsWith("Wall") && !BreakableWallModule.Instance.UnlockedWalls.Contains(name))
                     BreakableWallModule.Instance.UnlockedWalls.Add(name);
                 if (name.StartsWith("Plank") && !BreakableWallModule.Instance.UnlockedPlanks.Contains(name))

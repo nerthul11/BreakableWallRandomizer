@@ -12,6 +12,9 @@ namespace BreakableWallRandomizer.Manager
     internal static class BWR_Manager
     {
         public static BWR_Settings Settings => BreakableWallRandomizer.Instance.GS;
+        public static int TotalWalls = 53;
+        public static int TotalPlanks = 49;
+        public static int TotalDives = 44;
         public static void Hook()
         {
             DefineObjects();

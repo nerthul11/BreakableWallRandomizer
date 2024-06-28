@@ -57,61 +57,37 @@ namespace BreakableWallRandomizer.IC
 
         private void PreventMylaZombie(On.DeactivateIfPlayerdataFalse.orig_OnEnable orig, DeactivateIfPlayerdataFalse self)
         {
-            bool AllObtained = true;
-            foreach (AbstractItem item in Placement.Items)
-            {
-                if (!item.WasEverObtained()) 
-                    AllObtained = false;
-            }
-
-            if (AllObtained && (self.gameObject.name.Contains("Zombie Myla") || string.Equals(self.gameObject.name, "Myla Crazy NPC")))
+            bool AllObtained = Placement.Items.All(x => x.GetTag<CostTag>()?.Cost?.Paid ?? true);
+            if (!AllObtained && (self.gameObject.name.Contains("Zombie Myla") || string.Equals(self.gameObject.name, "Myla Crazy NPC")))
             {
                 self.gameObject.SetActive(false);
                 return;
             }
-            else if (self.gameObject.name.Contains("Zombie Myla") || string.Equals(self.gameObject.name, "Myla Crazy NPC"))
-            {
-                GameObject myla = self.gameObject;
-                if (Placement.CheckVisitedAny(VisitState.Accepted) && !Placement.AllObtained())
-                    {
-                        Container c = Container.GetContainer(Container.Shiny);
-
-                        ContainerInfo info = new(c.Name, Placement, flingType, (Placement as ItemChanger.Placements.ISingleCostPlacement)?.Cost);
-                        GameObject shiny = c.GetNewContainer(info);
-
-                        c.ApplyTargetContext(shiny, myla.transform.position.x, myla.transform.position.y, 0f);
-                        ShinyUtility.FlingShinyRandomly(shiny.LocateMyFSM("Shiny Control"));
-                    }
-            }
+            else if (AllObtained && (self.gameObject.name.Contains("Zombie Myla") || string.Equals(self.gameObject.name, "Myla Crazy NPC")))
+                RespawnItems();
             orig(self);
         }
 
         private void ForceMyla(On.DeactivateIfPlayerdataTrue.orig_OnEnable orig, DeactivateIfPlayerdataTrue self)
         {
-            bool AllObtained = true;
-            foreach (AbstractItem item in Placement.Items)
-            {
-                if (!item.WasEverObtained()) 
-                    AllObtained = false;
-            }
-
-            if (string.Equals(self.gameObject.name, "Miner") && GameManager.instance.sceneName == sceneName && AllObtained)
+            bool AllObtained = Placement.Items.All(x => x.GetTag<CostTag>()?.Cost?.Paid ?? true);
+            if (string.Equals(self.gameObject.name, "Miner") && !AllObtained)
                 return;
 
             orig(self);
         }
 
-        private void MakeShinyForRespawnedItems(GameObject myla)
+        private void RespawnItems()
         {
-            if (Placement.CheckVisitedAny(VisitState.Accepted) && !Placement.AllObtained())
+            foreach (AbstractItem item in Placement.Items)
             {
-                Container c = Container.GetContainer(Container.Shiny);
-
-                ContainerInfo info = new(c.Name, Placement, flingType, (Placement as ItemChanger.Placements.ISingleCostPlacement)?.Cost);
-                GameObject shiny = c.GetNewContainer(info);
-
-                c.ApplyTargetContext(shiny, myla.transform.position.x, myla.transform.position.y, 0f);
-                ShinyUtility.FlingShinyLeft(shiny.LocateMyFSM("Shiny Control"));
+                if (!item.IsObtained() && (item.GetTag<CostTag>()?.Cost?.Paid ?? true))
+                {
+                    Container c = Container.GetContainer(Container.Shiny);
+                    GameObject shiny = c.GetNewContainer(new(c.Name, Placement, flingType));
+                    shiny.transform.position = new(Random.Range(28.0f, 42.0f), 3.4f);
+                    shiny.SetActive(true);
+                }
             }
         }
     }

@@ -34,8 +34,9 @@ These are left out by design. Might add as an optional setting at some point.
 
 ### Myla Shop
 - Enabled --> Boolean to define if the Godhome Shop should appear or not.
-- Minimum/Maximum Cost --> A range from 0 to 1, where 0 is 0% and 1 is 100% (176) of all available wall objects. Default is 25% to 75%.
+- Minimum/Maximum Cost --> A range from 0 to 1, where 0 is 0% and 1 is 100% of all available wall objects. Default is 25% to 75%.
 - Include In Junk Shop --> Allows the defined costs to appear as currency in More Locations' Junk Shop, regardless of if Myla's Shop is enabled or not.
+- Tolerance --> A range from 0 to 1, where 0 is no tolerance and 1 is 100% of the used maximum cost. If maximum cost + tolerance should be over the total existing walls, the tolerance will automatically be capped. For reference, most mods have tolerance be a 10-25% of the maximum costs.
 
 ## Dependencies:
 - ItemChanger

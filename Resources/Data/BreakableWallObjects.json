@@ -546,6 +546,7 @@
         "alsoDestroy": [],
         "exit": false,
         "groupWalls": [],
+        "group": "",
         "logic": "Deepnest_03[left2] | Deepnest_03 + (LEFTSUPERDASH | WINGS | LEFTCLAW + ($SHADESKIP | $SLOPEBALL[before:ROOMSOUL]))",
         "logicOverrides": {
             "Deepnest_03[left2]": "Deepnest_03[left2] | (ORIG) + Wall-Deepnest_Springs_Grub"
@@ -590,7 +591,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Nosk_Walls",
-        "logic": "Deepnest_31[right1] + (LEFTSLASH | UPSLASH | SCREAM | LEFTFIREBALL | ANYCLAW | WINGS | LEFTDASH | (RIGHTSPELLAIRSTALL?SPELLAIRSTALL) + $CASTSPELL[3]) | Deepnest_31[right2] + ((RIGHTCLAW | LEFTCLAW + (WINGS | BACKGROUNDPOGOS)) + Plank-Nosk_Exit | (ANYCLAW | WINGS) + Wall-Nosk_Inner)",
+        "logic": "Deepnest_31[right1] + (LEFTSLASH | UPSLASH | SCREAM | LEFTFIREBALL | ANYCLAW | WINGS | LEFTDASH | (FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM)) + $CASTSPELL[3]) | Deepnest_31[right2] + ((RIGHTCLAW | LEFTCLAW + (WINGS | BACKGROUNDPOGOS)) + Plank-Nosk_Exit | (ANYCLAW | WINGS) + Wall-Nosk_Inner)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -609,7 +610,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Nosk_Walls",
-        "logic": "Deepnest_31[right1] + (ANYCLAW | WINGS | LEFTDASH | (RIGHTSPELLAIRSTALL?SPELLAIRSTALL) + $CASTSPELL[3]) + Wall-Nosk_Outer | Deepnest_31[right2] + (ANYCLAW | WINGS)",
+        "logic": "Deepnest_31[right1] + (ANYCLAW | WINGS | LEFTDASH | (FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Wall-Nosk_Outer | Deepnest_31[right2] + (ANYCLAW | WINGS)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1094,7 +1095,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Deepnest_Spider_Town[left1] + WINGS + (RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH | RIGHTSPELLAIRSTALL?SPELLAIRSTALL + $CASTSPELL[1]) | LEFTCLAW + RIGHTSUPERDASH) | Bench-Beast's_Den + ANYCLAW + Plank-Den_Secret_Entrance | Deepnest_Spider_Town[left1] + (WINGS + ANYCLAW | FULLCLAW + (COMBAT[Left_Devout] | COMBAT[Any_Devout])) + Plank-Den_Secret_Entrance",
+        "logic": "Deepnest_Spider_Town[left1] + WINGS + (RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH | FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM) + $CASTSPELL[1]) | LEFTCLAW + RIGHTSUPERDASH) | Bench-Beast's_Den + ANYCLAW + Plank-Den_Secret_Entrance | Deepnest_Spider_Town[left1] + (WINGS + ANYCLAW | FULLCLAW + (COMBAT[Left_Devout] | COMBAT[Any_Devout])) + Plank-Den_Secret_Entrance",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1142,8 +1143,8 @@
         "gameObject": "/Break Floor 1",
         "fsmType": "break_floor",
         "sceneName": "Fungus2_29",
-        "x": 0.0,
-        "y": 0.0,
+        "x": 0.14,
+        "y": -0.02,
         "persistentBool": "",
         "sprite": "fungd_mush_01_0001_a_break_floor_270deg",
         "alsoDestroy": [
@@ -1361,8 +1362,8 @@
         "gameObject": "/One Way Wall",
         "fsmType": "break_floor",
         "sceneName": "Fungus3_05",
-        "x": 0.0,
-        "y": 0.0,
+        "x": 0.3,
+        "y": -0.15,
         "persistentBool": "",
         "sprite": "crumble_floor_fungus_270deg",
         "alsoDestroy": [
@@ -1371,7 +1372,7 @@
         "exit": true,
         "groupWalls": [],
         "group": "",
-        "logic": "(Fungus3_05[left1] | Fungus3_05[right1]) + ((WINGS | (LEFTDASH | RIGHTCLAW + LEFTSUPERDASH | RIGHTSPELLAIRSTALL?AIRSTALL + $CASTSPELL[2,before:ROOMSOUL,after:ROOMSOUL]) + (RIGHTDASH | RIGHTSUPERDASH | LEFTSPELLAIRSTALL?AIRSTALL + (LEFTCLAW + $CASTSPELL[1] | $CASTSPELL[2,1]))) + (RIGHTCLAW | LEFTCLAW + WINGS) | Plank-Petra_Arena)",
+        "logic": "(Fungus3_05[left1] | Fungus3_05[right1]) + ((WINGS | (LEFTDASH | RIGHTCLAW + LEFTSUPERDASH | FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM) + $CASTSPELL[2,before:ROOMSOUL,after:ROOMSOUL]) + (RIGHTDASH | RIGHTSUPERDASH | FIREBALLSKIPS + (LEFTFIREBALL | SCREAM) + (LEFTCLAW + $CASTSPELL[1] | $CASTSPELL[2,1]))) + (RIGHTCLAW | LEFTCLAW + WINGS) | Plank-Petra_Arena)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1380,8 +1381,8 @@
         "gameObject": "/One Way Wall",
         "fsmType": "break_floor",
         "sceneName": "Fungus3_39",
-        "x": 0.0,
-        "y": 0.0,
+        "x": 0.04,
+        "y": -0.32,
         "persistentBool": "",
         "sprite": "one_way_fung_266deg",
         "alsoDestroy": [],
@@ -1416,7 +1417,11 @@
         "group": "",
         "logic": "Fungus3_44[door1]",
         "logicOverrides": {},
-        "logicSubstitutions": {}
+        "logicSubstitutions": {
+            "Fungus3_44": {
+                "Fungus3_44[door1]": "Fungus3_44[door1] + Plank-Outside_Overgrown_Mound"
+            }
+        }
     },
     {
         "name": "Plank-Archives_Outer",
@@ -1435,7 +1440,11 @@
         "logicOverrides": {
             "Fungus3_47[left1]": "(ORIG) + Plank-Archives_Outer"
         },
-        "logicSubstitutions": {}
+        "logicSubstitutions": {
+            "Fungus3_47": {
+                "Fungus3_47[left1]": "Fungus3_47[left1] + Plank-Archives_Outer"
+            }
+        }
     },
     {
         "name": "Plank-Hive_Knight",
@@ -2037,8 +2046,8 @@
         "gameObject": "/Quake Floor",
         "fsmType": "quake_floor",
         "sceneName": "Abyss_17",
-        "x": 0.0,
-        "y": 0.0,
+        "x": 0.5,
+        "y": -0.1,
         "persistentBool": "",
         "sprite": "break_floor",
         "alsoDestroy": [
@@ -2058,8 +2067,8 @@
         "gameObject": "/Quake Floor",
         "fsmType": "quake_floor",
         "sceneName": "Cliffs_04",
-        "x": 0.0,
-        "y": 0.0,
+        "x": 0.05,
+        "y": -0.05,
         "persistentBool": "",
         "sprite": "break_floor",
         "alsoDestroy": [],

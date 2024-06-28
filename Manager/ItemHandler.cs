@@ -18,6 +18,7 @@ namespace BreakableWallRandomizer.Manager
     {
         internal static void Hook()
         {
+            ProgressionInitializer.OnCreateProgressionInitializer += AddTolerance;
             RequestBuilder.OnUpdate.Subscribe(-500f, DefineShopRef);
             RequestBuilder.OnUpdate.Subscribe(-400f, DefineGroups);
             RequestBuilder.OnUpdate.Subscribe(-100f, RandomizeShopCost);
@@ -131,7 +132,7 @@ namespace BreakableWallRandomizer.Manager
                         int termNo = rng.Next(3);
                         if (termNo == 0 && !usedTerms.Contains("Walls")) // Walls
                         {
-                            int wallCount = 53;
+                            int wallCount = BWR_Manager.TotalWalls;
                             int minCost = Math.Max((int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost), 1);
                             int maxCost = Math.Max((int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost), 1);
                             usedTerms.Add("Walls");
@@ -140,7 +141,7 @@ namespace BreakableWallRandomizer.Manager
 
                         if (termNo == 1 && !usedTerms.Contains("Planks")) // Planks
                         {
-                            int wallCount = 49;
+                            int wallCount = BWR_Manager.TotalPlanks;
                             int minCost = Math.Max( (int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost), 1);
                             int maxCost = Math.Max( (int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost), 1);
                             usedTerms.Add("Planks");
@@ -149,7 +150,7 @@ namespace BreakableWallRandomizer.Manager
 
                         if (termNo == 2 && !usedTerms.Contains("Dives")) // Dives
                         {
-                            int wallCount = 44;
+                            int wallCount = BWR_Manager.TotalDives;
                             int minCost = Math.Max( (int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost), 1);
                             int maxCost = Math.Max( (int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost), 1);
                             usedTerms.Add("Dives");
@@ -297,6 +298,27 @@ namespace BreakableWallRandomizer.Manager
                     }
                 }
             }
+        }
+
+        private static void AddTolerance(LogicManager lm, GenerationSettings gs, ProgressionInitializer pi)
+        {
+            if (!BWR_Manager.Settings.Enabled || !BWR_Manager.Settings.MylaShop.Enabled)
+                return;
+            
+            int wallCount = BWR_Manager.TotalWalls;
+            int wallCost = Math.Max((int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost), 1);
+            int wallTolerance = Math.Min((int)(wallCost * BWR_Manager.Settings.MylaShop.Tolerance), wallCount - wallCost);
+            pi.Setters.Add(new RandomizerCore.TermValue(lm.GetTermStrict("Broken_Walls"), -wallTolerance));
+
+            int plankCount = BWR_Manager.TotalPlanks;
+            int plankCost = Math.Max((int)(plankCount * BWR_Manager.Settings.MylaShop.MaximumCost), 1);
+            int plankTolerance = Math.Min((int)(plankCost * BWR_Manager.Settings.MylaShop.Tolerance), plankCount - plankCost);
+            pi.Setters.Add(new RandomizerCore.TermValue(lm.GetTermStrict("Broken_Planks"), -plankTolerance));
+
+            int diveCount = BWR_Manager.TotalDives;
+            int diveCost = Math.Max((int)(diveCount * BWR_Manager.Settings.MylaShop.MaximumCost), 1);
+            int diveTolerance = Math.Min((int)(diveCost * BWR_Manager.Settings.MylaShop.Tolerance), diveCount - diveCost);
+            pi.Setters.Add(new RandomizerCore.TermValue(lm.GetTermStrict("Broken_Dive_Floors"), -diveTolerance));
         }
 
         private static void AddFileSettings(LogArguments args, TextWriter tw)
