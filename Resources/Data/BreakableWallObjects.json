@@ -1580,11 +1580,11 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "(Mines_35[left1] + Broke_Crystallized_Mound_Quake_Floor + (LEFTCLAW | RIGHTCLAW + PRECISEMOVEMENT + (RIGHTDASH | OBSCURESKIPS + DIFFICULTSKIPS) | WINGS + OBSCURESKIPS)) | Mines_35[left1] + Plank-Crystallized_Mound",
+        "logic": "(Mines_35[left1] + Dive_Floor-Crystallized_Mound + (LEFTCLAW | RIGHTCLAW + PRECISEMOVEMENT + (RIGHTDASH | OBSCURESKIPS + DIFFICULTSKIPS) | WINGS + OBSCURESKIPS)) | Mines_35[left1] + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW | WINGS | (FIREBALLSKIPS + (LEFTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Plank-Crystallized_Mound",
         "logicOverrides": {
-            "Descending_Dark": "(ORIG) | Mines_35[left1] + Plank-Crystallized_Mound",
-            "Grub-Crystallized_Mound": "(ORIG) | Mines_35[left1] + Plank-Crystallized_Mound + (RIGHTCLAW | WINGS + LEFTCLAW + BACKGROUNDPOGOS)",
-            "Soul_Totem-Crystallized_Mound": "(ORIG) | Mines_35[left1] + Plank-Crystallized_Mound + (RIGHTCLAW | WINGS + LEFTCLAW + BACKGROUNDPOGOS) + LEFTDASH"
+            "Descending_Dark": "(ORIG) | Mines_35[left1] + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW | WINGS | (FIREBALLSKIPS + (LEFTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Plank-Crystallized_Mound",
+            "Grub-Crystallized_Mound": "(ORIG) | Mines_35[left1] + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW | WINGS | (FIREBALLSKIPS + (LEFTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Plank-Crystallized_Mound + (RIGHTCLAW | WINGS + LEFTCLAW + BACKGROUNDPOGOS)",
+            "Soul_Totem-Crystallized_Mound": "(ORIG) | Mines_35[left1] + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW | WINGS | (FIREBALLSKIPS + (LEFTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Plank-Crystallized_Mound + (RIGHTCLAW | WINGS + LEFTCLAW + BACKGROUNDPOGOS) + LEFTDASH"
         },
         "logicSubstitutions": {}
     },
@@ -2875,7 +2875,7 @@
         "alsoDestroy": [],
         "exit": false,
         "groupWalls": [],
-        "group": "King's_Pass_Walls",
+        "group": "",
         "logic": "Tutorial_01",
         "logicOverrides": {
             "Geo_Rock-King's_Pass_Above_Fury": "(ORIG + Plank-King's_Pass) | (Tutorial_01 + (RIGHTCLAW | LEFTCLAW + WINGS + RIGHTDASH + LONGMARK + BACKGROUNDPOGOS))",

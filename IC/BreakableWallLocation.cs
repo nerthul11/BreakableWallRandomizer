@@ -45,6 +45,8 @@ namespace BreakableWallRandomizer.IC
                 sprite = "wood_plank_02";
             if (name.StartsWith("Dive_Floor-"))
                 sprite = "break_floor_glass";
+            if (name.StartsWith("Wall_Group-"))
+                sprite = "mine_break_wall_03_0deg";
             
             // Replace map for pinless-maps
             string mapSceneName = sceneName;
@@ -171,6 +173,9 @@ namespace BreakableWallRandomizer.IC
                 if (wall.fsmType != fsm.FsmName)
                     continue;
 
+                BreakableWallRandomizer.Instance.Log(fsm.gameObject);
+                BreakableWallRandomizer.Instance.Log(wall.gameObject);
+
                 // If a location is present, it means that it's not vanilla
                 BreakableWallModule.Instance.vanillaWalls.RemoveAll(wall => wall.name == name);
 
@@ -244,8 +249,7 @@ namespace BreakableWallRandomizer.IC
                     // If items are left, make wall semi-transparent and passable
                     if (!Placement.AllObtained())
                     {
-                        foreach (CondensedWallObject w in wallList)
-                            MakeWallPassable(GameObject.Find(w.gameObject));
+                        MakeWallPassable(fsm.gameObject);
                     }
                     else
                     {
@@ -311,16 +315,14 @@ namespace BreakableWallRandomizer.IC
                         {
                             if (Placement.AllObtained())
                             {
-                                foreach (CondensedWallObject w in wallList)
-                                    MakeWallPassable(GameObject.Find(w.gameObject));
+                                MakeWallPassable(fsm.gameObject);
                                 fsm.SetState(originalIdleStateName);
                             }
                             else
                             {
                                 if (wall.fsmType == "quake_floor") 
                                 {
-                                    foreach (CondensedWallObject w in wallList)
-                                        MakeWallPassable(GameObject.Find(w.gameObject));
+                                    MakeWallPassable(fsm.gameObject);
                                 } // ensure everything is passable.
                                 fsm.SetState(originalBreakStateName);
                             }
