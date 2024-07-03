@@ -11,11 +11,22 @@ namespace BreakableWallRandomizer.Interop
     {
         public static void Hook()
         {
-            ConnectionInterop.AddRandoCostProviderToJunkShop(CanProvideCosts, WallCostProvider);
-            ConnectionInterop.AddRandoCostProviderToJunkShop(CanProvideCosts, PlankCostProvider);
-            ConnectionInterop.AddRandoCostProviderToJunkShop(CanProvideCosts, DiveCostProvider);
+            ConnectionInterop.AddRandoCostProviderToJunkShop(IncludeWalls, WallCostProvider);
+            ConnectionInterop.AddRandoCostProviderToJunkShop(IncludePlanks, PlankCostProvider);
+            ConnectionInterop.AddRandoCostProviderToJunkShop(IncludeDives, DiveCostProvider);
         }
-        private static bool CanProvideCosts() => BWR_Manager.Settings.Enabled && BWR_Manager.Settings.MylaShop.IncludeInJunkShop;
+        private static bool IncludeWalls() {
+            bool include = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.MylaShop.IncludeInJunkShop;
+            return include && (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.RockWalls);
+        }
+        private static bool IncludePlanks() {
+            bool include = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.MylaShop.IncludeInJunkShop;
+            return include && (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.WoodenPlanks);
+        }
+        private static bool IncludeDives() {
+            bool include = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.MylaShop.IncludeInJunkShop;
+            return include && (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.DiveFloors);
+        }
         private static WallCostProvider WallCostProvider() => new();
         private static PlankCostProvider PlankCostProvider() => new();
         private static DiveCostProvider DiveCostProvider() => new();

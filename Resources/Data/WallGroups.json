@@ -66,8 +66,8 @@
         "gameObject": "",
         "fsmType": "",
         "sceneName": "Deepnest_41",
-        "x": 0.0,
-        "y": 0.0,
+        "x": 0.3,
+        "y": 0.3,
         "persistentBool": "",
         "sprite": "break_wall_deepnest_0deg",
         "alsoDestroy": [
@@ -76,14 +76,16 @@
         "exit": false,
         "groupWalls": [],
         "group": "Village_Walls",
-        "logic": "((Deepnest_41 + (Plank-Village_Right_Exit | WINGS + (SIDESLASH | UPSLASH | LEFTCLAW) | RIGHTCLAW | LEFTCLAW + ENEMYPOGOS)) | Deepnest_41[left2] | (Deepnest_41[right1] + (WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | BACKGROUNDPOGOS) | ANYCLAW + Plank-Village_Top_Exit))) + (LANTERN | NOLANTERN?FALSE | DARKROOMS)",
-        "logicOverrides": {},
+        "logic": "((Deepnest_41 + (Plank-Village_Middle | WINGS + (SIDESLASH | UPSLASH | LEFTCLAW) | RIGHTCLAW | LEFTCLAW + ENEMYPOGOS)) | Deepnest_41[left2] | (Deepnest_41[right1] + (WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | BACKGROUNDPOGOS) | ANYCLAW + Plank-Village_Upper))) + (LANTERN | NOLANTERN?FALSE | DARKROOMS)",
+        "logicOverrides": {
+            "Deepnest_41": "(LANTERN | NOLANTERN?NONE | DARKROOMS) + (Deepnest_41[left1] + Plank-Village_Middle | Deepnest_41[left2] + (FULLCLAW | WINGS + (RIGHTCLAW | LEFTCLAW + ENEMYPOGOS | DIFFICULTSKIPS + COMPLEXSKIPS + ENEMYPOGOS + ANYDASH + $SHADESKIP)) + Plank-Village_Upper | Deepnest_41[right1] + ((WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | BACKGROUNDPOGOS) | LEFTCLAW) + Plank-Village_Middle | Plank-Village_Upper))"
+        },
         "logicSubstitutions": {
             "Deepnest_41[left1]": {
-                "Deepnest_41[left2]": "(Deepnest_41[left2] + Plank-Village_Top_Exit + Plank-Village_Top_Climb)"
+                "Deepnest_41[left2]": "(Deepnest_41[left2] + Plank-Village_Upper + Plank-Village_Lower)"
             },
             "Deepnest_41[right1]": {
-                "Deepnest_41[left2]": "(Deepnest_41[left2] + Plank-Village_Top_Exit + Plank-Village_Top_Climb)"
+                "Deepnest_41[left2]": "(Deepnest_41[left2] + Plank-Village_Upper + Plank-Village_Lower)"
             }
         }
     },
@@ -104,9 +106,9 @@
         "logicOverrides": {
             "Geo_Chest-Resting_Grounds": "(ORIG) + Wall-Catacombs_Right_1",
             "Geo_Rock-Resting_Grounds_Catacombs_Grub": "(ORIG) + Wall-Catacombs_Right_1 + Wall-Catacombs_Grub",
-            "Geo_Rock-Resting_Grounds_Catacombs_Left": "(ORIG) + Wall-Catacombs_2 + Wall-Catacombs_3",
+            "Geo_Rock-Resting_Grounds_Catacombs_Left": "(ORIG) + Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2",
             "Grub-Resting_Grounds": "(ORIG) + Wall-Catacombs_Right_1 + Wall-Catacombs_Grub",
-            "Hallownest_Seal-Resting_Grounds_Catacombs": "(ORIG) + Wall-Catacombs_Middle + Wall-Catacombs_2 + Wall-Catacombs_3",
+            "Hallownest_Seal-Resting_Grounds_Catacombs": "(ORIG) + Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2 + Wall-Catacombs_Seal",
             "Opened_Resting_Grounds_Catacombs_Wall": "Plank-Catacombs_Elevator",
             "RestingGrounds_10[left1]": "(ORIG) + Plank-Catacombs_Elevator",
             "RestingGrounds_10[top2]": "RestingGrounds_10[top2] + (LEFTCLAW | WINGS + PRECISEMOVEMENT | RIGHTCLAW) | (ORIG) + Wall-Catacombs_Right_1 + Wall-Catacombs_Grey_Mourner",
@@ -128,8 +130,8 @@
         "gameObject": "",
         "fsmType": "",
         "sceneName": "Deepnest_East_17",
-        "x": 0.0,
-        "y": 0.0,
+        "x": 0.96,
+        "y": -0.7,
         "persistentBool": "",
         "sprite": "break_floor",
         "alsoDestroy": [],

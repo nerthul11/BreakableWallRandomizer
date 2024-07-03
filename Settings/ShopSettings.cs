@@ -13,6 +13,7 @@ namespace BreakableWallRandomizer.Settings
         public float MaximumCost { get; set; } = 0.75f;
         [MenuRange(0f, 1f)]
         public float Tolerance { get; set; } = 0.2f;
+        public bool IncludeVanillaItems { get; set; } = false;
         public bool IncludeInJunkShop { get; set; } = false;
     }
 }

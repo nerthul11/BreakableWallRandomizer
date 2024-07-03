@@ -51,8 +51,11 @@ namespace BreakableWallRandomizer.IC
             // Replace map for pinless-maps
             string mapSceneName = sceneName;
             Dictionary<string, string> sceneOverride = [];
-            sceneOverride.Add("Room_GG_Shortcut", "GG_Waterways");
+            sceneOverride.Add("Deepnest_45_v02", "Deepnest_39");
             sceneOverride.Add("Deepnest_East_17", "Deepnest_East_14");
+            sceneOverride.Add("Mines_35", "Mines_28");
+            sceneOverride.Add("Room_GG_Shortcut", "GG_Waterways");
+
             if (sceneOverride.ContainsKey(sceneName))
                 mapSceneName = sceneOverride[sceneName];
 
@@ -172,9 +175,6 @@ namespace BreakableWallRandomizer.IC
             {
                 if (wall.fsmType != fsm.FsmName)
                     continue;
-
-                BreakableWallRandomizer.Instance.Log(fsm.gameObject);
-                BreakableWallRandomizer.Instance.Log(wall.gameObject);
 
                 // If a location is present, it means that it's not vanilla
                 BreakableWallModule.Instance.vanillaWalls.RemoveAll(wall => wall.name == name);
