@@ -15,6 +15,7 @@ namespace BreakableWallRandomizer.Manager
         internal static void Hook()
         {
             RCData.RuntimeLogicOverride.Subscribe(1f, ApplyLogic);
+            RCData.RuntimeLogicOverride.Subscribe(99999f, LogicPatch);
         }
 
         private static void ApplyLogic(GenerationSettings gs, LogicManagerBuilder lmb)
@@ -111,6 +112,43 @@ namespace BreakableWallRandomizer.Manager
                         if (exists)
                             lmb.DoSubst(new(substitutionDef.Key, substitution.Key, substitution.Value));  
                     }
+                }
+            }
+        }
+
+        // Apply Logic Overrides and Substitutions to connections
+        private static void LogicPatch(GenerationSettings gs, LogicManagerBuilder lmb)
+        {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            JsonSerializer jsonSerializer = new() {TypeNameHandling = TypeNameHandling.Auto};
+            
+            using Stream stream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Logic.ConnectionOverrides.json");
+            StreamReader reader = new(stream);
+            List<ConnectionLogicObject> objectList = jsonSerializer.Deserialize<List<ConnectionLogicObject>>(new JsonTextReader(reader));
+
+            BreakableWallRandomizer.Instance.Log(objectList.Count);
+
+            foreach (ConnectionLogicObject o in objectList)
+            {
+                BreakableWallRandomizer.Instance.Log("Substitutions");
+                foreach (var sub in o.logicSubstitutions)
+                {
+                    bool exists = lmb.LogicLookup.TryGetValue(o.name, out _);
+                    BreakableWallRandomizer.Instance.Log(o.name);
+                    BreakableWallRandomizer.Instance.Log(sub.Key);
+                    BreakableWallRandomizer.Instance.Log(exists);
+                    if (exists)
+                        lmb.DoSubst(new(o.name, sub.Key, sub.Value));  
+                }
+
+                BreakableWallRandomizer.Instance.Log("Override");
+                if (o.logicOverride != "")
+                {
+                    bool exists = lmb.LogicLookup.TryGetValue(o.name, out _);
+                    BreakableWallRandomizer.Instance.Log(o.name);
+                    BreakableWallRandomizer.Instance.Log(exists);
+                    if (exists)
+                        lmb.DoLogicEdit(new(o.name, o.logicOverride));
                 }
             }
         }

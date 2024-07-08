@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Lever-Pilgrim's_Way_Left",
+        "sourceMod": "RandomizableLevers",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "QUAKE": "Dive_Floor-Pilgrim's_Way"
+        }
+    },
+    {
+        "name": "Lever-Pilgrim's_Way_Right",
+        "sourceMod": "RandomizableLevers",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "QUAKE": "Dive_Floor-Pilgrim's_Way"
+        }
+    },
+    {
+        "name": "Lever-Sanctum_West_Upper",
+        "sourceMod": "RandomizableLevers",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "QUAKE": "Dive_Floor-Inner_Sanctum_1"
+        }
+    },
+    {
+        "name": "Lever-Sanctum_West_Lower",
+        "sourceMod": "RandomizableLevers",
+        "logicOverride": "Ruins1_32[right2] | (ORIG) + Dive_Floor-Inner_Sanctum_2 + (Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Bottom | Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + Lever-Sanctum_West_Lower)",
+        "logicSubstitutions": {}
+    }
+]
