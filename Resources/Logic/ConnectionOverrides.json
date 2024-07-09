@@ -1,5 +1,11 @@
 [
     {
+        "name": "Lever-Palace_Final",
+        "sourceMod": "RandomizableLevers",
+        "logicOverride": "ORIG | White_Palace_12[bot1] + RIGHTCLAW + LEFTSUPERDASH + Wall-White_Palace_Shortcut + Plank-White_Palace_Shortcut_Exit",
+        "logicSubstitutions": {}
+    },
+    {
         "name": "Lever-Pilgrim's_Way_Left",
         "sourceMod": "RandomizableLevers",
         "logicOverride": "",

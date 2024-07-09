@@ -1,4 +1,4 @@
-# BreakableWallRandomiser
+# Breakable Wall Randomizer
 
 A Hollow Knight Randomizer add-on for breakable walls.
 

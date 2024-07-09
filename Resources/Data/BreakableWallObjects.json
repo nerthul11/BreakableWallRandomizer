@@ -840,7 +840,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "White_Palace_12[bot1] + (SPIKETUNNELS | RIGHTDASH | (RIGHTSUPERDASH + LEFTCLAW) | WINGS) + RIGHTCLAW + LEFTSUPERDASH",
+        "logic": "White_Palace_12[bot1] + (RIGHTCLAW + LEFTSUPERDASH | Lever-Palace_Final?FALSE + WINGS + ANYCLAW + DIFFICULTSKIPS + (Plank-White_Palace_Shortcut_Exit | LEFTDASH))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -857,7 +857,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "White_Palace_12[bot1] + (SPIKETUNNELS | RIGHTDASH | (RIGHTSUPERDASH + LEFTCLAW) | WINGS) + RIGHTCLAW + LEFTSUPERDASH + Wall-White_Palace_Shortcut",
+        "logic": "White_Palace_12[bot1] + (RIGHTCLAW + LEFTSUPERDASH + Wall-White_Palace_Shortcut | Lever-Palace_Final?FALSE + WINGS + ANYCLAW + DIFFICULTSKIPS + (Plank-White_Palace_Shortcut_Exit | LEFTDASH + Wall-White_Palace_Shortcut))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -876,7 +876,7 @@
         "group": "",
         "logic": "White_Palace_06[bot1] | White_Palace_06[left1] | White_Palace_06[top1]",
         "logicOverrides": {
-            "White_Palace_06[left1]": "(ORIG) + Wall-Path_of_Pain_Entrance"
+            "White_Palace_06[left1]": "White_Palace_06[left1] | (ORIG) + Wall-Path_of_Pain_Entrance"
         },
         "logicSubstitutions": {}
     },
@@ -1449,7 +1449,9 @@
         "groupWalls": [],
         "group": "",
         "logic": "Fungus3_44[door1]",
-        "logicOverrides": {},
+        "logicOverrides": {
+            "Fungus3_44[door1]": "ORIG | Fungus3_44 + Plank-Outside_Overgrown_Mound"
+        },
         "logicSubstitutions": {
             "Fungus3_44": {
                 "Fungus3_44[door1]": "Fungus3_44[door1] + (Plank-Outside_Overgrown_Mound | WINGS + (ENEMYPOGOS | RIGHTCLAW) | RIGHTCLAW + ENEMYPOGOS)"
@@ -2024,7 +2026,8 @@
         "group": "",
         "logic": "Waterways_05[bot1] + (ANYCLAW | WINGS) + Defeated_Dung_Defender | Waterways_05[bot2] | Waterways_05[right1] + Plank-Dung_Defender",
         "logicOverrides": {
-            "Opened_Dung_Defender_Wall": "Plank-Dung_Defender"
+            "Opened_Dung_Defender_Wall": "Plank-Dung_Defender",
+            "Lever-Dung_Defender": "ORIG | Waterways_05[right1] + Plank-Dung_Defender"
         },
         "logicSubstitutions": {
             "Abyss_01[left1]": {

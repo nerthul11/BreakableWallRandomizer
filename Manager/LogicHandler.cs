@@ -119,6 +119,9 @@ namespace BreakableWallRandomizer.Manager
         // Apply Logic Overrides and Substitutions to connections
         private static void LogicPatch(GenerationSettings gs, LogicManagerBuilder lmb)
         {
+            if (!BWR_Manager.Settings.Enabled)
+                return;
+
             Assembly assembly = Assembly.GetExecutingAssembly();
             JsonSerializer jsonSerializer = new() {TypeNameHandling = TypeNameHandling.Auto};
             
