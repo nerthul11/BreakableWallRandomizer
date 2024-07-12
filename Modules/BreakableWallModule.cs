@@ -51,9 +51,6 @@ namespace BreakableWallRandomizer.Modules
 
         private void VanillaTracker(On.GameManager.orig_BeginSceneTransition orig, GameManager self, GameManager.SceneLoadInfo info)
         {
-            // Temporary - Log scene transitions
-            BreakableWallRandomizer.Instance.Log(info.SceneName + "[" + info.EntryGateName + "]");
-
             List<PersistentBoolData> boolDatas = SceneData.instance.persistentBoolItems.Where(
                 boolData => boolData.sceneName == self.sceneName || boolData.sceneName == info.SceneName
                 ).ToList();
@@ -127,7 +124,7 @@ namespace BreakableWallRandomizer.Modules
                 if (s.Contains("420_Rock"))
                     buriedGeoWallCount += 1;
                 if (s.Contains("Inner_Sanctum"))
-                    buriedGeoWallCount += 1;
+                    sanctumWallCount += 1;
             }
             
             if (grimmWallCount == 3)
@@ -145,9 +142,13 @@ namespace BreakableWallRandomizer.Modules
             if (UnlockedWalls.Count == BWR_Manager.TotalWalls)
                 completed.Add("All Walls broken.");
             if (UnlockedPlanks.Count == BWR_Manager.TotalPlanks)
-                completed.Add("All Walls broken.");
+                completed.Add("All Planks broken.");
             if (UnlockedDives.Count == BWR_Manager.TotalDives)
-                completed.Add("All Walls broken.");
+                completed.Add("All Dive Floors broken.");
+            if (UnlockedBreakableWalls.Count >= (BWR_Manager.TotalWalls + BWR_Manager.TotalPlanks + BWR_Manager.TotalDives) / 2)
+                completed.Add("Half broken breakables.");
+            if (UnlockedBreakableWalls.Count == BWR_Manager.TotalWalls + BWR_Manager.TotalPlanks + BWR_Manager.TotalDives)
+                completed.Add("All broken breakables.");
 
             OnAchievedBreakableWall?.Invoke(completed);
         }

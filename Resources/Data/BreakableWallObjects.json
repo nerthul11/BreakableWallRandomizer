@@ -1988,7 +1988,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "(Waterways_02[top3] + Broke_Waterways_Bench_Quake_Floor_3 | Waterways_02 + (LEFTCLAW | WINGS + RIGHTCLAW | ENEMYPOGOS + DANGEROUSSKIPS + (WINGS | RIGHTCLAW)))",
+        "logic": "(Waterways_02[top3] + Dive_Floor-Above_Waterways_Bench | Waterways_02 + (LEFTCLAW | WINGS + RIGHTCLAW | ENEMYPOGOS + DANGEROUSSKIPS + (WINGS | RIGHTCLAW)))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2668,7 +2668,8 @@
         "group": "",
         "logic": "(Ruins1_30[left2] + Dive_Floor-Sanctum_Escape_1 + (LEFTCLAW | (RIGHTCLAW | WINGS) + BACKGROUNDPOGOS | RIGHTCLAW + WINGS) | Ruins1_30 + Dive_Floor-Sanctum_Escape_2 + (ANYCLAW | WINGS)) + QUAKE + $CASTSPELL[1,before:ROOMSOUL]",
         "logicOverrides": {
-            "Broke_Sanctum_Escape_Quake_Floor_2": "Dive_Floor-Sanctum_Escape_2"
+            "Broke_Sanctum_Escape_Quake_Floor_2": "Dive_Floor-Sanctum_Escape_2",
+            "Ruins1_30[left2]": "(ORIG) | Ruins1_30 + Dive_Floor-Sanctum_Escape_1 + Dive_Floor-Sanctum_Escape_2 + ANYCLAW"
         },
         "logicSubstitutions": {
             "Ruins1_30": {
@@ -2825,7 +2826,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Waterways_02[top3] + QUAKE + $CASTSPELL",
+        "logic": "(Waterways_02[top3] | Waterways_02 + (LEFTCLAW | WINGS + RIGHTCLAW | ENEMYPOGOS + DANGEROUSSKIPS + (WINGS | RIGHTCLAW)) + Dive_Floor-Above_Waterways_Bench) + QUAKE + $CASTSPELL",
         "logicOverrides": {
             "Broke_Waterways_Bench_Quake_Floor_3": "Dive_Floor-Above_Waterways_Bench"
         },
@@ -2870,9 +2871,13 @@
         "group": "",
         "logic": "Waterways_04[bot1] | (Waterways_04[right1] | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) | Waterways_04[left2] + (RIGHTCLAW | WINGS + ENEMYPOGOS) + (SWIM | RIGHTSKIPACID)) + Broke_Waterways_Bench_Quake_Floor_1 + QUAKE + $CASTSPELL",
         "logicOverrides": {
-            "Broke_Waterways_Bench_Quake_Floor_2": "Dive_Floor-Waterways_Bench_1 + Dive_Floor-Waterways_Bench_2"
+            "Broke_Waterways_Bench_Quake_Floor_2": "Dive_Floor-Waterways_Bench_2"
         },
-        "logicSubstitutions": {}
+        "logicSubstitutions": {
+            "Waterways_04[bot1]": {
+                "Waterways_04[bot1]": "Waterways_04[bot1] + Dive_Floor-Waterways_Bench_2"
+            }
+        }
     },
     {
         "name": "Dive_Floor-Flukemarm",
@@ -2974,6 +2979,40 @@
             "Lore_Tablet-King's_Pass_Fury": "(ORIG + Plank-King's_Pass) | (Tutorial_01 + (ANYCLAW | WINGS))",
             "Fury_of_the_Fallen": "(ORIG + Plank-King's_Pass) | (Tutorial_01 + (ANYCLAW | WINGS))"
         },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Godhome_Workshop",
+        "gameObject": "/Breakable Wall_Silhouette",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "GG_Workshop",
+        "x": 0.75,
+        "y": 0.6,
+        "persistentBool": "",
+        "sprite": "sil_break_wall_01_90deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "GG_Workshop + UPWALLBREAK + RIGHTCLAW + WINGS + (LEFTSUPERDASH | LEFTSHARPSHADOW | LEFTDASH + SCREAM + $CASTSPELL)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Eternal_Ordeal",
+        "gameObject": "/Zote_Break_wall",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "GG_Workshop",
+        "x": 1.05,
+        "y": 0.6,
+        "persistentBool": "zoteStatueWallBroken",
+        "sprite": "gg_metal_wall_0001_180deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "GG_Workshop + Wall-Godhome_Workshop + RIGHTCLAW + WINGS + (LEFTSUPERDASH | LEFTSHARPSHADOW)",
+        "logicOverrides": {},
         "logicSubstitutions": {}
     }
 ]

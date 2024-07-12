@@ -18,9 +18,6 @@ There are, however, a few exceptions to the rule:
 ### King's Pass
 King's Pass displays a particular behaviour. Since having only the plank randomized affects logic for other objects that may not be obtainable, since for some reason logic for the right transition is always defined as available, and it currently just not being interesting enough, the King's Pass check will include both the plank and the collapsing floor, resulting in making items below the collapsing floor inaccessible without some movement or the wall item itself, while not affecting the access to Dirtmouth and thus avoiding logic problems.
 
-### Godhome Walls
-Currently unavailable, but may add the breakable wall before Zote's ordeal in the future.
-
 ### Hunter's Mark planks
 These are left out by design. Might add as an optional setting at some point.
 
@@ -31,6 +28,8 @@ These are left out by design. Might add as an optional setting at some point.
 - Rock Walls --> Boolean to define if standard walls should be randomized or not.
 - Dive Floors --> Boolean to define if Dive breakable floors should be randomized or not.
 - King's Pass --> Boolean to define if King's Pass should be included or not.
+- Exclude walls that might softlock --> This will remove some objects from the pool to avoid forcing benchwarps.
+- Group nearby walls --> Transforms a couple breakables into one single check. Obtaining the check makes them all passable, and destroying any of them will grant a single location item. For groups with multiple wall types (mainly Walls + Planks), the vanilla objects will behave normally, and only the randomized objects will follow the group rules.
 
 ### Myla Shop
 - Enabled --> Boolean to define if the Godhome Shop should appear or not.
@@ -47,6 +46,7 @@ These are left out by design. Might add as an optional setting at some point.
 ## Integrations:
 - FStats: When enabled, a new page for diverse Wall achievements will be added, and it'll display the achievements regardless of randomization settings for them.
 - More Locations: Having the mod enabled will allow for Statue Marks to be included as currency for the Junk Shop.
+- Randomizable Levers: A few levers have their logic modified.
 - RandoSettingsManager
 
 ## Acknowledgements

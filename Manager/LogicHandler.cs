@@ -129,27 +129,18 @@ namespace BreakableWallRandomizer.Manager
             StreamReader reader = new(stream);
             List<ConnectionLogicObject> objectList = jsonSerializer.Deserialize<List<ConnectionLogicObject>>(new JsonTextReader(reader));
 
-            BreakableWallRandomizer.Instance.Log(objectList.Count);
-
             foreach (ConnectionLogicObject o in objectList)
             {
-                BreakableWallRandomizer.Instance.Log("Substitutions");
                 foreach (var sub in o.logicSubstitutions)
                 {
                     bool exists = lmb.LogicLookup.TryGetValue(o.name, out _);
-                    BreakableWallRandomizer.Instance.Log(o.name);
-                    BreakableWallRandomizer.Instance.Log(sub.Key);
-                    BreakableWallRandomizer.Instance.Log(exists);
                     if (exists)
                         lmb.DoSubst(new(o.name, sub.Key, sub.Value));  
                 }
 
-                BreakableWallRandomizer.Instance.Log("Override");
                 if (o.logicOverride != "")
                 {
                     bool exists = lmb.LogicLookup.TryGetValue(o.name, out _);
-                    BreakableWallRandomizer.Instance.Log(o.name);
-                    BreakableWallRandomizer.Instance.Log(exists);
                     if (exists)
                         lmb.DoLogicEdit(new(o.name, o.logicOverride));
                 }

@@ -54,6 +54,7 @@ namespace BreakableWallRandomizer.IC
             sceneOverride.Add("Deepnest_45_v02", "Deepnest_39");
             sceneOverride.Add("Deepnest_Spider_Town", "Deepnest_10");
             sceneOverride.Add("Deepnest_East_17", "Deepnest_East_14");
+            sceneOverride.Add("GG_Workshop", "GG_Waterways");
             sceneOverride.Add("Mines_35", "Mines_28");
             sceneOverride.Add("Room_Colosseum_02", "Deepnest_East_09");
             sceneOverride.Add("Room_Colosseum_Spectate", "Deepnest_East_09");
@@ -341,7 +342,9 @@ namespace BreakableWallRandomizer.IC
 
                 if (wall.fsmType == "breakable_wall_v2")
                 {
-                    fsm.ChangeTransition("PD Bool?", "FINISHED", "GiveItem");
+                    fsm.ChangeTransition("Idle", "WALL BREAKER", "GiveItem");
+                    fsm.ChangeTransition("Pause Frame", "FINISHED", "GiveItem");
+                    fsm.ChangeTransition("Spell Destroy", "FINISHED", "GiveItem");
                 }
                 else if (wall.fsmType == "FSM")
                 {
