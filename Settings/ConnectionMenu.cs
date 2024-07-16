@@ -98,6 +98,10 @@ namespace BreakableWallRandomizer.Settings
         private static void ConstructMenu(MenuPage landingPage) => Instance = new(landingPage);
 
         public void Disable() => wallMEF.ElementLookup[nameof(BWR_Settings.Enabled)].SetValue(false);
-        public void Apply(BWR_Settings settings) => wallMEF.SetMenuValues(settings);
+        public void Apply(BWR_Settings settings) 
+        {
+            wallMEF.SetMenuValues(settings);
+            shopMEF.SetMenuValues(settings.MylaShop);
+        }
     } 
 }

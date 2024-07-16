@@ -78,7 +78,7 @@
         "group": "Village_Walls",
         "logic": "((Deepnest_41 + (Plank-Village_Middle | WINGS + (SIDESLASH | UPSLASH | LEFTCLAW) | RIGHTCLAW | LEFTCLAW + ENEMYPOGOS)) | Deepnest_41[left2] | (Deepnest_41[right1] + (WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | BACKGROUNDPOGOS) | ANYCLAW + Plank-Village_Upper))) + (LANTERN | NOLANTERN?FALSE | DARKROOMS)",
         "logicOverrides": {
-            "Deepnest_41": "(LANTERN | NOLANTERN?NONE | DARKROOMS) + (Deepnest_41[left1] + Plank-Village_Middle | Deepnest_41[left2] + (FULLCLAW | WINGS + (RIGHTCLAW | LEFTCLAW + ENEMYPOGOS | DIFFICULTSKIPS + COMPLEXSKIPS + ENEMYPOGOS + ANYDASH + $SHADESKIP)) + Plank-Village_Upper | Deepnest_41[right1] + ((WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | BACKGROUNDPOGOS) | LEFTCLAW) + Plank-Village_Middle | Plank-Village_Upper))"
+            "Deepnest_41": "(LANTERN | NOLANTERN?NONE | DARKROOMS) + (Deepnest_41[left1] + Plank-Village_Middle | Deepnest_41[left2] + (FULLCLAW | WINGS + (RIGHTCLAW | LEFTCLAW + ENEMYPOGOS | DIFFICULTSKIPS + COMPLEXSKIPS + ENEMYPOGOS + ANYDASH + $SHADESKIP)) + Plank-Village_Lower | Deepnest_41[right1] + ((WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | BACKGROUNDPOGOS) | LEFTCLAW) + Plank-Village_Middle | Plank-Village_Upper))"
         },
         "logicSubstitutions": {
             "Deepnest_41[left1]": {
