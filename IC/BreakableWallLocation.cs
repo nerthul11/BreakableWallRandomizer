@@ -1,4 +1,5 @@
-﻿using BreakableWallRandomizer.Modules;
+﻿using BreakableWallRandomizer.Fsm;
+using BreakableWallRandomizer.Modules;
 using HutongGames.PlayMaker.Actions;
 using ItemChanger;
 using ItemChanger.Locations;
@@ -111,7 +112,7 @@ namespace BreakableWallRandomizer.IC
             }
         }
 
-        private void MakeWallPassable(GameObject go)
+        private void MakeWallPassable(GameObject go, bool destroy)
         {
             foreach (var objectName in alsoDestroy)
             {
@@ -121,13 +122,13 @@ namespace BreakableWallRandomizer.IC
                     GameObject.Destroy(obj);
                 } catch { }
             }
-            Recursive_MakeWallPassable(go);
+            Recursive_MakeWallPassable(go, destroy);
         }
 
         // Recursively set all colliders as triggers on a given gameObject.
         // Also recursively set any SpriteRenderers on a given gameObject to 0.5 alpha.
         // Also remove any object called "Camera lock" or any textures beginning with msk_. 
-        private void Recursive_MakeWallPassable(GameObject go)
+        private void Recursive_MakeWallPassable(GameObject go, bool destroy)
         {
             foreach (var collider in go.GetComponents<Collider2D>())
             {
@@ -161,7 +162,9 @@ namespace BreakableWallRandomizer.IC
 
             for (var i = 0; i < go.transform.childCount; i++)
             {
-                MakeWallPassable(go.transform.GetChild(i).gameObject);
+                MakeWallPassable(go.transform.GetChild(i).gameObject, destroy);
+                if (destroy)
+                    GameObject.Destroy(go);
             }
         }
 
@@ -183,6 +186,25 @@ namespace BreakableWallRandomizer.IC
             {
                 if (wall.fsmType != fsm.FsmName)
                     continue;
+
+                var originalIdleStateName = wall.fsmType switch
+                {
+                    "quake_floor" => "Solid",
+
+                    "Detect Quake" => "Detect",
+
+                    _ => "Idle"
+                };
+
+                // Copy sound and particles from original
+                var originalBreakStateName = wall.fsmType switch
+                {
+                    "quake_floor" => "Glass",
+
+                    "Detect Quake" => "Break 2",
+
+                    _ => "Break"
+                };
 
                 // If a location is present, it means that it's not vanilla
                 BreakableWallModule.Instance.vanillaWalls.RemoveAll(wall => wall.name == name);
@@ -210,11 +232,10 @@ namespace BreakableWallRandomizer.IC
                 } else if (wall.fsmType == "quake_floor")
                 {
                     fsm.ChangeTransition("Init", "ACTIVATE", "Solid");
-                    fsm.RemoveAction("Transient", 0); // Sets the floor to a trigger
+                    if (fsm.GetState("Transient").GetActions<SetBoxColliderTrigger>().Length >= 1)
+                        fsm.RemoveAction("Transient", 0);
                     if (fsm.GetState("Solid").GetActions<SetBoxColliderTrigger>().Length >= 1)
-                    {
-                        fsm.RemoveAction("Solid", 0); // Sets the floor to a triggern't
-                    }
+                        fsm.RemoveAction("Solid", 0);
 
                     var collider = fsm.gameObject.GetComponent<BoxCollider2D>();
                     collider.isTrigger = true; // Make the first collider always a trigger
@@ -228,6 +249,12 @@ namespace BreakableWallRandomizer.IC
                     fsm.ChangeTransition("Init", "ACTIVATE", "Detect");
                 }
 
+                // If the wall item had been obtained when calling GiveItem, destroy the wall on trigger.
+                fsm.AddState("DeleteWall");
+                fsm.AddCustomAction("DeleteWall", () => MakeWallPassable(fsm.gameObject, true));
+                fsm.AddTransition("DeleteWall", "FINISHED", originalBreakStateName);
+
+                // Add GiveItem state
                 fsm.AddState("GiveItem");
                 fsm.AddCustomAction("GiveItem", () =>
                 {
@@ -238,27 +265,18 @@ namespace BreakableWallRandomizer.IC
                     });
 
                     Placement.AddVisitFlag(VisitState.Opened);
-
-                    if (BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(wall.name))
-                    {
-                        // Delete the wall entirely.
-                        if (fsmType == "quake_floor") 
-                            fsm.SetState("Destroy");
-                        else if (fsmType == "Detect Quake") 
-                            fsm.SetState("Break 2");
-                        else 
-                            fsm.SetState("Break");
-                    }
                 });
+                fsm.AddAction("GiveItem", new CustomFsmBooleanCheck(
+                    BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(wall.name), "OBTAINED", ""
+                    ));
+                fsm.AddTransition("GiveItem", "OBTAINED", "DeleteWall");
 
                 // If we already unlocked this wall, and items are still left there, make it passable.
                 if (BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(wall.name))
                 {
-                    // If items are left, make wall semi-transparent and passable
+                    // If items are left, make wall semi-transparent and passable.
                     if (!Placement.AllObtained())
-                    {
-                        MakeWallPassable(fsm.gameObject);
-                    }
+                        MakeWallPassable(fsm.gameObject, false);
                     else
                     {
                         // Ensure the wall deletes on-load.
@@ -287,25 +305,6 @@ namespace BreakableWallRandomizer.IC
                     // ...and there are items left to collect:
                     else
                     {
-                        var originalIdleStateName = wall.fsmType switch
-                        {
-                            "quake_floor" => "Solid",
-
-                            "Detect Quake" => "Detect",
-
-                            _ => "Idle"
-                        };
-
-                        // Copy sound and particles from original
-                        var originalBreakStateName = wall.fsmType switch
-                        {
-                            "quake_floor" => "Glass",
-
-                            "Detect Quake" => "Break 2",
-
-                            _ => "Break"
-                        };
-
                         foreach (var action in fsm.GetState(originalBreakStateName).Actions)
                         {
                             if (action is AudioPlayerOneShotSingle or PlayParticleEmitter or AudioPlayerOneShot)
@@ -319,25 +318,22 @@ namespace BreakableWallRandomizer.IC
 
                         fsm.AddState("BreakSameScene");
 
-                        fsm.InsertCustomAction("BreakSameScene", () =>
+                        // In any of the cases, the wall is expected to become passable.
+                        fsm.AddCustomAction("BreakSameScene", () =>
                         {
-                            if (Placement.AllObtained())
-                            {
-                                MakeWallPassable(fsm.gameObject);
-                                fsm.SetState(originalIdleStateName);
-                            }
-                            else
-                            {
-                                if (wall.fsmType == "quake_floor") 
-                                {
-                                    MakeWallPassable(fsm.gameObject);
-                                } // ensure everything is passable.
-                                fsm.SetState(originalBreakStateName);
-                            }
-
+                            MakeWallPassable(fsm.gameObject, Placement.AllObtained());
                             Placement.AddVisitFlag(VisitState.Opened);
-                        }, 0);
-                    }
+                        });
+
+                        // If placement is cleared, make the wall disappear. Otherwise, set to hittable state.
+                        fsm.AddAction("BreakSameScene", new CustomFsmBooleanCheck(
+                                Placement.AllObtained(),
+                                "CLEARED",
+                                "UNCLEARED"
+                            ));
+                        fsm.AddTransition("BreakSameScene", "UNCLEARED", originalIdleStateName);
+                        fsm.AddTransition("BreakSameScene", "CLEARED", originalBreakStateName);
+                    }                    
                 }
 
                 if (wall.fsmType == "breakable_wall_v2")
@@ -356,7 +352,7 @@ namespace BreakableWallRandomizer.IC
                     fsm.ChangeTransition("Hit", "HIT 3", "GiveItem");
                 } else if (wall.fsmType == "quake_floor")
                 {
-                    fsm.ChangeTransition("PD Bool?", "FINISHED", "GiveItem");
+                    fsm.ChangeTransition("Transient", "DESTROY", "GiveItem");
                 } else if (wall.fsmType == "Detect Quake")
                 {
                     fsm.ChangeTransition("Quake Hit", "FINISHED", "GiveItem");

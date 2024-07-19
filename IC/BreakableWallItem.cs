@@ -73,7 +73,7 @@ namespace BreakableWallRandomizer.IC
                     if (wall.name.StartsWith("Dive_Floor") && !BreakableWallModule.Instance.UnlockedDives.Contains(name))
                         BreakableWallModule.Instance.UnlockedDives.Add(wall.name);
                     
-                    // If we're already in the same scene as the wall, break it. The wall's FSM should spawn a shiny.
+                    // If we're already in the same scene as the wall, break it.
                     if (GameManager.instance.sceneName == wall.sceneName)
                         GameObject.Find(wall.gameObject).LocateMyFSM(wall.fsmType).SetState("BreakSameScene");
                 }
@@ -89,7 +89,7 @@ namespace BreakableWallRandomizer.IC
                 if (name.StartsWith("Dive_Floor") && !BreakableWallModule.Instance.UnlockedDives.Contains(name))
                     BreakableWallModule.Instance.UnlockedDives.Add(name);
                 
-                // If we're already in the same scene as the wall, break it. The wall's FSM should spawn a shiny.
+                // If we're already in the same scene as the wall, break it.
                 if (GameManager.instance.sceneName == sceneName)
                     GameObject.Find(gameObject).LocateMyFSM(fsmType).SetState("BreakSameScene");
             }

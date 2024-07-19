@@ -878,7 +878,14 @@
         "logicOverrides": {
             "White_Palace_06[left1]": "White_Palace_06[left1] | (ORIG) + Wall-Path_of_Pain_Entrance"
         },
-        "logicSubstitutions": {}
+        "logicSubstitutions": {
+            "White_Palace_06[bot1]": {
+                "White_Palace_06[left1]": "White_Palace_06[left1] + Wall-Path_of_Pain_Entrance"
+            },
+            "White_Palace_06[top1]": {
+                "White_Palace_06[left1]": "White_Palace_06[left1] + Wall-Path_of_Pain_Entrance"
+            }
+        }
     },
     {
         "name": "Wall-White_Palace_Throne",
@@ -919,6 +926,15 @@
                 "Deepnest_East_01[right1]": "Deepnest_East_01[right1] + Plank-Hive_Exit"
             },
             "Deepnest_East_01[top1]": {
+                "Deepnest_East_01[right1]": "Deepnest_East_01[right1] + Plank-Hive_Exit"
+            },
+            "Geo_Rock-Lower_Kingdom's_Edge_1": {
+                "Deepnest_East_01[right1]": "Deepnest_East_01[right1] + Plank-Hive_Exit"
+            },
+            "Geo_Rock-Lower_Kingdom's_Edge_2": {
+                "Deepnest_East_01[right1]": "Deepnest_East_01[right1] + Plank-Hive_Exit"
+            },
+            "Soul_Totem-Lower_Kingdom's_Edge_1": {
                 "Deepnest_East_01[right1]": "Deepnest_East_01[right1] + Plank-Hive_Exit"
             }
         }
@@ -1138,7 +1154,7 @@
         "group": "",
         "logic": "(Fungus1_04[right1] + Defeated_Hornet_1 + (FULLDASH | WINGS)) | (Fungus1_04[right1] + Plank-Hornet_Exit) | (Fungus1_04[left1] + (FULLDASH | WINGS))",
         "logicOverrides": {
-            "Fungus1_04[left1]": "(ORIG) | Fungus1_04[right1] + (Plank-Hornet_Exit + (WINGS | LEFTDASH | ACID | SPELLAIRSTALL + $CASTSPELL[1,1]))",
+            "Fungus1_04[left1]": "(ORIG) | Fungus1_04[right1] + Plank-Hornet_Exit + (WINGS | LEFTDASH | ACID | SPELLAIRSTALL + $CASTSPELL[1,1])",
             "Fungus1_04[right1]": "Fungus1_04[right1] | (ORIG) + Plank-Hornet_Exit"
         },
         "logicSubstitutions": {}
@@ -1379,7 +1395,8 @@
         "logic": "Deepnest_01[bot1] | (Deepnest_01[left1] | Deepnest_01[right1]) + Plank-Deepnest_Exit",
         "logicOverrides": {
             "Fungus2_20[left1]": "Fungus2_20[left1] | (ORIG) + Wall-Deepnest_Fungal",
-            "Deepnest_01[right1]": "Deepnest_01[right1] | (ORIG) + Wall-Deepnest_Fungal"
+            "Deepnest_01[right1]": "Deepnest_01[right1] | (ORIG) + Wall-Deepnest_Fungal",
+            "Spore_Shroom": "Fungus2_20 + ((ORIG) | (RIGHTCLAW | WINGS) + (ACID | RIGHTDASH | LEFTCLAW + RIGHTSUPERDASH) | WINGS + (RIGHTCLAW | SPELLAIRSTALL + $CASTSPELL[1,before:AREASOUL] | COMPLEXSKIPS + OBSCURESKIPS + $SHADESKIP + DAMAGEBOOSTS + $TAKEDAMAGE | OBSCURESKIPS + PRECISEMOVEMENT | $SHRIEKPOGO[2,before:AREASOUL]) | Plank-Spore_Shroom)"
         },
         "logicSubstitutions": {
             "Fungus2_20": {
@@ -1387,6 +1404,12 @@
             },
             "Deepnest_01": {
                 "Deepnest_01[right1]": "Deepnest_01[right1] + Wall-Deepnest_Fungal"
+            },
+            "Grub-Fungal_Spore_Shroom": {
+                "Fungus2_20[left1]" : "Fungus2_20[left1] + Wall-Deepnest_Fungal"
+            },
+            "Lore_Tablet-Spore_Shroom": {
+                "Fungus2_20[left1]" : "Fungus2_20[left1] + Wall-Deepnest_Fungal"
             }
         }
     },
@@ -1907,8 +1930,8 @@
         "gameObject": "/Breakable Wall",
         "fsmType": "breakable_wall_v2",
         "sceneName": "Ruins_Bathhouse",
-        "x": 0.0,
-        "y": 0.0,
+        "x": 0.5,
+        "y": -0.1,
         "persistentBool": "bathHouseWall",
         "sprite": "bath_break_wall_0deg",
         "alsoDestroy": [],
@@ -1972,6 +1995,15 @@
         "logicSubstitutions": {
             "Waterways_01": {
                 "Waterways_01[right1]": "Waterways_01[right1] + Wall-Tuk"
+            },
+            "Geo_Rock-Waterways_Tuk": {
+                "Waterways_01[right1]": "Waterways_01[right1] + Wall-Tuk"
+            },
+            "Geo_Rock-Waterways_Tuk_Alcove": {
+                "Waterways_01[right1]": "Waterways_01[right1] + Wall-Tuk"
+            },
+            "Soul_Totem-Waterways_Entrance": {
+                "Waterways_01[right1]": "Waterways_01[right1] + Wall-Tuk"
             }
         }
     },
@@ -2027,12 +2059,14 @@
         "logic": "Waterways_05[bot1] + (ANYCLAW | WINGS) + Defeated_Dung_Defender | Waterways_05[bot2] | Waterways_05[right1] + Plank-Dung_Defender",
         "logicOverrides": {
             "Opened_Dung_Defender_Wall": "Plank-Dung_Defender",
-            "Lever-Dung_Defender": "ORIG | Waterways_05[right1] + Plank-Dung_Defender",
             "Waterways_05[right1]": "Waterways_05[right1] | (ORIG) + Plank-Dung_Defender"
         },
         "logicSubstitutions": {
             "Abyss_01[left1]": {
                 "Opened_Dung_Defender_Wall": "Plank-Dung_Defender"
+            },
+            "Lever-Dung_Defender": {
+                "Waterways_05[right1]":"Waterways_05[right1] + Plank-Dung_Defender"
             }
         }
     },
@@ -2870,7 +2904,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Waterways_04[bot1] | (Waterways_04[right1] | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) | Waterways_04[left2] + (RIGHTCLAW | WINGS + ENEMYPOGOS) + (SWIM | RIGHTSKIPACID)) + Broke_Waterways_Bench_Quake_Floor_1 + QUAKE + $CASTSPELL",
+        "logic": "(Waterways_04[bot1] | (Waterways_04[right1] | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) | Waterways_04[left2] + (RIGHTCLAW | WINGS + ENEMYPOGOS) + (SWIM | RIGHTSKIPACID)) + Dive_Floor-Waterways_Bench_1) + QUAKE + $CASTSPELL",
         "logicOverrides": {
             "Broke_Waterways_Bench_Quake_Floor_2": "Dive_Floor-Waterways_Bench_2"
         },
@@ -2893,7 +2927,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Waterways_02[bot1] | (Waterways_02[top1] | Waterways_02[top2] + (ANYCLAW | WINGS | SWIM) | Waterways_02[top3] + Broke_Waterways_Bench_Quake_Floor_3 | Waterways_02[bot1] | Waterways_02[bot2] + (ANYCLAW | WINGS | SWIM)) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logic": "(Waterways_02[bot1] | Waterways_02[top1] | Waterways_02[top2] + (ANYCLAW | WINGS | SWIM) | Waterways_02[top3] + Broke_Waterways_Bench_Quake_Floor_3 | Waterways_02[bot2] + (ANYCLAW | WINGS | SWIM)) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
         "logicOverrides": {
             "Broke_Flukemarm_Quake_Floor": "Dive_Floor-Flukemarm"
         },
@@ -2956,7 +2990,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "*Soul_Totem-White_Palace_Right",
+        "logic": "White_Palace_15[right1] + QUAKE + $CASTSPELL",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
