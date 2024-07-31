@@ -120,7 +120,10 @@ namespace BreakableWallRandomizer.IC
                 {
                     var obj = GameObject.Find(objectName);
                     GameObject.Destroy(obj);
-                } catch { }
+                } catch 
+                { 
+                    BreakableWallRandomizer.Instance.LogWarn($"{objectName} not found.");
+                }
             }
             Recursive_MakeWallPassable(go, destroy);
         }
@@ -154,8 +157,7 @@ namespace BreakableWallRandomizer.IC
                     sprite.enabled = false;
                 }
             }
-
-            if (go.name.Contains("Camera"))
+            if (go.name.Contains("Camera") || go.name.Contains("Mask"))
             {
                 GameObject.Destroy(go);
             }
@@ -252,7 +254,10 @@ namespace BreakableWallRandomizer.IC
                 // If the wall item had been obtained when calling GiveItem, destroy the wall on trigger.
                 fsm.AddState("DeleteWall");
                 fsm.AddCustomAction("DeleteWall", () => MakeWallPassable(fsm.gameObject, true));
-                fsm.AddTransition("DeleteWall", "FINISHED", originalBreakStateName);
+                if (fsm.GetTransition(originalBreakStateName, "FINISHED") is not null)
+                    fsm.ChangeTransition(originalBreakStateName, "FINISHED", "DeleteWall");
+                else
+                    fsm.AddTransition(originalBreakStateName, "FINISHED", "DeleteWall");
 
                 // Add GiveItem state
                 fsm.AddState("GiveItem");
@@ -269,30 +274,12 @@ namespace BreakableWallRandomizer.IC
                 fsm.AddAction("GiveItem", new CustomFsmBooleanCheck(
                     BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(wall.name), "OBTAINED", ""
                     ));
-                fsm.AddTransition("GiveItem", "OBTAINED", "DeleteWall");
+                fsm.AddTransition("GiveItem", "OBTAINED", originalBreakStateName);
 
-                // If we already unlocked this wall, and items are still left there, make it passable.
+                // If we already unlocked this wall, make it passable or destroy it.
                 if (BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(wall.name))
                 {
-                    // If items are left, make wall semi-transparent and passable.
-                    if (!Placement.AllObtained())
-                        MakeWallPassable(fsm.gameObject, false);
-                    else
-                    {
-                        // Ensure the wall deletes on-load.
-                        if (wall.fsmType == "quake_floor")
-                        {
-                            fsm.ChangeTransition("Init", "FINISHED", "Activate");
-                            fsm.ChangeTransition("Init", "ACTIVATE", "Activate");
-                        } else if (wall.fsmType == "Detect Quake") {
-                            fsm.ChangeTransition("Init", "ACTIVATE", "Activate !!!");
-                            fsm.ChangeTransition("Init", "FINISHED", "Activate !!!");
-                        } else
-                        {
-                            fsm.ChangeTransition("Initiate", "FINISHED", "Activated");
-                            fsm.ChangeTransition("Initiate", "ACTIVATE", "Activated");
-                        }
-                    }
+                    MakeWallPassable(fsm.gameObject, Placement.AllObtained());
                 }
                 else
                 // If we didn't unlock this door yet...

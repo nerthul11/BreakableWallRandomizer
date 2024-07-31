@@ -46,7 +46,9 @@
         "persistentBool": "",
         "sprite": "break_wall_deepnest_0deg",
         "alsoDestroy": [
-            "Secret Mask"
+            "Secret Mask",
+            "Secret Mask (1)",
+            "Secret Mask (2)"
         ],
         "exit": false,
         "groupWalls": [],

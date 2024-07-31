@@ -520,6 +520,9 @@
         "logicSubstitutions": {
             "Deepnest_01b": {
                 "Deepnest_01b[right1]": "Deepnest_01b[right1] + Plank-Upper_Deepnest"
+            },
+            "Deepnest_01b[top1]": {
+                "Deepnest_01b[right1]": "Deepnest_01b[right1] + Plank-Upper_Deepnest"
             }
         }
     },
@@ -579,7 +582,9 @@
         "persistentBool": "",
         "sprite": "deep_crumble_floor_270deg",
         "alsoDestroy": [
-            "Secret Mask"
+            "Secret Mask",
+            "Secret Mask (1)",
+            "Secret Mask (2)"
         ],
         "exit": false,
         "groupWalls": [],
@@ -598,7 +603,9 @@
         "persistentBool": "",
         "sprite": "break_wall_deepnest_0deg",
         "alsoDestroy": [
-            "Secret Mask"
+            "Secret Mask",
+            "Secret Mask (1)",
+            "Secret Mask (2)"
         ],
         "exit": false,
         "groupWalls": [],
@@ -617,7 +624,9 @@
         "persistentBool": "",
         "sprite": "break_wall_deepnest_0deg",
         "alsoDestroy": [
-            "Secret Mask"
+            "Secret Mask",
+            "Secret Mask (1)",
+            "Secret Mask (2)"
         ],
         "exit": false,
         "groupWalls": [],
@@ -1913,8 +1922,8 @@
         "gameObject": "/Breakable Wall",
         "fsmType": "breakable_wall_v2",
         "sceneName": "Ruins2_03",
-        "x": 0.0,
-        "y": 0.0,
+        "x": -0.5,
+        "y": 0.8,
         "persistentBool": "",
         "sprite": "ruin_break_roof_90deg",
         "alsoDestroy": [],
@@ -2104,7 +2113,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Waterways_08[left2] + Wall-Junk_Pit_Entrance | (Waterways_08[top1] | Bench-Fort_Flukefey?NONE + (WINGS + ENEMYPOGOS | WINGS + ANYCLAW | SWIM + ENEMYPOGOS + LEFTCLAW)) + Plank-Junk_Pit_Exit",
+        "logic": "Waterways_08[left2] + Wall-Junk_Pit_Entrance | Waterways_08[left1] + (LEFTCLAW | WINGS) | Waterways_08[top1] + (Plank-Junk_Pit_Exit | WINGS + ENEMYPOGOS | WINGS + ANYCLAW | FULLCLAW)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2121,7 +2130,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Waterways_08[left2] | (Waterways_08[top1] | Bench-Fort_Flukefey?NONE + (WINGS + ENEMYPOGOS | WINGS + ANYCLAW | SWIM + ENEMYPOGOS + LEFTCLAW)) + Plank-Junk_Pit_Exit",
+        "logic": "Waterways_08[left2] | Waterways_08[left1] + (LEFTCLAW | WINGS) + UPWALLBREAK | Waterways_08[top1] + (Plank-Junk_Pit_Exit | WINGS + ENEMYPOGOS | WINGS + ANYCLAW | FULLCLAW) + UPWALLBREAK",
         "logicOverrides": {
             "Waterways_08[left2]": "(ORIG) + Wall-Junk_Pit_Entrance"
         },
@@ -3047,6 +3056,23 @@
         "groupWalls": [],
         "group": "",
         "logic": "GG_Workshop + Wall-Godhome_Workshop + RIGHTCLAW + WINGS + (LEFTSUPERDASH | LEFTSHARPSHADOW)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Dive_Floor-Flukemungas",
+        "gameObject": "/Quake Floor",
+        "fsmType": "quake_floor",
+        "sceneName": "GG_Pipeway",
+        "x": 0.8,
+        "y": 0.0,
+        "persistentBool": "",
+        "sprite": "break_floor",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "(GG_Pipeway[left1] | GG_Pipeway[right1]) + (ANYCLAW | WINGS) + QUAKE + $CASTSPELL",
         "logicOverrides": {},
         "logicSubstitutions": {}
     }
