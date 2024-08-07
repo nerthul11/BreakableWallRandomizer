@@ -910,7 +910,9 @@
         "groupWalls": [],
         "group": "",
         "logic": "White_Palace_09[right1] + (LEFTSUPERDASH + (FULLCLAW | WINGS) | RIGHTCLAW + LEFTDASH + OBSCURESKIPS + PRECISEMOVEMENT + ($SHRIEKPOGO[1,1,1,1,1] | LEFTSHARPSHADOW + $SHRIEKPOGO[1,1,1,1]))",
-        "logicOverrides": {},
+        "logicOverrides": {
+            "Lore_Tablet-Palace_Throne": "ORIG + Wall-White_Palace_Throne"
+        },
         "logicSubstitutions": {}
     },
     {
@@ -3018,8 +3020,8 @@
         "group": "",
         "logic": "Tutorial_01",
         "logicOverrides": {
-            "Geo_Rock-King's_Pass_Above_Fury": "(ORIG + Plank-King's_Pass) | (Tutorial_01 + (RIGHTCLAW | LEFTCLAW + WINGS + RIGHTDASH + LONGMARK + BACKGROUNDPOGOS))",
-            "Geo_Rock-King's_Pass_Collapse": "(ORIG + Plank-King's_Pass) | (Tutorial_01 + (FULLCLAW | WINGS))",
+            "Geo_Rock-King's_Pass_Above_Fury": "(ORIG + Plank-King's_Pass) | (Tutorial_01 + (RIGHTCLAW | LEFTCLAW + WINGS + RIGHTDASH + LONGMARK + BACKGROUNDPOGOS | WINGS + ENEMYPOGOS))",
+            "Geo_Rock-King's_Pass_Collapse": "(ORIG + Plank-King's_Pass) | (Tutorial_01 + (FULLCLAW | LEFTCLAW + WINGS + RIGHTDASH + LONGMARK + BACKGROUNDPOGOS | WINGS + (RIGHTCLAW | ENEMYPOGOS)))",
             "Lore_Tablet-King's_Pass_Fury": "(ORIG + Plank-King's_Pass) | (Tutorial_01 + (ANYCLAW | WINGS))",
             "Fury_of_the_Fallen": "(ORIG + Plank-King's_Pass) | (Tutorial_01 + (ANYCLAW | WINGS))"
         },

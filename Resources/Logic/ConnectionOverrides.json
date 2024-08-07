@@ -1,13 +1,16 @@
 [
     {
+        "name": "Chandelier-Watcher_Knights",
+        "logicOverride": "ORIG + Wall-Chandelier",
+        "logicSubstitutions": {}
+    },
+    {
         "name": "Lever-Palace_Final",
-        "sourceMod": "RandomizableLevers",
-        "logicOverride": "ORIG | White_Palace_12[bot1] + RIGHTCLAW + LEFTSUPERDASH + Wall-White_Palace_Shortcut + Plank-White_Palace_Shortcut_Exit",
+        "logicOverride": "(ORIG) | White_Palace_12[bot1] + RIGHTCLAW + LEFTSUPERDASH + Wall-White_Palace_Shortcut + Plank-White_Palace_Shortcut_Exit",
         "logicSubstitutions": {}
     },
     {
         "name": "Lever-Pilgrim's_Way_Left",
-        "sourceMod": "RandomizableLevers",
         "logicOverride": "",
         "logicSubstitutions": {
             "QUAKE": "Dive_Floor-Pilgrim's_Way"
@@ -15,7 +18,6 @@
     },
     {
         "name": "Lever-Pilgrim's_Way_Right",
-        "sourceMod": "RandomizableLevers",
         "logicOverride": "",
         "logicSubstitutions": {
             "QUAKE": "Dive_Floor-Pilgrim's_Way"
@@ -23,7 +25,6 @@
     },
     {
         "name": "Lever-Sanctum_West_Upper",
-        "sourceMod": "RandomizableLevers",
         "logicOverride": "",
         "logicSubstitutions": {
             "QUAKE": "Dive_Floor-Inner_Sanctum_1"
@@ -31,8 +32,14 @@
     },
     {
         "name": "Lever-Sanctum_West_Lower",
-        "sourceMod": "RandomizableLevers",
         "logicOverride": "Ruins1_32[right2] | (ORIG) + Dive_Floor-Inner_Sanctum_2 + (Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Bottom | Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + Lever-Sanctum_West_Lower)",
         "logicSubstitutions": {}
+    },
+    {
+        "name": "Mr_Mushroom-Kingdom's_Edge",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Deepnest_East_01[right1]": "Deepnest_East_01[right1] + Plank-Hive_Exit"
+        }
     }
 ]

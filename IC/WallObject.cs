@@ -42,7 +42,6 @@ namespace BreakableWallRandomizer.IC
     public class ConnectionLogicObject
     {
         public string name;
-        public string sourceMod;
         public string logicOverride;
         public Dictionary<string, string> logicSubstitutions;
     }

@@ -23,9 +23,9 @@
                 "Cliffs_01[right4]": "Cliffs_01[right4] + Wall-Grimm_Inner + (Plank-Grimm_Exit | (Wall-Grimm_Outer + ANYCLAW))"
             },
             "Lore_Tablet-Howling_Cliffs": {
-                "Cliffs_01[right1]": "(Cliffs_01[right1] + (Wall-Grimm_Outer | Plank-Grimm_Exit))",
-                "Cliffs_01[right2]": "(Cliffs_01[right2] + (Wall-Grimm_Outer | Plank-Grimm_Exit))",
-                "Cliffs_01[right3]": "(Cliffs_01[right3] + (Wall-Grimm_Outer | Plank-Grimm_Exit))",
+                "Cliffs_01[right1]": "(Cliffs_01[right1] + (Wall-Grimm_Outer | Plank-Grimm_Exit + (ANYCLAW | WINGS + ENEMYPOGOS)))",
+                "Cliffs_01[right2]": "(Cliffs_01[right2] + (Wall-Grimm_Outer | Plank-Grimm_Exit + (ANYCLAW | WINGS + ENEMYPOGOS)))",
+                "Cliffs_01[right3]": "(Cliffs_01[right3] + (Wall-Grimm_Outer | Plank-Grimm_Exit + (ANYCLAW | WINGS + ENEMYPOGOS)))",
                 "Cliffs_01[right4]": "(Cliffs_01[right4] + Wall-Grimm_Inner + ANYCLAW)"
             },
             "Wanderer's_Journal-Cliffs": {
@@ -55,10 +55,11 @@
         "group": "Nosk_Walls",
         "logic": "Deepnest_31[right1] + (LEFTSLASH | UPSLASH | SCREAM | LEFTFIREBALL | ANYCLAW | WINGS | LEFTDASH | (FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM)) + $CASTSPELL[3]) | Deepnest_31[right2] + ((RIGHTCLAW | LEFTCLAW + (WINGS | BACKGROUNDPOGOS)) | (ANYCLAW | WINGS))",
         "logicOverrides": {
-            "Deepnest_31[right2]": "Deepnest_31[right2] | ((ORIG) + (Wall-Nosk_Outer + Wall-Nosk_Inner | Plank-Nosk_Exit))",
+            "Deepnest_31[right1]": "Deepnest_31[right1] | (ORIG) + (Wall-Nosk_Outer + Wall-Nosk_Inner | Plank-Nosk_Exit)",
+            "Deepnest_31[right2]": "Deepnest_31[right2] | (ORIG) + (Wall-Nosk_Outer + Wall-Nosk_Inner | Plank-Nosk_Exit)",
             "Geo_Rock-Deepnest_Nosk_1": "Deepnest_31[right1] + (ANYCLAW | WINGS | LEFTDASH | (FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Wall-Nosk_Outer | Deepnest_31[right2] + ((ANYCLAW | WINGS) + Wall-Nosk_Inner | (RIGHTCLAW | LEFTCLAW + (WINGS | BACKGROUNDPOGOS)) + Plank-Nosk_Exit + Wall-Nosk_Outer)",
             "Geo_Rock-Deepnest_Nosk_2": "Deepnest_31[right1] + (ANYCLAW | WINGS | LEFTDASH | (FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Wall-Nosk_Outer | Deepnest_31[right2] + ((ANYCLAW | WINGS) + Wall-Nosk_Inner | (RIGHTCLAW | LEFTCLAW + (WINGS | BACKGROUNDPOGOS)) + Plank-Nosk_Exit + Wall-Nosk_Outer)",
-            "Geo_Rock-Deepnest_Nosk_3": "Deepnest_31[right2]",
+            "Geo_Rock-Deepnest_Nosk_3": "Deepnest_31[right2] | (ORIG) + (Wall-Nosk_Outer + Wall-Nosk_Inner | Plank-Nosk_Exit)",
             "Grub-Deepnest_Nosk": "Deepnest_31[right1] | Deepnest_31[right2] + ((RIGHTCLAW | LEFTCLAW + (WINGS | BACKGROUNDPOGOS)) + Plank-Nosk_Exit | (ANYCLAW | WINGS) + Wall-Nosk_Outer + Wall-Nosk_Inner)"
         },
         "logicSubstitutions": {}
@@ -87,6 +88,7 @@
                 "Deepnest_41[left2]": "(Deepnest_41[left2] + Plank-Village_Upper + Plank-Village_Lower)"
             },
             "Deepnest_41[right1]": {
+                "Deepnest_41[left1]": "(Deepnest_41[left1] + Plank-Village_Upper + Plank-Village_Middle)",
                 "Deepnest_41[left2]": "(Deepnest_41[left2] + Plank-Village_Upper + Plank-Village_Lower)"
             }
         }
@@ -106,10 +108,8 @@
         "group": "Catacombs_Walls",
         "logic": "RestingGrounds_10",
         "logicOverrides": {
+            "Geo_Rock-Resting_Grounds_Catacombs_Left_Dupe": "RestingGrounds_10 + Wall-Catacombs_Left_1",
             "Geo_Chest-Resting_Grounds": "(ORIG) + Wall-Catacombs_Right_1",
-            "Geo_Rock-Resting_Grounds_Catacombs_Grub": "(ORIG) + Wall-Catacombs_Right_1 + Wall-Catacombs_Grub",
-            "Geo_Rock-Resting_Grounds_Catacombs_Left": "(ORIG) + Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2",
-            "Grub-Resting_Grounds": "(ORIG) + Wall-Catacombs_Right_1 + Wall-Catacombs_Grub",
             "Hallownest_Seal-Resting_Grounds_Catacombs": "(ORIG) + Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2 + Wall-Catacombs_Seal",
             "Opened_Resting_Grounds_Catacombs_Wall": "Plank-Catacombs_Elevator",
             "RestingGrounds_10[left1]": "(ORIG) + Plank-Catacombs_Elevator",
@@ -118,6 +118,18 @@
             "Wanderer's_Journal-Resting_Grounds_Catacombs": "(ORIG) + Wall-Catacombs_Right_1 + Wall-Catacombs_Right_2"
         },
         "logicSubstitutions": {
+            "Geo_Rock-Resting_Grounds_Catacombs_Grub":
+            {
+                "UPWALLBREAK": "Wall-Catacombs_Right_1 + Wall-Catacombs_Grub"
+            },
+            "Geo_Rock-Resting_Grounds_Catacombs_Left":
+            {
+                "UPWALLBREAK": "Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2"
+            },
+            "Grub-Resting_Grounds":
+            {
+                "UPWALLBREAK": "Wall-Catacombs_Right_1 + Wall-Catacombs_Grub"
+            },
             "RestingGrounds_10": {
                 "RestingGrounds_10[left1]": "RestingGrounds_10[left1] + Plank-Catacombs_Elevator",
                 "RestingGrounds_10[top2]": "RestingGrounds_10[top2] + Wall-Catacombs_Right_1 + Wall-Catacombs_Grey_Mourner"
@@ -164,7 +176,7 @@
             "Broke_Quake_Floor_After_Soul_Master_3": "Dive_Floor-Inner_Sanctum_Grub",
             "Broke_Quake_Floor_After_Soul_Master_4": "Dive_Floor-Inner_Sanctum_Bottom",
             "Broke_Sanctum_Geo_Rock_Quake_Floor": "Dive_Floor-Inner_Sanctum_Cenda",
-            "Hallownest_Seal-Soul_Sanctum": "(ORIG + Dive_Floor-Inner_Sanctum_Seal) | Ruins1_32[right2] + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS))",
+            "Hallownest_Seal-Soul_Sanctum": "(ORIG + Dive_Floor-Inner_Sanctum_Seal) | Ruins1_32[right2] + Lever-Sanctum_West_Upper?TRUE + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS))",
             "Ruins1_32[right1]": "(ORIG) | (Ruins1_32[right2] + Dive_Floor-Inner_Sanctum_2 + ((RIGHTCLAW | ENEMYPOGOS) + Lever-Sanctum_West_Upper?TRUE | (RIGHTCLAW + (WINGS | ENEMYPOGOS)) + Dive_Floor-Inner_Sanctum_1) + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub)))" 
         },
         "logicSubstitutions": {}
