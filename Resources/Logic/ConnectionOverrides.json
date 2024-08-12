@@ -5,6 +5,13 @@
         "logicSubstitutions": {}
     },
     {
+        "name": "Defeated_Any_Entombed_Husk",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "RestingGrounds_10": "(RestingGrounds_10 | RestingGrounds_10[left1] + Plank-Catacombs_Elevator | RestingGrounds_10[top1] | RestingGrounds_10[top2] + Wall-Catacombs_Grey_Mourner)"
+        }
+    },
+    {
         "name": "Lever-Palace_Final",
         "logicOverride": "(ORIG) | White_Palace_12[bot1] + RIGHTCLAW + LEFTSUPERDASH + Wall-White_Palace_Shortcut + Plank-White_Palace_Shortcut_Exit",
         "logicSubstitutions": {}

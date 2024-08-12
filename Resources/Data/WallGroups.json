@@ -108,34 +108,43 @@
         "group": "Catacombs_Walls",
         "logic": "RestingGrounds_10",
         "logicOverrides": {
-            "Geo_Rock-Resting_Grounds_Catacombs_Left_Dupe": "RestingGrounds_10 + Wall-Catacombs_Left_1",
-            "Geo_Chest-Resting_Grounds": "(ORIG) + Wall-Catacombs_Right_1",
-            "Hallownest_Seal-Resting_Grounds_Catacombs": "(ORIG) + Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2 + Wall-Catacombs_Seal",
+            "Geo_Rock-Resting_Grounds_Catacombs_Left_Dupe": "(RestingGrounds_10[top1] | RestingGrounds_10) + Wall-Catacombs_Left_1",
+            "Hallownest_Seal-Resting_Grounds_Catacombs": "(RestingGrounds_10[top1] | RestingGrounds_10) + Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2 + Wall-Catacombs_Seal",
             "Opened_Resting_Grounds_Catacombs_Wall": "Plank-Catacombs_Elevator",
-            "RestingGrounds_10[left1]": "(ORIG) + Plank-Catacombs_Elevator",
+            "RestingGrounds_10[left1]": "RestingGrounds_10[left1] | (ORIG) + Plank-Catacombs_Elevator",
             "RestingGrounds_10[top2]": "RestingGrounds_10[top2] + (LEFTCLAW | WINGS + PRECISEMOVEMENT | RIGHTCLAW) | (ORIG) + Wall-Catacombs_Right_1 + Wall-Catacombs_Grey_Mourner",
-            "Soul_Eater": "(ORIG) + Wall-Catacombs_Soul_Eater + Wall-Catacombs_Right_1 + Wall-Catacombs_Right_2",
-            "Wanderer's_Journal-Resting_Grounds_Catacombs": "(ORIG) + Wall-Catacombs_Right_1 + Wall-Catacombs_Right_2"
+            "Wanderer's_Journal-Resting_Grounds_Catacombs": "(ORIG) + Wall-Catacombs_Right_2"
         },
         "logicSubstitutions": {
             "Geo_Rock-Resting_Grounds_Catacombs_Grub":
             {
+                "RestingGrounds_10": "(RestingGrounds_10[top2] + Wall-Catacombs_Grey_Mourner | RestingGrounds_10)",
                 "UPWALLBREAK": "Wall-Catacombs_Right_1 + Wall-Catacombs_Grub"
             },
             "Geo_Rock-Resting_Grounds_Catacombs_Left":
             {
+                "RestingGrounds_10": "(RestingGrounds_10[left1] + Plank-Catacombs_Elevator | RestingGrounds_10[top1] | RestingGrounds_10)",
                 "UPWALLBREAK": "Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2"
             },
             "Grub-Resting_Grounds":
             {
-                "UPWALLBREAK": "Wall-Catacombs_Right_1 + Wall-Catacombs_Grub"
+                "RestingGrounds_10": "(RestingGrounds_10[top2] + Wall-Catacombs_Grey_Mourner | RestingGrounds_10)",
+                "UPWALLBREAK": "Wall-Catacombs_Grub"
             },
             "RestingGrounds_10": {
-                "RestingGrounds_10[left1]": "RestingGrounds_10[left1] + Plank-Catacombs_Elevator",
+                "RestingGrounds_10[left1]": "RestingGrounds_10[left1] + Plank-Catacombs_Elevator + Wall-Catacombs_Right_1",
+                "RestingGrounds_10[top1]": "RestingGrounds_10[top1] + Wall-Catacombs_Right_1",
                 "RestingGrounds_10[top2]": "RestingGrounds_10[top2] + Wall-Catacombs_Right_1 + Wall-Catacombs_Grey_Mourner"
             },
             "Ruins2_10[right1]": {
                 "Opened_Resting_Grounds_Catacombs_Wall": "Plank-Catacombs_Elevator"
+            },
+            "Soul_Eater": {
+                "RestingGrounds_10": "(RestingGrounds_10[top2] + Wall-Catacombs_Grey_Mourner | RestingGrounds_10)",
+                "UPWALLBREAK": "Wall-Catacombs_Right_2 + Wall-Catacombs_Soul_Eater"
+            },
+            "Wanderer's_Journal-Resting_Grounds_Catacombs": {
+                "RestingGrounds_10": "(RestingGrounds_10[top2] + Wall-Catacombs_Grey_Mourner | RestingGrounds_10)"
             }
         }
     },

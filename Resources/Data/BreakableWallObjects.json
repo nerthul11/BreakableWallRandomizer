@@ -2664,7 +2664,7 @@
         "sceneName": "Ruins1_30",
         "x": 0.1,
         "y": -0.25,
-        "persistentBool": "",
+        "persistentBool": "brokenMageWindow",
         "sprite": "break_floor_glass",
         "alsoDestroy": [],
         "exit": false,
@@ -2672,7 +2672,8 @@
         "group": "",
         "logic": "Ruins1_30 + QUAKE + $CASTSPELL[1,before:ROOMSOUL]",
         "logicOverrides": {
-            "Broke_Sanctum_Glass_Floor": "Dive_Floor-Above_Soul_Warrior"
+            "Broke_Sanctum_Glass_Floor": "Dive_Floor-Above_Soul_Warrior",
+            "Ruins1_23[top1]": "(ORIG) + Dive_Floor-Above_Soul_Warrior"
         },
         "logicSubstitutions": {
             "Ruins1_30[bot1]": {
