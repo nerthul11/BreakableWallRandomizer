@@ -48,7 +48,9 @@
         "alsoDestroy": [
             "Secret Mask",
             "Secret Mask (1)",
-            "Secret Mask (2)"
+            "Secret Mask (2)",
+            "/Secret Mask",
+            "/Secret Mask (1)"
         ],
         "exit": false,
         "groupWalls": [],
@@ -106,7 +108,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "RestingGrounds_10",
+        "logic": "RestingGrounds_10[left1] | RestingGrounds_10[top1] | RestingGrounds_10[top2]",
         "logicOverrides": {
             "Geo_Rock-Resting_Grounds_Catacombs_Left_Dupe": "(RestingGrounds_10[top1] | RestingGrounds_10) + Wall-Catacombs_Left_1",
             "Hallownest_Seal-Resting_Grounds_Catacombs": "(RestingGrounds_10[top1] | RestingGrounds_10) + Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2 + Wall-Catacombs_Seal",

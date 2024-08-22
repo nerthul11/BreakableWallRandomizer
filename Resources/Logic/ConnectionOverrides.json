@@ -12,6 +12,13 @@
         }
     },
     {
+        "name": "Gorb_Grave",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Cliffs_02[bot1]": "Cliffs_02[bot1] + Plank-Cliff's_Pass"
+        }
+    },
+    {
         "name": "Lever-Palace_Final",
         "logicOverride": "(ORIG) | White_Palace_12[bot1] + RIGHTCLAW + LEFTSUPERDASH + Wall-White_Palace_Shortcut + Plank-White_Palace_Shortcut_Exit",
         "logicSubstitutions": {}

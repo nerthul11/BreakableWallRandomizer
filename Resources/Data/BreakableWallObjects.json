@@ -152,14 +152,7 @@
         "group": "Grimm_Walls",
         "logic": "(Cliffs_01[right1] | Cliffs_01[right2] | Cliffs_01[right3] + (ANYCLAW | WINGS | (FULLDASH + ENEMYPOGOS))) + (Plank-Grimm_Exit | Wall-Grimm_Outer) | Cliffs_01[right4] + Wall-Grimm_Inner",
         "logicOverrides": {},
-        "logicSubstitutions": {
-            "Cliffs_02": {
-                "Cliffs_02[bot1]": "(Cliffs_02[bot1] + Plank-Cliff's_Pass)"
-            },
-            "Cliffs_02[bot2]": {
-                "Cliffs_02[bot1]": "(Cliffs_02[bot1] + Plank-Cliff's_Pass)"
-            }
-        }
+        "logicSubstitutions": {}
     },
     {
         "name": "Wall-Grimm_Outer",
@@ -331,7 +324,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Crossroads_07 + ((RIGHTCLAW | WINGS) + UPWALLBREAK | MARKOFPRIDE + UPSLASH | SCREAM)",
+        "logic": "Crossroads_07 + ((RIGHTCLAW | WINGS) + (UPWALLBREAK | Wall-Crossroads_Tall_Room) | MARKOFPRIDE + UPSLASH + OBSCURESKIPS | SCREAM)",
         "logicOverrides": {
             "Geo_Rock-Crossroads_Root": "(ORIG) + Wall-Crossroads_Tall_Room",
             "Whispering_Root-Crossroads": "(ORIG) + Wall-Crossroads_Tall_Room"
@@ -511,7 +504,9 @@
         "y": 0.2,
         "persistentBool": "",
         "sprite": "deep_crumble_floor_270deg",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
         "exit": false,
         "groupWalls": [],
         "group": "",
@@ -582,9 +577,8 @@
         "persistentBool": "",
         "sprite": "deep_crumble_floor_270deg",
         "alsoDestroy": [
-            "Secret Mask",
-            "Secret Mask (1)",
-            "Secret Mask (2)"
+            "/Secret Mask",
+            "/Secret Mask (1)"
         ],
         "exit": false,
         "groupWalls": [],
@@ -720,7 +714,9 @@
         "y": 0.3,
         "persistentBool": "",
         "sprite": "collapser_short_270deg",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
         "exit": true,
         "groupWalls": [],
         "group": "Village_Walls",
@@ -737,7 +733,9 @@
         "y": 0.52,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
         "exit": true,
         "groupWalls": [],
         "group": "Village_Walls",
@@ -754,7 +752,9 @@
         "y": 0.06,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
         "exit": true,
         "groupWalls": [],
         "group": "Village_Walls",
@@ -1004,7 +1004,7 @@
         "persistentBool": "",
         "sprite": "ancient_wall_pieces_0000_a_deep_quake_269deg",
         "alsoDestroy": [
-            "Secret Mask"
+            "/Secret Mask"
         ],
         "exit": false,
         "groupWalls": [],
@@ -1142,7 +1142,9 @@
         "y": 0.6,
         "persistentBool": "",
         "sprite": "s_town_crumble_floor_270deg",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "masking_set/one way permanent"
+        ],
         "exit": false,
         "groupWalls": [],
         "group": "",
@@ -1230,7 +1232,7 @@
         "exit": true,
         "groupWalls": [],
         "group": "",
-        "logic": "(Fungus1_28[left1] | Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | $SHADESKIP)) + LEFTBALDURS | (Fungus1_28[left1] | Fungus1_28[left2]) + Plank-Baldur_Shell_Upper",
+        "logic": "(Fungus1_28[left1] | Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | $SHADESKIP)) + LEFTBALDURS | (Fungus1_28[left1] | Fungus1_28[left2]) + Plank-Baldur_Shell",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1310,7 +1312,9 @@
         "y": -0.05,
         "persistentBool": "",
         "sprite": "ancient_wall_pieces_0000_a_mushroom_270deg",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
         "exit": false,
         "groupWalls": [],
         "group": "",
@@ -1327,7 +1331,9 @@
         "y": -0.3,
         "persistentBool": "",
         "sprite": "ancient_wall_pieces_0000_a_mushroom_270deg",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "Secret Mask (1)"
+        ],
         "exit": true,
         "groupWalls": [],
         "group": "",
@@ -1344,7 +1350,9 @@
         "y": 0.2,
         "persistentBool": "",
         "sprite": "ancient_wall_pieces_0000_a_mushroom_270deg",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
         "exit": false,
         "groupWalls": [],
         "group": "",
@@ -1380,7 +1388,9 @@
         "y": -0.25,
         "persistentBool": "",
         "sprite": "ancient_wall_pieces_0000_a_mushroom_270deg",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
         "exit": true,
         "groupWalls": [],
         "group": "",
@@ -1403,7 +1413,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Deepnest_01[bot1] | (Deepnest_01[left1] | Deepnest_01[right1]) + Plank-Deepnest_Exit",
+        "logic": "Deepnest_01[right1] | (Deepnest_01[left1] | Deepnest_01[bot1]) + Plank-Deepnest_Exit | Fungus2_20",
         "logicOverrides": {
             "Fungus2_20[left1]": "Fungus2_20[left1] | (ORIG) + Wall-Deepnest_Fungal",
             "Deepnest_01[right1]": "Deepnest_01[right1] | (ORIG) + Wall-Deepnest_Fungal",
@@ -1478,13 +1488,15 @@
         "y": 0.0,
         "persistentBool": "",
         "sprite": "crumble_floor_fungus_270deg",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
         "exit": false,
         "groupWalls": [],
         "group": "",
         "logic": "Fungus3_44[door1]",
         "logicOverrides": {
-            "Fungus3_44[door1]": "ORIG | Fungus3_44 + Plank-Outside_Overgrown_Mound"
+            "Fungus3_44[door1]": "(ORIG) | Fungus3_44 + (LEFTCLAW | WINGS | LEFTDASH | LEFTSUPERDASH | ENEMYPOGOS | FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM) + $CASTSPELL[2,before:ROOMSOUL,after:ROOMSOUL]) + Plank-Outside_Overgrown_Mound"
         },
         "logicSubstitutions": {
             "Fungus3_44": {
@@ -1591,13 +1603,15 @@
         "y": 0.3,
         "persistentBool": "",
         "sprite": "mine_break_wall_03_0deg",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "/Breakable Wall/Masks"
+        ],
         "exit": false,
         "groupWalls": [],
         "group": "",
         "logic": "Mines_25[left1] + (FULLCLAW | WINGS + ANYCLAW) | Mines_25[top1] + (ANYCLAW | (FIREBALL | SCREAM) + $CASTSPELL[before:ROOMSOUL] | CYCLONE)",
         "logicOverrides": {
-            "Geo_Rock-Hallownest_Crown_Hidden": "(ORIG) + Wall-Crystal_Crown"
+            "Geo_Rock-Hallownest_Crown_Hidden": "(ORIG) + Wall-Crystal_Crown | (ORIG) + OBSCURESKIPS + WINGS + ANYCLAW"
         },
         "logicSubstitutions": {}
     },
@@ -1611,14 +1625,18 @@
         "persistentBool": "",
         "sprite": "ancient_wall_pieces_0000_a_cave_270deg",
         "alsoDestroy": [
-            "Secret Mask"
+            "Secret Mask",
+            "Quake Floor/Active/msk_generic",
+            "Quake Floor/Active/msk_generic (1)",
+            "Quake Floor/Active/msk_generic (2)"
         ],
         "exit": false,
         "groupWalls": [],
         "group": "",
         "logic": "(Mines_25[top1] | Mines_25[left1] + (LEFTCLAW + (ENEMYPOGOS | BACKGROUNDPOGOS | WINGS) | RIGHTCLAW + WINGS | ENEMYPOGOS + BACKGROUNDPOGOS + $SHRIEKPOGO[5])) + Broke_Hallownest's_Crown_Quake_Floor | (Mines_25[left1] + (LEFTCLAW + (ENEMYPOGOS | BACKGROUNDPOGOS | WINGS) | RIGHTCLAW | WINGS + ENEMYPOGOS) | Mines_25[top1]) + Plank-Crystal_Crown",
         "logicOverrides": {
-            "Geo_Rock-Hallownest_Crown_Dive": "(ORIG) | ((Mines_25[left1] + (FULLCLAW | WINGS + ANYCLAW) | Mines_25[top1]) + Plank-Crystal_Crown + ANYCLAW)"
+            "Geo_Rock-Hallownest_Crown_Dive": "(ORIG) | ((Mines_25[left1] + (FULLCLAW | WINGS + ANYCLAW) | Mines_25[top1]) + Plank-Crystal_Crown + ANYCLAW)",
+            "Soul_Totem-Hallownest_Crown": "(ORIG) | ((Mines_25[left1] + (FULLCLAW | WINGS + ANYCLAW) | Mines_25[top1]) + Plank-Crystal_Crown)"
         },
         "logicSubstitutions": {}
     },
@@ -1694,7 +1712,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "RestingGrounds_10 + Wall-Catacombs_Right_1",
+        "logic": "RestingGrounds_10 | RestingGrounds_10[top2]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1711,7 +1729,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "RestingGrounds_10",
+        "logic": "RestingGrounds_10[top1] | RestingGrounds_10[top2] + Wall-Catacombs_Grey_Mourner | RestingGrounds_10[left1] + Plank-Catacombs_Elevator",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1728,7 +1746,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "RestingGrounds_10 + Wall-Catacombs_Right_1",
+        "logic": "RestingGrounds_10",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1745,7 +1763,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "RestingGrounds_10 + Wall-Catacombs_Left_1",
+        "logic": "(RestingGrounds_10 | RestingGrounds_10[top1] | RestingGrounds_10[left1] + Plank-Catacombs_Elevator) + Wall-Catacombs_Left_1",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1762,7 +1780,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "RestingGrounds_10 + (LEFTCLAW | WINGS) + UPWALLBREAK + Wall-Catacombs_Right_1",
+        "logic": "RestingGrounds_10 + (LEFTCLAW | WINGS) + UPWALLBREAK",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1779,7 +1797,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "RestingGrounds_10 + Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2",
+        "logic": "(RestingGrounds_10 | RestingGrounds_10[top1] | RestingGrounds_10[left1] + Plank-Catacombs_Elevator) + Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1796,7 +1814,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "RestingGrounds_10",
+        "logic": "RestingGrounds_10 | RestingGrounds_10[top1] | RestingGrounds_10[left1]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1813,7 +1831,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "(RestingGrounds_10 + Wall-Catacombs_Right_1 | RestingGrounds_10[top2] + Wall-Catacombs_Grey_Mourner) + (ANYCLAW | WINGS) + UPWALLBREAK + Wall-Catacombs_Right_2",
+        "logic": "(RestingGrounds_10 | RestingGrounds_10[top2] + Wall-Catacombs_Grey_Mourner) + (ANYCLAW | WINGS) + UPWALLBREAK + Wall-Catacombs_Right_2",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1830,7 +1848,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "RestingGrounds_10 + UPWALLBREAK",
+        "logic": "(RestingGrounds_10 | RestingGrounds_10[top1] | RestingGrounds_10[left1] + Plank-Catacombs_Elevator) + UPWALLBREAK",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1885,7 +1903,9 @@
         "y": 0.0,
         "persistentBool": "",
         "sprite": "crumble_floor_fungus_270deg",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
         "exit": true,
         "groupWalls": [],
         "group": "",
@@ -2509,7 +2529,9 @@
         "y": -0.05,
         "persistentBool": "",
         "sprite": "break_floor",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "Secret Mask"
+        ],
         "exit": false,
         "groupWalls": [],
         "group": "",
