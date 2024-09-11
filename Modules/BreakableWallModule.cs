@@ -30,14 +30,14 @@ namespace BreakableWallRandomizer.Modules
         public List<string> UnlockedDives = [];
         public override void Initialize() 
         {
-            On.GameManager.BeginSceneTransition += VanillaTracker;
+            On.HutongGames.PlayMaker.Actions.ActivateGameObject.OnEnter += VanillaTracker;
             if (ItemChangerMod.Modules?.Get<InventoryTracker>() is InventoryTracker it)
                 it.OnGenerateFocusDesc += AddWallProgress;
         }
 
         public override void Unload() 
         {
-            On.GameManager.BeginSceneTransition -= VanillaTracker;
+            On.HutongGames.PlayMaker.Actions.ActivateGameObject.OnEnter -= VanillaTracker;
             if (ItemChangerMod.Modules?.Get<InventoryTracker>() is InventoryTracker it)
                 it.OnGenerateFocusDesc -= AddWallProgress;
         }
@@ -49,14 +49,14 @@ namespace BreakableWallRandomizer.Modules
             builder.AppendLine($"Broken dives: {UnlockedDives.Count}");
         }
 
-        private void VanillaTracker(On.GameManager.orig_BeginSceneTransition orig, GameManager self, GameManager.SceneLoadInfo info)
+        private void VanillaTracker(On.HutongGames.PlayMaker.Actions.ActivateGameObject.orig_OnEnter orig, HutongGames.PlayMaker.Actions.ActivateGameObject self)
         {
+            orig(self);
             List<PersistentBoolData> boolDatas = SceneData.instance.persistentBoolItems.Where(
-                boolData => boolData.sceneName == self.sceneName || boolData.sceneName == info.SceneName
+                boolData => boolData.sceneName == GameManager._instance.sceneName
                 ).ToList();
 
             boolDatas.ForEach(VanillaState);
-            orig(self, info);
         }
 
         private void VanillaState(PersistentBoolData data)

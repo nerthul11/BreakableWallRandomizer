@@ -1148,7 +1148,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Deepnest_Spider_Town[left1] + WINGS + (RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH | FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM) + $CASTSPELL[1]) | LEFTCLAW + RIGHTSUPERDASH) | Bench-Beast's_Den + ANYCLAW + Plank-Den_Secret_Entrance | Deepnest_Spider_Town[left1] + (WINGS + ANYCLAW | FULLCLAW + (COMBAT[Left_Devout] | COMBAT[Any_Devout])) + Plank-Den_Secret_Entrance",
+        "logic": "Deepnest_Spider_Town[left1] + WINGS + (RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH | FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM) + $CASTSPELL[1]) | LEFTCLAW + RIGHTSUPERDASH) | Bench-Beast's_Den + ANYCLAW + Plank-Den_Secret_Entrance | Deepnest_Spider_Town[left1] + Trap_Bench?TRUE + (WINGS + ANYCLAW | FULLCLAW + (COMBAT[Left_Devout] | COMBAT[Any_Devout])) + Plank-Den_Secret_Entrance",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
