@@ -625,7 +625,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Nosk_Walls",
-        "logic": "Deepnest_31[right1] + (ANYCLAW | WINGS | LEFTDASH | (FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Wall-Nosk_Outer | Deepnest_31[right2] + (ANYCLAW | WINGS)",
+        "logic": "Deepnest_31[right1] + (ANYCLAW | WINGS | LEFTDASH | (FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Wall-Nosk_Outer | Deepnest_31[right1] + Plank-Nosk_Exit + (ANYCLAW | WINGS) | Deepnest_31[right2] + (ANYCLAW | WINGS)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2118,6 +2118,18 @@
         "logicOverrides": {},
         "logicSubstitutions": {
             "Waterways_07": {
+                "Waterways_07[top1]": "Waterways_07[top1] + Plank-Isma's_Grove"
+            },
+            "Waterways_07[right1]": {
+                "Waterways_07[top1]": "Waterways_07[top1] + Plank-Isma's_Grove"
+            },
+            "Waterways_07[door1]": {
+                "Waterways_07[top1]": "Waterways_07[top1] + Plank-Isma's_Grove"
+            },
+            "Geo_Rock-Waterways_East": {
+                "Waterways_07[top1]": "Waterways_07[top1] + Plank-Isma's_Grove"
+            },
+            "Lore_Tablet-Dung_Defender": {
                 "Waterways_07[top1]": "Waterways_07[top1] + Plank-Isma's_Grove"
             }
         }

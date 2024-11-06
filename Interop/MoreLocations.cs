@@ -16,15 +16,15 @@ namespace BreakableWallRandomizer.Interop
             ConnectionInterop.AddRandoCostProviderToJunkShop(IncludeDives, DiveCostProvider);
         }
         private static bool IncludeWalls() {
-            bool include = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.MylaShop.IncludeInJunkShop;
+            bool include = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.MylaShop.Enabled && BWR_Manager.Settings.MylaShop.IncludeInJunkShop;
             return include && (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.RockWalls);
         }
         private static bool IncludePlanks() {
-            bool include = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.MylaShop.IncludeInJunkShop;
+            bool include = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.MylaShop.Enabled && BWR_Manager.Settings.MylaShop.IncludeInJunkShop;
             return include && (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.WoodenPlanks);
         }
         private static bool IncludeDives() {
-            bool include = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.MylaShop.IncludeInJunkShop;
+            bool include = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.MylaShop.Enabled && BWR_Manager.Settings.MylaShop.IncludeInJunkShop;
             return include && (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.DiveFloors);
         }
         private static WallCostProvider WallCostProvider() => new();

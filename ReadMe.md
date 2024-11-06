@@ -4,9 +4,9 @@ A Hollow Knight Randomizer add-on for breakable walls.
 
 ## Overview
 
-This is a fork of the original mod by **Bentechy66**, which randomizes several objects in the game, adding
+This is a fork of the original mod by **Bentechy66**, which randomizes several breakable objects in the game.
 
-Randomizes some walls in the game hollow knight. Currently randomizes, with a few exceptions:
+Currently randomizes:
  - Any wall with FSM breakable_wall_v2 or "FSM". These are labeled as "Wall", and are mostly placed in the map hiding scenes or items.
  - Any wall with FSM break_floor. These are labaled as "Plank", and are mostly placed in the map as shortcut openers. They always have a wooden plank in the map.
  - Any floor broken by Dive / Descending Dark in the game. These are labeled as "Dive Floor".

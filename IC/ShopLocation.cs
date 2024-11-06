@@ -1,13 +1,9 @@
-using System.Collections.Generic;
 using System.Linq;
 using BreakableWallRandomizer.IC.Shop;
 using ItemChanger;
-using ItemChanger.Extensions;
 using ItemChanger.Locations;
 using ItemChanger.Tags;
-using ItemChanger.Util;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace BreakableWallRandomizer.IC
 {

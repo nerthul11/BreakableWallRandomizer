@@ -58,7 +58,7 @@
         "logic": "Deepnest_31[right1] + (LEFTSLASH | UPSLASH | SCREAM | LEFTFIREBALL | ANYCLAW | WINGS | LEFTDASH | (FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM)) + $CASTSPELL[3]) | Deepnest_31[right2] + ((RIGHTCLAW | LEFTCLAW + (WINGS | BACKGROUNDPOGOS)) | (ANYCLAW | WINGS))",
         "logicOverrides": {
             "Deepnest_31[right1]": "Deepnest_31[right1] | (ORIG) + (Wall-Nosk_Outer + Wall-Nosk_Inner | Plank-Nosk_Exit)",
-            "Deepnest_31[right2]": "Deepnest_31[right2] | (ORIG) + (Wall-Nosk_Outer + Wall-Nosk_Inner | Plank-Nosk_Exit)",
+            "Deepnest_31[right2]": "Deepnest_31[right2] | (ORIG) + (Wall-Nosk_Outer + Wall-Nosk_Inner) | Deepnest_31[right1] + Plank-Nosk_Exit",
             "Geo_Rock-Deepnest_Nosk_1": "Deepnest_31[right1] + (ANYCLAW | WINGS | LEFTDASH | (FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Wall-Nosk_Outer | Deepnest_31[right2] + ((ANYCLAW | WINGS) + Wall-Nosk_Inner | (RIGHTCLAW | LEFTCLAW + (WINGS | BACKGROUNDPOGOS)) + Plank-Nosk_Exit + Wall-Nosk_Outer)",
             "Geo_Rock-Deepnest_Nosk_2": "Deepnest_31[right1] + (ANYCLAW | WINGS | LEFTDASH | (FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Wall-Nosk_Outer | Deepnest_31[right2] + ((ANYCLAW | WINGS) + Wall-Nosk_Inner | (RIGHTCLAW | LEFTCLAW + (WINGS | BACKGROUNDPOGOS)) + Plank-Nosk_Exit + Wall-Nosk_Outer)",
             "Geo_Rock-Deepnest_Nosk_3": "Deepnest_31[right2] | (ORIG) + (Wall-Nosk_Outer + Wall-Nosk_Inner | Plank-Nosk_Exit)",
