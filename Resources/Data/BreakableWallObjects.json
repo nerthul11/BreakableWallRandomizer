@@ -1936,6 +1936,9 @@
             },
             "Ruins1_31[left1]": {
                 "Ruins1_31": "(Ruins1_31 + Wall-Shade_Soul_Shortcut)"
+            },
+            "City_of_Tears_Map": {
+                "Ruins1_31": "(Ruins1_31 + Wall-Shade_Soul_Shortcut)"
             }
         }
     },
