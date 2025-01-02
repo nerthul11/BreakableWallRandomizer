@@ -35,6 +35,20 @@ namespace BreakableWallRandomizer.Manager
             int wallSettings = BWR_Manager.Settings.RockWallGroup;
             int plankSettings = BWR_Manager.Settings.WoodenPlankWallGroup;
             int diveSettings = BWR_Manager.Settings.DiveFloorGroup;
+
+            if (rb.gs.SplitGroupSettings.RandomizeOnStart && wallSettings >= 0 && wallSettings <= 2)
+            {
+                wallSettings = rb.rng.Next(3);
+            }
+            if (rb.gs.SplitGroupSettings.RandomizeOnStart && plankSettings >= 0 && plankSettings <= 2)
+            {
+                plankSettings = rb.rng.Next(3);
+            }
+            if (rb.gs.SplitGroupSettings.RandomizeOnStart && diveSettings >= 0 && diveSettings <= 2)
+            {
+                diveSettings = rb.rng.Next(3);
+            }
+
             ItemGroupBuilder wallGroup = null;
             ItemGroupBuilder plankGroup = null;
             ItemGroupBuilder diveGroup = null;
@@ -55,6 +69,13 @@ namespace BreakableWallRandomizer.Manager
                 }
             }
 
+            if (wallSettings > 0 && wallGroup == null)
+                wallGroup = rb.MainItemStage.AddItemGroup(RBConsts.SplitGroupPrefix + wallSettings);
+            if (plankSettings > 0 && plankGroup == null)
+                plankGroup = rb.MainItemStage.AddItemGroup(RBConsts.SplitGroupPrefix + plankSettings);
+            if (diveSettings > 0 && diveGroup == null)
+                diveGroup = rb.MainItemStage.AddItemGroup(RBConsts.SplitGroupPrefix + diveSettings);
+
             rb.OnGetGroupFor.Subscribe(0.07f, ResolveGroups);
             bool ResolveGroups(RequestBuilder rb, string item, RequestBuilder.ElementType type, out GroupBuilder gb)
             {
@@ -64,19 +85,19 @@ namespace BreakableWallRandomizer.Manager
                     return false;
                 }
 
-                if (item.StartsWith("Wall-") && wallGroup != null)
+                if ((item.StartsWith("Wall-") || item.StartsWith("Wall_Group-")) && wallGroup != null)
                 {
                     gb = wallGroup;
                     return true;
                 }
 
-                if (item.StartsWith("Plank-") && plankGroup != null)
+                if ((item.StartsWith("Plank-") || item.StartsWith("Plank_Group-")) && plankGroup != null)
                 {
                     gb = plankGroup;
                     return true;
                 }
 
-                if (item.StartsWith("Dive_Floor-") && diveGroup != null)
+                if ((item.StartsWith("Dive_Floor-") || item.StartsWith("Dive_Group-")) && diveGroup != null)
                 {
                     gb = diveGroup;
                     return true;

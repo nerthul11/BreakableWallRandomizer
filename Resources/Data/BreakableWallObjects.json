@@ -150,7 +150,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Grimm_Walls",
-        "logic": "(Cliffs_01[right1] | Cliffs_01[right2] | Cliffs_01[right3] + (ANYCLAW | WINGS | (FULLDASH + ENEMYPOGOS))) + (Plank-Grimm_Exit | Wall-Grimm_Outer) | Cliffs_01[right4] + Wall-Grimm_Inner",
+        "logic": "(Cliffs_01[right1] | Cliffs_01[right2] | Cliffs_01[right3] + (ANYCLAW | WINGS | (FULLDASH + ENEMYPOGOS))) + (Plank-Grimm_Exit | Wall-Grimm_Outer) | Cliffs_01[right4]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1413,7 +1413,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Deepnest_01[right1] | (Deepnest_01[left1] | Deepnest_01[bot1]) + Plank-Deepnest_Exit | Fungus2_20",
+        "logic": "Deepnest_01[right1] + Wall-Deepnest_Fungal | (Deepnest_01[left1] | Deepnest_01[bot1]) + Plank-Deepnest_Exit | Fungus2_20",
         "logicOverrides": {
             "Fungus2_20[left1]": "Fungus2_20[left1] | (ORIG) + Wall-Deepnest_Fungal",
             "Deepnest_01[right1]": "Deepnest_01[right1] | (ORIG) + Wall-Deepnest_Fungal",
@@ -1468,14 +1468,15 @@
         "group": "",
         "logic": "Fungus3_39[left1] | (Fungus3_39[right1] + Plank-Moss_Prophet)",
         "logicOverrides": {
-            "Geo_Rock-Love_Key": "(ORIG) | (Fungus3_39[right1] + Plank-Moss_Prophet)"
+            "Geo_Rock-Love_Key": "(ORIG) | Fungus3_39[right1] + Plank-Moss_Prophet + (ANYCLAW | WINGS)",
+            "Fungus3_39[left1]": "ORIG | Fungus3_39[right1] + Plank-Moss_Prophet + (ANYCLAW | WINGS)"
         },
         "logicSubstitutions": {
             "Fungus3_39[right1]": {
                 "Fungus3_39[left1]": "(Fungus3_39[left1] + Plank-Moss_Prophet)"
             },
-            "Fungus3_39[left1]": {
-                "Fungus3_39[right1]": "(Fungus3_39[right1] + Plank-Moss_Prophet)"
+            "Love_Key": {
+                "Fungus3_39[left1]": "(Fungus3_39[left1] | Fungus3_39[right1] + Plank-Moss_Prophet + (ANYCLAW | WINGS))"
             }
         }
     },
@@ -2022,7 +2023,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Waterways_01[right1] | Waterways_01 + (RIGHTCLAW | WINGS | LEFTCLAW + RIGHTSUPERDASH | ENEMYPOGOS) | Waterways_01[top1] + RIGHTDASH",
+        "logic": "Waterways_01[right1] + Wall-Tuk | Waterways_01 + (RIGHTCLAW | WINGS | LEFTCLAW + RIGHTSUPERDASH | ENEMYPOGOS) | Waterways_01[top1] + RIGHTDASH",
         "logicOverrides": {
             "Waterways_01[right1]": "Waterways_01[right1] | (ORIG) + Wall-Tuk"
         },
@@ -2117,7 +2118,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Waterways_07[top1]",
+        "logic": "Waterways_07[top1] | Waterways_07 + Plank-Isma's_Grove",
         "logicOverrides": {},
         "logicSubstitutions": {
             "Waterways_07": {

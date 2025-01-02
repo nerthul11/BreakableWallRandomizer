@@ -14,7 +14,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Grimm_Walls",
-        "logic": "Cliffs_01[right4] + Wall-Grimm_Inner | (Cliffs_01[right1] | Cliffs_01[right2] | Cliffs_01[right3] + (ANYCLAW | WINGS | FULLDASH + ENEMYPOGOS)) + (Plank-Grimm_Exit | Wall-Grimm_Outer)",
+        "logic": "Cliffs_01[right4] | (Cliffs_01[right1] | Cliffs_01[right2] | Cliffs_01[right3] + (ANYCLAW | WINGS | FULLDASH + ENEMYPOGOS)) + (Plank-Grimm_Exit | Wall-Grimm_Outer)",
         "logicOverrides": {
             "Cliffs_01[right4]": "Cliffs_01[right4] | ORIG + Wall-Grimm_Inner + (Wall-Grimm_Outer | Plank-Grimm_Exit)"
         },
@@ -67,14 +67,14 @@
         "logicSubstitutions": {}
     },
     {
-        "name": "Wall_Group-Village_Walls",
+        "name": "Plank_Group-Village_Walls",
         "gameObject": "",
         "fsmType": "",
         "sceneName": "Deepnest_41",
         "x": 0.3,
         "y": 0.3,
         "persistentBool": "",
-        "sprite": "break_wall_deepnest_0deg",
+        "sprite": "collapser_short_0deg",
         "alsoDestroy": [
             "Secret Mask"
         ],
@@ -151,7 +151,7 @@
         }
     },
     {
-        "name": "Wall_Group-420_Rock",
+        "name": "Dive_Group-420_Rock",
         "gameObject": "",
         "fsmType": "",
         "sceneName": "Deepnest_East_17",
@@ -168,7 +168,7 @@
         "logicSubstitutions": {}
     },
     {
-        "name": "Wall_Group-Inner_Sanctum",
+        "name": "Dive_Group-Inner_Sanctum",
         "gameObject": "",
         "fsmType": "",
         "sceneName": "Ruins1_32",

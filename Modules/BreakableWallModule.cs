@@ -13,15 +13,6 @@ namespace BreakableWallRandomizer.Modules
     public class BreakableWallModule : Module
     {
         public static BreakableWallModule Instance => ItemChangerMod.Modules.GetOrAdd<BreakableWallModule>();
-        public SaveSettings Settings { get; set; } = new();
-        public class SaveSettings 
-        {
-            public bool WoodenPlanks { get; set; } = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.WoodenPlanks;
-            public bool RockWalls { get; set; } = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.RockWalls;
-            public bool DiveFloors { get; set; } = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.DiveFloors;
-            public bool KingsPass { get; set; } = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.KingsPass;
-            public bool SoftlockWalls { get; set; } = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.ExcludeWallsWhichMaySoftlockYou;
-        }
         public List<CondensedWallObject> vanillaWalls = [];
         // Module properties
         public List<string> UnlockedBreakableWalls = [];

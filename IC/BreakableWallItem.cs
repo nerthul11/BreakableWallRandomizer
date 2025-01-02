@@ -40,14 +40,12 @@ namespace BreakableWallRandomizer.IC
         {
             // Define sprite by item type
             string sprite = "";
-            if (name.StartsWith("Wall-"))
+            if (name.StartsWith("Wall-") || name.StartsWith("Wall_Group"))
                 sprite = "mine_break_wall_03_0deg";
-            if (name.StartsWith("Plank-"))
+            if (name.StartsWith("Plank-") || name.StartsWith("Plank_Group"))
                 sprite = "wood_plank_02";
-            if (name.StartsWith("Dive_Floor-"))
+            if (name.StartsWith("Dive_Floor-") || name.StartsWith("Dive_Group"))
                 sprite = "break_floor_glass";
-            if (name.StartsWith("Wall_Group-"))
-                sprite = "mine_break_wall_03_0deg";
               
             InteropTag tag = new();
             tag.Properties["ModSource"] = "BreakableWallRandomizer";
@@ -60,7 +58,7 @@ namespace BreakableWallRandomizer.IC
         public override void GiveImmediate(GiveInfo info)
         {
             // Set data in the save to indicate we got the wall
-            if (name.StartsWith("Wall_Group"))
+            if (name.StartsWith("Wall_Group") || name.StartsWith("Plank_Group") || name.StartsWith("Dive_Group"))
             {
                 foreach (CondensedWallObject wall in groupWalls)
                 {

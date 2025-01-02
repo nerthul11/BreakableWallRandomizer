@@ -40,14 +40,12 @@ namespace BreakableWallRandomizer.IC
         {
             // Define sprite by location type
             string sprite = "";
-            if (name.StartsWith("Wall-"))
+            if (name.StartsWith("Wall-") || name.StartsWith("Wall_Group"))
                 sprite = "mine_break_wall_03_0deg";
-            if (name.StartsWith("Plank-"))
+            if (name.StartsWith("Plank-") || name.StartsWith("Plank_Group"))
                 sprite = "wood_plank_02";
-            if (name.StartsWith("Dive_Floor-"))
+            if (name.StartsWith("Dive_Floor-") || name.StartsWith("Dive_Group"))
                 sprite = "break_floor_glass";
-            if (name.StartsWith("Wall_Group-"))
-                sprite = "mine_break_wall_03_0deg";
             
             // Replace map name for pinless-maps
             string mapSceneName = sceneName;
@@ -234,9 +232,9 @@ namespace BreakableWallRandomizer.IC
                 } else if (wall.fsmType == "quake_floor")
                 {
                     fsm.ChangeTransition("Init", "ACTIVATE", "Solid");
-                    if (fsm.GetState("Transient").GetActions<SetBoxColliderTrigger>().Length >= 1)
+                    if (fsm.GetValidState("Transient").GetActions<SetBoxColliderTrigger>().Length >= 1)
                         fsm.RemoveAction("Transient", 0);
-                    if (fsm.GetState("Solid").GetActions<SetBoxColliderTrigger>().Length >= 1)
+                    if (fsm.GetValidState("Solid").GetActions<SetBoxColliderTrigger>().Length >= 1)
                         fsm.RemoveAction("Solid", 0);
 
                     var collider = fsm.gameObject.GetComponent<BoxCollider2D>();
@@ -292,7 +290,7 @@ namespace BreakableWallRandomizer.IC
                     // ...and there are items left to collect:
                     else
                     {
-                        foreach (var action in fsm.GetState(originalBreakStateName).Actions)
+                        foreach (var action in fsm.GetValidState(originalBreakStateName).Actions)
                         {
                             if (action is AudioPlayerOneShotSingle or PlayParticleEmitter or AudioPlayerOneShot)
                             {
