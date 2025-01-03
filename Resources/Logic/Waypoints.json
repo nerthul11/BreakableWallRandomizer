@@ -1,0 +1,57 @@
+[
+    {
+        "name": "Opened_Pantheon_1",
+        "logic": "GG_Atrium + ((Defeated_Gruz_Mother + Defeated_False_Knight + Defeated_Massive_Moss_Charger + Defeated_Hornet_1 + Defeated_Gorb + Defeated_Dung_Defender + Defeated_Soul_Warrior + Defeated_Brooding_Mawlek) | (PANTHEON_KEY_1 ? FALSE))",
+        "Stateless": true
+    },
+    {
+        "name": "Defeated_Pantheon_1",
+        "logic": "GG_Atrium + Opened_Pantheon_1 + (FOCUS | SPICYCOMBATSKIPS)",
+        "Stateless": true
+    },
+    {
+        "name": "Opened_Pantheon_2",
+        "logic": "GG_Atrium + ((Defeated_Xero + Defeated_Crystal_Guardian + Defeated_Soul_Master + Defeated_Colosseum_2 + Defeated_Mantis_Lords + Defeated_Marmu + Defeated_Nosk + Defeated_Flukemarm + Defeated_Broken_Vessel) | (PANTHEON_KEY_2 ? FALSE))",
+        "Stateless": true
+    },
+    {
+        "name": "Defeated_Pantheon_2",
+        "logic": "GG_Atrium + Opened_Pantheon_2 + (FOCUS | SPICYCOMBATSKIPS)",
+        "Stateless": true
+    },
+    {
+        "name": "Opened_Pantheon_3",
+        "logic": "GG_Atrium + ((Defeated_Hive_Knight + Defeated_Elder_Hu + Defeated_Collector + Defeated_Colosseum_2 + Defeated_Grimm + Defeated_Galien + Defeated_Uumuu + Defeated_Hornet_2) | (PANTHEON_KEY_3 ? FALSE))",
+        "Stateless": true
+    },
+    {
+        "name": "Defeated_Pantheon_3",
+        "logic": "GG_Atrium + Opened_Pantheon_3 + (FOCUS | SPICYCOMBATSKIPS)",
+        "Stateless": true
+    },
+    {
+        "name": "Opened_Pantheon_4",
+        "logic": "GG_Atrium + (Defeated_Pantheon_1 + Defeated_Pantheon_2 + Defeated_Pantheon_3 + Defeated_Enraged_Guardian + Defeated_Broken_Vessel + Defeated_No_Eyes + Defeated_Traitor_Lord + Defeated_Dung_Defender + Defeated_Failed_Champion + Defeated_Markoth + Defeated_Watcher_Knights + Defeated_Soul_Tyrant | (PANTHEON_KEY_4 ? FALSE))",
+        "Stateless": true
+    },
+    {
+        "name": "Defeated_Pantheon_4",
+        "logic": "GG_Atrium + Opened_Pantheon_4 + (FOCUS | SPICYCOMBATSKIPS)",
+        "Stateless": true
+    },
+    {
+        "name": "Defeated_Massive_Moss_Charger",
+        "logic": "*Boss_Geo-Massive_Moss_Charger",
+        "Stateless": true
+    },
+    {
+        "name": "Defeated_Soul_Warrior",
+        "logic": "Defeated_Sanctum_Warrior | Defeated_Elegant_Warrior",
+        "Stateless": true
+    },
+    {
+        "name": "GG_Atrium_Roof",
+        "logic": "GG_Atrium + (LEFTCLAW | $SHRIEKPOGO[6]) + Defeated_Pantheon_1 + Defeated_Pantheon_2 + Defeated_Pantheon_3 + Defeated_Pantheon_4",
+        "Stateless": false
+    }
+]

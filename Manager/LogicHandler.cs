@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using BreakableWallRandomizer.IC;
 using Newtonsoft.Json;
+using RandomizerCore.Json;
 using RandomizerCore.Logic;
 using RandomizerCore.StringItems;
 using RandomizerMod.RC;
@@ -25,6 +26,9 @@ namespace BreakableWallRandomizer.Manager
             
             Assembly assembly = Assembly.GetExecutingAssembly();
             JsonSerializer jsonSerializer = new() {TypeNameHandling = TypeNameHandling.Auto};
+            
+            JsonLogicFormat fmt = new();
+            lmb.DeserializeFile(LogicFileType.Waypoints, fmt, typeof(BreakableWallRandomizer).Assembly.GetManifestResourceStream($"BreakableWallRandomizer.Resources.Logic.Waypoints.json"));
             
             using Stream stream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Data.BreakableWallObjects.json");
             StreamReader reader = new(stream);

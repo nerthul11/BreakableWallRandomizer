@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using BreakableWallRandomizer.IC;
 using BreakableWallRandomizer.IC.Shop;
+using BreakableWallRandomizer.Modules;
 using ItemChanger;
 using ItemChanger.Locations;
 using Newtonsoft.Json;
@@ -25,6 +26,7 @@ namespace BreakableWallRandomizer.Manager
             RequestBuilder.OnUpdate.Subscribe(0f, AddMylaShop);
             RequestBuilder.OnUpdate.Subscribe(1f, AddWalls);
             SettingsLog.AfterLogSettings += AddFileSettings;
+            RandoController.OnExportCompleted += InitiateModule;
         }
 
         private static void DefineGroups(RequestBuilder rb)
@@ -53,6 +55,33 @@ namespace BreakableWallRandomizer.Manager
             ItemGroupBuilder plankGroup = null;
             ItemGroupBuilder diveGroup = null;
 
+            if (wallSettings > 0)
+            {
+                try 
+                {
+                    wallGroup = rb.MainItemStage.AddItemGroup(RBConsts.SplitGroupPrefix + wallSettings);
+                }
+                catch (ArgumentException) {}
+            }
+
+            if (plankSettings > 0)
+            {
+                try 
+                {
+                    plankGroup = rb.MainItemStage.AddItemGroup(RBConsts.SplitGroupPrefix + plankSettings);
+                }
+                catch (ArgumentException) {}
+            }
+
+            if (diveSettings > 0)
+            {
+                try 
+                    {
+                    diveGroup = rb.MainItemStage.AddItemGroup(RBConsts.SplitGroupPrefix + diveSettings);
+                }
+                catch (ArgumentException) {}
+            }
+
             foreach (ItemGroupBuilder igb in rb.EnumerateItemGroups())
             {
                 if (igb.label == RBConsts.SplitGroupPrefix + wallSettings)
@@ -68,13 +97,6 @@ namespace BreakableWallRandomizer.Manager
                     diveGroup = igb;
                 }
             }
-
-            if (wallSettings > 0 && wallGroup == null)
-                wallGroup = rb.MainItemStage.AddItemGroup(RBConsts.SplitGroupPrefix + wallSettings);
-            if (plankSettings > 0 && plankGroup == null)
-                plankGroup = rb.MainItemStage.AddItemGroup(RBConsts.SplitGroupPrefix + plankSettings);
-            if (diveSettings > 0 && diveGroup == null)
-                diveGroup = rb.MainItemStage.AddItemGroup(RBConsts.SplitGroupPrefix + diveSettings);
 
             rb.OnGetGroupFor.Subscribe(0.07f, ResolveGroups);
             bool ResolveGroups(RequestBuilder rb, string item, RequestBuilder.ElementType type, out GroupBuilder gb)
@@ -231,6 +253,7 @@ namespace BreakableWallRandomizer.Manager
                 if (wall.name.Contains("King's_Pass"))
                     include = BWR_Manager.Settings.KingsPass;
                 include = include && !(wall.exit && BWR_Manager.Settings.ExcludeWallsWhichMaySoftlockYou);
+                include = include && (!wall.name.Contains("Godhome") || !wall.name.Contains("Eternal_Ordeal") || BWR_Manager.Settings.GodhomeWalls);
 
                 if (include)
                 {
@@ -351,11 +374,22 @@ namespace BreakableWallRandomizer.Manager
 
         private static void AddFileSettings(LogArguments args, TextWriter tw)
         {
+            if (!BWR_Manager.Settings.Enabled)
+                return;
+
             // Log settings into the settings file
             tw.WriteLine("Breakable Wall Randomizer Settings:");
             using JsonTextWriter jtw = new(tw) { CloseOutput = false };
             RandomizerMod.RandomizerData.JsonUtil._js.Serialize(jtw, BWR_Manager.Settings);
             tw.WriteLine();
+        }
+
+        private static void InitiateModule(RandoController controller)
+        {
+            if (!BWR_Manager.Settings.Enabled)
+                return;
+            
+            ItemChangerMod.Modules.GetOrAdd<BreakableWallModule>();
         }
     }    
 }

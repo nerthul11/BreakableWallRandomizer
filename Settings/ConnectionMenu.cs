@@ -23,7 +23,7 @@ namespace BreakableWallRandomizer.Settings
         {
             settingsPage = new MenuPage("BreakableWallSettings", landingPage);
             wallMEF = new(settingsPage, BWR_Manager.Settings);
-            wallVIP = new(settingsPage, new(0, 350), 70f, true, wallMEF.Elements);
+            wallVIP = new(settingsPage, new(0, 350), 66f, true, wallMEF.Elements);
             
             foreach (IValueElement e in wallMEF.Elements)
             {

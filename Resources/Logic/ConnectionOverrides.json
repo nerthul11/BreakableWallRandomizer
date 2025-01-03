@@ -55,5 +55,13 @@
         "logicSubstitutions": {
             "Deepnest_East_01[right1]": "Deepnest_East_01[right1] + Plank-Hive_Exit"
         }
+    },
+    {
+        "name": "Journal_Entry-Weathered_Mask",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "WINGS": "(WINGS | Wall-Godhome_Roof)",
+            "ANYCLAW": "(ANYCLAW | Wall-Godhome_Roof)"
+        }
     }
 ]

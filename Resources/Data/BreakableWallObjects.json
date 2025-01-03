@@ -1,5 +1,46 @@
 [
     {
+        "name": "Plank-Hunter_Upper",
+        "gameObject": "/Break Floor 1",
+        "fsmType": "break_floor",
+        "sceneName": "Fungus1_08",
+        "x": 0.4,
+        "y": -0.15,
+        "persistentBool": "",
+        "sprite": "crumble_floor_fungus_0deg",
+        "alsoDestroy": [
+            "Secret Mask",
+            "/Hunter Entry/Blocker",
+            "/Hunter Entry/CameraLockArea B"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Fungus1_08[left1] + (Plank-Hunter_Upper | Plank-Hunter_Lower + (LEFTCLAW | RIGHTCLAW + WINGS) + HUNTERNOTES>144?FALSE)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Plank-Hunter_Lower",
+        "gameObject": "/Break Floor 1 (1)",
+        "fsmType": "break_floor",
+        "sceneName": "Fungus1_08",
+        "x": 0.4,
+        "y": -0.45,
+        "persistentBool": "",
+        "sprite": "crumble_floor_fungus_270deg",
+        "alsoDestroy": [
+            "/Hunter Entry/Blocker",
+            "/Hunter Entry/CameraLockArea B"
+        ],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "Fungus1_08[left1] + (Plank-Hunter_Upper + Plank-Hunter_Lower | HUNTERNOTES>144?FALSE)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
         "name": "Wall-Lower_Hive_Entrance",
         "gameObject": "/Breakable Wall",
         "fsmType": "breakable_wall_v2",
@@ -387,7 +428,8 @@
         "group": "",
         "logic": "(Crossroads_10[left1] | Crossroads_10[right1]) + Defeated_False_Knight + ANYCLAW",
         "logicOverrides": {
-            "Defeated_Failed_Champion": "(ORIG) + Wall-Maggot_Room"
+            "Defeated_Failed_Champion": "(ORIG) + Wall-Maggot_Room",
+            "Boss_Essence-Failed_Champion": "(ORIG) + Wall-Maggot_Room"
         },
         "logicSubstitutions": {}
     },
@@ -3097,6 +3139,23 @@
         "groupWalls": [],
         "group": "",
         "logic": "GG_Workshop + Wall-Godhome_Workshop + RIGHTCLAW + WINGS + (LEFTSUPERDASH | LEFTSHARPSHADOW)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Wall-Godhome_Roof",
+        "gameObject": "/Breakable Wall_Silhouette",
+        "fsmType": "breakable_wall_v2",
+        "sceneName": "GG_Atrium_Roof",
+        "x": 1.35,
+        "y": 0.6,
+        "persistentBool": "",
+        "sprite": "gg_metal_wall_0001_180deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "",
+        "logic": "GG_Atrium_Roof + (WINGS + ANYCLAW | Wall-Godhome_Roof)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },

@@ -7,6 +7,7 @@ namespace BreakableWallRandomizer.Settings
         public bool RockWalls = false;
         public bool DiveFloors = false;
         public bool KingsPass = false;
+        public bool GodhomeWalls = false;
 
         [MenuChanger.Attributes.MenuRange(-1, 99)]
         public int WoodenPlankWallGroup = -1;

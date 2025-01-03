@@ -54,6 +54,7 @@ namespace BreakableWallRandomizer.IC
             sceneOverride.Add("Deepnest_Spider_Town", "Deepnest_10");
             sceneOverride.Add("Deepnest_East_17", "Deepnest_East_14");
             sceneOverride.Add("GG_Workshop", "GG_Waterways");
+            sceneOverride.Add("GG_Atrium_Roof", "GG_Waterways");
             sceneOverride.Add("Mines_35", "Mines_28");
             sceneOverride.Add("Room_Colosseum_02", "Deepnest_East_09");
             sceneOverride.Add("Room_Colosseum_Spectate", "Deepnest_East_09");
