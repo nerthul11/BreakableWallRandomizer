@@ -21,6 +21,7 @@ namespace BreakableWallRandomizer.Modules
         public List<string> UnlockedDives = [];
         public override void Initialize() 
         {
+            BreakableWallRandomizer.Instance.Log("BWR Module Init");
             On.HutongGames.PlayMaker.Actions.ActivateGameObject.OnEnter += VanillaTracker;
             if (ItemChangerMod.Modules?.Get<InventoryTracker>() is InventoryTracker it)
                 it.OnGenerateFocusDesc += AddWallProgress;

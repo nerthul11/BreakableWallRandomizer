@@ -253,7 +253,7 @@ namespace BreakableWallRandomizer.Manager
                 if (wall.name.Contains("King's_Pass"))
                     include = BWR_Manager.Settings.KingsPass;
                 include = include && !(wall.exit && BWR_Manager.Settings.ExcludeWallsWhichMaySoftlockYou);
-                include = include && (!wall.name.Contains("Godhome") || !wall.name.Contains("Eternal_Ordeal") || BWR_Manager.Settings.GodhomeWalls);
+                include = include && (!(wall.name.Contains("Godhome") || wall.name.Contains("Eternal_Ordeal")) || BWR_Manager.Settings.GodhomeWalls);
 
                 if (include)
                 {

@@ -1,5 +1,12 @@
 [
     {
+        "name": "Bathhouse-Hot_Spring",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Ruins_Bathhouse[right1]": "Ruins_Bathhouse[right1] + Wall-Pleasure_House"
+        }
+    },
+    {
         "name": "Chandelier-Watcher_Knights",
         "logicOverride": "ORIG + Wall-Chandelier",
         "logicSubstitutions": {}
@@ -9,6 +16,13 @@
         "logicOverride": "",
         "logicSubstitutions": {
             "RestingGrounds_10": "(RestingGrounds_10 | RestingGrounds_10[left1] + Plank-Catacombs_Elevator | RestingGrounds_10[top1] | RestingGrounds_10[top2] + Wall-Catacombs_Grey_Mourner)"
+        }
+    },
+    {
+        "name": "Ghost_Essence-Marissa",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Ruins_Bathhouse[right1]": "Ruins_Bathhouse[right1] + Wall-Pleasure_House"
         }
     },
     {
@@ -48,6 +62,13 @@
         "name": "Lever-Sanctum_West_Lower",
         "logicOverride": "Ruins1_32[right2] | (ORIG) + Dive_Floor-Inner_Sanctum_2 + (Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Bottom | Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + Lever-Sanctum_West_Lower)",
         "logicSubstitutions": {}
+    },
+    {
+        "name": "Marissa",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Ruins_Bathhouse[right1]": "Ruins_Bathhouse[right1] + Wall-Pleasure_House"
+        }
     },
     {
         "name": "Mr_Mushroom-Kingdom's_Edge",

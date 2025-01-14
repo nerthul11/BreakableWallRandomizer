@@ -4,6 +4,7 @@ using BreakableWallRandomizer.Modules;
 using FStats;
 using FStats.StatControllers;
 using FStats.Util;
+using ItemChanger;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace BreakableWallRandomizer.Interop
             if (!BWR_Manager.Settings.Enabled)
                 return;
             
+            ItemChangerMod.Modules.GetOrAdd<BreakableWallModule>();
             generateStats(new BreakableWallStats());
 
             Assembly assembly = Assembly.GetExecutingAssembly();
@@ -44,6 +46,11 @@ namespace BreakableWallRandomizer.Interop
         public override void Initialize() 
         {
             BreakableWallModule.Instance.OnAchievedBreakableWall += AddMarks;
+        }
+
+        public override void Unload() 
+        {
+            BreakableWallModule.Instance.OnAchievedBreakableWall -= AddMarks;
         }
 
         private void AddMarks(List<string> marks)

@@ -705,7 +705,7 @@
         "group": "",
         "logic": "Deepnest_39[door1] | (Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39[right1] + (FULLCLAW | WINGS + ANYCLAW | ENEMYPOGOS + (ANYCLAW | WINGS))) + ((LANTERN | (NOLANTERN ? FALSE)) | DARKROOMS) + (RIGHTDASH | WINGS | RIGHTCLAW + (RIGHTSUPERDASH | SPELLAIRSTALL + $CASTSPELL[1,1,before:ROOMSOUL,after:ROOMSOUL]))",
         "logicOverrides": {
-            "Deepnest_39[door1]": "(ORIG) + Wall-Weaver's_Den_Entrance"
+            "Deepnest_39[door1]": "Deepnest_39[door1] | (ORIG) + Wall-Weaver's_Den_Entrance"
         },
         "logicSubstitutions": {
             "Deepnest_39": {
@@ -1029,6 +1029,9 @@
                 "Opened_Lower_Kingdom's_Edge_Wall": "Plank-Edge_Tram_Exit"
             },
             "Deepnest_East_02": {
+                "Deepnest_East_02[right1]": "Deepnest_East_02[right1] + Plank-Edge_Tram_Exit"
+            },
+            "Soul_Totem-Lower_Kingdom's_Edge_2": {
                 "Deepnest_East_02[right1]": "Deepnest_East_02[right1] + Plank-Edge_Tram_Exit"
             }
         }
