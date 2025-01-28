@@ -17,6 +17,13 @@
         "logicSubstitutions": {}
     },
     {
+        "name": "Deepnest_East_01",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Deepnest_East_01[right1]": "Deepnest_East_01[right1] + Plank-Hive_Exit"
+        }
+    },
+    {
         "name": "Deepnest_East_04",
         "logicOverride": "",
         "logicSubstitutions": {
