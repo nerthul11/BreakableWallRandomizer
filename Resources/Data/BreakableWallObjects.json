@@ -426,7 +426,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "(Crossroads_10[left1] | Crossroads_10[right1]) + Defeated_False_Knight + ANYCLAW",
+        "logic": "(Crossroads_10[left1] | Crossroads_10[right1]) + Defeated_False_Knight + (ANYCLAW | WINGS + INFECTED | $SHRIEKPOGO[2,before:AREASOUL])",
         "logicOverrides": {
             "Defeated_Failed_Champion": "(ORIG) + Wall-Maggot_Room",
             "Boss_Essence-Failed_Champion": "(ORIG) + Wall-Maggot_Room"
@@ -434,7 +434,7 @@
         "logicSubstitutions": {}
     },
     {
-        "name": "Plank-Crossroads_Mask_Shard",
+        "name": "Plank-Crossroads_Goam_Mask_Shard",
         "gameObject": "/Break Floor 1",
         "fsmType": "break_floor",
         "sceneName": "Crossroads_13",
@@ -1049,7 +1049,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Deepnest_East_04",
+        "logic": "Deepnest_East_04 | Bench-Bardoon's_Tail?FALSE",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1647,9 +1647,8 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Mines_16[top1] + (ANYCLAW | WINGS | ENEMYPOGOS + DANGEROUSSKIPS)",
+        "logic": "Mines_16[top1]",
         "logicOverrides": {
-            "Geo_Rock-Crystal_Peak_Mimic_Grub": "(ORIG) + Wall-Peak_Mimic",
             "Grub-Crystal_Peak_Mimic": "(ORIG) + Wall-Peak_Mimic"
         },
         "logicSubstitutions": {}
@@ -1732,11 +1731,11 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "(Mines_35[left1] + Dive_Floor-Crystallized_Mound + (LEFTCLAW | RIGHTCLAW + PRECISEMOVEMENT + (RIGHTDASH | OBSCURESKIPS + DIFFICULTSKIPS) | WINGS + OBSCURESKIPS)) | Mines_35[left1] + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW | WINGS | (FIREBALLSKIPS + (LEFTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Plank-Crystallized_Mound",
+        "logic": "((Mines_35[left1] + Dive_Floor-Crystallized_Mound | Bench-Crystallized_Mound?FALSE) + (LEFTCLAW | RIGHTCLAW + PRECISEMOVEMENT + (RIGHTDASH | OBSCURESKIPS + DIFFICULTSKIPS) | WINGS + OBSCURESKIPS)) | Mines_35[left1] + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW | WINGS | (FIREBALLSKIPS + (LEFTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Plank-Crystallized_Mound",
         "logicOverrides": {
             "Descending_Dark": "(ORIG) | Mines_35[left1] + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW | WINGS | (FIREBALLSKIPS + (LEFTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Plank-Crystallized_Mound",
-            "Grub-Crystallized_Mound": "(ORIG) | Mines_35[left1] + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW | WINGS | (FIREBALLSKIPS + (LEFTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Plank-Crystallized_Mound + (RIGHTCLAW | WINGS + LEFTCLAW + BACKGROUNDPOGOS)",
-            "Soul_Totem-Crystallized_Mound": "(ORIG) | Mines_35[left1] + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW | WINGS | (FIREBALLSKIPS + (LEFTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Plank-Crystallized_Mound + (RIGHTCLAW | WINGS + LEFTCLAW + BACKGROUNDPOGOS) + LEFTDASH"
+            "Grub-Crystallized_Mound": "(ORIG) | Mines_35[left1] + (UPWALLBREAK | (((LEFTSUPERDASH + RIGHTCLAW) | (RIGHTSUPERDASH + LEFTCLAW + WINGS + BACKGROUNDPOGOS)) + OBSCURESKIPS)) + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW | WINGS | (FIREBALLSKIPS + (LEFTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Plank-Crystallized_Mound + (RIGHTCLAW | WINGS + LEFTCLAW + BACKGROUNDPOGOS)",
+            "Soul_Totem-Crystallized_Mound": "(ORIG) | Mines_35[left1] + (UPWALLBREAK | (((LEFTSUPERDASH + RIGHTCLAW) | (RIGHTSUPERDASH + LEFTCLAW + WINGS + BACKGROUNDPOGOS)) + OBSCURESKIPS)) + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW | WINGS | (FIREBALLSKIPS + (LEFTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Plank-Crystallized_Mound + (RIGHTCLAW | WINGS + LEFTCLAW + BACKGROUNDPOGOS) + LEFTDASH"
         },
         "logicSubstitutions": {}
     },
@@ -2114,9 +2113,14 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "(Waterways_02[top3] + Dive_Floor-Above_Waterways_Bench | Waterways_02 + (LEFTCLAW | WINGS + RIGHTCLAW | ENEMYPOGOS + DANGEROUSSKIPS + (WINGS | RIGHTCLAW)))",
+        "logic": "(Waterways_02[top3] + Dive_Floor-Above_Waterways_Bench | Waterways_02[top1] + Plank-Waterways_Bench | Waterways_02 + (LEFTCLAW | WINGS + RIGHTCLAW | ENEMYPOGOS + DANGEROUSSKIPS + (WINGS | RIGHTCLAW)))",
         "logicOverrides": {},
-        "logicSubstitutions": {}
+        "logicSubstitutions": {
+            "Rancid_Egg-Waterways_Main": {
+                "Waterways_02[top3]": "Waterways_02[top3] + Plank-Waterways_Bench",
+                "Bench-Waterways": "Bench-Waterways + Plank-Waterways_Bench"
+            }
+        }
     },
     {
         "name": "Wall-Waterways_Grub",
@@ -2651,7 +2655,7 @@
         "logic": "Fungus2_21[right1] + (FULLCLAW + (LEFTDASH | LEFTSUPERDASH) | ANYCLAW + WINGS) + QUAKE + $CASTSPELL[before:ITEMSOUL]",
         "logicOverrides": {
             "Broke_Pilgrim's_Way_Quake_Floor": "Dive_Floor-Pilgrim's_Way",
-            "Fungus2_21[right1]": "(ORIG) | Fungus2_21[left1] + (RIGHTCLAW + (RIGHTDASH | WINGS + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL,after:ITEMSOUL]) | RIGHTSUPERDASH | ACID) + (CREST | (RIGHTCLAW | LEFTCLAW + WINGS) + Dive_Floor-Pilgrim's_Way)"
+            "Fungus2_21[right1]": "(ORIG) | Fungus2_21[left1] + (RIGHTCLAW + (RIGHTDASH | WINGS + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL,after:ITEMSOUL]) | RIGHTSUPERDASH | ACID) + (CREST | (RIGHTCLAW | LEFTCLAW + WINGS | WINGS + $SHADESKIP[3HITS] + (ANYDASH | SPELLAIRSTALL)) + Dive_Floor-Pilgrim's_Way)"
         },
         "logicSubstitutions": {}
     },
@@ -2791,7 +2795,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "(Ruins1_30[left2] + (LEFTCLAW | (RIGHTCLAW | WINGS) + BACKGROUNDPOGOS | RIGHTCLAW + WINGS) | Ruins1_30 + Dive_Floor-Sanctum_Escape_1 + Dive_Floor-Sanctum_Escape_2 + ANYCLAW) + QUAKE + $CASTSPELL[1,before:ROOMSOUL]",
+        "logic": "(Ruins1_30[left2] + (LEFTCLAW | (RIGHTCLAW | WINGS) + BACKGROUNDPOGOS | RIGHTCLAW + WINGS) | Ruins1_30 + Dive_Floor-Sanctum_Escape_1 + Dive_Floor-Sanctum_Escape_2 + (ANYCLAW | WINGS + $SHADESKIP)) + QUAKE + $CASTSPELL[1,before:ROOMSOUL]",
         "logicOverrides": {
             "Broke_Sanctum_Escape_Quake_Floor_1": "Dive_Floor-Sanctum_Escape_1"
         },
@@ -2806,11 +2810,13 @@
         "y": -0.1,
         "persistentBool": "",
         "sprite": "break_floor_glass",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "Secret Mask (1)"
+        ],
         "exit": false,
         "groupWalls": [],
         "group": "",
-        "logic": "(Ruins1_30[left2] + Dive_Floor-Sanctum_Escape_1 + (LEFTCLAW | (RIGHTCLAW | WINGS) + BACKGROUNDPOGOS | RIGHTCLAW + WINGS) | Ruins1_30 + Dive_Floor-Sanctum_Escape_2 + (ANYCLAW | WINGS)) + QUAKE + $CASTSPELL[1,before:ROOMSOUL]",
+        "logic": "(Ruins1_30[left2] + Dive_Floor-Sanctum_Escape_1 + (LEFTCLAW | (RIGHTCLAW | WINGS) + BACKGROUNDPOGOS | RIGHTCLAW + WINGS) | Ruins1_30 + Dive_Floor-Sanctum_Escape_2 + (ANYCLAW | WINGS | $SHADESKIP)) + QUAKE + $CASTSPELL[1,before:ROOMSOUL]",
         "logicOverrides": {
             "Broke_Sanctum_Escape_Quake_Floor_2": "Dive_Floor-Sanctum_Escape_2",
             "Ruins1_30[left2]": "(ORIG) | Ruins1_30 + Dive_Floor-Sanctum_Escape_1 + Dive_Floor-Sanctum_Escape_2 + ANYCLAW"
@@ -2834,7 +2840,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "Ruins1_32[right1] + (ANYCLAW | $SHRIEKPOGO[before:AREASOUL]) + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logic": "Ruins1_32[right1] + QUAKE + $CASTSPELL[before:AREASOUL] + (ANYCLAW | $SHRIEKPOGO[before:AREASOUL] | Lever-Sanctum_West_Upper?FALSE + Dive_Floor-Inner_Sanctum_1 + WINGS + ENEMYPOGOS)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2851,7 +2857,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "(Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + QUAKE + $CASTSPELL[before:ROOMSOUL]) | (Ruins1_32[right2] + Dive_Floor-Inner_Sanctum_2 + QUAKE + $CASTSPELL[before:ROOMSOUL] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS))) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))",
+        "logic": "(Ruins1_32[right1] + QUAKE + $CASTSPELL[before:ROOMSOUL] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1)) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + Dive_Floor-Inner_Sanctum_2 + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS))) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2868,7 +2874,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "(Ruins1_32[right1] + ANYCLAW + QUAKE + $CASTSPELL[before:ROOMSOUL] + Dive_Floor-Inner_Sanctum_1 + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))",
+        "logic": "(Ruins1_32[right1] + QUAKE + $CASTSPELL[before:ROOMSOUL] + ANYCLAW + Dive_Floor-Inner_Sanctum_1 + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2885,7 +2891,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "(Ruins1_32[right1] + ANYCLAW + QUAKE + $CASTSPELL[before:ROOMSOUL] + Dive_Floor-Inner_Sanctum_1 + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ANYCLAW + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))",
+        "logic": "(Ruins1_32[right1] + QUAKE + $CASTSPELL[before:ROOMSOUL] + ANYCLAW + Dive_Floor-Inner_Sanctum_1 + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ANYCLAW + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2902,7 +2908,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "(Ruins1_32[right1] + ANYCLAW + QUAKE + $CASTSPELL[before:ROOMSOUL] + Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_1 + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom)))",
+        "logic": "(Ruins1_32[right1] + QUAKE + $CASTSPELL[before:ROOMSOUL] + ANYCLAW + Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_1 + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom)))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2919,7 +2925,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "Ruins1_32[right1] + ANYCLAW + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logic": "Ruins1_32[right1] + QUAKE + $CASTSPELL[before:ROOMSOUL] + (ANYCLAW | Lever-Sanctum_West_Upper?FALSE + Dive_Floor-Inner_Sanctum_1 + WINGS + ENEMYPOGOS)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2936,7 +2942,7 @@
         "exit": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "(Ruins1_32[right1] + ANYCLAW + QUAKE + $CASTSPELL[before:ROOMSOUL] + Dive_Floor-Inner_Sanctum_1 + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub)))",
+        "logic": "(Ruins1_32[right1] + QUAKE + $CASTSPELL[before:ROOMSOUL] + ANYCLAW + Dive_Floor-Inner_Sanctum_1 + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub)))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },

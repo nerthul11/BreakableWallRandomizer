@@ -7,9 +7,35 @@
         }
     },
     {
+        "name": "Bench-Crystallized_Mound",
+        "logicOverride": "(ORIG) | Mines_35[left1] + (UPWALLBREAK | (((LEFTSUPERDASH + RIGHTCLAW) | (RIGHTSUPERDASH + LEFTCLAW + WINGS + BACKGROUNDPOGOS)) + OBSCURESKIPS)) + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW | WINGS | (FIREBALLSKIPS + (LEFTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Plank-Crystallized_Mound + (RIGHTCLAW | WINGS + LEFTCLAW + BACKGROUNDPOGOS)",
+        "logicSubstitutions": {}
+    },
+    {
         "name": "Chandelier-Watcher_Knights",
         "logicOverride": "ORIG + Wall-Chandelier",
         "logicSubstitutions": {}
+    },
+    {
+        "name": "Deepnest_East_04",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Bench-Bardoon's_Tail": "Bench-Bardoon's_Tail + Wall-Bardoon's_Butt"
+        }
+    },
+    {
+        "name": "Deepnest_East_04[left2]",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Bench-Bardoon's_Tail": "Bench-Bardoon's_Tail + Wall-Bardoon's_Butt"
+        }
+    },
+    {
+        "name": "Deepnest_East_04[right1]",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Bench-Bardoon's_Tail": "Bench-Bardoon's_Tail + Wall-Bardoon's_Butt"
+        }
     },
     {
         "name": "Defeated_Any_Entombed_Husk",
@@ -30,6 +56,14 @@
         "logicOverride": "",
         "logicSubstitutions": {
             "Cliffs_02[bot1]": "Cliffs_02[bot1] + Plank-Cliff's_Pass"
+        }
+    },
+    {
+        "name": "Journal_Entry-Weathered_Mask",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "WINGS": "(WINGS | Wall-Godhome_Roof)",
+            "ANYCLAW": "(ANYCLAW | Wall-Godhome_Roof)"
         }
     },
     {
@@ -71,18 +105,17 @@
         }
     },
     {
+        "name": "Mines_35[left1]",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Bench-Crystallized_Mound": "Bench-Crystallized_Mound + (Plank-Crystallized_Mound + (LEFTDASH | WINGS | LEFTSUPERDASH | LEFTCLAW) | Dive_Floor-Crystallized_Mound + BACKGROUNDPOGOS + (LEFTCLAW | WINGS + RIGHTCLAW))"
+        }
+    },
+    {
         "name": "Mr_Mushroom-Kingdom's_Edge",
         "logicOverride": "",
         "logicSubstitutions": {
             "Deepnest_East_01[right1]": "Deepnest_East_01[right1] + Plank-Hive_Exit"
-        }
-    },
-    {
-        "name": "Journal_Entry-Weathered_Mask",
-        "logicOverride": "",
-        "logicSubstitutions": {
-            "WINGS": "(WINGS | Wall-Godhome_Roof)",
-            "ANYCLAW": "(ANYCLAW | Wall-Godhome_Roof)"
         }
     }
 ]
