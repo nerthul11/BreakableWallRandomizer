@@ -26,4 +26,12 @@ namespace BreakableWallRandomizer.IC.Shop
         public override bool HasPayEffects() => false;
         public override string GetCostText() => $"{amount} dive floors";
     }
+
+    public sealed record CollapserCost(int amount) : Cost
+    {
+        public override bool CanPay() => BreakableWallModule.Instance.UnlockedCollapsers.Count >= amount;
+        public override void OnPay() { }
+        public override bool HasPayEffects() => false;
+        public override string GetCostText() => $"{amount} collapser floors";
+    }
 }

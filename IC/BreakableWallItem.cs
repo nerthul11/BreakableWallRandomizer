@@ -9,13 +9,8 @@ using UnityEngine;
 namespace BreakableWallRandomizer.IC
 {
     [Serializable]
-    public class BreakableWallItem : AbstractItem
+    public class BreakableWallItem : AbstractWallItem
     {
-        public string sceneName;
-        public string gameObject;
-        public string fsmType;
-        public string persistentBool;
-        public List<CondensedWallObject> groupWalls;
         public BreakableWallItem(
             string name, string sceneName, string gameObject, string fsmType, string persistentBool, 
             string sprite, List<CondensedWallObject> groupWalls
@@ -58,18 +53,18 @@ namespace BreakableWallRandomizer.IC
         public override void GiveImmediate(GiveInfo info)
         {
             // Set data in the save to indicate we got the wall
-            if (name.StartsWith("Wall_Group") || name.StartsWith("Plank_Group") || name.StartsWith("Dive_Group"))
+            if (name.StartsWith("Wall_Group") || name.StartsWith("Plank_Group") || name.StartsWith("Dive_Group") || name.StartsWith("Collapser_Group"))
             {
                 foreach (CondensedWallObject wall in groupWalls)
                 {
-                    if (!BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(wall.name))
-                        BreakableWallModule.Instance.UnlockedBreakableWalls.Add(wall.name);
                     if (wall.name.StartsWith("Wall") && !BreakableWallModule.Instance.UnlockedWalls.Contains(name))
                         BreakableWallModule.Instance.UnlockedWalls.Add(wall.name);
                     if (wall.name.StartsWith("Plank") && !BreakableWallModule.Instance.UnlockedPlanks.Contains(name))
                         BreakableWallModule.Instance.UnlockedPlanks.Add(wall.name);
                     if (wall.name.StartsWith("Dive_Floor") && !BreakableWallModule.Instance.UnlockedDives.Contains(name))
                         BreakableWallModule.Instance.UnlockedDives.Add(wall.name);
+                    if (name.StartsWith("Collapser") && !BreakableWallModule.Instance.UnlockedCollapsers.Contains(name))
+                    BreakableWallModule.Instance.UnlockedCollapsers.Add(name);
                     
                     // If we're already in the same scene as the wall, break it.
                     if (GameManager.instance.sceneName == wall.sceneName)
@@ -78,23 +73,15 @@ namespace BreakableWallRandomizer.IC
             }
             else
             {
-                if (!BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(name))
-                    BreakableWallModule.Instance.UnlockedBreakableWalls.Add(name);
                 if (name.StartsWith("Wall") && !BreakableWallModule.Instance.UnlockedWalls.Contains(name))
                     BreakableWallModule.Instance.UnlockedWalls.Add(name);
                 if (name.StartsWith("Plank") && !BreakableWallModule.Instance.UnlockedPlanks.Contains(name))
                     BreakableWallModule.Instance.UnlockedPlanks.Add(name);
                 if (name.StartsWith("Dive_Floor") && !BreakableWallModule.Instance.UnlockedDives.Contains(name))
                     BreakableWallModule.Instance.UnlockedDives.Add(name);
-                
-                // If we're already in the same scene as the wall, break it.
-                if (GameManager.instance.sceneName == sceneName)
-                    GameObject.Find(gameObject).LocateMyFSM(fsmType).SetState("BreakSameScene");
+                if (name.StartsWith("Collapser") && !BreakableWallModule.Instance.UnlockedCollapsers.Contains(name))
+                    BreakableWallModule.Instance.UnlockedCollapsers.Add(name);
             }
-            if (persistentBool != "")
-                PlayerData.instance.SetBool(persistentBool, true);  
-
-            BreakableWallModule.Instance.CompletedChallenges();         
         }
     }
 }

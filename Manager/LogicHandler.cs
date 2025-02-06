@@ -32,15 +32,16 @@ namespace BreakableWallRandomizer.Manager
             
             using Stream stream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Data.BreakableWallObjects.json");
             StreamReader reader = new(stream);
-            List<WallObject> wallList = jsonSerializer.Deserialize<List<WallObject>>(new JsonTextReader(reader));
+            List<AbstractWallItem> wallList = jsonSerializer.Deserialize<List<AbstractWallItem>>(new JsonTextReader(reader));
             
             lmb.GetOrAddTerm("Broken_Walls");
             lmb.GetOrAddTerm("Broken_Planks");
             lmb.GetOrAddTerm("Broken_Dive_Floors");
+            lmb.GetOrAddTerm("Broken_Collapsers");
 
             lmb.AddLogicDef(new("Myla_Shop", "(Crossroads_45[left1] | Crossroads_45[right1]) + LISTEN?TRUE"));
             
-            foreach (WallObject wall in wallList)
+            foreach (AbstractWallItem wall in wallList)
             {
                 lmb.GetOrAddTerm(wall.name);
                 lmb.AddItem(new StringItemTemplate(wall.name, $"Broken_{wall.name.Split('-')[0]}s++ >> {wall.name}++"));
@@ -66,9 +67,9 @@ namespace BreakableWallRandomizer.Manager
 
             using Stream gstream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Data.WallGroups.json");
             StreamReader greader = new(gstream);
-            List<WallObject> groupList = jsonSerializer.Deserialize<List<WallObject>>(new JsonTextReader(greader));
+            List<AbstractWallItem> groupList = jsonSerializer.Deserialize<List<AbstractWallItem>>(new JsonTextReader(greader));
 
-            foreach (WallObject g in groupList)
+            foreach (AbstractWallItem g in groupList)
             {
                 string groupName = g.name.Split('-')[1];
                 string effect = "";
@@ -76,7 +77,8 @@ namespace BreakableWallRandomizer.Manager
                 int wallCount = 0;
                 int plankCount = 0;
                 int floorCount = 0;
-                foreach (WallObject wall in wallList)
+                int collapserCount = 0;
+                foreach (AbstractWallItem wall in wallList)
                 {
                     if (wall.group == groupName)
                     {
@@ -86,6 +88,8 @@ namespace BreakableWallRandomizer.Manager
                             plankCount++;
                         if (wall.name.StartsWith("Dive_Floor"))
                             floorCount++;
+                        if (wall.name.StartsWith("Collapser"))
+                            collapserCount++;
                         wallTerms += $"{wall.name}++ >> ";
                     }
                 }
@@ -94,7 +98,9 @@ namespace BreakableWallRandomizer.Manager
                 if (plankCount > 0)
                     effect += $"Broken_Planks+{(plankCount > 1 ? $"={plankCount}" : '+')} >> ";
                 if (floorCount > 0)
-                    effect += $"Broken_Dive_Floors+{(floorCount > 1 ? $"={floorCount}" : '+')} >> "; 
+                    effect += $"Broken_Dive_Floors+{(floorCount > 1 ? $"={floorCount}" : '+')} >> ";
+                if (collapserCount > 0)
+                    effect += $"Broken_Collapsers+{(floorCount > 1 ? $"={floorCount}" : '+')} >> "; 
                 effect += wallTerms;
                 effect = effect.Remove(effect.Length - 4);
 

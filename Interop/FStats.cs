@@ -34,9 +34,9 @@ namespace BreakableWallRandomizer.Interop
             
             using Stream stream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Data.BreakableWallObjects.json");
             StreamReader reader = new(stream);
-            List<WallObject> wallList = jsonSerializer.Deserialize<List<WallObject>>(new JsonTextReader(reader));
+            List<AbstractWallItem> wallList = jsonSerializer.Deserialize<List<AbstractWallItem>>(new JsonTextReader(reader));
             BreakableWallModule module = BreakableWallModule.Instance;
-            foreach (WallObject wall in wallList)
+            foreach (AbstractWallItem wall in wallList)
                 module.vanillaWalls.Add(new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType));
         }
     }

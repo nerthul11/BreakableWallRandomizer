@@ -6,6 +6,7 @@ namespace BreakableWallRandomizer.Settings
         public bool WoodenPlanks = false;
         public bool RockWalls = false;
         public bool DiveFloors = false;
+        public bool Collapsers = false;
         public bool KingsPass = false;
         public bool GodhomeWalls = false;
 
@@ -16,7 +17,9 @@ namespace BreakableWallRandomizer.Settings
         public int RockWallGroup = -1;
 
         [MenuChanger.Attributes.MenuRange(-1, 99)]
-        public int DiveFloorGroup = -1;        
+        public int DiveFloorGroup = -1;
+        [MenuChanger.Attributes.MenuRange(-1, 99)]
+        public int CollapserGroup = -1;        
         public bool GroupTogetherNearbyWalls = false;
         public bool ExcludeWallsWhichMaySoftlockYou = false;
         public MylaShopSettings MylaShop = new();

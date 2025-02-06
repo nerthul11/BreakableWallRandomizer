@@ -2,7 +2,6 @@
 using BreakableWallRandomizer.Modules;
 using HutongGames.PlayMaker.Actions;
 using ItemChanger;
-using ItemChanger.Locations;
 using ItemChanger.Tags;
 using ItemChanger.Util;
 using Satchel;
@@ -13,14 +12,9 @@ using UnityEngine;
 namespace BreakableWallRandomizer.IC
 {
     [Serializable]
-    public class BreakableWallLocation : AutoLocation
+    public class PlankLocation : AbstractWallLocation
     {
-        public string objectName;
-        public string fsmType;
-        public List<string> alsoDestroy;
-        public bool exit;
-        public List<CondensedWallObject> groupWalls;
-        public BreakableWallLocation(
+        public PlankLocation(
             string name, string sceneName, string objectName, string fsmType, List<string> alsoDestroy, 
             float x, float y,  bool exit, List<CondensedWallObject> groupWalls
         )
@@ -111,68 +105,10 @@ namespace BreakableWallRandomizer.IC
             }
         }
 
-        private void MakeWallPassable(GameObject go, bool destroy)
-        {
-            foreach (var objectName in alsoDestroy)
-            {
-                try
-                {
-                    var obj = GameObject.Find(objectName);
-                    GameObject.Destroy(obj);
-                } catch 
-                { 
-                    BreakableWallRandomizer.Instance.LogWarn($"{objectName} not found.");
-                }
-            }
-            Recursive_MakeWallPassable(go, destroy);
-        }
-
-        // Recursively set all colliders as triggers on a given gameObject.
-        // Also recursively set any SpriteRenderers on a given gameObject to 0.5 alpha.
-        // Also remove any object called "Camera lock" or any textures beginning with msk_. 
-        private void Recursive_MakeWallPassable(GameObject go, bool destroy)
-        {
-            foreach (var collider in go.GetComponents<Collider2D>())
-            {
-                // Triggers can still be hit by a nail, but won't impede player movement.
-                collider.isTrigger = true;
-            }
-
-            // Make sprites transparent
-            foreach (var sprite in go.GetComponents<SpriteRenderer>())
-            {
-                Color tmp = sprite.color;
-                if (fsmType == "Detect Quake" || fsmType == "quake_floor")
-                {
-                    tmp.a = 0.4f;
-                } else
-                {
-                    tmp.a = 0.5f;
-                }
-                sprite.color = tmp;
-
-                if (sprite.sprite && sprite.sprite.name.StartsWith("msk"))
-                {
-                    sprite.enabled = false;
-                }
-            }
-            if (go.name.Contains("Camera") || go.name.Contains("Mask"))
-            {
-                GameObject.Destroy(go);
-            }
-
-            for (var i = 0; i < go.transform.childCount; i++)
-            {
-                MakeWallPassable(go.transform.GetChild(i).gameObject, destroy);
-                if (destroy)
-                    GameObject.Destroy(go);
-            }
-        }
-
         private void ModifyWallBehaviour(PlayMakerFSM fsm)
         {
+            // This edit will affect all individual walls, so we list them to iterate
             List<CondensedWallObject> wallList = [];
-
             if (groupWalls.Count > 0)
             {
                 foreach (CondensedWallObject wallObject in groupWalls)
@@ -223,7 +159,7 @@ namespace BreakableWallRandomizer.IC
                     // Shade Soul Shortcut is the only example of a two-way wall that can be accessed from both sides but
                     // destroyed only from one of them. TC made stuff happen to prevent players from destroying it from
                     // the left end - behaviour we'll preserve but only if the item isn't obtained.
-                    if (wall.name == "Wall-Shade_Soul_Shortcut" && BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(wall.name))
+                    if (wall.name == "Wall-Shade_Soul_Shortcut" && BreakableWallModule.Instance.UnlockedBreakables.Contains(wall.name))
                     {
                         fsm.ChangeTransition("Activated?", "ACTIVATE", "Initiate");
                         fsm.ChangeTransition("Activated?", "FINISHED", "Initiate");
@@ -271,12 +207,12 @@ namespace BreakableWallRandomizer.IC
                     Placement.AddVisitFlag(VisitState.Opened);
                 });
                 fsm.AddAction("GiveItem", new CustomFsmBooleanCheck(
-                    BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(wall.name), "OBTAINED", ""
+                    BreakableWallModule.Instance.UnlockedBreakables.Contains(wall.name), "OBTAINED", ""
                     ));
                 fsm.AddTransition("GiveItem", "OBTAINED", originalBreakStateName);
 
                 // If we already unlocked this wall, make it passable or destroy it.
-                if (BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(wall.name))
+                if (BreakableWallModule.Instance.UnlockedBreakables.Contains(wall.name))
                 {
                     MakeWallPassable(fsm.gameObject, Placement.AllObtained());
                 }
@@ -348,7 +284,7 @@ namespace BreakableWallRandomizer.IC
 
         private void ManageKPCollapse(PlayMakerFSM fsm)
         {
-            if (BreakableWallModule.Instance.UnlockedBreakableWalls.Contains(name))
+            if (BreakableWallModule.Instance.UnlockedBreakables.Contains(name))
             {
                 fsm.ChangeTransition("Init", "FINISHED", "Activate");   
             }

@@ -11,7 +11,7 @@ namespace BreakableWallRandomizer.IC.Shop
 
         public bool MatchesCost(Cost c)
         {
-            return c is WallCost && displayer == "Wall" || c is PlankCost && displayer == "Plank" || c is DiveCost && displayer == "Dive";
+            return c is WallCost && displayer == "Wall" || c is PlankCost && displayer == "Plank" || c is DiveCost && displayer == "Dive" || c is CollapserCost && displayer == "Collapser";
         }
     }
 }
