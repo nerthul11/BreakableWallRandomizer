@@ -740,7 +740,7 @@
         "group": "",
         "logic": "(LANTERN | NOLANTERN?FALSE | DARKROOMS) + (Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39[door1] + Wall-Weaver's_Den_Entrance | Deepnest_39[right1] + (LEFTCLAW | WINGS + RIGHTCLAW | (WINGS | RIGHTCLAW) + ENEMYPOGOS | Plank-Deepnest_Dark_Room_Egg))",
         "logicOverrides": {
-            "Rancid_Egg-Dark_Deepnest": "(ORIG) | Deepnest_39[right1] + Plank-Deepnest_Dark_Room_Egg"
+            "Rancid_Egg-Dark_Deepnest": "(ORIG) | Deepnest_39[right1] + Plank-Deepnest_Dark_Room_Egg + (LANTERN | NOLANTERN?FALSE | DARKROOMS)"
         },
         "logicSubstitutions": {}
     },
