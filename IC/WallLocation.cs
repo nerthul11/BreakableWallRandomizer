@@ -1,7 +1,9 @@
 ﻿using BreakableWallRandomizer.Fsm;
 using BreakableWallRandomizer.Modules;
+using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
 using ItemChanger;
+using ItemChanger.Locations;
 using ItemChanger.Tags;
 using ItemChanger.Util;
 using Satchel;
@@ -12,9 +14,14 @@ using UnityEngine;
 namespace BreakableWallRandomizer.IC
 {
     [Serializable]
-    public class WallLocation : AbstractWallLocation
+    public class BreakableWallLocation : AutoLocation
     {
-        public WallLocation(
+        public string objectName;
+        public string fsmType;
+        public List<string> alsoDestroy;
+        public bool exit;
+        public List<CondensedWallObject> groupWalls;
+        public BreakableWallLocation(
             string name, string sceneName, string objectName, string fsmType, List<string> alsoDestroy, 
             float x, float y,  bool exit, List<CondensedWallObject> groupWalls
         )
@@ -40,6 +47,8 @@ namespace BreakableWallRandomizer.IC
                 sprite = "wood_plank_02";
             if (name.StartsWith("Dive_Floor-") || name.StartsWith("Dive_Group"))
                 sprite = "break_floor_glass";
+            if (name.StartsWith("Collapser-") || name.StartsWith("Collapser_Group"))
+                sprite = "collapser_short_0deg";
             
             // Replace map name for pinless-maps
             string mapSceneName = sceneName;
@@ -54,10 +63,12 @@ namespace BreakableWallRandomizer.IC
             sceneOverride.Add("Room_Colosseum_Spectate", "Deepnest_East_09");
             sceneOverride.Add("Room_Fungus_Shaman", "Fungus3_44");
             sceneOverride.Add("Room_GG_Shortcut", "GG_Waterways");
+            sceneOverride.Add("White_Palace_02", "Abyss_05");
             sceneOverride.Add("White_Palace_06", "Abyss_05");
             sceneOverride.Add("White_Palace_09", "Abyss_05");
             sceneOverride.Add("White_Palace_12", "Abyss_05");
             sceneOverride.Add("White_Palace_15", "Abyss_05");
+            sceneOverride.Add("White_Palace_17", "Abyss_05");
 
             if (sceneOverride.ContainsKey(sceneName))
                 mapSceneName = sceneOverride[sceneName];
@@ -107,7 +118,6 @@ namespace BreakableWallRandomizer.IC
 
         private void ModifyWallBehaviour(PlayMakerFSM fsm)
         {
-            // This edit will affect all individual walls, so we list them to iterate
             List<CondensedWallObject> wallList = [];
             if (groupWalls.Count > 0)
             {
@@ -124,10 +134,28 @@ namespace BreakableWallRandomizer.IC
                 if (wall.fsmType != fsm.FsmName)
                     continue;
 
+                var originalIdleStateName = wall.fsmType switch
+                {
+                    "quake_floor" => "Solid",
+
+                    "Detect Quake" => "Detect",
+
+                    _ => "Idle"
+                };
+
+                // Copy sound and particles from original
+                var originalBreakStateName = wall.fsmType switch
+                {
+                    "quake_floor" => "Glass",
+
+                    "Detect Quake" => "Break 2",
+
+                    _ => "Break"
+                };
+
                 // If a location is present, it means that it's not vanilla
                 BreakableWallModule.Instance.vanillaWalls.RemoveAll(wall => wall.name == name);
 
-                // This particular mask should be destroyed regardless of wall state
                 if (wall.name == "Wall-Shade_Soul_Shortcut")
                     GameObject.Destroy(GameObject.Find("/Breakable Wall Ruin Lift/Masks"));
 
@@ -166,6 +194,12 @@ namespace BreakableWallRandomizer.IC
                 } else if (wall.fsmType == "Detect Quake")
                 {
                     fsm.ChangeTransition("Init", "ACTIVATE", "Detect");
+                } else if (wall.fsmType == "collapse small")
+                {   
+                    fsm.AddFirstAction("Idle", new SetTriggerCollider());
+                    
+                    // Ensure the "Idle" state has the correct transition for BREAK
+                    fsm.RemoveTransition("Idle", "ACTIVATE");
                 }
 
                 // If the wall item had been obtained when calling GiveItem, destroy the wall on trigger.
@@ -260,7 +294,67 @@ namespace BreakableWallRandomizer.IC
                 } else if (wall.fsmType == "Detect Quake")
                 {
                     fsm.ChangeTransition("Quake Hit", "FINISHED", "GiveItem");
+                } else if (wall.fsmType == "collapse small") {
+                    fsm.ChangeTransition("Split", "FINISHED", "GiveItem");
                 }
+            }
+        }
+
+        public void MakeWallPassable(GameObject go, bool destroy)
+        {
+            foreach (var objectName in alsoDestroy)
+            {
+                try
+                {
+                    var obj = GameObject.Find(objectName);
+                    GameObject.Destroy(obj);
+                } catch 
+                { 
+                    BreakableWallRandomizer.Instance.LogWarn($"{objectName} not found.");
+                }
+            }
+            MakeChildrenPassable(go, destroy);
+        }
+
+        // Recursively set all colliders as triggers on a given gameObject.
+        // Also recursively set any SpriteRenderers on a given gameObject to 0.5 alpha.
+        // Also remove any object called "Camera lock" or any textures beginning with msk_. 
+        private void MakeChildrenPassable(GameObject go, bool destroy)
+        {
+            // Make sprites transparent
+            foreach (var sprite in go.GetComponents<SpriteRenderer>())
+            {
+                Color tmp = sprite.color;
+                if (fsmType == "Detect Quake" || fsmType == "quake_floor" || fsmType == "collapse small")
+                {
+                    tmp.a = 0.4f;
+                } else
+                {
+                    tmp.a = 0.5f;
+                }
+                sprite.color = tmp;
+
+                if (sprite.sprite && sprite.sprite.name.StartsWith("msk"))
+                {
+                    sprite.enabled = false;
+                }
+            }
+            if (go.name.Contains("Camera") || go.name.Contains("Mask"))
+            {
+                GameObject.Destroy(go);
+            }
+
+            for (var i = 0; i < go.transform.childCount; i++)
+            {
+                MakeWallPassable(go.transform.GetChild(i).gameObject, destroy);
+                if (destroy)
+                    GameObject.Destroy(go);
+            }
+            
+            foreach (var collider in go.GetComponents<Collider2D>())
+            {
+                // Triggers can still be hit by a nail, but won't impede player movement.
+                collider.isTrigger = true;
             }
         }
 

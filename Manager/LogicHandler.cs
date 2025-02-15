@@ -41,10 +41,15 @@ namespace BreakableWallRandomizer.Manager
 
             lmb.AddLogicDef(new("Myla_Shop", "(Crossroads_45[left1] | Crossroads_45[right1]) + LISTEN?TRUE"));
             
+            // Iterate twice - once to define all items, next to add their logic defs.
             foreach (AbstractWallItem wall in wallList)
             {
                 lmb.GetOrAddTerm(wall.name);
                 lmb.AddItem(new StringItemTemplate(wall.name, $"Broken_{wall.name.Split('-')[0]}s++ >> {wall.name}++"));
+            }
+
+            foreach (AbstractWallItem wall in wallList)
+            {
                 lmb.AddLogicDef(new(wall.name, wall.logic));
 
                 foreach(var logicOverride in wall.logicOverrides)

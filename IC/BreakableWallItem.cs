@@ -41,6 +41,8 @@ namespace BreakableWallRandomizer.IC
                 sprite = "wood_plank_02";
             if (name.StartsWith("Dive_Floor-") || name.StartsWith("Dive_Group"))
                 sprite = "break_floor_glass";
+            if (name.StartsWith("Collapser-") || name.StartsWith("Collapser_Group"))
+                sprite = "collapser_short_0deg";
               
             InteropTag tag = new();
             tag.Properties["ModSource"] = "BreakableWallRandomizer";
@@ -64,7 +66,7 @@ namespace BreakableWallRandomizer.IC
                     if (wall.name.StartsWith("Dive_Floor") && !BreakableWallModule.Instance.UnlockedDives.Contains(name))
                         BreakableWallModule.Instance.UnlockedDives.Add(wall.name);
                     if (name.StartsWith("Collapser") && !BreakableWallModule.Instance.UnlockedCollapsers.Contains(name))
-                    BreakableWallModule.Instance.UnlockedCollapsers.Add(name);
+                        BreakableWallModule.Instance.UnlockedCollapsers.Add(name);
                     
                     // If we're already in the same scene as the wall, break it.
                     if (GameManager.instance.sceneName == wall.sceneName)
@@ -82,6 +84,7 @@ namespace BreakableWallRandomizer.IC
                 if (name.StartsWith("Collapser") && !BreakableWallModule.Instance.UnlockedCollapsers.Contains(name))
                     BreakableWallModule.Instance.UnlockedCollapsers.Add(name);
             }
+            base.GiveImmediate(info);
         }
     }
 }

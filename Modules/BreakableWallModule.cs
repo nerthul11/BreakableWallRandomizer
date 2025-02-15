@@ -22,7 +22,6 @@ namespace BreakableWallRandomizer.Modules
         public List<string> UnlockedCollapsers = [];
         public override void Initialize() 
         {
-            BreakableWallRandomizer.Instance.Log("BWR Module Init");
             On.HutongGames.PlayMaker.Actions.ActivateGameObject.OnEnter += VanillaTracker;
             if (ItemChangerMod.Modules?.Get<InventoryTracker>() is InventoryTracker it)
                 it.OnGenerateFocusDesc += AddWallProgress;
@@ -68,6 +67,8 @@ namespace BreakableWallRandomizer.Modules
                         UnlockedPlanks.Add(wall.name);
                     if (wallType == "Dive_Floor" && !UnlockedDives.Contains(wall.name))
                         UnlockedDives.Add(wall.name);
+                    if (wallType == "Collapser" && !UnlockedCollapsers.Contains(wall.name))
+                        UnlockedCollapsers.Add(wall.name);
                 }
                 CompletedChallenges();
             }

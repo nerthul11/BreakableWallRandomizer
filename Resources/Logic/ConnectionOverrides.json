@@ -66,6 +66,13 @@
         }
     },
     {
+        "name": "Grasshopper",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "WINGS": "WINGS | $SHADESKIP + Collapser-Garden_Cornifer"
+        }
+    },
+    {
         "name": "Journal_Entry-Weathered_Mask",
         "logicOverride": "",
         "logicSubstitutions": {
