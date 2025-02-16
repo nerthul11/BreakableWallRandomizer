@@ -123,7 +123,7 @@
         "exit": true,
         "groupWalls": [],
         "group": "",
-        "logic": "(Abyss_17[top1] + (ANYCLAW | WINGS | DAMAGEBOOSTS + $TAKEDAMAGE)) | (Abyss_17[top1] + Plank-Basin_Pale_Ore)",
+        "logic": "(Abyss_17[top1] + (ANYCLAW | WINGS | DAMAGEBOOSTS + $TAKEDAMAGE)) + (LEFTCLAW + RIGHTDASH + BACKGROUNDPOGOS + DAMAGEBOOSTS + $TAKEDAMAGE[2] | RIGHTCLAW | WINGS) | (Abyss_17[top1] + Plank-Basin_Pale_Ore)",
         "logicOverrides": {
             "Pale_Ore-Basin": "(ORIG) | (Abyss_17[top1] + Plank-Basin_Pale_Ore) + (LEFTCLAW | WINGS)"
         },
