@@ -12,16 +12,14 @@
         "logicSubstitutions": {}
     },
     {
-        "name": "Chandelier-Watcher_Knights",
-        "logicOverride": "ORIG + Wall-Chandelier",
+        "name": "Bench-Mimic's_Secret",
+        "logicOverride": "(ORIG) | Mines_35[left1] + (UPWALLBREAK | (((LEFTSUPERDASH + RIGHTCLAW) | (RIGHTSUPERDASH + LEFTCLAW + WINGS + BACKGROUNDPOGOS)) + OBSCURESKIPS)) + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW | WINGS | (FIREBALLSKIPS + (LEFTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Plank-Crystallized_Mound + (RIGHTCLAW | WINGS + LEFTCLAW + BACKGROUNDPOGOS)",
         "logicSubstitutions": {}
     },
     {
-        "name": "Deepnest_East_01",
-        "logicOverride": "",
-        "logicSubstitutions": {
-            "Deepnest_East_01[right1]": "Deepnest_East_01[right1] + Plank-Hive_Exit"
-        }
+        "name": "Chandelier-Watcher_Knights",
+        "logicOverride": "ORIG + Wall-Chandelier",
+        "logicSubstitutions": {}
     },
     {
         "name": "Deepnest_East_04",
@@ -52,6 +50,13 @@
         }
     },
     {
+        "name": "Geo_Rock-Crystal_Peak_Mimic_Grub",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Bench-Mimic's_Secret": "Bench-Mimic's_Secret + Wall-Peak_Mimic"
+        }
+    },
+    {
         "name": "Ghost_Essence-Marissa",
         "logicOverride": "",
         "logicSubstitutions": {
@@ -66,10 +71,17 @@
         }
     },
     {
-        "name": "Grasshopper",
+        "name": "Grub-Crystal_Peak_Mimic",
         "logicOverride": "",
         "logicSubstitutions": {
-            "WINGS": "WINGS | $SHADESKIP + Collapser-Garden_Cornifer"
+            "WINGS": "WINGS | $SHADESKIP + Collapser-Garden_Map"
+        }
+    },
+    {
+        "name": "Mimic_Grub-Crystal_Peak",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Bench-Mimic's_Secret": "Bench-Mimic's_Secret + Wall-Peak_Mimic"
         }
     },
     {
@@ -119,6 +131,20 @@
         }
     },
     {
+        "name": "Mimic_Grub-Crystal_Peak",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Bench-Mimic's_Secret": "Bench-Mimic's_Secret + Wall-Peak_Mimic"
+        }
+    },
+    {
+        "name": "Mines_16[top1]",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Bench-Mimic's_Secret": "Bench-Mimic's_Secret + Wall-Peak_Mimic"
+        }
+    },
+    {
         "name": "Mines_35[left1]",
         "logicOverride": "",
         "logicSubstitutions": {
@@ -130,6 +156,13 @@
         "logicOverride": "",
         "logicSubstitutions": {
             "Deepnest_East_01[right1]": "Deepnest_East_01[right1] + Plank-Hive_Exit"
+        }
+    },
+    {
+        "name": "Quirrel_Deepnest",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Deepnest_30[top1]": "Deepnest_30[top1] + Collapser-Deepnest_Hot_Springs_Path + Collapser-Deepnest_Hot_Springs_Path_2"
         }
     }
 ]

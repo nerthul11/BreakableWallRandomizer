@@ -1,6 +1,5 @@
 ﻿using BreakableWallRandomizer.Fsm;
 using BreakableWallRandomizer.Modules;
-using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
 using ItemChanger;
 using ItemChanger.Locations;
@@ -19,11 +18,11 @@ namespace BreakableWallRandomizer.IC
         public string objectName;
         public string fsmType;
         public List<string> alsoDestroy;
-        public bool exit;
         public List<CondensedWallObject> groupWalls;
+        public string pinType;
         public BreakableWallLocation(
             string name, string sceneName, string objectName, string fsmType, List<string> alsoDestroy, 
-            float x, float y,  bool exit, List<CondensedWallObject> groupWalls
+            float x, float y, List<CondensedWallObject> groupWalls, string pinType = "Map"
         )
         {
             this.name = name;
@@ -31,8 +30,8 @@ namespace BreakableWallRandomizer.IC
             this.objectName = objectName;
             this.fsmType = fsmType;
             this.alsoDestroy = alsoDestroy;
-            this.exit = exit;
             this.groupWalls = groupWalls;
+            this.pinType = pinType;
             flingType = FlingType.DirectDeposit;
             tags = [BreakableWallLocationTag(x, y)];
         }
@@ -49,9 +48,7 @@ namespace BreakableWallRandomizer.IC
                 sprite = "break_floor_glass";
             if (name.StartsWith("Collapser-") || name.StartsWith("Collapser_Group"))
                 sprite = "collapser_short_0deg";
-            
-            // Replace map name for pinless-maps
-            string mapSceneName = sceneName;
+
             Dictionary<string, string> sceneOverride = [];
             sceneOverride.Add("Deepnest_45_v02", "Deepnest_39");
             sceneOverride.Add("Deepnest_Spider_Town", "Deepnest_10");
@@ -70,15 +67,15 @@ namespace BreakableWallRandomizer.IC
             sceneOverride.Add("White_Palace_15", "Abyss_05");
             sceneOverride.Add("White_Palace_17", "Abyss_05");
 
-            if (sceneOverride.ContainsKey(sceneName))
-                mapSceneName = sceneOverride[sceneName];
-
             InteropTag tag = new();
             tag.Properties["ModSource"] = "BreakableWallRandomizer";
             tag.Properties["PoolGroup"] = $"{name.Split('-')[0].Replace('_', ' ')}s";
             tag.Properties["PinSprite"] = new WallSprite(sprite);
             tag.Properties["VanillaItem"] = name;
-            tag.Properties["MapLocations"] = new (string, float, float)[] {(mapSceneName, x, y)};
+            string mapSceneName = sceneName;
+            if (sceneOverride.ContainsKey(sceneName))
+                mapSceneName = sceneOverride[sceneName];
+            tag.Properties[pinType == "World" ? "WorldMapLocations" : "MapLocations"] = new (string, float, float)[] {(mapSceneName, x, y)};
             tag.Message = "RandoSupplementalMetadata";
             return tag;
         }
@@ -118,6 +115,13 @@ namespace BreakableWallRandomizer.IC
 
         private void ModifyWallBehaviour(PlayMakerFSM fsm)
         {
+            try
+            {
+                Vector3 coordinates = GameObject.Find(objectName).transform.position;
+                BreakableWallRandomizer.Instance.Log($"{name} - ({coordinates.x}, {coordinates.y})");
+            }
+            catch
+            {}
             List<CondensedWallObject> wallList = [];
             if (groupWalls.Count > 0)
             {
@@ -195,9 +199,7 @@ namespace BreakableWallRandomizer.IC
                 {
                     fsm.ChangeTransition("Init", "ACTIVATE", "Detect");
                 } else if (wall.fsmType == "collapse small")
-                {   
-                    fsm.AddFirstAction("Idle", new SetTriggerCollider());
-                    
+                {                       
                     // Ensure the "Idle" state has the correct transition for BREAK
                     fsm.RemoveTransition("Idle", "ACTIVATE");
                 }
@@ -230,6 +232,8 @@ namespace BreakableWallRandomizer.IC
                 // If we already unlocked this wall, make it passable or destroy it.
                 if (BreakableWallModule.Instance.UnlockedBreakables.Contains(wall.name))
                 {
+                    if (wall.fsmType == "collapse small")
+                        fsm.AddFirstAction("Idle", new SetTriggerCollider());
                     MakeWallPassable(fsm.gameObject, Placement.AllObtained());
                 }
                 else
@@ -257,6 +261,8 @@ namespace BreakableWallRandomizer.IC
                         fsm.AddState("BreakSameScene");
 
                         // In any of the cases, the wall is expected to become passable.
+                        if (wall.fsmType == "collapse small")
+                            fsm.AddAction("BreakSameScene", new SetTriggerCollider());
                         fsm.AddCustomAction("BreakSameScene", () =>
                         {
                             MakeWallPassable(fsm.gameObject, Placement.AllObtained());
@@ -279,13 +285,14 @@ namespace BreakableWallRandomizer.IC
                     fsm.ChangeTransition("Idle", "WALL BREAKER", "GiveItem");
                     fsm.ChangeTransition("Pause Frame", "FINISHED", "GiveItem");
                     fsm.ChangeTransition("Spell Destroy", "FINISHED", "GiveItem");
-                }
-                else if (wall.fsmType == "FSM")
+                } else if (wall.fsmType == "FSM" && wall.name != "Wall-QG_Glass")
                 {
                     fsm.ChangeTransition("Pause Frame", "FINISHED", "GiveItem");
                     fsm.ChangeTransition("Spell Destroy", "FINISHED", "GiveItem");
-                }
-                else if (wall.fsmType == "break_floor")
+                } else if (wall.name == "Wall-QG_Glass")
+                {
+                    fsm.ChangeTransition("No Rotate Check", "FINISHED", "GiveItem");
+                } else if (wall.fsmType == "break_floor")
                 {
                     fsm.ChangeTransition("Hit", "HIT 3", "GiveItem");
                 } else if (wall.fsmType == "quake_floor")

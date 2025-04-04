@@ -15,7 +15,7 @@ namespace BreakableWallRandomizer.Manager
         public static int TotalWalls = 56;
         public static int TotalPlanks = 51;
         public static int TotalDives = 45;
-        public static int TotalCollapsers = 0;
+        public static int TotalCollapsers = 30;
         public static void Hook()
         {
             DefineObjects();
@@ -38,8 +38,8 @@ namespace BreakableWallRandomizer.Manager
 
             foreach (AbstractWallItem wall in wallList)
             {
-                BreakableWallItem wallItem = new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType, wall.persistentBool, wall.sprite, wall.groupWalls);
-                BreakableWallLocation wallLocation = new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType, wall.alsoDestroy, wall.x, wall.y, wall.exit, wall.groupWalls);
+                BreakableWallItem wallItem = new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType, wall.persistentBool, wall.sprite, wall.extra, wall.groupWalls);
+                BreakableWallLocation wallLocation = new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType, wall.alsoDestroy, wall.x, wall.y, wall.groupWalls, wall.pinType);
                 Finder.DefineCustomItem(wallItem);
                 Finder.DefineCustomLocation(wallLocation);
             }
@@ -50,8 +50,8 @@ namespace BreakableWallRandomizer.Manager
 
             foreach (AbstractWallItem group in groupList)
             {
-                BreakableWallItem groupItem = new(group.name, group.sceneName, group.gameObject, group.fsmType, group.persistentBool, group.sprite, group.groupWalls);
-                BreakableWallLocation groupLocation = new(group.name, group.sceneName, group.gameObject, group.fsmType, group.alsoDestroy, group.x, group.y, group.exit, group.groupWalls);
+                BreakableWallItem groupItem = new(group.name, group.sceneName, group.gameObject, group.fsmType, group.persistentBool, group.sprite, group.extra, group.groupWalls);
+                BreakableWallLocation groupLocation = new(group.name, group.sceneName, group.gameObject, group.fsmType, group.alsoDestroy, group.x, group.y, group.groupWalls);
                 Finder.DefineCustomItem(groupItem);
                 Finder.DefineCustomLocation(groupLocation);
             }

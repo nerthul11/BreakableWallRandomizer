@@ -2,10 +2,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using BreakableWallRandomizer.IC;
+using ItemChanger;
 using Newtonsoft.Json;
 using RandomizerCore.Json;
 using RandomizerCore.Logic;
 using RandomizerCore.StringItems;
+using RandomizerMod.Menu;
 using RandomizerMod.RC;
 using RandomizerMod.Settings;
 
@@ -15,10 +17,29 @@ namespace BreakableWallRandomizer.Manager
     {
         internal static void Hook()
         {
+            RandomizerMenuAPI.OnGenerateStartLocationDict += FixStartLogic;
             RCData.RuntimeLogicOverride.Subscribe(1f, ApplyLogic);
             RCData.RuntimeLogicOverride.Subscribe(99999f, LogicPatch);
         }
-
+        private static void FixStartLogic(Dictionary<string, RandomizerMod.RandomizerData.StartDef> startDefs)
+        {
+            List<string> keys = new (startDefs.Keys);
+            bool planks = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.WoodenPlanks;
+            bool collapsers = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.Collapsers;
+            foreach (var startName in keys)
+            {
+                var start = startDefs[startName];
+                // Mawlek start with collapsers requires Shade Skips.
+                if (start.SceneName == SceneNames.Crossroads_36)
+                    startDefs[startName] = start with {RandoLogic = collapsers ? "SHADESKIPS" : "ANY"};
+                // Blue Lake start has two reachable checks (Salubra). Remove unless transition rando is on.
+                if (start.SceneName == SceneNames.Crossroads_50)
+                    startDefs[startName] = start with {RandoLogic = planks ? "MAPAREARANDO | FULLAREARANDO | ROOMRANDO" : "ANY"};
+                // East Fog Canyon is a terrible spot with only 1 available check four rooms away. Remove unless Room Rando.
+                if (start.SceneName == SceneNames.Fungus3_25)
+                    startDefs[startName] = start with {RandoLogic = planks ? "ROOMRANDO" : "ANY"};
+            }
+        }
         private static void ApplyLogic(GenerationSettings gs, LogicManagerBuilder lmb)
         {
             if (!BWR_Manager.Settings.Enabled)

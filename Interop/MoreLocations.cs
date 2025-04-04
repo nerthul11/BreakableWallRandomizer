@@ -14,6 +14,7 @@ namespace BreakableWallRandomizer.Interop
             ConnectionInterop.AddRandoCostProviderToJunkShop(IncludeWalls, WallCostProvider);
             ConnectionInterop.AddRandoCostProviderToJunkShop(IncludePlanks, PlankCostProvider);
             ConnectionInterop.AddRandoCostProviderToJunkShop(IncludeDives, DiveCostProvider);
+            ConnectionInterop.AddRandoCostProviderToJunkShop(IncludeCollapsers, CollapserCostProvider);
         }
         private static bool IncludeWalls() {
             bool include = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.MylaShop.Enabled && BWR_Manager.Settings.MylaShop.IncludeInJunkShop;
@@ -27,9 +28,14 @@ namespace BreakableWallRandomizer.Interop
             bool include = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.MylaShop.Enabled && BWR_Manager.Settings.MylaShop.IncludeInJunkShop;
             return include && (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.DiveFloors);
         }
+        private static bool IncludeCollapsers() {
+            bool include = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.MylaShop.Enabled && BWR_Manager.Settings.MylaShop.IncludeInJunkShop;
+            return include && (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.Collapsers);
+        }
         private static WallCostProvider WallCostProvider() => new();
         private static PlankCostProvider PlankCostProvider() => new();
         private static DiveCostProvider DiveCostProvider() => new();
+        private static CollapserCostProvider CollapserCostProvider() => new();
     }
 
     public class WallCostProvider : ICostProvider
@@ -72,6 +78,21 @@ namespace BreakableWallRandomizer.Interop
             int minCost = (int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost);
             int maxCost = (int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost);
             return new WallLogicCost(lm.GetTermStrict("Broken_Dive_Floors"), rng.Next(minCost, maxCost), amount => new DiveCost(amount));
+        }
+
+        public void PreRandomize(Random rng) { }
+    }
+
+    internal class CollapserCostProvider : ICostProvider
+    {
+        public bool HasNonFreeCostsAvailable => true;
+
+        public LogicCost Next(LogicManager lm, Random rng)
+        {
+            int wallCount = BWR_Manager.TotalCollapsers;
+            int minCost = (int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost);
+            int maxCost = (int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost);
+            return new WallLogicCost(lm.GetTermStrict("Broken_Collapsers"), rng.Next(minCost, maxCost), amount => new CollapserCost(amount));
         }
 
         public void PreRandomize(Random rng) { }

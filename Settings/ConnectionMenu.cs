@@ -89,6 +89,7 @@ namespace BreakableWallRandomizer.Settings
 
         private void SetButtonColor(SmallButton target, Func<bool> condition)
         {
+            RandomizerMenuAPI.GenerateStartLocationDict();
             target.Parent.BeforeShow += () =>
             {
                 target.Text.color = condition() ? Colors.TRUE_COLOR : Colors.DEFAULT_COLOR;
