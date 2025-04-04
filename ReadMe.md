@@ -33,7 +33,7 @@ This setting will include the two walls in the Hall of Gods (both leading to the
 - Group nearby walls --> Transforms a couple breakables into one single check. Obtaining the check makes them all passable, and destroying any of them will grant a single location item. For groups with multiple wall types (mainly Walls + Planks), the vanilla objects will behave normally, and only the randomized objects will follow the group rules.
 
 ### Myla Shop
-- Enabled --> Boolean to define if the Godhome Shop should appear or not.
+- Enabled --> Boolean to define if the Wall Shop should appear or not.
 - Minimum/Maximum Cost --> A range from 0 to 1, where 0 is 0% and 1 is 100% of all available wall objects. Default is 25% to 75%.
 - Include In Junk Shop --> Allows the defined costs to appear as currency in More Locations' Junk Shop, regardless of if Myla's Shop is enabled or not.
 - Tolerance --> A range from 0 to 1, where 0 is no tolerance and 1 is 100% of the used maximum cost. If maximum cost + tolerance should be over the total existing walls, the tolerance will automatically be capped. For reference, most mods have tolerance be a 10-25% of the maximum costs.

@@ -348,7 +348,7 @@
         "group": "",
         "logic": "Crossroads_08",
         "logicOverrides": {
-            "Geo_Rock-Crossroads_Aspid_Arena_Hidden": "(ORIG) + (Wall-Crossroads_Aspid_Arena | (RIGHTCLAW | OBSCURESKIPS) + WINGS)"
+            "Geo_Rock-Crossroads_Aspid_Arena_Hidden": "(ORIG) + (Wall-Crossroads_Aspid_Arena | (OBSCURESKIPS + ($SHADESKIP | RIGHTCLAW) + WINGS))"
         },
         "logicSubstitutions": {}
     },
@@ -1453,7 +1453,7 @@
         "exit": true,
         "groupWalls": [],
         "group": "",
-        "logic": "(Fungus2_20[left1] + Wall-Deepnest_Fungal | Fungus2_20[right1]) + (RIGHTCLAW | WINGS) + (ACID | RIGHTDASH | (LEFTCLAW + RIGHTSUPERDASH)) + ANYCLAW",
+        "logic": "(Fungus2_20[left1] + Wall-Deepnest_Fungal | Fungus2_20[right1]) + (Plank-Spore_Shroom | (RIGHTCLAW | WINGS) + (ACID | RIGHTDASH | (LEFTCLAW + RIGHTSUPERDASH)) + ANYCLAW)",
         "logicOverrides": {
             "Spore_Shroom": "(ORIG) | ((Fungus2_20[left1] + Wall-Deepnest_Fungal | Fungus2_20[right1]) + Plank-Spore_Shroom)"
         },
