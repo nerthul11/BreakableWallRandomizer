@@ -350,7 +350,7 @@
         "group": "",
         "logic": "Crossroads_08",
         "logicOverrides": {
-            "Geo_Rock-Crossroads_Aspid_Arena_Hidden": "(ORIG) + (Wall-Crossroads_Aspid_Arena | (OBSCURESKIPS + (RIGHTCLAW | $SHADESKIP) + WINGS))"
+            "Geo_Rock-Crossroads_Aspid_Arena_Hidden": "(ORIG) + (Wall-Crossroads_Aspid_Arena | (OBSCURESKIPS + ($SHADESKIP | RIGHTCLAW) + WINGS))"
         },
         "logicSubstitutions": {}
     },
