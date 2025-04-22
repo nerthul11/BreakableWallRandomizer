@@ -16,6 +16,8 @@ namespace BreakableWallRandomizer.IC.Shop
                 return c is PlankCost;
             if (cost == "Dive")
                 return c is DiveCost;
+            if (cost == "Collapser")
+                return c is CollapserCost;
             return false;
         }
         protected override int GetSingleCostDisplayAmount(Cost c)
@@ -26,6 +28,8 @@ namespace BreakableWallRandomizer.IC.Shop
                 return ((PlankCost)c).amount;
             if (cost == "Dive")
                 return ((DiveCost)c).amount;
+            if (cost == "Collapser")
+                return ((CollapserCost)c).amount;
             return 0;
         }
     }

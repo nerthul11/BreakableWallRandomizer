@@ -2,10 +2,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using BreakableWallRandomizer.IC;
+using ItemChanger;
 using Newtonsoft.Json;
 using RandomizerCore.Json;
 using RandomizerCore.Logic;
 using RandomizerCore.StringItems;
+using RandomizerMod.Menu;
 using RandomizerMod.RC;
 using RandomizerMod.Settings;
 
@@ -15,10 +17,32 @@ namespace BreakableWallRandomizer.Manager
     {
         internal static void Hook()
         {
+            RandomizerMenuAPI.OnGenerateStartLocationDict += FixStartLogic;
             RCData.RuntimeLogicOverride.Subscribe(1f, ApplyLogic);
             RCData.RuntimeLogicOverride.Subscribe(99999f, LogicPatch);
         }
-
+        private static void FixStartLogic(Dictionary<string, RandomizerMod.RandomizerData.StartDef> startDefs)
+        {
+            List<string> keys = new (startDefs.Keys);
+            bool planks = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.WoodenPlanks;
+            bool collapsers = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.Collapsers;
+            foreach (var startName in keys)
+            {
+                var start = startDefs[startName];
+                // Mawlek start with collapsers requires Shade Skips.
+                if (start.SceneName == SceneNames.Crossroads_36 && collapsers)
+                    startDefs[startName] = start with {RandoLogic = "SHADESKIPS"};
+                // Blue Lake start with Planks has two reachable checks (Salubra). Remove unless transition rando is on.
+                if (start.SceneName == SceneNames.Crossroads_50 && planks)
+                    startDefs[startName] = start with {RandoLogic = "MAPAREARANDO | FULLAREARANDO | ROOMRANDO"};
+                // East Fog Canyon with Planks is a terrible spot with only 1 available check four rooms away. Remove unless Room Rando.
+                if (start.SceneName == SceneNames.Fungus3_25)
+                    startDefs[startName] = start with {RandoLogic = "ROOMRANDO"};
+                // West Waterways is impossible if Collapsers are on
+                if (start.SceneName == SceneNames.Waterways_09 && collapsers)
+                    startDefs[startName] = start with {RandoLogic = "FALSE"};
+            }
+        }
         private static void ApplyLogic(GenerationSettings gs, LogicManagerBuilder lmb)
         {
             if (!BWR_Manager.Settings.Enabled)
@@ -37,13 +61,19 @@ namespace BreakableWallRandomizer.Manager
             lmb.GetOrAddTerm("Broken_Walls");
             lmb.GetOrAddTerm("Broken_Planks");
             lmb.GetOrAddTerm("Broken_Dive_Floors");
+            lmb.GetOrAddTerm("Broken_Collapsers");
 
             lmb.AddLogicDef(new("Myla_Shop", "(Crossroads_45[left1] | Crossroads_45[right1]) + LISTEN?TRUE"));
             
+            // Iterate twice - once to define all items, next to add their logic defs.
             foreach (WallObject wall in wallList)
             {
                 lmb.GetOrAddTerm(wall.name);
                 lmb.AddItem(new StringItemTemplate(wall.name, $"Broken_{wall.name.Split('-')[0]}s++ >> {wall.name}++"));
+            }
+
+            foreach (WallObject wall in wallList)
+            {
                 lmb.AddLogicDef(new(wall.name, wall.logic));
 
                 foreach(var logicOverride in wall.logicOverrides)
@@ -76,6 +106,7 @@ namespace BreakableWallRandomizer.Manager
                 int wallCount = 0;
                 int plankCount = 0;
                 int floorCount = 0;
+                int collapserCount = 0;
                 foreach (WallObject wall in wallList)
                 {
                     if (wall.group == groupName)
@@ -86,6 +117,8 @@ namespace BreakableWallRandomizer.Manager
                             plankCount++;
                         if (wall.name.StartsWith("Dive_Floor"))
                             floorCount++;
+                        if (wall.name.StartsWith("Collapser"))
+                            collapserCount++;
                         wallTerms += $"{wall.name}++ >> ";
                     }
                 }
@@ -94,7 +127,9 @@ namespace BreakableWallRandomizer.Manager
                 if (plankCount > 0)
                     effect += $"Broken_Planks+{(plankCount > 1 ? $"={plankCount}" : '+')} >> ";
                 if (floorCount > 0)
-                    effect += $"Broken_Dive_Floors+{(floorCount > 1 ? $"={floorCount}" : '+')} >> "; 
+                    effect += $"Broken_Dive_Floors+{(floorCount > 1 ? $"={floorCount}" : '+')} >> ";
+                if (collapserCount > 0)
+                    effect += $"Broken_Collapsers+{(floorCount > 1 ? $"={floorCount}" : '+')} >> "; 
                 effect += wallTerms;
                 effect = effect.Remove(effect.Length - 4);
 

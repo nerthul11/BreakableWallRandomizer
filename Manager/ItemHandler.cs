@@ -37,6 +37,7 @@ namespace BreakableWallRandomizer.Manager
             int wallSettings = BWR_Manager.Settings.RockWallGroup;
             int plankSettings = BWR_Manager.Settings.WoodenPlankWallGroup;
             int diveSettings = BWR_Manager.Settings.DiveFloorGroup;
+            int collapserSettings = BWR_Manager.Settings.CollapserGroup;
 
             if (rb.gs.SplitGroupSettings.RandomizeOnStart && wallSettings >= 0 && wallSettings <= 2)
             {
@@ -50,10 +51,15 @@ namespace BreakableWallRandomizer.Manager
             {
                 diveSettings = rb.rng.Next(3);
             }
+            if (rb.gs.SplitGroupSettings.RandomizeOnStart && collapserSettings >= 0 && collapserSettings <= 2)
+            {
+                collapserSettings = rb.rng.Next(3);
+            }
 
             ItemGroupBuilder wallGroup = null;
             ItemGroupBuilder plankGroup = null;
             ItemGroupBuilder diveGroup = null;
+            ItemGroupBuilder collapserGroup = null;
 
             if (wallSettings > 0)
             {
@@ -76,8 +82,17 @@ namespace BreakableWallRandomizer.Manager
             if (diveSettings > 0)
             {
                 try 
-                    {
+                {
                     diveGroup = rb.MainItemStage.AddItemGroup(RBConsts.SplitGroupPrefix + diveSettings);
+                }
+                catch (ArgumentException) {}
+            }
+
+            if (collapserSettings > 0)
+            {
+                try 
+                {
+                    collapserGroup = rb.MainItemStage.AddItemGroup(RBConsts.SplitGroupPrefix + collapserSettings);
                 }
                 catch (ArgumentException) {}
             }
@@ -122,6 +137,12 @@ namespace BreakableWallRandomizer.Manager
                 if ((item.StartsWith("Dive_Floor-") || item.StartsWith("Dive_Group-")) && diveGroup != null)
                 {
                     gb = diveGroup;
+                    return true;
+                }
+
+                if ((item.StartsWith("Collapser-") || item.StartsWith("Collapser_Group-")) && collapserGroup != null)
+                {
+                    gb = collapserGroup;
                     return true;
                 }
 
@@ -177,6 +198,8 @@ namespace BreakableWallRandomizer.Manager
                         availableTerms.Add("Planks");
                     if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.DiveFloors)
                         availableTerms.Add("Dives");
+                    if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.Collapsers)
+                        availableTerms.Add("Collapsers");
                     for (int i = 0; i < rng.Next(1, 1 + availableTerms.Count); i++)
                     {
                         int termNo = rng.Next(availableTerms.Count);
@@ -205,6 +228,15 @@ namespace BreakableWallRandomizer.Manager
                             int maxCost = Math.Max((int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost), 1);
                             usedTerms.Add("Dives");
                             rl.AddCost(new WallLogicCost(lm.GetTermStrict("Broken_Dive_Floors"), rng.Next(minCost, maxCost), amount => new DiveCost(amount)));
+                        }
+
+                        if (availableTerms.IndexOf("Collapsers") == termNo && !usedTerms.Contains("Collapsers")) // Collapsers
+                        {
+                            int wallCount = BWR_Manager.TotalCollapsers;
+                            int minCost = Math.Max((int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost), 1);
+                            int maxCost = Math.Max((int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost), 1);
+                            usedTerms.Add("Collapsers");
+                            rl.AddCost(new WallLogicCost(lm.GetTermStrict("Broken_Collapsers"), rng.Next(minCost, maxCost), amount => new CollapserCost(amount)));
                         }
                     }
                 };
@@ -242,17 +274,16 @@ namespace BreakableWallRandomizer.Manager
             using Stream stream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Data.BreakableWallObjects.json");
             StreamReader reader = new(stream);
             List<WallObject> wallList = jsonSerializer.Deserialize<List<WallObject>>(new JsonTextReader(reader));
-            bool useGroups = BWR_Manager.Settings.GroupTogetherNearbyWalls;
+            bool useGroups = BWR_Manager.Settings.GroupWalls;
             foreach (WallObject wall in wallList)
             {
                 bool include = wall.name.StartsWith("Wall") && BWR_Manager.Settings.RockWalls;
-                include = include || (wall.name.StartsWith("Plank") && BWR_Manager.Settings.WoodenPlanks);
-                include = include || (wall.name.StartsWith("Dive_Floor") && BWR_Manager.Settings.DiveFloors);
+                include |= wall.name.StartsWith("Plank") && BWR_Manager.Settings.WoodenPlanks;
+                include |= wall.name.StartsWith("Dive_Floor") && BWR_Manager.Settings.DiveFloors;
+                include |= wall.name.StartsWith("Collapser") && BWR_Manager.Settings.Collapsers;
                 if (wall.name.Contains("White_Palace") || wall.name.Contains("Path_of_Pain"))
                     include = include && rb.gs.LongLocationSettings.WhitePalaceRando != LongLocationSettings.WPSetting.ExcludeWhitePalace;
-                if (wall.name.Contains("King's_Pass"))
-                    include = BWR_Manager.Settings.KingsPass;
-                include = include && !(wall.exit && BWR_Manager.Settings.ExcludeWallsWhichMaySoftlockYou);
+                //include = include && (!wall.extra || BWR_Manager.Settings.ExtraWalls);
                 include = include && (!(wall.name.Contains("Godhome") || wall.name.Contains("Eternal_Ordeal")) || BWR_Manager.Settings.GodhomeWalls);
 
                 if (include)
@@ -301,13 +332,12 @@ namespace BreakableWallRandomizer.Manager
                         if (wall.group == group.name.Split('-')[1])
                         {
                             bool include = wall.name.StartsWith("Wall") && BWR_Manager.Settings.RockWalls;
-                            include = include || (wall.name.StartsWith("Plank") && BWR_Manager.Settings.WoodenPlanks);
-                            include = include || (wall.name.StartsWith("Dive_Floor") && BWR_Manager.Settings.DiveFloors);
+                            include |= wall.name.StartsWith("Plank") && BWR_Manager.Settings.WoodenPlanks;
+                            include |= wall.name.StartsWith("Dive_Floor") && BWR_Manager.Settings.DiveFloors;
+                            include |= wall.name.StartsWith("Collapser") && BWR_Manager.Settings.Collapsers;
                             if (wall.name.Contains("White_Palace") || wall.name.Contains("Path_of_Pain"))
                                 include = include && rb.gs.LongLocationSettings.WhitePalaceRando != LongLocationSettings.WPSetting.ExcludeWhitePalace;
-                            if (wall.name.Contains("Tutorial"))
-                                include = include && BWR_Manager.Settings.KingsPass;
-                            include = include && !(wall.exit && BWR_Manager.Settings.ExcludeWallsWhichMaySoftlockYou);
+                            //include = include && (!wall.extra || BWR_Manager.Settings.ExtraWalls);
                             if (include)
                                 group.groupWalls.Add(new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType));
                         }
@@ -315,8 +345,8 @@ namespace BreakableWallRandomizer.Manager
 
                     if (group.groupWalls.Count > 0)
                     {
-                        BreakableWallItem groupItem = new(group.name, group.sceneName, group.gameObject, group.fsmType, group.persistentBool, group.sprite, group.groupWalls);
-                        BreakableWallLocation groupLocation = new(group.name, group.sceneName, group.gameObject, group.fsmType, group.alsoDestroy, group.x, group.y, group.exit, group.groupWalls);
+                        BreakableWallItem groupItem = new(group.name, group.sceneName, group.gameObject, group.fsmType, group.persistentBool, group.sprite, group.extra, group.groupWalls);
+                        BreakableWallLocation groupLocation = new(group.name, group.sceneName, group.gameObject, group.fsmType, group.alsoDestroy, group.x, group.y, group.groupWalls);
                         
                         // By default, the items are defined with empty group walls, so they need to be redefined.
                         Finder.UndefineCustomItem(group.name);
@@ -370,6 +400,11 @@ namespace BreakableWallRandomizer.Manager
             int diveCost = Math.Max((int)(diveCount * BWR_Manager.Settings.MylaShop.MaximumCost), 1);
             int diveTolerance = Math.Min((int)(diveCost * BWR_Manager.Settings.MylaShop.Tolerance), diveCount - diveCost);
             pi.Setters.Add(new RandomizerCore.TermValue(lm.GetTermStrict("Broken_Dive_Floors"), -diveTolerance));
+
+            int collapserCount = BWR_Manager.TotalCollapsers;
+            int collapserCost = Math.Max((int)(collapserCount * BWR_Manager.Settings.MylaShop.MaximumCost), 1);
+            int collapserTolerance = Math.Min((int)(collapserCost * BWR_Manager.Settings.MylaShop.Tolerance), collapserCount - collapserCost);
+            pi.Setters.Add(new RandomizerCore.TermValue(lm.GetTermStrict("Broken_Collapsers"), -collapserTolerance));
         }
 
         private static void AddFileSettings(LogArguments args, TextWriter tw)
