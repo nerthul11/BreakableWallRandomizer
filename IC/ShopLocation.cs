@@ -22,7 +22,8 @@ namespace BreakableWallRandomizer.IC
                 Displayers = [
                     new WallCostSupport("Wall", "mine_break_wall_03_0deg"), 
                     new WallCostSupport("Plank", "wood_plank_02"), 
-                    new WallCostSupport("Dive", "break_floor_glass")
+                    new WallCostSupport("Dive", "break_floor_glass"),
+                    new WallCostSupport("Collapser", "collapser_short_0deg")
                 ]
             };
             tags = [ShopTag()];

@@ -15,9 +15,10 @@ namespace BreakableWallRandomizer.IC
         public string persistentBool;
         public string sprite;
         public List<string> alsoDestroy;
-        public bool exit;
+        public bool extra;
         public string group;
         public List<CondensedWallObject> groupWalls;
+        public string pinType;
         public string logic;
         public Dictionary<string, string> logicOverrides;
         public Dictionary<string, Dictionary<string, string>> logicSubstitutions;

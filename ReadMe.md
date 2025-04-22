@@ -10,8 +10,9 @@ Currently randomizes:
  - Any wall with FSM breakable_wall_v2 or "FSM". These are labeled as "Wall", and are mostly placed in the map hiding scenes or items.
  - Any wall with FSM break_floor. These are labaled as "Plank", and are mostly placed in the map as shortcut openers. They always have a wooden plank in the map.
  - Any floor broken by Dive / Descending Dark in the game. These are labeled as "Dive Floor".
+ - Any collapsing floor, like the trap floors in Deepnest/Beast's Den. These are labeled as "Collapser".
 
-Hitting a wall won't result in it breaking; you'll get an item instead. In order to break the wall, you'll need to find its corresponding item. If you find a wall's item but haven't collected its check yet, it will become translucent and you will be able to walk through it, but still hit it.
+Hitting a wall won't result in it breaking; you'll get an item instead. In order to break the wall, you'll need to find its corresponding item. If you find a wall's item but haven't collected its check yet, it will become translucent and you will be able to walk through it, but still hit it. As for collapsers, if the item's obtained, they will be hittable from below and it will break them.
 
 There are, however, a few exceptions to the rule:
 
@@ -27,10 +28,9 @@ This setting will include the two walls in the Hall of Gods (both leading to the
 - Wooden Planks --> Boolean to define if one-way walls should be randomized or not.
 - Rock Walls --> Boolean to define if standard walls should be randomized or not.
 - Dive Floors --> Boolean to define if Dive breakable floors should be randomized or not.
-- King's Pass --> Boolean to define if King's Pass should be included or not.
 - Godhome Walls --> Boolean to define if Godhome walls are included or not.
-- Exclude walls that might softlock --> This will remove some objects from the pool to avoid forcing benchwarps.
-- Group nearby walls --> Transforms a couple breakables into one single check. Obtaining the check makes them all passable, and destroying any of them will grant a single location item. For groups with multiple wall types (mainly Walls + Planks), the vanilla objects will behave normally, and only the randomized objects will follow the group rules.
+- Extra Walls --> Boolean to define if additional, small and numerous walls like Ancestral Mound Planks or Hive pillars should be included or not.
+- Group Walls --> Transforms all breakable items in all rooms into a single check. For groups with multiple wall types (mainly Walls + Planks or Walls + Collapsers), the vanilla objects will behave normally, and only the randomized objects will follow the group rules.
 
 ### Myla Shop
 - Enabled --> Boolean to define if the Wall Shop should appear or not.
@@ -51,4 +51,4 @@ This setting will include the two walls in the Hall of Gods (both leading to the
 
 ## Acknowledgements
 
-This is but the tweaking of an already amazing existing mod. So all acknowledgements go to the original author **Bentechy66**, but I'd like to make a special mention to **glowstonetrees** for their Logic Fix injector, which resolved several logic complications the mod originally had and made its reimplementation a lot easier.
+This is but the tweaking of an already amazing existing mod. So all acknowledgements go to the original author **Bentechy66**, but I'd like to make a special mention to **glowstonetrees** for their Logic Fix injector, which resolved several logic complications the mod originally had and made its reimplementation a lot easier. Also shoutout to **Roma 337** who has been collaborating with the Collapser definition, interop with Bench Rando and some other logic issues reporting.

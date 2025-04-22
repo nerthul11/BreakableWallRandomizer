@@ -15,13 +15,13 @@ namespace BreakableWallRandomizer.Modules
         public static BreakableWallModule Instance => ItemChangerMod.Modules.GetOrAdd<BreakableWallModule>();
         public List<CondensedWallObject> vanillaWalls = [];
         // Module properties
-        public List<string> UnlockedBreakableWalls = [];
+        public List<string> UnlockedBreakables = [];
         public List<string> UnlockedWalls = [];
         public List<string> UnlockedPlanks = [];
         public List<string> UnlockedDives = [];
+        public List<string> UnlockedCollapsers = [];
         public override void Initialize() 
         {
-            BreakableWallRandomizer.Instance.Log("BWR Module Init");
             On.HutongGames.PlayMaker.Actions.ActivateGameObject.OnEnter += VanillaTracker;
             if (ItemChangerMod.Modules?.Get<InventoryTracker>() is InventoryTracker it)
                 it.OnGenerateFocusDesc += AddWallProgress;
@@ -39,6 +39,7 @@ namespace BreakableWallRandomizer.Modules
             builder.AppendLine($"Broken walls: {UnlockedWalls.Count}");
             builder.AppendLine($"Broken planks: {UnlockedPlanks.Count}");
             builder.AppendLine($"Broken dives: {UnlockedDives.Count}");
+            builder.AppendLine($"Broken collapsers: {UnlockedCollapsers.Count}");
         }
 
         private void VanillaTracker(On.HutongGames.PlayMaker.Actions.ActivateGameObject.orig_OnEnter orig, HutongGames.PlayMaker.Actions.ActivateGameObject self)
@@ -66,6 +67,8 @@ namespace BreakableWallRandomizer.Modules
                         UnlockedPlanks.Add(wall.name);
                     if (wallType == "Dive_Floor" && !UnlockedDives.Contains(wall.name))
                         UnlockedDives.Add(wall.name);
+                    if (wallType == "Collapser" && !UnlockedCollapsers.Contains(wall.name))
+                        UnlockedCollapsers.Add(wall.name);
                 }
                 CompletedChallenges();
             }
@@ -137,9 +140,11 @@ namespace BreakableWallRandomizer.Modules
                 completed.Add("All Planks broken.");
             if (UnlockedDives.Count == BWR_Manager.TotalDives)
                 completed.Add("All Dive Floors broken.");
-            if (UnlockedBreakableWalls.Count >= (BWR_Manager.TotalWalls + BWR_Manager.TotalPlanks + BWR_Manager.TotalDives) / 2)
+            if (UnlockedCollapsers.Count == BWR_Manager.TotalCollapsers)
+                completed.Add("All Collapsers broken.");
+            if (UnlockedBreakables.Count >= (BWR_Manager.TotalWalls + BWR_Manager.TotalPlanks + BWR_Manager.TotalDives + BWR_Manager.TotalCollapsers) / 2)
                 completed.Add("Half broken breakables.");
-            if (UnlockedBreakableWalls.Count == BWR_Manager.TotalWalls + BWR_Manager.TotalPlanks + BWR_Manager.TotalDives)
+            if (UnlockedBreakables.Count == BWR_Manager.TotalWalls + BWR_Manager.TotalPlanks + BWR_Manager.TotalDives + BWR_Manager.TotalCollapsers)
                 completed.Add("All broken breakables.");
 
             OnAchievedBreakableWall?.Invoke(completed);
