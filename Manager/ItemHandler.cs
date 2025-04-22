@@ -273,9 +273,9 @@ namespace BreakableWallRandomizer.Manager
             
             using Stream stream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Data.BreakableWallObjects.json");
             StreamReader reader = new(stream);
-            List<AbstractWallItem> wallList = jsonSerializer.Deserialize<List<AbstractWallItem>>(new JsonTextReader(reader));
+            List<WallObject> wallList = jsonSerializer.Deserialize<List<WallObject>>(new JsonTextReader(reader));
             bool useGroups = BWR_Manager.Settings.GroupWalls;
-            foreach (AbstractWallItem wall in wallList)
+            foreach (WallObject wall in wallList)
             {
                 bool include = wall.name.StartsWith("Wall") && BWR_Manager.Settings.RockWalls;
                 include |= wall.name.StartsWith("Plank") && BWR_Manager.Settings.WoodenPlanks;
@@ -283,7 +283,7 @@ namespace BreakableWallRandomizer.Manager
                 include |= wall.name.StartsWith("Collapser") && BWR_Manager.Settings.Collapsers;
                 if (wall.name.Contains("White_Palace") || wall.name.Contains("Path_of_Pain"))
                     include = include && rb.gs.LongLocationSettings.WhitePalaceRando != LongLocationSettings.WPSetting.ExcludeWhitePalace;
-                include = include && (!wall.extra || BWR_Manager.Settings.ExtraWalls);
+                //include = include && (!wall.extra || BWR_Manager.Settings.ExtraWalls);
                 include = include && (!(wall.name.Contains("Godhome") || wall.name.Contains("Eternal_Ordeal")) || BWR_Manager.Settings.GodhomeWalls);
 
                 if (include)
@@ -323,11 +323,11 @@ namespace BreakableWallRandomizer.Manager
             {
                 using Stream gstream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Data.WallGroups.json");
                 StreamReader greader = new(gstream);
-                List<AbstractWallItem> groupList = jsonSerializer.Deserialize<List<AbstractWallItem>>(new JsonTextReader(greader));
+                List<WallObject> groupList = jsonSerializer.Deserialize<List<WallObject>>(new JsonTextReader(greader));
 
-                foreach (AbstractWallItem group in groupList)
+                foreach (WallObject group in groupList)
                 {
-                    foreach (AbstractWallItem wall in wallList)
+                    foreach (WallObject wall in wallList)
                     {
                         if (wall.group == group.name.Split('-')[1])
                         {
@@ -337,7 +337,7 @@ namespace BreakableWallRandomizer.Manager
                             include |= wall.name.StartsWith("Collapser") && BWR_Manager.Settings.Collapsers;
                             if (wall.name.Contains("White_Palace") || wall.name.Contains("Path_of_Pain"))
                                 include = include && rb.gs.LongLocationSettings.WhitePalaceRando != LongLocationSettings.WPSetting.ExcludeWhitePalace;
-                            include = include && (!wall.extra || BWR_Manager.Settings.ExtraWalls);
+                            //include = include && (!wall.extra || BWR_Manager.Settings.ExtraWalls);
                             if (include)
                                 group.groupWalls.Add(new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType));
                         }

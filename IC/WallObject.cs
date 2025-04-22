@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
-using BreakableWallRandomizer.Modules;
-using ItemChanger;
-using UnityEngine;
 
 namespace BreakableWallRandomizer.IC
 {
     [Serializable]
-    public class AbstractWallItem : AbstractItem
+    public class WallObject
     {
+        public string name;
         public string gameObject;
         public string fsmType;
         public string sceneName;
@@ -19,28 +17,11 @@ namespace BreakableWallRandomizer.IC
         public List<string> alsoDestroy;
         public bool extra;
         public string group;
-        public string pinType;
         public List<CondensedWallObject> groupWalls;
+        public string pinType;
         public string logic;
         public Dictionary<string, string> logicOverrides;
         public Dictionary<string, Dictionary<string, string>> logicSubstitutions;
-
-        public override void GiveImmediate(GiveInfo info)
-        {
-            foreach (CondensedWallObject wall in groupWalls)
-            {
-                if (!BreakableWallModule.Instance.UnlockedBreakables.Contains(wall.name))
-                    BreakableWallModule.Instance.UnlockedBreakables.Add(wall.name);
-                if (GameManager.instance.sceneName == wall.sceneName)
-                    GameObject.Find(wall.gameObject).LocateMyFSM(wall.fsmType).SetState("BreakSameScene");
-            }
-            if (!BreakableWallModule.Instance.UnlockedBreakables.Contains(name))
-                    BreakableWallModule.Instance.UnlockedBreakables.Add(name);
-            if (persistentBool != "")
-                PlayerData.instance.SetBool(persistentBool, true);
-            
-            BreakableWallModule.Instance.CompletedChallenges();  
-        }
     }
 
     [Serializable]

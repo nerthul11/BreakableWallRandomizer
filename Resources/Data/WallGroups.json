@@ -83,17 +83,46 @@
         "group": "Village_Walls",
         "logic": "((Deepnest_41 + (Plank-Village_Middle | WINGS + (SIDESLASH | UPSLASH | LEFTCLAW) | RIGHTCLAW | LEFTCLAW + ENEMYPOGOS)) | Deepnest_41[left2] | (Deepnest_41[right1] + (WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | BACKGROUNDPOGOS) | ANYCLAW + Plank-Village_Upper))) + (LANTERN | NOLANTERN?FALSE | DARKROOMS)",
         "logicOverrides": {
-            "Deepnest_41": "(LANTERN | NOLANTERN?NONE | DARKROOMS) + (Deepnest_41[left1] + Plank-Village_Middle | Deepnest_41[left2] + (FULLCLAW | WINGS + (RIGHTCLAW | LEFTCLAW + ENEMYPOGOS | DIFFICULTSKIPS + COMPLEXSKIPS + ENEMYPOGOS + ANYDASH + $SHADESKIP)) + Plank-Village_Lower | Deepnest_41[right1] + ((WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | BACKGROUNDPOGOS) | LEFTCLAW) + Plank-Village_Middle | Plank-Village_Upper))"
+            "Deepnest_41": "(LANTERN | NOLANTERN?NONE | DARKROOMS) + (Deepnest_41[left1] + Collapser-Distant_Village_Fall + Plank-Village_Middle | Deepnest_41[left2] + (FULLCLAW | WINGS + (RIGHTCLAW | LEFTCLAW + ENEMYPOGOS | DIFFICULTSKIPS + COMPLEXSKIPS + ENEMYPOGOS + ANYDASH + $SHADESKIP)) + Plank-Village_Lower | Deepnest_41[right1] + (WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | BACKGROUNDPOGOS) | LEFTCLAW) + (Collapser-Distant_Village_Fall + Plank-Village_Middle | Collapser-Distant_Village_Path + Plank-Village_Upper))",
+            "Deepnest_41[left2]": "ORIG | (LANTERN | NOLANTERN?NONE | DARKROOMS) + Deepnest_41 + Plank-Village_Lower"
         },
         "logicSubstitutions": {
             "Deepnest_41[left1]": {
-                "Deepnest_41[left2]": "(Deepnest_41[left2] + Plank-Village_Upper + Plank-Village_Lower)"
+                "Deepnest_41[left2]": "(Deepnest_41[left2] + (Plank-Village_Upper + Collapser-Distant_Village_Path | Plank-Village_Middle + Collapser-Distant_Village_Fall) + Plank-Village_Lower)"
             },
             "Deepnest_41[right1]": {
-                "Deepnest_41[left1]": "(Deepnest_41[left1] + Plank-Village_Upper + Plank-Village_Middle)",
-                "Deepnest_41[left2]": "(Deepnest_41[left2] + Plank-Village_Upper + Plank-Village_Lower)"
+                "Deepnest_41[left1]": "(Deepnest_41[left1] + (Collapser-Distant_Village_Fall + Plank-Village_Upper + Plank-Village_Middle | Collapser-Distant_Village_Path))",
+                "Deepnest_41[left2]": "(Deepnest_41[left2] + (Plank-Village_Upper | Collapser-Distant_Village_Fall + Collapser-Distant_Village_Path + Plank-Village_Middle) + Plank-Village_Lower)"
             }
         }
+    },
+    {
+        "name": "Collapser_Group-Den_Walls",
+        "gameObject": "",
+        "fsmType": "",
+        "sceneName": "Deepnest_Spider_Town",
+        "x": 0.35,
+        "y": 0.6,
+        "persistentBool": "",
+        "sprite": "rest_grounds_break_wall_0deg",
+        "alsoDestroy": [],
+        "exit": false,
+        "groupWalls": [],
+        "group": "Den_Walls",
+        "logic": "Beast_Den_Trap_Entrance | Beast_Den_Secret_Entrance + (LEFTCLAW | RIGHTCLAW + WINGS)",
+        "logicOverrides": {
+            "Geo_Rock-Beast's_Den_Above_Trilobite": "(Beast_Den_Trap_Entrance + Collapser-Beast's_Den_Grub + (FULLCLAW | WINGS + ANYCLAW | WINGS + COMPLEXSKIPS + $SHADESKIP[2HITS] | $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[2,before:ROOMSOUL]) + (COMBAT[Left_Devout] | Collapser-Beast's_Den_Shortcut) | Beast_Den_Secret_Entrance + (LEFTCLAW | RIGHTCLAW + WINGS))",
+            "Geo_Rock-Beast's_Den_After_Herrah": "(Beast_Den_Trap_Entrance + Collapser-Beast's_Den_Grub + (FULLCLAW | ENEMYPOGOS + $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[3,before:ROOMSOUL]) | Beast_Den_Secret_Entrance + (LEFTCLAW + WINGS + (Herrah | COMBAT[Right_Devout]) | RIGHTCLAW + WINGS + Collapser-Beast's_Den_Herrah | FULLCLAW + (Herrah | COMBAT[Right_Devout] | Collapser-Beast's_Den_Herrah)))",
+            "Geo_Rock-Beast's_Den_Below_Herrah": "(Beast_Den_Trap_Entrance + Collapser-Beast's_Den_Grub + (FULLCLAW | ENEMYPOGOS + $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[3,before:ROOMSOUL]) | Beast_Den_Secret_Entrance + (LEFTCLAW | RIGHTCLAW + WINGS))",
+            "Geo_Rock-Beast's_Den_Below_Egg": "(Beast_Den_Trap_Entrance + (WINGS + ANYCLAW | (FULLCLAW | WINGS + COMPLEXSKIPS + $SHADESKIP[2HITS] | $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[2,before:ROOMSOUL]) + (COMBAT[Left_Devout] | Collapser-Beast's_Den_Shortcut)) | Beast_Den_Secret_Entrance + Collapser-Beast's_Den_Grub + (LEFTCLAW | RIGHTCLAW + WINGS)) + (Collapser-Beast's_Den_Above_Egg | Collapser-Beast's_Den_Below_Egg)",
+            "Geo_Rock-Beast's_Den_Bottom": "(Beast_Den_Trap_Entrance | Beast_Den_Secret_Entrance + Collapser-Beast's_Den_Grub + (LEFTCLAW | RIGHTCLAW + WINGS)) + Collapser-Beast's_Den_Bottom",
+            "Grub-Beast's_Den": "(Beast_Den_Trap_Entrance + Collapser-Beast's_Den_Grub + (FULLCLAW | WINGS + ANYCLAW | WINGS + COMPLEXSKIPS + $SHADESKIP[2HITS] | $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[2,before:ROOMSOUL]) + (COMBAT[Left_Devout] | Collapser-Beast's_Den_Shortcut) | Beast_Den_Secret_Entrance + (LEFTCLAW | RIGHTCLAW + WINGS))",
+            "Hallownest_Seal-Beast's_Den": "(Beast_Den_Trap_Entrance | Beast_Den_Secret_Entrance + Collapser-Beast's_Den_Grub + (LEFTCLAW | RIGHTCLAW + WINGS)) + Collapser-Beast's_Den_Seal",
+            "Herrah": "(Beast_Den_Trap_Entrance + Collapser-Beast's_Den_Grub + ((Herrah | Collapser-Beast's_Den_Herrah) + COMBAT[Left_Devout] | COMBAT[Any_Devout]) + (FULLCLAW | ENEMYPOGOS + $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[3,before:ROOMSOUL]) | Beast_Den_Secret_Entrance + (LEFTCLAW + WINGS + (Herrah | COMBAT[Right_Devout]) | RIGHTCLAW + WINGS + Collapser-Beast's_Den_Herrah | FULLCLAW + (Herrah | COMBAT[Right_Devout] | Collapser-Beast's_Den_Herrah))) + DREAMNAIL",
+            "Rancid_Egg-Beast's_Den": "(Beast_Den_Trap_Entrance + (WINGS + ANYCLAW | (FULLCLAW | WINGS + COMPLEXSKIPS + $SHADESKIP[2HITS] | $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[2,before:ROOMSOUL]) + (COMBAT[Left_Devout] | Collapser-Beast's_Den_Shortcut)) | Beast_Den_Secret_Entrance + Collapser-Beast's_Den_Grub + (LEFTCLAW | RIGHTCLAW + WINGS)) + (Collapser-Beast's_Den_Above_Egg | Collapser-Beast's_Den_Below_Egg)",
+            "Soul_Totem-Beast's_Den": "(Beast_Den_Trap_Entrance + (LEFTCLAW | WINGS | RIGHTCLAW + Collapser-Beast's_Den_Shortcut) | Beast_Den_Secret_Entrance + Collapser-Beast's_Den_Grub + (LEFTCLAW | RIGHTCLAW + WINGS)) + COMBAT[Left_Devout]"
+        },
+        "logicSubstitutions": {}
     },
     {
         "name": "Wall_Group-Catacombs_Walls",
@@ -111,11 +140,11 @@
         "logic": "RestingGrounds_10[left1] | RestingGrounds_10[top1] | RestingGrounds_10[top2]",
         "logicOverrides": {
             "Geo_Rock-Resting_Grounds_Catacombs_Left": "(RestingGrounds_10[top1] + Collapser-Catacombs_Entrance | RestingGrounds_10) + (Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2 | Collapser-Catacombs_Geo | Collapser-Catacombs_Seal + Wall-Catacombs_Seal)",
-            "Geo_Rock-Resting_Grounds_Catacombs_Left_Dupe": "(RestingGrounds_10[top1] + Collapser-Catacombs_Entrance | RestingGrounds_10) + (Wall-Catacombs_Left_1 | Wall-Catacombs_Left_2 + (Collapser-Catacombs_Geo | Collapser-Catacombs_Seal + Wall-Catacombs_Seal)",
+            "Geo_Rock-Resting_Grounds_Catacombs_Left_Dupe": "(RestingGrounds_10[top1] + Collapser-Catacombs_Entrance | RestingGrounds_10) + (Wall-Catacombs_Left_1 | Wall-Catacombs_Left_2 + (Collapser-Catacombs_Geo | Collapser-Catacombs_Seal + Wall-Catacombs_Seal))",
             "Hallownest_Seal-Resting_Grounds_Catacombs": "(RestingGrounds_10[top1] + Collapser-Catacombs_Entrance | RestingGrounds_10) + ((Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2 | Collapser-Catacombs_Geo) + Wall-Catacombs_Seal | Collapser-Catacombs_Seal)",
             "Opened_Resting_Grounds_Catacombs_Wall": "Plank-Catacombs_Elevator",
             "RestingGrounds_10[left1]": "RestingGrounds_10[left1] | (ORIG) + Plank-Catacombs_Elevator",
-            "RestingGrounds_10[top1]": "(RestingGrounds_10[top1] + (ANYCLAW | WINGS + PRECISEMOVEMENT) | (ORIG) + Collapser-Catacombs_Entrance",
+            "RestingGrounds_10[top1]": "RestingGrounds_10[top1] + (ANYCLAW | WINGS + PRECISEMOVEMENT) | (ORIG) + Collapser-Catacombs_Entrance",
             "RestingGrounds_10[top2]": "RestingGrounds_10[top2] + (LEFTCLAW | WINGS + PRECISEMOVEMENT | RIGHTCLAW) | (ORIG) + Wall-Catacombs_Right_1 + Wall-Catacombs_Grey_Mourner",
             "Wanderer's_Journal-Resting_Grounds_Catacombs": "(ORIG) + Wall-Catacombs_Right_2"
         },

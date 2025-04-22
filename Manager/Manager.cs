@@ -15,7 +15,7 @@ namespace BreakableWallRandomizer.Manager
         public static int TotalWalls = 56;
         public static int TotalPlanks = 51;
         public static int TotalDives = 45;
-        public static int TotalCollapsers = 30;
+        public static int TotalCollapsers = 58;
         public static void Hook()
         {
             DefineObjects();
@@ -34,9 +34,9 @@ namespace BreakableWallRandomizer.Manager
             
             using Stream stream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Data.BreakableWallObjects.json");
             StreamReader reader = new(stream);
-            List<AbstractWallItem> wallList = jsonSerializer.Deserialize<List<AbstractWallItem>>(new JsonTextReader(reader));
+            List<WallObject> wallList = jsonSerializer.Deserialize<List<WallObject>>(new JsonTextReader(reader));
 
-            foreach (AbstractWallItem wall in wallList)
+            foreach (WallObject wall in wallList)
             {
                 BreakableWallItem wallItem = new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType, wall.persistentBool, wall.sprite, wall.extra, wall.groupWalls);
                 BreakableWallLocation wallLocation = new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType, wall.alsoDestroy, wall.x, wall.y, wall.groupWalls, wall.pinType);
@@ -46,9 +46,9 @@ namespace BreakableWallRandomizer.Manager
 
             using Stream gstream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Data.WallGroups.json");
             StreamReader greader = new(gstream);
-            List<AbstractWallItem> groupList = jsonSerializer.Deserialize<List<AbstractWallItem>>(new JsonTextReader(greader));
+            List<WallObject> groupList = jsonSerializer.Deserialize<List<WallObject>>(new JsonTextReader(greader));
 
-            foreach (AbstractWallItem group in groupList)
+            foreach (WallObject group in groupList)
             {
                 BreakableWallItem groupItem = new(group.name, group.sceneName, group.gameObject, group.fsmType, group.persistentBool, group.sprite, group.extra, group.groupWalls);
                 BreakableWallLocation groupLocation = new(group.name, group.sceneName, group.gameObject, group.fsmType, group.alsoDestroy, group.x, group.y, group.groupWalls);

@@ -350,7 +350,7 @@
         "group": "",
         "logic": "Crossroads_08",
         "logicOverrides": {
-            "Geo_Rock-Crossroads_Aspid_Arena_Hidden": "(ORIG) + (Wall-Crossroads_Aspid_Arena | (OBSCURESKIPS + (RIGHTCLAW | $SHADESKIP) + WINGS)"
+            "Geo_Rock-Crossroads_Aspid_Arena_Hidden": "(ORIG) + (Wall-Crossroads_Aspid_Arena | (OBSCURESKIPS + (RIGHTCLAW | $SHADESKIP) + WINGS))"
         },
         "logicSubstitutions": {}
     },
@@ -707,7 +707,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Deepnest_39[door1] | (Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39[right1] + (FULLCLAW | WINGS + ANYCLAW | ENEMYPOGOS + (ANYCLAW | WINGS))) + ((LANTERN | (NOLANTERN ? FALSE)) | DARKROOMS) + (RIGHTDASH | WINGS | RIGHTCLAW + (RIGHTSUPERDASH | SPELLAIRSTALL + $CASTSPELL[1,1,before:ROOMSOUL,after:ROOMSOUL]))",
+        "logic": "Deepnest_39[door1] | (Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39[right1] + (FULLCLAW | WINGS + ANYCLAW | ENEMYPOGOS + (ANYCLAW | WINGS))) + (LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (RIGHTDASH | WINGS | RIGHTCLAW + (RIGHTSUPERDASH | SPELLAIRSTALL + $CASTSPELL[1,1,before:ROOMSOUL,after:ROOMSOUL]))",
         "logicOverrides": {
             "Deepnest_39[door1]": "Deepnest_39[door1] | (ORIG) + Wall-Weaver's_Den_Entrance"
         },
@@ -730,7 +730,7 @@
         }
     },
     {
-        "name": "Plank-Deepnest_Dark_Room_Egg",
+        "name": "Plank-Dark_Deepnest_Egg",
         "gameObject": "/One Way Wall (1)",
         "fsmType": "break_floor",
         "sceneName": "Deepnest_39",
@@ -742,14 +742,14 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "(LANTERN | NOLANTERN?FALSE | DARKROOMS) + (Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39[door1] + Wall-Weaver's_Den_Entrance | Deepnest_39[right1] + (LEFTCLAW | WINGS + RIGHTCLAW | (WINGS | RIGHTCLAW) + ENEMYPOGOS | Plank-Deepnest_Dark_Room_Egg))",
+        "logic": "(LANTERN | NOLANTERN?FALSE | DARKROOMS) + (Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39[door1] + Wall-Weaver's_Den_Entrance | Deepnest_39[right1] + (LEFTCLAW | WINGS + RIGHTCLAW | (WINGS | RIGHTCLAW) + ENEMYPOGOS | Plank-Dark_Deepnest_Egg))",
         "logicOverrides": {
-            "Rancid_Egg-Dark_Deepnest": "(ORIG) | Deepnest_39[right1] + Plank-Deepnest_Dark_Room_Egg"
+            "Rancid_Egg-Dark_Deepnest": "(ORIG) | Deepnest_39[right1] + Plank-Dark_Deepnest_Egg + (LANTERN | NOLANTERN?FALSE | DARKROOMS)"
         },
         "logicSubstitutions": {}
     },
     {
-        "name": "Plank-Deepnest_Dark_Room_Geo",
+        "name": "Plank-Dark_Deepnest_Geo",
         "gameObject": "/One Way Wall",
         "fsmType": "break_floor",
         "sceneName": "Deepnest_39",
@@ -761,7 +761,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "((LANTERN | (NOLANTERN ? FALSE)) | DARKROOMS) + ((Deepnest_39 + (RIGHTCLAW | (WINGS + (LEFTCLAW | ENEMYPOGOS)))) | Deepnest_39[top1] | (Deepnest_39[left1] + (RIGHTCLAW | WINGS | RIGHTDASH)))",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + ((Deepnest_39 + (RIGHTCLAW | (WINGS + (LEFTCLAW | ENEMYPOGOS)))) | Deepnest_39[top1] | (Deepnest_39[left1] + (RIGHTCLAW | WINGS | RIGHTDASH))) + (Plank-Dark_Deepnest_Geo | Collapser-Dark_Deepnest_Geo)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1213,8 +1213,8 @@
         ],
         "extra": false,
         "groupWalls": [],
-        "group": "",
-        "logic": "Deepnest_Spider_Town[left1] + WINGS + (RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH | FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM) + $CASTSPELL[1]) | LEFTCLAW + RIGHTSUPERDASH) | Bench-Beast's_Den + ANYCLAW + Plank-Den_Secret_Entrance | Deepnest_Spider_Town[left1] + Trap_Bench?TRUE + (WINGS + ANYCLAW | FULLCLAW + (COMBAT[Left_Devout] | COMBAT[Any_Devout])) + Plank-Den_Secret_Entrance",
+        "group": "Den_Walls",
+        "logic": "Deepnest_Spider_Town[left1] + WINGS + (RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH | FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM) + $CASTSPELL[1]) | LEFTCLAW + RIGHTSUPERDASH) | Bench-Beast's_Den + ANYCLAW + Plank-Den_Secret_Entrance | Beast_Den_Trap_Entrance + (WINGS + ANYCLAW | FULLCLAW + COMBAT[Left_Devout]) + Plank-Den_Secret_Entrance",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1465,9 +1465,13 @@
         "group": "",
         "logic": "(Fungus2_20[left1] + Wall-Deepnest_Fungal | Fungus2_20[right1]) + (Plank-Spore_Shroom | (RIGHTCLAW | WINGS) + (ACID | RIGHTDASH | (LEFTCLAW + RIGHTSUPERDASH)) + ANYCLAW)",
         "logicOverrides": {
-            "Spore_Shroom": "(ORIG) | ((Fungus2_20[left1] + Wall-Deepnest_Fungal | Fungus2_20[right1]) + Plank-Spore_Shroom)"
+            "Spore_Shroom": "(ORIG) | ((Fungus2_20[left1] | Fungus2_20[right1]) + Plank-Spore_Shroom)"
         },
-        "logicSubstitutions": {}
+        "logicSubstitutions": {
+            "Spore_Shroom": {
+                "Fungus2_20[left1]": "(Fungus2_20[left1] + Wall-Deepnest_Fungal)"
+            }
+        }
     },
     {
         "name": "Wall-Deepnest_Fungal",
@@ -1485,8 +1489,7 @@
         "logic": "Deepnest_01[right1] + Wall-Deepnest_Fungal | (Deepnest_01[left1] | Deepnest_01[bot1]) + Plank-Deepnest_Exit | Fungus2_20",
         "logicOverrides": {
             "Fungus2_20[left1]": "Fungus2_20[left1] | (ORIG) + Wall-Deepnest_Fungal",
-            "Deepnest_01[right1]": "Deepnest_01[right1] | (ORIG) + Wall-Deepnest_Fungal",
-            "Spore_Shroom": "Fungus2_20 + ((ORIG) | (RIGHTCLAW | WINGS) + (ACID | RIGHTDASH | LEFTCLAW + RIGHTSUPERDASH) | WINGS + (RIGHTCLAW | SPELLAIRSTALL + $CASTSPELL[1,before:AREASOUL] | COMPLEXSKIPS + OBSCURESKIPS + $SHADESKIP + DAMAGEBOOSTS + $TAKEDAMAGE | OBSCURESKIPS + PRECISEMOVEMENT | $SHRIEKPOGO[2,before:AREASOUL]) | Plank-Spore_Shroom)"
+            "Deepnest_01[right1]": "Deepnest_01[right1] | (ORIG) + Wall-Deepnest_Fungal"
         },
         "logicSubstitutions": {
             "Fungus2_20": {
@@ -1724,7 +1727,7 @@
         "group": "",
         "logic": "(Mines_33[left1] | Mines_33[right1]) + (LANTERN | NOLANTERN?NONE) | Mines_33[right1] + Plank-Peak_Toll + DARKROOMS",
         "logicOverrides": {
-            "Geo_Rock-Crystal_Peak_Entrance": "(ORIG) | Mines_33[right1] + Plank-Peak_Toll + (DARKROOMS | (LANTERN | (NOLANTERN ? FALSE)))"
+            "Geo_Rock-Crystal_Peak_Entrance": "(ORIG) | Mines_33[right1] + Plank-Peak_Toll + (LANTERN | (NOLANTERN ? FALSE) | DARKROOMS)"
         },
         "logicSubstitutions": {}
     },
@@ -1900,7 +1903,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "(RestingGrounds_10 | RestingGrounds_10[top2] + Wall-Catacombs_Grey_Mourner) + (ANYCLAW | WINGS) + UPWALLBREAK + Wall-Catacombs_Right_2",
+        "logic": "RestingGrounds_10 + (ANYCLAW | WINGS) + UPWALLBREAK + Wall-Catacombs_Right_2",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2297,7 +2300,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Cliffs_04[right1] + (DARKROOMS | (LANTERN | (NOLANTERN ? FALSE))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logic": "Cliffs_04[right1] + (LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
         "logicOverrides": {
             "Broke_Cliffs_Dark_Room_Quake_Floor": "Dive_Floor-Joni"
         },
@@ -3233,6 +3236,26 @@
         "logicSubstitutions": {}
     },
     {
+        "name": "Collapser-Deepnest_Trap_Entrance",
+        "gameObject": "Fungus Break Floor",
+        "fsmType": "Break",
+        "sceneName": "Deepnest_01",
+        "x": 32.86,
+        "y": 18.24,
+        "persistentBool": "deepnestBridgeCollapsed",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "",
+        "pinType": "World",
+        "logic": "Deepnest_01",
+        "logicOverrides": {
+            "Deepnest_01[bot2]": "ORIG + Collapser-Deepnest_Trap_Entrance"
+        },
+        "logicSubstitutions": {}
+    },
+    {
         "name": "Collapser-Glowing_Womb_Tunnel",
         "gameObject": "/Collapser Small",
         "fsmType": "collapse small",
@@ -3335,8 +3358,8 @@
         "gameObject": "/Collapser Small",
         "fsmType": "collapse small",
         "sceneName": "Deepnest_14",
-        "x": 0.0,
-        "y": 0.0,
+        "x": 69.3,
+        "y": 9.24,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
         "alsoDestroy": [],
@@ -3507,9 +3530,10 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Deepnest_33[top1]",
+        "logic": "Deepnest_33[top1] | (Deepnest_33[top2] | Deepnest_33[bot1]) + Collapser-Deepnest_Zote",
         "logicOverrides": {
-            "King's_Idol-Deepnest": "ORIG | (Deepnest_33[top2] | Deepnest_33[bot1]) + Collapser-Deepnest_Zote"
+            "King's_Idol-Deepnest": "ORIG | (Deepnest_33[top2] | Deepnest_33[bot1]) + Collapser-Deepnest_Zote",
+            "Rescued_Deepnest_Zote": "ORIG | (Deepnest_33[top2] | Deepnest_33[bot1]) + Collapser-Deepnest_Zote"
         },
         "logicSubstitutions": {}
     },
@@ -3531,36 +3555,220 @@
         "logicSubstitutions": {}
     },
     {
-        "name": "Collapser-Dark_Deepnest_Trap",
+        "name": "Collapser-Dark_Deepnest_Egg_Trap_Left",
         "gameObject": "/Collapser Small",
         "fsmType": "collapse small",
         "sceneName": "Deepnest_39",
-        "x": 0.0,
-        "y": 0.0,
+        "x": 40.66,
+        "y": 22.4,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
         "alsoDestroy": [],
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Deepnest_39",
+        "pinType": "World",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39[door1] + Wall-Weaver's_Den_Entrance | (Deepnest_39[right1] + (LEFTCLAW | WINGS + RIGHTCLAW | WINGS + ENEMYPOGOS | RIGHTCLAW + ENEMYPOGOS)))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Dark_Deepnest_Egg_Trap_Middle",
+        "gameObject": "/Collapser Small (1)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_39",
+        "x": 69.51,
+        "y": 22.4,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "",
+        "pinType": "World",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39[door1] + Wall-Weaver's_Den_Entrance | (Deepnest_39[right1] + (LEFTCLAW | WINGS + RIGHTCLAW | WINGS + ENEMYPOGOS | RIGHTCLAW + ENEMYPOGOS)))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Dark_Deepnest_Egg_Trap_Right",
+        "gameObject": "/Collapser Small (2)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_39",
+        "x": 77.7,
+        "y": 22.4,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "",
+        "pinType": "World",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39[door1] + Wall-Weaver's_Den_Entrance | (Deepnest_39[right1] + (LEFTCLAW | WINGS + RIGHTCLAW | WINGS + ENEMYPOGOS | RIGHTCLAW + ENEMYPOGOS)))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Dark_Deepnest_Root_Trap_Right",
+        "gameObject": "/Collapser Small (3)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_39",
+        "x": 49.38,
+        "y": 35.11,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "",
+        "pinType": "World",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39 + (LEFTCLAW | WINGS + RIGHTCLAW | WINGS + ENEMYPOGOS | RIGHTCLAW + ENEMYPOGOS))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Dark_Deepnest_Root_Trap_Middle",
+        "gameObject": "/Collapser Small (4)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_39",
+        "x": 36.4,
+        "y": 35.11,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "",
+        "pinType": "World",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39 + (LEFTCLAW | WINGS + RIGHTCLAW | WINGS + ENEMYPOGOS | RIGHTCLAW + ENEMYPOGOS))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Dark_Deepnest_Root_Trap_Left",
+        "gameObject": "/Collapser Small (5)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_39",
+        "x": 27.38,
+        "y": 35.11,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "",
+        "pinType": "World",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39 + (LEFTCLAW | WINGS + RIGHTCLAW | WINGS + ENEMYPOGOS | RIGHTCLAW + ENEMYPOGOS))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Dark_Deepnest_Geo",
+        "gameObject": "/Collapser Small (6)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_39",
+        "x": 75.24,
+        "y": 60.14,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "",
+        "pinType": "World",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_39[top1] | Deepnest_39[left1] + (RIGHTCLAW | WINGS | RIGHTDASH) | Deepnest_39 + (RIGHTCLAW | WINGS + (LEFTCLAW | ENEMYPOGOS)))",
+        "logicOverrides": {
+            "Geo_Rock-Dark_Deepnest_Above_Grub_1": "ORIG + (Collapser-Dark_Deepnest_Geo | Plank-Dark_Deepnest_Geo)"
+        },
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Dark_Deepnest_Grub",
+        "gameObject": "/Collapser Small (7)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_39",
+        "x": 115.3,
+        "y": 45.21,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "",
+        "pinType": "World",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_39 + (RIGHTCLAW | WINGS + (LEFTCLAW | ENEMYPOGOS)) | Deepnest_39[top1] | Deepnest_39[left1] + (RIGHTCLAW | WINGS | RIGHTDASH))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Distant_Village_Fall",
+        "gameObject": "/Collapser Small",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_41",
+        "x": 40.66,
+        "y": 87.11,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "",
+        "pinType": "World",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_41[left1] | Deepnest_41[right1] + Collapser-Distant_Village_Path + (LANTERN | NOLANTERN?FALSE | DARKROOMS) + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + ENEMYPOGOS) | Deepnest_41)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Distant_Village_Right_Trap",
+        "gameObject": "/Collapser Small (1)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_41",
+        "x": 69.51,
+        "y": 85.09,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "",
+        "pinType": "World",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + Deepnest_41",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
     {
         "name": "Collapser-Distant_Village_Path",
-        "gameObject": "/Collapser Small",
+        "gameObject": "/Collapser Small (2)",
         "fsmType": "collapse small",
         "sceneName": "Deepnest_41",
-        "x": -1.38,
-        "y": -0.1,
+        "x": 47.24,
+        "y": 98.16,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
         "alsoDestroy": [],
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Deepnest_41",
+        "pinType": "World",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + Deepnest_41",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Distant_Village_Final_Trap",
+        "gameObject": "/Collapser Small (4)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_41",
+        "x": 13.56,
+        "y": 88.21,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "",
+        "pinType": "World",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_41[left1] | Deepnest_41[right1] + Collapser-Distant_Village_Path + (LANTERN | NOLANTERN?FALSE | DARKROOMS) + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + ENEMYPOGOS) | Deepnest_41)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3569,32 +3777,185 @@
         "gameObject": "/Collapser Small",
         "fsmType": "collapse small",
         "sceneName": "Deepnest_45_v02",
-        "x": -1.38,
-        "y": -0.1,
+        "x": 1.8,
+        "y": 0.75,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
         "alsoDestroy": [],
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Deepnest_45_v02[left1] + (RIGHTCLAW | LEFTCLAW + WINGS | WINGS + ENEMYPOGOS | $SHRIEKPOGO[3,before:AREASOUL])",
+        "logic": "Deepnest_45_v02[left1] + (SPIKETUNNELS | LEFTDASH) + (LANTERN | (NOLANTERN ? FALSE) | DARKROOMS)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
     {
-        "name": "Collapser-Beast's_Den",
-        "gameObject": "/Collapser Small",
+        "name": "Collapser-Beast's_Den_Above_Egg_Trap",
+        "gameObject": "Collapser Small (3)",
         "fsmType": "collapse small",
         "sceneName": "Deepnest_Spider_Town",
-        "x": -1.38,
-        "y": -0.1,
+        "x": 0.95,
+        "y": 0.9,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
         "alsoDestroy": [],
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Deepnest_Spider_Town[left1]",
+        "logic": "(Beast_Den_Trap_Entrance + (WINGS + ANYCLAW | (FULLCLAW | WINGS + COMPLEXSKIPS + $SHADESKIP[2HITS] | $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[2,before:ROOMSOUL]) + (COMBAT[Left_Devout] | Collapser-Beast's_Den_Shortcut)) | Beast_Den_Secret_Entrance + Collapser-Beast's_Den_Grub + (LEFTCLAW | RIGHTCLAW + WINGS))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Beast's_Den_Herrah",
+        "gameObject": "Collapser Small (4)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_Spider_Town",
+        "x": 0.65,
+        "y": 1.2,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "Den_Walls",
+        "logic": "(Beast_Den_Trap_Entrance + Collapser-Beast's_Den_Grub + (FULLCLAW | ENEMYPOGOS + $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[3,before:ROOMSOUL]) | Beast_Den_Secret_Entrance + (LEFTCLAW + WINGS + (Herrah | COMBAT[Right_Devout]) | RIGHTCLAW + WINGS + Collapser-Beast's_Den_Herrah | FULLCLAW + (Herrah | COMBAT[Right_Devout] | Collapser-Beast's_Den_Herrah))) + (Herrah | COMBAT[Right_Devout] | Collapser-Beast's_Den_Herrah)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Beast's_Den_Grub_Trap",
+        "gameObject": "Collapser Small (5)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_Spider_Town",
+        "x": 0.95,
+        "y": 1.2,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "Den_Walls",
+        "logic": "(Beast_Den_Trap_Entrance + Collapser-Beast's_Den_Grub + (FULLCLAW | WINGS + ANYCLAW | WINGS + COMPLEXSKIPS + $SHADESKIP[2HITS] | $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[2,before:ROOMSOUL]) + (COMBAT[Left_Devout] | Collapser-Beast's_Den_Shortcut) | Beast_Den_Secret_Entrance + (LEFTCLAW | RIGHTCLAW + WINGS))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Beast's_Den_Seal",
+        "gameObject": "Collapser Small (6)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_Spider_Town",
+        "x": 0.65,
+        "y": 0.6,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "Den_Walls",
+        "logic": "Beast_Den_Trap_Entrance",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Beast's_Den_Bottom",
+        "gameObject": "Collapser Small (7)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_Spider_Town",
+        "x": 0.95,
+        "y": 0.6,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "Den_Walls",
+        "logic": "Beast_Den_Trap_Entrance",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Beast's_Den_Shortcut",
+        "gameObject": "Collapser Small (8)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_Spider_Town",
+        "x": 1.25,
+        "y": 0.6,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "Den_Walls",
+        "logic": "(Beast_Den_Trap_Entrance + (COMBAT[Left_Devout] + (LEFTCLAW | WINGS) | RIGHTCLAW + Collapser-Beast's_Den_Shortcut) | Beast_Den_Secret_Entrance + Collapser-Beast's_Den_Grub + (LEFTCLAW | RIGHTCLAW + WINGS))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Beast's_Den_Above_Egg",
+        "gameObject": "Collapser Small (9)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_Spider_Town",
+        "x": 0.95,
+        "y": 0.9,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "Den_Walls",
+        "logic": "(Beast_Den_Trap_Entrance + (WINGS + ANYCLAW | (FULLCLAW | WINGS + COMPLEXSKIPS + $SHADESKIP[2HITS] | $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[2,before:ROOMSOUL]) + (COMBAT[Left_Devout] | Collapser-Beast's_Den_Shortcut)) | Beast_Den_Secret_Entrance + Collapser-Beast's_Den_Grub + (LEFTCLAW | RIGHTCLAW + WINGS))",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Beast's_Den_Below_Egg",
+        "gameObject": "Collapser Small (10)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_Spider_Town",
+        "x": 1.25,
+        "y": 0.9,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "Den_Walls",
+        "logic": "(Beast_Den_Trap_Entrance + (WINGS + ANYCLAW | (FULLCLAW | WINGS + COMPLEXSKIPS + $SHADESKIP[2HITS] | $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[2,before:ROOMSOUL]) + (COMBAT[Left_Devout] | Collapser-Beast's_Den_Shortcut)) | Beast_Den_Secret_Entrance + Collapser-Beast's_Den_Grub + (LEFTCLAW | RIGHTCLAW + WINGS)) + (Collapser-Beast's_Den_Above_Egg | Collapser-Beast's_Den_Below_Egg)",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Beast's_Den_Bench",
+        "gameObject": "Collapser Small (11)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_Spider_Town",
+        "x": -0.25,
+        "y": 0.6,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "Den_Walls",
+        "logic": "Beast_Den_Secret_Entrance",
+        "logicOverrides": {},
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Collapser-Beast's_Den_Grub",
+        "gameObject": "Collapser Small (12)",
+        "fsmType": "collapse small",
+        "sceneName": "Deepnest_Spider_Town",
+        "x": 1.25,
+        "y": 1.2,
+        "persistentBool": "",
+        "sprite": "collapser_short_0deg",
+        "alsoDestroy": [],
+        "extra": false,
+        "groupWalls": [],
+        "group": "Den_Walls",
+        "logic": "(Beast_Den_Trap_Entrance + (FULLCLAW | WINGS + ANYCLAW | WINGS + COMPLEXSKIPS + $SHADESKIP[2HITS] | $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[2,before:ROOMSOUL]) + (COMBAT[Left_Devout] | Collapser-Beast's_Den_Shortcut) | Beast_Den_Secret_Entrance + Collapser-Beast's_Den_Grub + (LEFTCLAW | RIGHTCLAW + WINGS))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3629,17 +3990,18 @@
         "gameObject": "/Collapser Small",
         "fsmType": "collapse small",
         "sceneName": "Fungus2_23",
-        "x": -1.38,
-        "y": -0.1,
+        "x": 68.34,
+        "y": 55.08,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
         "alsoDestroy": [],
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Fungus2_23[right1] + (FULLCLAW + FULLDASH | FULLCLAW + FULLSUPERDASH | LEFTCLAW + WINGS | RIGHTCLAW + ENEMYPOGOS + WINGS | COMPLEXSKIPS + FULLCLAW + $SHADESKIP[2HITS] + SPELLAIRSTALL + $CASTSPELL[1,1,before:ROOMSOUL] + $TAKEDAMAGE[2])",
+        "pinType": "World",
+        "logic": "Fungus2_23[right1] + ((ANYCLAW | WINGS + Collapser-Bretta) | (FULLCLAW + FULLDASH | FULLCLAW + FULLSUPERDASH | LEFTCLAW + WINGS | RIGHTCLAW + ENEMYPOGOS + WINGS | COMPLEXSKIPS + FULLCLAW + $SHADESKIP[2HITS] + SPELLAIRSTALL + $CASTSPELL[1,1,before:ROOMSOUL] + $TAKEDAMAGE[2]))",
         "logicOverrides": {
-            "Rescued_Bretta": "ORIG | Fungus2_23[right1] + WINGS + Collapser-Bretta"
+            "Rescued_Bretta": "ORIG | Fungus2_23[right1] + (ANYCLAW | WINGS) + Collapser-Bretta"
         },
         "logicSubstitutions": {}
     },
@@ -3661,7 +4023,14 @@
         "logicOverrides": {
             "Mask_Shard-Deepnest": "ORIG | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left | Collapser-Deepnest_Mask_Shard_Right) + (WINGS | ANYCLAW)"
         },
-        "logicSubstitutions": {}
+        "logicSubstitutions": {
+            "Fungus2_25[right1]": {
+                "Fungus2_25[top2]": "Fungus2_25[top2] + (Collapser-Deepnest_Mask_Shard_Left | Collapser-Deepnest_Mask_Shard_Right)"
+            },
+            "Fungus2_25[top1]": {
+                "Fungus2_25[top2]": "Fungus2_25[top2] + (Collapser-Deepnest_Mask_Shard_Left | Collapser-Deepnest_Mask_Shard_Right)"
+            }
+        }
     },
     {
         "name": "Collapser-Deepnest_Mask_Shard_Right",
@@ -3686,17 +4055,18 @@
         "gameObject": "/Collapser Small",
         "fsmType": "collapse small",
         "sceneName": "Fungus3_28",
-        "x": -1.38,
-        "y": -0.1,
+        "x": 29.16,
+        "y": 11.01,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
         "alsoDestroy": [],
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Fungus3_28[right1] + (ACID | ACIDSKIPS + (LEFTSKIPACID | WINGS + LEFTDASH | WINGS + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[before:ROOMSOUL] | DAMAGEBOOSTS + $TAKEDAMAGE + FULLCLAW + FULLDASH))",
+        "pinType": "World",
+        "logic": "Fungus3_28[right1] + (ACID | ACIDSKIPS + (LEFTSKIPACID | WINGS + LEFTDASH | WINGS + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[before:ROOMSOUL] | DAMAGEBOOSTS + $TAKEDAMAGE + FULLCLAW + FULLDASH)) + (Collapser-Fog_Canyon_Charm_Notch | (RIGHTCLAW | LEFTCLAW + WINGS | LEFTCLAW + ENEMYPOGOS))",
         "logicOverrides": {
-            "Charm_Notch-Fog_Canyon": "ORIG | Fungus3_28[right1] + (ACID | ACIDSKIPS + (LEFTSKIPACID | WINGS + LEFTDASH | WINGS + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[before:ROOMSOUL] | DAMAGEBOOSTS + $TAKEDAMAGE + FULLCLAW + FULLDASH))"
+            "Charm_Notch-Fog_Canyon": "ORIG | Fungus3_28[right1] + Collapser-Fog_Canyon_Charm_Notch + (ACID | ACIDSKIPS + (LEFTSKIPACID | WINGS + LEFTDASH | WINGS + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[before:ROOMSOUL] | DAMAGEBOOSTS + $TAKEDAMAGE + FULLCLAW + FULLDASH))"
         },
         "logicSubstitutions": {}
     },
@@ -3705,15 +4075,16 @@
         "gameObject": "/Collapser Small",
         "fsmType": "collapse small",
         "sceneName": "GG_Pipeway",
-        "x": -1.38,
-        "y": -0.1,
+        "x": 0.9,
+        "y": 20.62,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
         "alsoDestroy": [],
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "GG_Pipeway[left1]",
+        "pinType": "World",
+        "logic": "(GG_Pipeway[left1] | GG_Pipeway[right1]) + (ANYCLAW | WINGS)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3722,20 +4093,27 @@
         "gameObject": "/Collapser Small",
         "fsmType": "collapse small",
         "sceneName": "Mines_06",
-        "x": -1.38,
-        "y": -0.1,
+        "x": 138.42,
+        "y": 20.2,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
         "alsoDestroy": [],
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Mines_06[left1]",
-        "logicOverrides": {},
-        "logicSubstitutions": {}
+        "pinType": "World",
+        "logic": "Mines_06[left1] | Mines_06[right1] + (Collapser-Deep_Focus | (LEFTSUPERDASH + (ANYCLAW | WINGS) | WINGS + LEFTDASH + BACKGROUNDPOGOS + (LEFTCLAW | PRECISEMOVEMENT | DAMAGEBOOSTS + $TAKEDAMAGE | SPELLAIRSTALL + $CASTSPELL) | BACKGROUNDPOGOS + $SHRIEKPOGO[1,2,NOSTALL]))",
+        "logicOverrides": {
+            "Mines_06[left1]": "(ORIG) | Mines_06[right1] + Collapser-Deep_Focus + (BACKGROUNDPOGOS + (WINGS | RIGHTCLAW) | WINGS + ANYCLAW)"
+        },
+        "logicSubstitutions": {
+            "Mines_06[right1]": {
+                "Mines_06[left1]": "Mines_06[left1] + (Collapser-Deep_Focus | BACKGROUNDPOGOS + (RIGHTSUPERDASH + WINGS | RIGHTSUPERDASH + (RIGHTDASH + RIGHTCLAW | (DIFFICULTSKIPS + DANGEROUSSKIPS + DAMAGEBOOSTS + $TAKEDAMAGE + (RIGHTDASH | RIGHTCLAW))) | WINGS + (RIGHTDASH | DANGEROUSSKIPS + SPELLAIRSTALL + $CASTSPELL[2,before:ROOMSOUL] + RIGHTCLAW)))"
+            }
+        }
     },
     {
-        "name": "Collapser-Catacombs_Trap",
+        "name": "Collapser-Catacombs_Trap_Left",
         "gameObject": "/Collapser Small",
         "fsmType": "collapse small",
         "sceneName": "RestingGrounds_10",
@@ -3748,12 +4126,12 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "RestingGrounds_10",
+        "logic": "RestingGrounds_10 + Wall-Catacombs_Right_2",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
     {
-        "name": "Collapser-Catacombs_Trap_1",
+        "name": "Collapser-Catacombs_Trap_Middle",
         "gameObject": "/Collapser Small (1)",
         "fsmType": "collapse small",
         "sceneName": "RestingGrounds_10",
@@ -3766,12 +4144,12 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "RestingGrounds_10",
+        "logic": "RestingGrounds_10 + Wall-Catacombs_Right_2",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
     {
-        "name": "Collapser-Catacombs_Trap_2",
+        "name": "Collapser-Catacombs_Trap_Right",
         "gameObject": "/Collapser Small (2)",
         "fsmType": "collapse small",
         "sceneName": "RestingGrounds_10",
@@ -3784,12 +4162,12 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "RestingGrounds_10",
+        "logic": "RestingGrounds_10 + Wall-Catacombs_Right_2",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
     {
-        "name": "Collapser-Catacombs_Trap_3",
+        "name": "Collapser-Catacombs_Trap_Right_Dupe",
         "gameObject": "/Collapser Small (3)",
         "fsmType": "collapse small",
         "sceneName": "RestingGrounds_10",
@@ -3802,12 +4180,12 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "RestingGrounds_10",
+        "logic": "RestingGrounds_10 + Wall-Catacombs_Right_2",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
     {
-        "name": "Collapser-Catacombs_Trap_4",
+        "name": "Collapser-Catacombs_Trap_Final",
         "gameObject": "/Collapser Small (4)",
         "fsmType": "collapse small",
         "sceneName": "RestingGrounds_10",
@@ -3820,7 +4198,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "RestingGrounds_10",
+        "logic": "RestingGrounds_10 + Wall-Catacombs_Right_2 + (ANYCLAW | WINGS)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3838,7 +4216,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "RestingGrounds_10",
+        "logic": "RestingGrounds_10[top1] | (RestingGrounds_10[left1] + Plank-Catacombs_Elevator | RestingGrounds_10) + Collapser-Catacombs_Entrance",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3856,7 +4234,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "RestingGrounds_10",
+        "logic": "(RestingGrounds_10 | RestingGrounds_10[top1] + Collapser-Catacombs_Entrance | RestingGrounds_10[left1] + Plank-Catacombs_Elevator) + ((Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2 | Collapser-Catacombs_Geo) + Wall-Catacombs_Seal | Collapser-Catacombs_Seal)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3874,7 +4252,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "RestingGrounds_10",
+        "logic": "(RestingGrounds_10 | RestingGrounds_10[top1] + Collapser-Catacombs_Entrance | RestingGrounds_10[left1] + Plank-Catacombs_Elevator) + (Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2 | Collapser-Catacombs_Geo | Wall-Catacombs_Seal + Collapser-Catacombs_Seal)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3883,15 +4261,16 @@
         "gameObject": "/Collapser Small",
         "fsmType": "collapse small",
         "sceneName": "Waterways_09",
-        "x": -1.38,
-        "y": -0.1,
+        "x": 43.21,
+        "y": 28.94,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
         "alsoDestroy": [],
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "(Waterways_09[left1] | Waterways_09[right1]) | $StartLocation[West Waterways]",
+        "pinType": "World",
+        "logic": "(Waterways_09[left1] | Waterways_09[right1]) + (LEFTCLAW | ((LEFTDASH | LEFTSUPERDASH) + RIGHTCLAW) | WINGS) | $StartLocation[West Waterways]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3900,16 +4279,19 @@
         "gameObject": "/Collapser Small",
         "fsmType": "collapse small",
         "sceneName": "Waterways_14",
-        "x": -1.38,
-        "y": -0.1,
+        "x": 238.19,
+        "y": 35.72,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
         "alsoDestroy": [],
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Waterways_14[bot1]",
-        "logicOverrides": {},
+        "pinType": "World",
+        "logic": "Waterways_14[bot1] + (ANYCLAW | $SHRIEKPOGO[2]) + ((RIGHTSUPERDASH | ACID) + (RIGHTCLAW | LEFTCLAW + WINGS) + Collapser-Waterways_Tram_Grub | RIGHTSUPERDASH + WINGS + (RIGHTCLAW | LEFTCLAW + ENEMYPOGOS | ENEMYPOGOS + DANGEROUSSKIPS) | ACID + (RIGHTCLAW | LEFTCLAW + WINGS | WINGS + ENEMYPOGOS + DANGEROUSSKIPS)) | Waterways_14[bot2] + (RIGHTCLAW | WINGS + LEFTCLAW | $SHRIEKPOGO[before:ITEMSOUL]) + ((RIGHTCLAW | WINGS + LEFTCLAW) + Collapser-Waterways_Tram_Grub | LEFTSUPERDASH + WINGS + (RIGHTCLAW | LEFTCLAW + ENEMYPOGOS | ENEMYPOGOS + DANGEROUSSKIPS) | ACID + (RIGHTCLAW | LEFTCLAW + WINGS | WINGS + ENEMYPOGOS + DANGEROUSSKIPS))",
+        "logicOverrides": {
+            "Grub-Waterways_Requires_Tram": "ORIG | Waterways_14[bot1] + (ANYCLAW | $SHRIEKPOGO[2]) + (RIGHTSUPERDASH | ACID) + (RIGHTCLAW | LEFTCLAW + WINGS) + Collapser-Waterways_Tram_Grub | Waterways_14[bot2] + (RIGHTCLAW | WINGS + LEFTCLAW) + Collapser-Waterways_Tram_Grub"
+        },
         "logicSubstitutions": {}
     },
     {
@@ -3917,15 +4299,15 @@
         "gameObject": "/Collapser Small",
         "fsmType": "collapse small",
         "sceneName": "White_Palace_02",
-        "x": -1.38,
-        "y": -0.1,
+        "x": 0.5,
+        "y": -0.9,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
         "alsoDestroy": [],
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "White_Palace_02[left1] + LEFTCLAW + WINGS",
+        "logic": "White_Palace_02[left1] + LEFTCLAW + (WINGS | RIGHTSUPERDASH + Collapser-White_Palace_Entrance_Orb)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3934,16 +4316,18 @@
         "gameObject": "/Collapser Small",
         "fsmType": "collapse small",
         "sceneName": "White_Palace_17",
-        "x": -1.38,
-        "y": -0.1,
+        "x": 0.8,
+        "y": -0.9,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
         "alsoDestroy": [],
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "White_Palace_17[bot1] + (FULLDASH + FULLCLAW + WINGS | FULLDASH + (LEFTCLAW + $SHRIEKPOGO[1,2,NOSTALL] | RIGHTCLAW + $SHRIEKPOGO[2,NOSTALL])) | White_Palace_17[right1] + Lever-Path_of_Pain + Collapser-Path_of_Pain + WINGS + ANYCLAW",
-        "logicOverrides": {},
+        "logic": "White_Palace_17[bot1] + (FULLDASH + FULLCLAW + WINGS | FULLDASH + (LEFTCLAW + $SHRIEKPOGO[1,2,NOSTALL] | RIGHTCLAW + $SHRIEKPOGO[2,NOSTALL]) | ANYCLAW + WINGS + Collapser-Path_of_Pain) | White_Palace_17[right1] + Lever-Path_of_Pain + Collapser-Path_of_Pain + WINGS + ANYCLAW",
+        "logicOverrides": {
+            "Lever-Path_of_Pain": "(ORIG) | (White_Palace_17[bot1] | White_Palace_17[right1] + Lever-Path_of_Pain) + ANYCLAW + WINGS + Collapser-Path_of_Pain"
+        },
         "logicSubstitutions": {}
     }
 ]

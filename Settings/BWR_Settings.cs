@@ -7,7 +7,8 @@ namespace BreakableWallRandomizer.Settings
         public bool RockWalls = false;
         public bool DiveFloors = false;
         public bool Collapsers = false;
-        public bool ExtraWalls = false;
+        // Extra Walls are not yet implemented on this patch
+        //public bool ExtraWalls = false;
         public bool GodhomeWalls = false;
 
         [MenuChanger.Attributes.MenuRange(-1, 99)]

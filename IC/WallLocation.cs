@@ -144,6 +144,8 @@ namespace BreakableWallRandomizer.IC
 
                     "Detect Quake" => "Detect",
 
+                    "Break" => "Detect",
+
                     _ => "Idle"
                 };
 
@@ -195,7 +197,7 @@ namespace BreakableWallRandomizer.IC
                     var newCollider = fsm.gameObject.AddComponent<BoxCollider2D>();
                     newCollider.offset = collider.offset;
                     newCollider.size = collider.size;
-                } else if (wall.fsmType == "Detect Quake")
+                } else if (wall.fsmType == "Detect Quake" || wall.name == "Collapser-Deepnest_Entrance_Trap")
                 {
                     fsm.ChangeTransition("Init", "ACTIVATE", "Detect");
                 } else if (wall.fsmType == "collapse small")
@@ -234,7 +236,8 @@ namespace BreakableWallRandomizer.IC
                 {
                     if (wall.fsmType == "collapse small")
                         fsm.AddFirstAction("Idle", new SetTriggerCollider());
-                    MakeWallPassable(fsm.gameObject, Placement.AllObtained());
+                    if (wall.fsmType != "Break")
+                        MakeWallPassable(fsm.gameObject, Placement.AllObtained());
                 }
                 else
                 // If we didn't unlock this door yet...
@@ -303,6 +306,8 @@ namespace BreakableWallRandomizer.IC
                     fsm.ChangeTransition("Quake Hit", "FINISHED", "GiveItem");
                 } else if (wall.fsmType == "collapse small") {
                     fsm.ChangeTransition("Split", "FINISHED", "GiveItem");
+                } else if (wall.fsmType == "Break") {
+                    fsm.ChangeTransition("Check", "FINISHED", "GiveItem");
                 }
             }
         }

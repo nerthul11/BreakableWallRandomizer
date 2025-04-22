@@ -7,6 +7,11 @@
         }
     },
     {
+        "name": "Beast_Den_Altar",
+        "logicOverride": "Deepnest_Spider_Town[left1] + (Beast_Den_Secret_Entrance + (LEFTCLAW | RIGHTCLAW + WINGS) | Beast_Den_Trap_Entrance + FALSE) + COMBAT[Right_Devout]",
+        "logicSubstitutions": {}
+    },
+    {
         "name": "Bench-Crystallized_Mound",
         "logicOverride": "(ORIG) | Mines_35[left1] + (UPWALLBREAK | (((LEFTSUPERDASH + RIGHTCLAW) | (RIGHTSUPERDASH + LEFTCLAW + WINGS + BACKGROUNDPOGOS)) + OBSCURESKIPS)) + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW | WINGS | (FIREBALLSKIPS + (LEFTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Plank-Crystallized_Mound + (RIGHTCLAW | WINGS + LEFTCLAW + BACKGROUNDPOGOS)",
         "logicSubstitutions": {}
@@ -14,6 +19,11 @@
     {
         "name": "Bench-Mimic's_Secret",
         "logicOverride": "(ORIG) | Mines_35[left1] + (UPWALLBREAK | (((LEFTSUPERDASH + RIGHTCLAW) | (RIGHTSUPERDASH + LEFTCLAW + WINGS + BACKGROUNDPOGOS)) + OBSCURESKIPS)) + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW | WINGS | (FIREBALLSKIPS + (LEFTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Plank-Crystallized_Mound + (RIGHTCLAW | WINGS + LEFTCLAW + BACKGROUNDPOGOS)",
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Bretta_Key",
+        "logicOverride": "(ORIG) | Fungus2_23[right1] + (ANYCLAW | WINGS + Collapser-Bretta)",
         "logicSubstitutions": {}
     },
     {

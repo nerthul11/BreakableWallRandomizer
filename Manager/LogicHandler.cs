@@ -30,14 +30,17 @@ namespace BreakableWallRandomizer.Manager
             {
                 var start = startDefs[startName];
                 // Mawlek start with collapsers requires Shade Skips.
-                if (start.SceneName == SceneNames.Crossroads_36)
-                    startDefs[startName] = start with {RandoLogic = collapsers ? "SHADESKIPS" : "ANY"};
-                // Blue Lake start has two reachable checks (Salubra). Remove unless transition rando is on.
-                if (start.SceneName == SceneNames.Crossroads_50)
-                    startDefs[startName] = start with {RandoLogic = planks ? "MAPAREARANDO | FULLAREARANDO | ROOMRANDO" : "ANY"};
-                // East Fog Canyon is a terrible spot with only 1 available check four rooms away. Remove unless Room Rando.
+                if (start.SceneName == SceneNames.Crossroads_36 && collapsers)
+                    startDefs[startName] = start with {RandoLogic = "SHADESKIPS"};
+                // Blue Lake start with Planks has two reachable checks (Salubra). Remove unless transition rando is on.
+                if (start.SceneName == SceneNames.Crossroads_50 && planks)
+                    startDefs[startName] = start with {RandoLogic = "MAPAREARANDO | FULLAREARANDO | ROOMRANDO"};
+                // East Fog Canyon with Planks is a terrible spot with only 1 available check four rooms away. Remove unless Room Rando.
                 if (start.SceneName == SceneNames.Fungus3_25)
-                    startDefs[startName] = start with {RandoLogic = planks ? "ROOMRANDO" : "ANY"};
+                    startDefs[startName] = start with {RandoLogic = "ROOMRANDO"};
+                // West Waterways is impossible if Collapsers are on
+                if (start.SceneName == SceneNames.Waterways_09 && collapsers)
+                    startDefs[startName] = start with {RandoLogic = "FALSE"};
             }
         }
         private static void ApplyLogic(GenerationSettings gs, LogicManagerBuilder lmb)
@@ -53,7 +56,7 @@ namespace BreakableWallRandomizer.Manager
             
             using Stream stream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Data.BreakableWallObjects.json");
             StreamReader reader = new(stream);
-            List<AbstractWallItem> wallList = jsonSerializer.Deserialize<List<AbstractWallItem>>(new JsonTextReader(reader));
+            List<WallObject> wallList = jsonSerializer.Deserialize<List<WallObject>>(new JsonTextReader(reader));
             
             lmb.GetOrAddTerm("Broken_Walls");
             lmb.GetOrAddTerm("Broken_Planks");
@@ -63,13 +66,13 @@ namespace BreakableWallRandomizer.Manager
             lmb.AddLogicDef(new("Myla_Shop", "(Crossroads_45[left1] | Crossroads_45[right1]) + LISTEN?TRUE"));
             
             // Iterate twice - once to define all items, next to add their logic defs.
-            foreach (AbstractWallItem wall in wallList)
+            foreach (WallObject wall in wallList)
             {
                 lmb.GetOrAddTerm(wall.name);
                 lmb.AddItem(new StringItemTemplate(wall.name, $"Broken_{wall.name.Split('-')[0]}s++ >> {wall.name}++"));
             }
 
-            foreach (AbstractWallItem wall in wallList)
+            foreach (WallObject wall in wallList)
             {
                 lmb.AddLogicDef(new(wall.name, wall.logic));
 
@@ -93,9 +96,9 @@ namespace BreakableWallRandomizer.Manager
 
             using Stream gstream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Data.WallGroups.json");
             StreamReader greader = new(gstream);
-            List<AbstractWallItem> groupList = jsonSerializer.Deserialize<List<AbstractWallItem>>(new JsonTextReader(greader));
+            List<WallObject> groupList = jsonSerializer.Deserialize<List<WallObject>>(new JsonTextReader(greader));
 
-            foreach (AbstractWallItem g in groupList)
+            foreach (WallObject g in groupList)
             {
                 string groupName = g.name.Split('-')[1];
                 string effect = "";
@@ -104,7 +107,7 @@ namespace BreakableWallRandomizer.Manager
                 int plankCount = 0;
                 int floorCount = 0;
                 int collapserCount = 0;
-                foreach (AbstractWallItem wall in wallList)
+                foreach (WallObject wall in wallList)
                 {
                     if (wall.group == groupName)
                     {

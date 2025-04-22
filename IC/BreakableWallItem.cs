@@ -9,8 +9,14 @@ using UnityEngine;
 namespace BreakableWallRandomizer.IC
 {
     [Serializable]
-    public class BreakableWallItem : AbstractWallItem
+    public class BreakableWallItem : AbstractItem
     {
+        public string gameObject;
+        public string fsmType;
+        public string sceneName;
+        public string persistentBool;
+        public bool extra;
+        public List<CondensedWallObject> groupWalls;
         public BreakableWallItem(
             string name, string sceneName, string gameObject, string fsmType, string persistentBool, 
             string sprite, bool extra, List<CondensedWallObject> groupWalls
@@ -64,7 +70,7 @@ namespace BreakableWallRandomizer.IC
             "Donate to Menderbug so that he can have a day off and break a wall instead of fixing one.",
             "This is probably the most important wall in the game.",
             "This is probably just another useless shortcut wall. Still...",
-            "Fun fact: this mod adds exactly 100 breakable wall checks, and even more dive floor checks!",
+            "Fun fact: this mod adds exactly X breakable wall checks, and even more dive floor checks!",
             "Yes, you might need to do four Pantheons to break that one wall.",
             "Writing shop descriptions for these things is kinda hard.",
             "Vague and non-specific description somehow tangentially related to walls goes here.",
@@ -87,23 +93,25 @@ namespace BreakableWallRandomizer.IC
             "There are 56 rock walls in the game.",
             "There are 51 wooden planks in the game.",
             "There are 45 dive floors in the game.",
-            "There are many collapsers in the game. Although King's Pass' one doesn't count.",
+            "There are many collapsers in the game.",
 
+            "Dearest Homothety (AKA \"Moth\") (AKA \"Randoman\"): I am writing to inform you of a glaring error in your randomization algorithm for the game Hollow Knight. Though I was assured that the item locations were random, and indeed was swayed by your very name, there was not one but TWO so-called \"vanilla\" locations. Please, I implore you, fix your game.",
             "I'll cast some Bad Magic to break this wall for ya -- for a small fee.",
             "Bring in a Sock Mower to mow down this wall. What even *is* a Sockmower?",
             "FlibberZERO this wall.",
             "You Onrywon't be seeing this wall any more after you purchase this product.",
             "You can thank Bentechy66 for this wall even being a thing by breaking it.",
-            "Broken walls are no longer Glowstonetrees. They're transparent.",
-            "El camino a Roma 337 muros tiene.",
-            "Nerthul thinks this one is a scam, but you'll buy it regardless.",
+            "Broken walls are no longer hard as a GlowSTONEtrees. They're transparent.",
+            "The road to Roma 337 walls contains.",
+            "Nerthul salutes you and encourages you to spend geo on this and hope for the best.",
 
             "Hot Loading Screen Tip: Walls which you've unlocked, but haven't checked, will be transparent. You can walk through them!",
             "Hot Loading Screen Tip: If Group Walls are enabled, you can walk through any walls in that room if the item's obtained.",
             "Hot Loading Screen Tip: If Group Walls are enabled, breaking any wall in that room will grant you the group's check.",
             "Hot Loading Screen Tip: Breakable Walls in the white palace follow the WP Rando setting.",
             "Hot Loading Screen Tip: There's a miner, looking for shiny stuff behind walls and will reward you for breaking them.",
-            "Hot Loading Screen Tip: They say a fluke thing who sells junk might accept your wlal credit card."
+            "Hot Loading Screen Tip: They say a fluke thing who sells junk might accept your wall credit card.",
+            "Hot Loading Screen Tip: Breakable Walls in the Abyssal Temple follow the Abyssal Temple Rando setting."
             };
 
             System.Random rng = new();
@@ -142,7 +150,20 @@ namespace BreakableWallRandomizer.IC
                 if (name.StartsWith("Collapser") && !BreakableWallModule.Instance.UnlockedCollapsers.Contains(name))
                     BreakableWallModule.Instance.UnlockedCollapsers.Add(name);
             }
-            base.GiveImmediate(info);
+
+            foreach (CondensedWallObject wall in groupWalls)
+            {
+                if (!BreakableWallModule.Instance.UnlockedBreakables.Contains(wall.name))
+                    BreakableWallModule.Instance.UnlockedBreakables.Add(wall.name);
+                if (GameManager.instance.sceneName == wall.sceneName)
+                    GameObject.Find(wall.gameObject).LocateMyFSM(wall.fsmType).SetState("BreakSameScene");
+            }
+            if (!BreakableWallModule.Instance.UnlockedBreakables.Contains(name))
+                    BreakableWallModule.Instance.UnlockedBreakables.Add(name);
+            if (persistentBool != "")
+                PlayerData.instance.SetBool(persistentBool, true);
+            
+            BreakableWallModule.Instance.CompletedChallenges();
         }
     }
 }

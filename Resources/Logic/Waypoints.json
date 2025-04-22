@@ -1,5 +1,15 @@
 [
     {
+        "name": "Beast_Den_Secret_Entrance",
+        "logic": "Deepnest_Spider_Town[left1] + (LEFTCLAW + Collapser-Beast's_Den_Bench | WINGS + (RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH | FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM) + $CASTSPELL[1]) | LEFTCLAW + RIGHTSUPERDASH) + Plank-Den_Secret_Entrance) | WARPSTARTTOBENCH + Bench-Beast's_Den/",
+        "Stateless": false
+    },
+    {
+        "name": "Beast_Den_Trap_Entrance",
+        "logic": "Deepnest_Spider_Town[left1] + Trap_Bench?TRUE | Beast_Den_Secret_Entrance + Collapser-Beast's_Den_Grub + (LEFTCLAW | RIGHTCLAW + WINGS)",
+        "Stateless": false
+    },
+    {
         "name": "Opened_Pantheon_1",
         "logic": "GG_Atrium + ((Defeated_Gruz_Mother + Defeated_False_Knight + Defeated_Massive_Moss_Charger + Defeated_Hornet_1 + Defeated_Gorb + Defeated_Dung_Defender + Defeated_Soul_Warrior + Defeated_Brooding_Mawlek) | (PANTHEON_KEY_1 ? FALSE))",
         "Stateless": true
