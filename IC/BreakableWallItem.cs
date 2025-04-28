@@ -149,6 +149,10 @@ namespace BreakableWallRandomizer.IC
                     BreakableWallModule.Instance.UnlockedDives.Add(name);
                 if (name.StartsWith("Collapser") && !BreakableWallModule.Instance.UnlockedCollapsers.Contains(name))
                     BreakableWallModule.Instance.UnlockedCollapsers.Add(name);
+
+                // If we're already in the same scene as the wall, break it.
+                    if (GameManager.instance.sceneName == sceneName)
+                        GameObject.Find(gameObject).LocateMyFSM(fsmType).SetState("BreakSameScene");
             }
 
             foreach (CondensedWallObject wall in groupWalls)
