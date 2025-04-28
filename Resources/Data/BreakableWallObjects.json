@@ -1197,7 +1197,17 @@
         "logicOverrides": {
             "Deepnest_East_14[door1]": "(ORIG) + Wall-420_Geo_Rock"
         },
-        "logicSubstitutions": {}
+        "logicSubstitutions": {
+            "Deepnest_East_14[left1]": {
+                "Deepnest_East_14[door1]": "Deepnest_East_14[door1] + Wall-420_Geo_Rock"
+            },
+            "Grub-Kingdom's_Edge_Oro": {
+                "Deepnest_East_14[door1]": "Deepnest_East_14[door1] + Wall-420_Geo_Rock"
+            },
+            "Rancid_Egg-Near_Quick_Slash": {
+                "Deepnest_East_14[door1]": "Deepnest_East_14[door1] + Wall-420_Geo_Rock"
+            }
+        }
     },
     {
         "name": "Plank-Den_Secret_Entrance",
@@ -3525,7 +3535,7 @@
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
         "alsoDestroy": [
-
+            "Secret Mask"
         ],
         "extra": false,
         "groupWalls": [],
@@ -3535,7 +3545,14 @@
             "King's_Idol-Deepnest": "ORIG | (Deepnest_33[top2] | Deepnest_33[bot1]) + Collapser-Deepnest_Zote",
             "Rescued_Deepnest_Zote": "ORIG | (Deepnest_33[top2] | Deepnest_33[bot1]) + Collapser-Deepnest_Zote"
         },
-        "logicSubstitutions": {}
+        "logicSubstitutions": {
+            "Deepnest_33[bot1]": {
+                "Deepnest_33[top1]": "Deepnest_33[top1] + Collapser-Deepnest_Zote"
+            },
+            "Deepnest_33[top2]": {
+                "Deepnest_33[top1]": "Deepnest_33[top1] + Collapser-Deepnest_Zote"
+            }
+        }
     },
     {
         "name": "Collapser-Deepnest_Garpede_Pogo_Room",
@@ -4019,7 +4036,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "Fungus2_25[top2] | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left | Collapser-Deepnest_Mask_Shard_Right + (WINGS | ANYCLAW))",
+        "logic": "Fungus2_25[top2] | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left | Collapser-Deepnest_Mask_Shard_Right) + (WINGS | ANYCLAW)",
         "logicOverrides": {
             "Mask_Shard-Deepnest": "ORIG | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left | Collapser-Deepnest_Mask_Shard_Right) + (WINGS | ANYCLAW)"
         },
@@ -4046,7 +4063,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "Fungus2_25[top2] | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left + (WINGS | ANYCLAW) | Collapser-Deepnest_Mask_Shard_Right)",
+        "logic": "Fungus2_25[top2] | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left | Collapser-Deepnest_Mask_Shard_Right) + (WINGS | ANYCLAW)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -4066,7 +4083,7 @@
         "pinType": "World",
         "logic": "Fungus3_28[right1] + (ACID | ACIDSKIPS + (LEFTSKIPACID | WINGS + LEFTDASH | WINGS + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[before:ROOMSOUL] | DAMAGEBOOSTS + $TAKEDAMAGE + FULLCLAW + FULLDASH)) + (Collapser-Fog_Canyon_Charm_Notch | (RIGHTCLAW | LEFTCLAW + WINGS | LEFTCLAW + ENEMYPOGOS))",
         "logicOverrides": {
-            "Charm_Notch-Fog_Canyon": "ORIG | Fungus3_28[right1] + Collapser-Fog_Canyon_Charm_Notch + (ACID | ACIDSKIPS + (LEFTSKIPACID | WINGS + LEFTDASH | WINGS + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[before:ROOMSOUL] | DAMAGEBOOSTS + $TAKEDAMAGE + FULLCLAW + FULLDASH))"
+            "Charm_Notch-Fog_Canyon": "ORIG | Fungus3_28[right1] + Collapser-Fog_Canyon_Charm_Notch + (ACID | ACIDSKIPS + (LEFTSKIPACID | WINGS + LEFTDASH | WINGS + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[before:ROOMSOUL] | DAMAGEBOOSTS + $TAKEDAMAGE + FULLCLAW + FULLDASH)) + (ANYCLAW | WINGS | ENEMYPOGOS)"
         },
         "logicSubstitutions": {}
     },
@@ -4102,9 +4119,9 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "Mines_06[left1] | Mines_06[right1] + (Collapser-Deep_Focus | (LEFTSUPERDASH + (ANYCLAW | WINGS) | WINGS + LEFTDASH + BACKGROUNDPOGOS + (LEFTCLAW | PRECISEMOVEMENT | DAMAGEBOOSTS + $TAKEDAMAGE | SPELLAIRSTALL + $CASTSPELL) | BACKGROUNDPOGOS + $SHRIEKPOGO[1,2,NOSTALL]))",
+        "logic": "Mines_06[left1] | Mines_06[right1] + (Collapser-Deep_Focus + (BACKGROUNDPOGOS + (WINGS | RIGHTCLAW | $SHADESKIP) | WINGS + ANYCLAW) | (LEFTSUPERDASH + (ANYCLAW | WINGS) | WINGS + LEFTDASH + BACKGROUNDPOGOS + (LEFTCLAW | PRECISEMOVEMENT | DAMAGEBOOSTS + $TAKEDAMAGE | SPELLAIRSTALL + $CASTSPELL) | BACKGROUNDPOGOS + $SHRIEKPOGO[1,2,NOSTALL]))",
         "logicOverrides": {
-            "Mines_06[left1]": "(ORIG) | Mines_06[right1] + Collapser-Deep_Focus + (BACKGROUNDPOGOS + (WINGS | RIGHTCLAW) | WINGS + ANYCLAW)"
+            "Mines_06[left1]": "(ORIG) | Mines_06[right1] + Collapser-Deep_Focus + (BACKGROUNDPOGOS + (WINGS | RIGHTCLAW | $SHADESKIP + SPELLAIRSTALL + DAMAGEBOOSTS + $TAKEDAMAGE[2]) | WINGS + ANYCLAW)"
         },
         "logicSubstitutions": {
             "Mines_06[right1]": {
@@ -4307,8 +4324,10 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "White_Palace_02[left1] + LEFTCLAW + (WINGS | RIGHTSUPERDASH + Collapser-White_Palace_Entrance_Orb)",
-        "logicOverrides": {},
+        "logic": "White_Palace_02[left1] + WINGS + ((LEFTCLAW | $SHRIEKPOGO[2,before:AREASOUL,NORIGHTSTALL]) + COMBAT[White_Palace_Arenas] | RIGHTCLAW + Collapser-White_Palace_Entrance_Orb)",
+        "logicOverrides": {
+            "Palace_Entrance_Lantern_Lit": "(ORIG) | White_Palace_02[left1] + WINGS + RIGHTCLAW + Collapser-White_Palace_Entrance_Orb"
+        },
         "logicSubstitutions": {}
     },
     {
