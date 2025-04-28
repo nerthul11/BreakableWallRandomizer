@@ -88,6 +88,11 @@
         }
     },
     {
+        "name": "Lever-Palace_Entrance_Orb",
+        "logicOverride": "(ORIG) | White_Palace_02[left1] + WINGS + RIGHTCLAW + Collapser-White_Palace_Entrance_Orb",
+        "logicSubstitutions": {}
+    },
+    {
         "name": "Mimic_Grub-Crystal_Peak",
         "logicOverride": "",
         "logicSubstitutions": {
@@ -131,7 +136,9 @@
     {
         "name": "Lever-Sanctum_West_Lower",
         "logicOverride": "Ruins1_32[right2] | (ORIG) + Dive_Floor-Inner_Sanctum_2 + (Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Bottom | Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + Lever-Sanctum_West_Lower)",
-        "logicSubstitutions": {}
+        "logicSubstitutions": {
+            "QUAKE": "Dive_Floor-Inner_Sanctum_1"
+        }
     },
     {
         "name": "Marissa",
@@ -160,6 +167,11 @@
         "logicSubstitutions": {
             "Bench-Crystallized_Mound": "Bench-Crystallized_Mound + (Plank-Crystallized_Mound + (LEFTDASH | WINGS | LEFTSUPERDASH | LEFTCLAW) | Dive_Floor-Crystallized_Mound + BACKGROUNDPOGOS + (LEFTCLAW | WINGS + RIGHTCLAW))"
         }
+    },
+    {
+        "name": "MoreDoors-Archive_Key-Ooma-Canyon_Charm_Notch",
+        "logicOverride": "Fungus3_28[right1] + (ACID | ACIDSKIPS + (LEFTSKIPACID | WINGS + LEFTDASH | WINGS + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[before:ROOMSOUL] | DAMAGEBOOSTS + $TAKEDAMAGE + FULLCLAW + FULLDASH)) + (RIGHTCLAW | LEFTCLAW + WINGS | LEFTCLAW + ENEMYPOGOS)",
+        "logicSubstitutions": {}
     },
     {
         "name": "Mr_Mushroom-Kingdom's_Edge",
