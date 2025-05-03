@@ -56,7 +56,7 @@
         "name": "Defeated_Any_Entombed_Husk",
         "logicOverride": "",
         "logicSubstitutions": {
-            "RestingGrounds_10": "(RestingGrounds_10 | RestingGrounds_10[left1] + Plank-Catacombs_Elevator | RestingGrounds_10[top1] | RestingGrounds_10[top2] + Wall-Catacombs_Grey_Mourner)"
+            "RestingGrounds_10": "(RestingGrounds_10 | RestingGrounds_10[left1] + Plank-Catacombs_Elevator | RestingGrounds_10[top1] + Collapser-Catacombs_Entrance | RestingGrounds_10[top2] + Wall-Catacombs_Grey_Mourner)"
         }
     },
     {
@@ -78,13 +78,6 @@
         "logicOverride": "",
         "logicSubstitutions": {
             "Cliffs_02[bot1]": "Cliffs_02[bot1] + Plank-Cliff's_Pass"
-        }
-    },
-    {
-        "name": "Grub-Crystal_Peak_Mimic",
-        "logicOverride": "",
-        "logicSubstitutions": {
-            "WINGS": "WINGS | $SHADESKIP + Collapser-Garden_Map"
         }
     },
     {
@@ -128,7 +121,7 @@
     },
     {
         "name": "Lever-Sanctum_West_Upper",
-        "logicOverride": "",
+        "logicOverride": "(ORIG) | (Ruins1_32[right2] + Dive_Floor-Inner_Sanctum_2 + (Lever-Sanctum_West_Lower + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub)))",
         "logicSubstitutions": {
             "QUAKE": "Dive_Floor-Inner_Sanctum_1"
         }

@@ -29,9 +29,9 @@ namespace BreakableWallRandomizer.Manager
             foreach (var startName in keys)
             {
                 var start = startDefs[startName];
-                // Mawlek start with collapsers requires Shade Skips.
+                // Mawlek start with collapsers requires Shade Skips or vertical.
                 if (start.SceneName == SceneNames.Crossroads_36 && collapsers)
-                    startDefs[startName] = start with {RandoLogic = "SHADESKIPS"};
+                    startDefs[startName] = start with {RandoLogic = "SHADESKIPS | VERTICAL"};
                 // Blue Lake start with Planks has two reachable checks (Salubra). Remove unless transition rando is on.
                 if (start.SceneName == SceneNames.Crossroads_50 && planks)
                     startDefs[startName] = start with {RandoLogic = "MAPAREARANDO | FULLAREARANDO | ROOMRANDO"};

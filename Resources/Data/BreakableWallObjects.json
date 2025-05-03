@@ -780,7 +780,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Village_Walls",
-        "logic": "(Deepnest_41[left1] | Deepnest_41[right1] + (WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | BACKGROUNDPOGOS) | LEFTCLAW) | Deepnest_41 + Plank-Village_Middle) + (LANTERN | NOLANTERN?FALSE | DARKROOMS)",
+        "logic": "(Deepnest_41[left1] + Collapser-Distant_Village_Fall | Deepnest_41[right1] + (WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | BACKGROUNDPOGOS) | LEFTCLAW) + Collapser-Distant_Village_Fall + Collapser-Distant_Village_Path | Deepnest_41 + Plank-Village_Middle) + (LANTERN | NOLANTERN?FALSE | DARKROOMS)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1930,7 +1930,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "(RestingGrounds_10 | RestingGrounds_10[top1] | RestingGrounds_10[left1] + Plank-Catacombs_Elevator) + UPWALLBREAK",
+        "logic": "(RestingGrounds_10 | RestingGrounds_10[top1] + Collapser-Catacombs_Entrance | RestingGrounds_10[left1] + Plank-Catacombs_Elevator) + UPWALLBREAK",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2422,7 +2422,7 @@
         "fsmType": "quake_floor",
         "sceneName": "Deepnest_East_17",
         "x": 0.8,
-        "y": -0.7,
+        "y": -1.0,
         "persistentBool": "",
         "sprite": "break_floor",
         "alsoDestroy": [],
@@ -2441,7 +2441,7 @@
         "fsmType": "quake_floor",
         "sceneName": "Deepnest_East_17",
         "x": 1.1,
-        "y": -0.7,
+        "y": -1.0,
         "persistentBool": "",
         "sprite": "break_floor",
         "alsoDestroy": [],
@@ -2460,7 +2460,7 @@
         "fsmType": "quake_floor",
         "sceneName": "Deepnest_East_17",
         "x": 0.8,
-        "y": -1.0,
+        "y": -1.3,
         "persistentBool": "",
         "sprite": "break_floor",
         "alsoDestroy": [],
@@ -2479,7 +2479,7 @@
         "fsmType": "quake_floor",
         "sceneName": "Deepnest_East_17",
         "x": 1.1,
-        "y": -1.0,
+        "y": -1.3,
         "persistentBool": "",
         "sprite": "break_floor",
         "alsoDestroy": [],
@@ -2498,7 +2498,7 @@
         "fsmType": "quake_floor",
         "sceneName": "Deepnest_East_17",
         "x": 0.8,
-        "y": -1.3,
+        "y": -1.6,
         "persistentBool": "",
         "sprite": "break_floor",
         "alsoDestroy": [],
@@ -2517,7 +2517,7 @@
         "fsmType": "quake_floor",
         "sceneName": "Deepnest_East_17",
         "x": 1.1,
-        "y": -1.3,
+        "y": -1.6,
         "persistentBool": "",
         "sprite": "break_floor",
         "alsoDestroy": [],
@@ -2536,7 +2536,7 @@
         "fsmType": "quake_floor",
         "sceneName": "Deepnest_East_17",
         "x": 0.8,
-        "y": -1.6,
+        "y": -1.9,
         "persistentBool": "",
         "sprite": "break_floor",
         "alsoDestroy": [],
@@ -2555,7 +2555,7 @@
         "fsmType": "quake_floor",
         "sceneName": "Deepnest_East_17",
         "x": 1.1,
-        "y": -1.6,
+        "y": -1.9,
         "persistentBool": "",
         "sprite": "break_floor",
         "alsoDestroy": [],
@@ -2574,7 +2574,7 @@
         "fsmType": "quake_floor",
         "sceneName": "Deepnest_East_17",
         "x": 0.8,
-        "y": -1.9,
+        "y": -2.2,
         "persistentBool": "",
         "sprite": "break_floor",
         "alsoDestroy": [],
@@ -2593,7 +2593,7 @@
         "fsmType": "quake_floor",
         "sceneName": "Deepnest_East_17",
         "x": 1.1,
-        "y": -1.9,
+        "y": -2.2,
         "persistentBool": "",
         "sprite": "break_floor",
         "alsoDestroy": [],
@@ -2612,7 +2612,7 @@
         "fsmType": "quake_floor",
         "sceneName": "Deepnest_East_17",
         "x": 0.8,
-        "y": -2.2,
+        "y": -2.5,
         "persistentBool": "",
         "sprite": "break_floor",
         "alsoDestroy": [],
@@ -2867,7 +2867,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "Ruins1_32[right1] + QUAKE + $CASTSPELL[before:AREASOUL] + (ANYCLAW | $SHRIEKPOGO[before:AREASOUL] | Lever-Sanctum_West_Upper?FALSE + Dive_Floor-Inner_Sanctum_1 + WINGS + ENEMYPOGOS)",
+        "logic": "Ruins1_32[right1] + (ANYCLAW | $SHRIEKPOGO[before:AREASOUL] | Lever-Sanctum_West_Upper?FALSE + Dive_Floor-Inner_Sanctum_1 + WINGS + ENEMYPOGOS) + QUAKE + $CASTSPELL[before:AREASOUL]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2884,7 +2884,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "(Ruins1_32[right1] + QUAKE + $CASTSPELL[before:ROOMSOUL] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1)) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + Dive_Floor-Inner_Sanctum_2 + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS))) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))",
+        "logic": "(Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1)) | (Ruins1_32[right2] + Dive_Floor-Inner_Sanctum_2 + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2901,7 +2901,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "(Ruins1_32[right1] + QUAKE + $CASTSPELL[before:ROOMSOUL] + ANYCLAW + Dive_Floor-Inner_Sanctum_1 + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))",
+        "logic": "(Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2918,7 +2918,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "(Ruins1_32[right1] + QUAKE + $CASTSPELL[before:ROOMSOUL] + ANYCLAW + Dive_Floor-Inner_Sanctum_1 + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ANYCLAW + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))",
+        "logic": "(Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ANYCLAW + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Seal))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2935,7 +2935,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "(Ruins1_32[right1] + QUAKE + $CASTSPELL[before:ROOMSOUL] + ANYCLAW + Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_1 + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom)))",
+        "logic": "(Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + Dive_Floor-Inner_Sanctum_2 + Dive_Floor-Inner_Sanctum_Grub) | (Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2952,7 +2952,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "Ruins1_32[right1] + QUAKE + $CASTSPELL[before:ROOMSOUL] + (ANYCLAW | Lever-Sanctum_West_Upper?FALSE + Dive_Floor-Inner_Sanctum_1 + WINGS + ENEMYPOGOS)",
+        "logic": "Ruins1_32[right1] + (ANYCLAW | Lever-Sanctum_West_Upper?FALSE + Dive_Floor-Inner_Sanctum_1 + WINGS + ENEMYPOGOS) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2969,7 +2969,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "(Ruins1_32[right1] + QUAKE + $CASTSPELL[before:ROOMSOUL] + ANYCLAW + Dive_Floor-Inner_Sanctum_1 + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub)))",
+        "logic": "(Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3296,17 +3296,17 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Crossroads_36[right1]",
+        "logic": "Crossroads_36[right1] | Crossroads_36[right2] + (Collapser-Mawlek_Lower + (WINGS | $SHADESKIP + ANYCLAW | FULLCLAW + RIGHTDASH) | Collapser-Mawlek_Upper)",
         "logicOverrides": {
-            "Crossroads_36[right1]": "Crossroads_36[right1] | Crossroads_36[right2] + (Collapser-Mawlek_Lower + (ANYCLAW | WINGS | $SHADESKIP) | Collapser-Mawlek_Upper)",
-            "Crossroads_36[right2]": "Crossroads_36[right2] | Crossroads_36[right1] + (Collapser-Mawlek_Upper + (ANYCLAW | WINGS | $SHADESKIP) | Collapser-Mawlek_Lower)"
+            "Crossroads_36[right1]": "Crossroads_36[right1] | Crossroads_36[right2] + (Collapser-Mawlek_Lower + (WINGS | $SHADESKIP + ANYCLAW | FULLCLAW + RIGHTDASH) | Collapser-Mawlek_Upper)",
+            "Crossroads_36[right2]": "Crossroads_36[right2] | Crossroads_36[right1] + (Collapser-Mawlek_Upper + (WINGS | $SHADESKIP + DAMAGEBOOSTS + $TAKEDAMAGE + (ANYCLAW | (ANYDASH | SPELLAIRSTALL | DIFFICULTSKIPS) + COMPLEXSKIPS)) | Collapser-Mawlek_Lower)"
         },
         "logicSubstitutions": {
             "Soul_Totem-Crossroads_Mawlek_Lower": {
-                "Crossroads_36[right1]": "Crossroads_36[right1] + (Collapser-Mawlek_Upper + (ANYCLAW | WINGS | $SHADESKIP) | Collapser-Mawlek_Lower)"
+                "Crossroads_36[right1]": "Crossroads_36[right1] + (Collapser-Mawlek_Upper + (WINGS | $SHADESKIP + DAMAGEBOOSTS + $TAKEDAMAGE + (ANYCLAW | (ANYDASH | SPELLAIRSTALL | DIFFICULTSKIPS) + COMPLEXSKIPS)) | Collapser-Mawlek_Lower)"
             },
             "Geo_Rock-Crossroads_Above_Mawlek": {
-                "Crossroads_36[right1]": "Crossroads_36[right1] + (Collapser-Mawlek_Upper + (ANYCLAW | WINGS | $SHADESKIP) | Collapser-Mawlek_Lower)"
+                "Crossroads_36[right1]": "Crossroads_36[right1] + (Collapser-Mawlek_Upper + (WINGS | $SHADESKIP + DAMAGEBOOSTS + $TAKEDAMAGE + (ANYCLAW | (ANYDASH | SPELLAIRSTALL | DIFFICULTSKIPS) + COMPLEXSKIPS)) | Collapser-Mawlek_Lower)"
             }
         }
     },
@@ -3319,11 +3319,13 @@
         "y": 0.35,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "/Secret Mask"
+        ],
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Crossroads_36[right1] + (Collapser-Mawlek_Lower | Collapser-Mawlek_Upper) | Crossroads_36[right2]",
+        "logic": "Crossroads_36[right1] + (Collapser-Mawlek_Lower | Collapser-Mawlek_Upper + (WINGS | $SHADESKIP)) | Crossroads_36[right2]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3400,7 +3402,8 @@
         "pinType": "World",
         "logic": "Deepnest_16[left1] + ANYCLAW + Collapser-Deepnest_By_Mantis_Lords_Path | Deepnest_16[bot1] + (LEFTCLAW | RIGHTCLAW + WINGS | $SHRIEKPOGO[6])",
         "logicOverrides": {
-            "Deepnest_16[bot1]": "ORIG | Deepnest_16[left1] + ANYCLAW + Collapser-Deepnest_By_Mantis_Lords_Path"
+            "Deepnest_16[bot1]": "ORIG | Deepnest_16[left1] + ANYCLAW + Collapser-Deepnest_By_Mantis_Lords_Path",
+            "Deepnest_16[left1]": "Deepnest_16[left1] | (ORIG) + Collapser-Deepnest_By_Mantis_Lords_Path"
         },
         "logicSubstitutions": {}
     },
@@ -3731,7 +3734,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_41[left1] | Deepnest_41[right1] + Collapser-Distant_Village_Path + (LANTERN | NOLANTERN?FALSE | DARKROOMS) + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + ENEMYPOGOS) | Deepnest_41)",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_41[left1] | (Deepnest_41[right1] | Deepnest_41 + Plank-Village_Upper) + Collapser-Distant_Village_Path + (LANTERN | NOLANTERN?FALSE | DARKROOMS) + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + ENEMYPOGOS))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3749,7 +3752,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + Deepnest_41",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + ((Deepnest_41[right1] | Deepnest_41 + Plank-Village_Upper) + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | RIGHTDASH + OBSCURESKIPS)) | Deepnest_41[left1] + (RIGHTCLAW | WINGS + LEFTCLAW) + Collapser-Distant_Village_Path)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3767,7 +3770,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + Deepnest_41",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + ((Deepnest_41[right1] | Deepnest_41 + Plank-Village_Upper) + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | RIGHTDASH + OBSCURESKIPS)) | Deepnest_41[left1] + Collapser-Distant_Village_Path + (RIGHTCLAW | WINGS + (LEFTCLAW | MARKOFPRIDE)))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3785,7 +3788,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_41[left1] | Deepnest_41[right1] + Collapser-Distant_Village_Path + (LANTERN | NOLANTERN?FALSE | DARKROOMS) + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + ENEMYPOGOS) | Deepnest_41)",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_41[left1] | (Deepnest_41 + Plank-Village_Upper | Deepnest_41[right1]) + Collapser-Distant_Village_Path + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + ENEMYPOGOS))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3934,7 +3937,12 @@
         "y": 0.9,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "masking_set/Collapser Small (9)/floor1/msk_generic_soft (1)",
+            "masking_set/Collapser Small (9)/floor1/msk_generic_soft (2)",
+            "masking_set/Collapser Small (9)/floor1/msk_generic_soft (3)",
+            "masking_set/Collapser Small (9)/floor1/msk_generic_soft (4)"
+        ],
         "extra": false,
         "groupWalls": [],
         "group": "Den_Walls",
@@ -4036,7 +4044,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "Fungus2_25[top2] | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left | Collapser-Deepnest_Mask_Shard_Right) + (WINGS | ANYCLAW)",
+        "logic": "Fungus2_25[top2] | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left | Collapser-Deepnest_Mask_Shard_Right) + (WINGS | ANYCLAW | $SLOPEBALL)",
         "logicOverrides": {
             "Mask_Shard-Deepnest": "ORIG | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left | Collapser-Deepnest_Mask_Shard_Right) + (WINGS | ANYCLAW)"
         },
@@ -4121,7 +4129,7 @@
         "pinType": "World",
         "logic": "Mines_06[left1] | Mines_06[right1] + (Collapser-Deep_Focus + (BACKGROUNDPOGOS + (WINGS | RIGHTCLAW | $SHADESKIP) | WINGS + ANYCLAW) | (LEFTSUPERDASH + (ANYCLAW | WINGS) | WINGS + LEFTDASH + BACKGROUNDPOGOS + (LEFTCLAW | PRECISEMOVEMENT | DAMAGEBOOSTS + $TAKEDAMAGE | SPELLAIRSTALL + $CASTSPELL) | BACKGROUNDPOGOS + $SHRIEKPOGO[1,2,NOSTALL]))",
         "logicOverrides": {
-            "Mines_06[left1]": "(ORIG) | Mines_06[right1] + Collapser-Deep_Focus + (BACKGROUNDPOGOS + (WINGS | RIGHTCLAW | $SHADESKIP + SPELLAIRSTALL + DAMAGEBOOSTS + $TAKEDAMAGE[2]) | WINGS + ANYCLAW)"
+            "Mines_06[left1]": "(ORIG) | Mines_06[right1] + Collapser-Deep_Focus + (BACKGROUNDPOGOS + (WINGS | RIGHTCLAW | $SHADESKIP + (LEFTCLAW | SPELLAIRSTALL + DAMAGEBOOSTS + $TAKEDAMAGE[2])) | WINGS + ANYCLAW)"
         },
         "logicSubstitutions": {
             "Mines_06[right1]": {
