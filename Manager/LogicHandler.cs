@@ -23,6 +23,9 @@ namespace BreakableWallRandomizer.Manager
         }
         private static void FixStartLogic(Dictionary<string, RandomizerMod.RandomizerData.StartDef> startDefs)
         {
+            if (!BWR_Manager.Settings.Enabled)
+                return;
+
             List<string> keys = new (startDefs.Keys);
             bool planks = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.WoodenPlanks;
             bool collapsers = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.Collapsers;

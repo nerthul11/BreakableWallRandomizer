@@ -118,7 +118,6 @@ namespace BreakableWallRandomizer.IC
             try
             {
                 Vector3 coordinates = GameObject.Find(objectName).transform.position;
-                BreakableWallRandomizer.Instance.Log($"{name} - ({coordinates.x}, {coordinates.y})");
             }
             catch
             {}
@@ -262,7 +261,7 @@ namespace BreakableWallRandomizer.IC
                         // and then set states accordingly
 
                         fsm.AddState("BreakSameScene");
-
+                        fsm.AddCustomAction("BreakSameScene", () => BreakableWallRandomizer.Instance.Log($"BreakSameScene state applied to {name}"));
                         // In any of the cases, the wall is expected to become passable.
                         if (wall.fsmType == "collapse small")
                             fsm.AddAction("BreakSameScene", new SetTriggerCollider());

@@ -60,6 +60,13 @@
         }
     },
     {
+        "name": "Defeated_Any_Hopper",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Deepnest_East_14[door1]": "Deepnest_East_14[door1] + Wall-420_Geo_Rock"
+        }
+    },
+    {
         "name": "Geo_Rock-Crystal_Peak_Mimic_Grub",
         "logicOverride": "",
         "logicSubstitutions": {
