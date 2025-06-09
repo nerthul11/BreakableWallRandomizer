@@ -28,8 +28,9 @@ This setting will include the two walls in the Hall of Gods (both leading to the
 - Wooden Planks --> Boolean to define if one-way walls should be randomized or not.
 - Rock Walls --> Boolean to define if standard walls should be randomized or not.
 - Dive Floors --> Boolean to define if Dive breakable floors should be randomized or not.
+- Collapsers --> Boolean to define if collapsing floors should be randomized or not.
 - Godhome Walls --> Boolean to define if Godhome walls are included or not.
-- Extra Walls --> Boolean to define if additional, small and numerous walls like Ancestral Mound Planks or Hive pillars should be included or not.
+- Extra Walls --> Boolean to define if additional, small and numerous walls like Ancestral Mound Planks or Hive pillars should be included or not. (Not available at the time)
 - Group Walls --> Transforms all breakable items in all rooms into a single check. For groups with multiple wall types (mainly Walls + Planks or Walls + Collapsers), the vanilla objects will behave normally, and only the randomized objects will follow the group rules.
 
 ### Myla Shop

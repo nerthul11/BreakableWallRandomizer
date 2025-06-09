@@ -261,7 +261,7 @@ namespace BreakableWallRandomizer.IC
                         // and then set states accordingly
 
                         fsm.AddState("BreakSameScene");
-                        fsm.AddCustomAction("BreakSameScene", () => BreakableWallRandomizer.Instance.Log($"BreakSameScene state applied to {name}"));
+                        fsm.AddCustomAction("BreakSameScene", () => BreakableWallRandomizer.Instance.LogDebug($"BreakSameScene state applied to {name}"));
                         // In any of the cases, the wall is expected to become passable.
                         if (wall.fsmType == "collapse small")
                             fsm.AddAction("BreakSameScene", new SetTriggerCollider());

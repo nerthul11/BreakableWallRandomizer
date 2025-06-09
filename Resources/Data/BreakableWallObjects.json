@@ -1290,13 +1290,13 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Fungus2_29[right1] + Plank-Fungal_Core | Fungus2_29[bot1] + (ANYCLAW | WINGS | (LONGNAIL | MARKOFPRIDE) + ENEMYPOGOS)",
+        "logic": "Fungus2_29[right1] + Plank-Fungal_Core | Fungus2_29",
         "logicOverrides": {
             "Rancid_Egg-Fungal_Core": "(ORIG) | Fungus2_29[right1] + Plank-Fungal_Core + (LEFTCLAW | (((RIGHTCLAW + ENEMYPOGOS) | LEFTSUPERDASH) + WINGS))",
             "Geo_Rock-Fungal_Core_Entrance": "(ORIG) | Fungus2_29[right1] + Plank-Fungal_Core + (LEFTCLAW | (((RIGHTCLAW + ENEMYPOGOS) | LEFTSUPERDASH) + WINGS))",
             "Soul_Totem-Fungal_Core": "(ORIG) | Fungus2_29[right1] + Plank-Fungal_Core + (LEFTCLAW | (((RIGHTCLAW + ENEMYPOGOS) | LEFTSUPERDASH) + WINGS))",
             "Fungus2_29[bot1]": "(ORIG) | Fungus2_29[right1] + Plank-Fungal_Core",
-            "Fungus2_29[right1]": "Fungus2_29[right1] | (ORIG) + Plank-Fungal_Core | Fungus2_29[bot1] + (LEFTCLAW | (((RIGHTCLAW + ENEMYPOGOS) | LEFTSUPERDASH) + WINGS))"
+            "Fungus2_29[right1]": "Fungus2_29[right1] | Fungus2_29 | (ORIG) + Plank-Fungal_Core"
         },
         "logicSubstitutions": {}
     },
@@ -1638,6 +1638,9 @@
         "logicSubstitutions": {
             "Hive_03_c": {
                 "Hive_03_c[right2]": "(Hive_03_c[right2] + Plank-Hive_Mask)"
+            },
+            "Hive_03_c[top1]": {
+                "Hive_03_c[right2]": "(Hive_03_c[right2] + Plank-Hive_Mask)"
             }
         }
     },
@@ -1818,7 +1821,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "RestingGrounds_10[top1] + Collapser-Catacombs_Entrance | RestingGrounds_10[top2] + Wall-Catacombs_Grey_Mourner | RestingGrounds_10[left1] + Plank-Catacombs_Elevator",
+        "logic": "(RestingGrounds_10[top1] | Bench-Crypts?FALSE) + Collapser-Catacombs_Entrance | RestingGrounds_10[top2] + Wall-Catacombs_Grey_Mourner | RestingGrounds_10[left1] + Plank-Catacombs_Elevator",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1852,7 +1855,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "(RestingGrounds_10 | RestingGrounds_10[top1] + Collapser-Catacombs_Entrance | RestingGrounds_10[left1] + Plank-Catacombs_Elevator) + (Wall-Catacombs_Left_1 | Collapser-Catacombs_Geo | Wall-Catacombs_Seal + Collapser-Catacombs_Seal)",
+        "logic": "(RestingGrounds_10 | (RestingGrounds_10[top1] | Bench-Crypts?FALSE) + Collapser-Catacombs_Entrance | RestingGrounds_10[left1] + Plank-Catacombs_Elevator) + (Wall-Catacombs_Left_1 | Collapser-Catacombs_Geo | Wall-Catacombs_Seal + Collapser-Catacombs_Seal)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1886,7 +1889,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "(RestingGrounds_10 | RestingGrounds_10[top1] + Collapser-Catacombs_Entrance | RestingGrounds_10[left1] + Plank-Catacombs_Elevator) + ((Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2 | Collapser-Catacombs_Geo) | Collapser-Catacombs_Seal)",
+        "logic": "(RestingGrounds_10 | (RestingGrounds_10[top1] | Bench-Crypts?FALSE) + Collapser-Catacombs_Entrance | RestingGrounds_10[left1] + Plank-Catacombs_Elevator) + ((Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2 | Collapser-Catacombs_Geo) | Collapser-Catacombs_Seal)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1903,7 +1906,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "RestingGrounds_10 | RestingGrounds_10[top1] + Collapser-Catacombs_Entrance | RestingGrounds_10[left1]",
+        "logic": "RestingGrounds_10 | (RestingGrounds_10[top1] | Bench-Crypts?FALSE) + Collapser-Catacombs_Entrance | RestingGrounds_10[left1]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1937,7 +1940,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "(RestingGrounds_10 | RestingGrounds_10[top1] + Collapser-Catacombs_Entrance | RestingGrounds_10[left1] + Plank-Catacombs_Elevator) + UPWALLBREAK",
+        "logic": "(RestingGrounds_10 | (RestingGrounds_10[top1] | Bench-Crypts?FALSE) + Collapser-Catacombs_Entrance | RestingGrounds_10[left1] + Plank-Catacombs_Elevator) + UPWALLBREAK",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2044,7 +2047,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Ruins2_03[bot1] + (((SCREAM | QUAKE>1 + PRECISEMOVEMENT + OBSCURESKIPS + DANGEROUSSKIPS) + $CASTSPELL) | (ANYCLAW | WINGS) + UPWALLBREAK)",
+        "logic": "Ruins2_03[bot1] + (SCREAM + $CASTSPELL | UPSLASH + $SHADESKIP + COMPLEXSKIPS) | (ANYCLAW | WINGS) + UPWALLBREAK)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2250,7 +2253,11 @@
         "groupWalls": [],
         "group": "",
         "logic": "Waterways_08[left2] + Wall-Junk_Pit_Entrance | Waterways_08[left1] + (LEFTCLAW | WINGS) | Waterways_08[top1] + (Plank-Junk_Pit_Exit | WINGS + ENEMYPOGOS | WINGS + ANYCLAW | FULLCLAW)",
-        "logicOverrides": {},
+        "logicOverrides": {
+            "Geo_Rock-Waterways_Flukemarm": "ORIG | Waterways_08[top1] + Plank-Junk_Pit_Exit",
+            "Soul_Totem-Waterways_Flukemarm": "ORIG | Waterways_08[top1] + Plank-Junk_Pit_Exit",
+            "Waterways_08[left1]": "ORIG | Waterways_08[top1] + Plank-Junk_Pit_Exit"
+        },
         "logicSubstitutions": {}
     },
     {
@@ -2268,7 +2275,7 @@
         "group": "",
         "logic": "Waterways_08[left2] | Waterways_08[left1] + (LEFTCLAW | WINGS) + UPWALLBREAK | Waterways_08[top1] + (Plank-Junk_Pit_Exit | WINGS + ENEMYPOGOS | WINGS + ANYCLAW | FULLCLAW) + UPWALLBREAK",
         "logicOverrides": {
-            "Waterways_08[left2]": "(ORIG) + Wall-Junk_Pit_Entrance"
+            "Waterways_08[left2]": "Waterways_08[left2] | (ORIG) + Wall-Junk_Pit_Entrance"
         },
         "logicSubstitutions": {
             "Soul_Totem-Waterways_Flukemarm": {
@@ -4060,9 +4067,9 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "Fungus2_25[top2] | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left | Collapser-Deepnest_Mask_Shard_Right) + (WINGS | ANYCLAW | $SLOPEBALL)",
+        "logic": "Fungus2_25[top2] | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left + (WINGS | RIGHTCLAW | $SLOPEBALL) | Collapser-Deepnest_Mask_Shard_Right + (WINGS | ANYCLAW))",
         "logicOverrides": {
-            "Mask_Shard-Deepnest": "ORIG | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left | Collapser-Deepnest_Mask_Shard_Right) + (WINGS | ANYCLAW)"
+            "Mask_Shard-Deepnest": "ORIG | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left + (WINGS | RIGHTCLAW | $SLOPEBALL) | Collapser-Deepnest_Mask_Shard_Right + (WINGS | ANYCLAW))"
         },
         "logicSubstitutions": {
             "Deepnest_Map-Right": {
@@ -4099,7 +4106,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "Fungus2_25[top2] | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left | Collapser-Deepnest_Mask_Shard_Right) + (WINGS | ANYCLAW)",
+        "logic": "Fungus2_25[top2] | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left + (WINGS | RIGHTCLAW | $SLOPEBALL) | Collapser-Deepnest_Mask_Shard_Right + (WINGS | ANYCLAW))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -4269,7 +4276,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "RestingGrounds_10[top1] | (RestingGrounds_10[left1] + Plank-Catacombs_Elevator | RestingGrounds_10) + Collapser-Catacombs_Entrance",
+        "logic": "(RestingGrounds_10[top1] | Bench-Crypts?FALSE) | (RestingGrounds_10[left1] + Plank-Catacombs_Elevator | RestingGrounds_10) + Collapser-Catacombs_Entrance",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -4287,7 +4294,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "(RestingGrounds_10 | RestingGrounds_10[top1] + Collapser-Catacombs_Entrance | RestingGrounds_10[left1] + Plank-Catacombs_Elevator) + ((Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2 | Collapser-Catacombs_Geo) + Wall-Catacombs_Seal | Collapser-Catacombs_Seal)",
+        "logic": "(RestingGrounds_10 | (RestingGrounds_10[top1] | Bench-Crypts?FALSE) + Collapser-Catacombs_Entrance | RestingGrounds_10[left1] + Plank-Catacombs_Elevator) + ((Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2 | Collapser-Catacombs_Geo) + Wall-Catacombs_Seal | Collapser-Catacombs_Seal)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -4305,7 +4312,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "(RestingGrounds_10 | RestingGrounds_10[top1] + Collapser-Catacombs_Entrance | RestingGrounds_10[left1] + Plank-Catacombs_Elevator) + (Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2 | Collapser-Catacombs_Geo | Wall-Catacombs_Seal + Collapser-Catacombs_Seal)",
+        "logic": "(RestingGrounds_10 | (RestingGrounds_10[top1] | Bench-Crypts?FALSE) + Collapser-Catacombs_Entrance | RestingGrounds_10[left1] + Plank-Catacombs_Elevator) + (Wall-Catacombs_Left_1 + Wall-Catacombs_Left_2 | Collapser-Catacombs_Geo | Wall-Catacombs_Seal + Collapser-Catacombs_Seal)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },

@@ -60,6 +60,13 @@
         }
     },
     {
+        "name": "Defeated_Any_Great_Hopper",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Deepnest_East_08[right1]": "Deepnest_East_14[right1] + Wall-Upper_Edge_Hoppers"
+        }
+    },
+    {
         "name": "Defeated_Any_Hopper",
         "logicOverride": "",
         "logicSubstitutions": {
@@ -185,6 +192,13 @@
         "logicOverride": "",
         "logicSubstitutions": {
             "Deepnest_30[top1]": "Deepnest_30[top1] + Collapser-Deepnest_Hot_Springs_Path + Collapser-Deepnest_Hot_Springs_Path_2"
+        }
+    },
+    {
+        "name": "RestingGrounds_10[left1]",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Bench-Crypts": "Bench-Crypts + Collapser-Catacombs_Entrance + Plank-Catacombs_Elevator"
         }
     }
 ]
