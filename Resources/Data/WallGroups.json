@@ -89,7 +89,7 @@
         "logicSubstitutions": {
             "Deepnest_41[left1]": {
                 "Deepnest_41[left2]": "(Deepnest_41[left2] + (Plank-Village_Upper + Collapser-Distant_Village_Path | Plank-Village_Middle + Collapser-Distant_Village_Fall) + Plank-Village_Lower)",
-                "Deepnest_41[right1]": "(Deepnest_41[right1] + Collapser-Distant_Village_Path | Deepenst_41 + Plank-Village_Middle + Collapser-Distant_Village_Fall)"
+                "Deepnest_41[right1]": "(Deepnest_41[right1] + Collapser-Distant_Village_Path | Deepnest_41 + Plank-Village_Middle + Collapser-Distant_Village_Fall)"
             },
             "Deepnest_41[right1]": {
                 "Deepnest_41[left1]": "(Deepnest_41[left1] + (Collapser-Distant_Village_Fall + Plank-Village_Upper + Plank-Village_Middle | Collapser-Distant_Village_Path))",

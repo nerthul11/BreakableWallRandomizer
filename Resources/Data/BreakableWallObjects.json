@@ -2047,7 +2047,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Ruins2_03[bot1] + (SCREAM + $CASTSPELL | UPSLASH + $SHADESKIP + COMPLEXSKIPS) | (ANYCLAW | WINGS) + UPWALLBREAK)",
+        "logic": "Ruins2_03[bot1] + (SCREAM + $CASTSPELL | UPSLASH + $SHADESKIP + COMPLEXSKIPS | (ANYCLAW | WINGS) + UPWALLBREAK)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
