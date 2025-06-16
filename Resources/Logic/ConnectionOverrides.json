@@ -63,7 +63,7 @@
         "name": "Defeated_Any_Great_Hopper",
         "logicOverride": "",
         "logicSubstitutions": {
-            "Deepnest_East_08[right1]": "Deepnest_East_14[right1] + Wall-Upper_Edge_Hoppers"
+            "Deepnest_East_08[right1]": "Deepnest_East_08[right1] + Wall-Upper_Edge_Hoppers"
         }
     },
     {
