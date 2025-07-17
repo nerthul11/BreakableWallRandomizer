@@ -22,11 +22,6 @@
         "logicSubstitutions": {}
     },
     {
-        "name": "Bretta_Key",
-        "logicOverride": "(ORIG) | Fungus2_23[right1] + (ANYCLAW | WINGS + Collapser-Bretta)",
-        "logicSubstitutions": {}
-    },
-    {
         "name": "Chandelier-Watcher_Knights",
         "logicOverride": "ORIG + Wall-Chandelier",
         "logicSubstitutions": {}

@@ -20,7 +20,7 @@
         },
         "logicSubstitutions": {
             "Cliffs_01": {
-                "Cliffs_01[right4]": "Cliffs_01[right4] + Wall-Grimm_Inner + (Plank-Grimm_Exit | (Wall-Grimm_Outer + ANYCLAW))"
+                "Cliffs_01[right4]": "Cliffs_01[right4] + Wall-Grimm_Inner + (Plank-Grimm_Exit + (RIGHTDASH | ANYCLAW | WINGS | ENEMYPOGOS | SPELLAIRSTALL + $CASTSPELL[2]) | (Wall-Grimm_Outer + ANYCLAW))"
             },
             "Lore_Tablet-Howling_Cliffs": {
                 "Cliffs_01[right1]": "(Cliffs_01[right1] + (Wall-Grimm_Outer | Plank-Grimm_Exit + (ANYCLAW | WINGS + ENEMYPOGOS)))",
@@ -29,9 +29,9 @@
                 "Cliffs_01[right4]": "(Cliffs_01[right4] + Wall-Grimm_Inner + ANYCLAW)"
             },
             "Wanderer's_Journal-Cliffs": {
-                "Cliffs_01[right1]": "(Cliffs_01[right1] + (Wall-Grimm_Outer | Plank-Grimm_Exit))",
-                "Cliffs_01[right2]": "(Cliffs_01[right2] + (Wall-Grimm_Outer | Plank-Grimm_Exit))",
-                "Cliffs_01[right3]": "(Cliffs_01[right3] + (Wall-Grimm_Outer | Plank-Grimm_Exit))",
+                "Cliffs_01[right1]": "(Cliffs_01[right1] + (Wall-Grimm_Outer | Plank-Grimm_Exit + (RIGHTDASH | ANYCLAW | WINGS | ENEMYPOGOS | SPELLAIRSTALL + $CASTSPELL[2])))",
+                "Cliffs_01[right2]": "(Cliffs_01[right2] + (Wall-Grimm_Outer | Plank-Grimm_Exit + (RIGHTDASH | ANYCLAW | WINGS | ENEMYPOGOS | SPELLAIRSTALL + $CASTSPELL[2])))",
+                "Cliffs_01[right3]": "(Cliffs_01[right3] + (Wall-Grimm_Outer | Plank-Grimm_Exit + (RIGHTDASH | ANYCLAW | WINGS | ENEMYPOGOS | SPELLAIRSTALL + $CASTSPELL[2])))",
                 "Cliffs_01[right4]": "(Cliffs_01[right4] + Wall-Grimm_Inner)"
             }
         }

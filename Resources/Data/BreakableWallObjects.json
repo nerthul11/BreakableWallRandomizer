@@ -145,9 +145,10 @@
         "group": "",
         "logic": "Abyss_19[bot1] + (ANYCLAW | WINGS) | Abyss_19[right1] + Plank-Broken_Vessel_Shortcut",
         "logicOverrides": {
-            "Defeated_Broken_Vessel": "(ORIG) | Abyss_19[right1] + Plank-Broken_Vessel_Shortcut + COMBAT[Broken_Vessel]",
             "Abyss_19[left1]": "(ORIG) | Abyss_19[right1] + Plank-Broken_Vessel_Shortcut + Defeated_Broken_Vessel",
-            "Abyss_19[bot1]": "(ORIG) | Abyss_19[right1] + Plank-Broken_Vessel_Shortcut" 
+            "Abyss_19[bot1]": "(ORIG) | Abyss_19[right1] + Plank-Broken_Vessel_Shortcut",
+            "Boss_Essence-Lost_Kin": "(ORIG) | (Abyss_19[right1] | Abyss_19[bot2] + WINGS) + Plank-Broken_Vessel_Shortcut + DREAMNAIL + Defeated_Broken_Vessel + Defeated_Lost_Kin",
+            "Defeated_Broken_Vessel": "(ORIG) | (Abyss_19[right1] | Abyss_19[bot2] + WINGS) + Plank-Broken_Vessel_Shortcut + COMBAT[Broken_Vessel]"
         },
         "logicSubstitutions": {
             "Abyss_19": {
@@ -176,7 +177,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Grimm_Walls",
-        "logic": "(Cliffs_01[right1] | Cliffs_01[right2]) + (Plank-Grimm_Exit | Wall-Grimm_Outer) | Cliffs_01[right4] + Wall-Grimm_Inner",
+        "logic": "(Cliffs_01[right1] | Cliffs_01[right2] | Cliffs_01[right3] + (ANYCLAW | WINGS | (FULLDASH + ENEMYPOGOS))) + (Plank-Grimm_Exit + (RIGHTDASH | ANYCLAW | WINGS | ENEMYPOGOS | SPELLAIRSTALL + $CASTSPELL[2]) | Wall-Grimm_Outer) | Cliffs_01[right4] + Wall-Grimm_Inner",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -195,7 +196,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Grimm_Walls",
-        "logic": "(Cliffs_01[right1] | Cliffs_01[right2] | Cliffs_01[right3] + (ANYCLAW | WINGS | (FULLDASH + ENEMYPOGOS))) + (Plank-Grimm_Exit | Wall-Grimm_Outer) | Cliffs_01[right4]",
+        "logic": "(Cliffs_01[right1] | Cliffs_01[right2] | Cliffs_01[right3] + (ANYCLAW | WINGS | (FULLDASH + ENEMYPOGOS))) + (Plank-Grimm_Exit + (RIGHTDASH | ANYCLAW | WINGS | ENEMYPOGOS | SPELLAIRSTALL + $CASTSPELL[2]) | Wall-Grimm_Outer) | Cliffs_01[right4]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -540,8 +541,10 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Deepnest_01[bot1] | (Deepnest_01[left1] | Deepnest_01[right1]) + Plank-Deepnest_Exit",
-        "logicOverrides": {},
+        "logic": "Deepnest_01[bot1] | (Deepnest_01[left1] | Deepnest_01[right1] + Wall-Deepnest_Fungal) + Plank-Deepnest_Exit",
+        "logicOverrides": {
+            "Deepnest_01[bot1]": "ORIG | Deepnest_01 + Plank-Deepnest_Exit"
+        },
         "logicSubstitutions": {
             "Deepnest_01": {
                 "Deepnest_01[bot1]": "(Deepnest_01[bot1] + Plank-Deepnest_Exit)"
@@ -598,7 +601,7 @@
         }
     },
     {
-        "name": "Wall-Deepnest_Springs_Grub",
+        "name": "Wall-Nosk_Entrance",
         "gameObject": "/Breakable Wall",
         "fsmType": "breakable_wall_v2",
         "sceneName": "Deepnest_03",
@@ -612,11 +615,11 @@
         "group": "",
         "logic": "Deepnest_03[left2] | Deepnest_03 + (LEFTSUPERDASH | WINGS | LEFTCLAW + $SHADESKIP | LEFTFIREBALL)",
         "logicOverrides": {
-            "Deepnest_03[left2]": "Deepnest_03[left2] | (ORIG) + Wall-Deepnest_Springs_Grub"
+            "Deepnest_03[left2]": "Deepnest_03[left2] | (ORIG) + Wall-Nosk_Entrance"
         },
         "logicSubstitutions": {
             "Deepnest_03": {
-                "Deepnest_03[left2]": "(Deepnest_03[left2] + Wall-Deepnest_Springs_Grub)"
+                "Deepnest_03[left2]": "(Deepnest_03[left2] + Wall-Nosk_Entrance)"
             }
         }
     },
@@ -908,8 +911,10 @@
         "gameObject": "/Breakable Wall Waterways",
         "fsmType": "breakable_wall_v2",
         "sceneName": "White_Palace_12",
-        "x": -1.0,
-        "y": -0.9,
+        "x": -0.1,
+        "y": 1.0,
+        "backupX": -1.0,
+        "backupY": -0.9,
         "persistentBool": "",
         "sprite": "waterway_break_wall_acid_02_270deg",
         "alsoDestroy": [],
@@ -925,8 +930,10 @@
         "gameObject": "/Break Floor 1",
         "fsmType": "break_floor",
         "sceneName": "White_Palace_12",
-        "x": -0.7,
-        "y": -0.9,
+        "x": 0.2,
+        "y": 1.15,
+        "backupX": -0.7,
+        "backupY": -0.9,
         "persistentBool": "",
         "sprite": "collapser_short_270deg",
         "alsoDestroy": [],
@@ -942,8 +949,10 @@
         "gameObject": "/Breakable Wall Ruin Lift",
         "fsmType": "breakable_wall_v2",
         "sceneName": "White_Palace_06",
-        "x": -1.3,
-        "y": -0.9,
+        "x": -0.2,
+        "y": -0.5,
+        "backupX": -1.3,
+        "backupY": -0.9,
         "persistentBool": "",
         "sprite": "collapser_short_270deg",
         "alsoDestroy": [],
@@ -968,8 +977,10 @@
         "gameObject": "/Breakable Wall Waterways",
         "fsmType": "breakable_wall_v2",
         "sceneName": "White_Palace_09",
-        "x": -0.1,
-        "y": -0.9,
+        "x": 0.2,
+        "y": 0.2,
+        "backupX": -0.1,
+        "backupY": -0.9,
         "persistentBool": "",
         "sprite": "ancient_one_way_wall_270deg",
         "alsoDestroy": [],
@@ -1906,7 +1917,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
-        "logic": "RestingGrounds_10 | (RestingGrounds_10[top1] | Bench-Crypts?FALSE) + Collapser-Catacombs_Entrance | RestingGrounds_10[left1]",
+        "logic": "RestingGrounds_10 | (RestingGrounds_10[top1] | Bench-Crypts?FALSE) + Collapser-Catacombs_Entrance | RestingGrounds_10[left1] + Plank-Catacombs_Elevator",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2217,7 +2228,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Waterways_07[top1] | Waterways_07 + Plank-Isma's_Grove",
+        "logic": "Waterways_07[top1] | (Waterways_07[door1] | Waterways_07 + (ANYCLAW | ENEMYPOGOS + $SHRIEKPOGO[2,before:ROOMSOUL])) + Plank-Isma's_Grove",
         "logicOverrides": {
             "Waterways_07[top1]": "ORIG | Waterways_07 + Plank-Isma's_Grove + ANYCLAW"
         },
@@ -2917,7 +2928,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "(Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + Dive_Floor-Inner_Sanctum_2 | (Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub)))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logic": "((Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + Dive_Floor-Inner_Sanctum_2 | (Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2934,7 +2945,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "(Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + Dive_Floor-Inner_Sanctum_2 | (Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ANYCLAW + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Seal)))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logic": "((Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + Dive_Floor-Inner_Sanctum_2 | (Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ANYCLAW + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Seal))))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2951,7 +2962,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "(Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + Dive_Floor-Inner_Sanctum_2 + Dive_Floor-Inner_Sanctum_Grub | (Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom)))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logic": "((Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + Dive_Floor-Inner_Sanctum_2 + Dive_Floor-Inner_Sanctum_Grub | (Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom))))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2985,7 +2996,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "(Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logic": "((Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub)))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3123,8 +3134,10 @@
         "gameObject": "/Quake Floor",
         "fsmType": "quake_floor",
         "sceneName": "White_Palace_09",
-        "x": -0.4,
-        "y": -0.9,
+        "x": -0.36,
+        "y": -0.54,
+        "backupX": -0.4,
+        "backupY": -0.9,
         "persistentBool": "",
         "sprite": "break_floor",
         "alsoDestroy": [],
@@ -3140,8 +3153,10 @@
         "gameObject": "/Quake Floor",
         "fsmType": "quake_floor",
         "sceneName": "White_Palace_15",
-        "x": 0.2,
-        "y": -0.9,
+        "x": 0.0,
+        "y": 0.6,
+        "backupX": 0.2,
+        "backupY": -0.9,
         "persistentBool": "",
         "sprite": "break_floor",
         "alsoDestroy": [],
@@ -4047,7 +4062,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "Fungus2_23[right1] + ((ANYCLAW | WINGS) + Collapser-Bretta | FULLCLAW + FULLDASH | FULLCLAW + FULLSUPERDASH | LEFTCLAW + WINGS | RIGHTCLAW + ENEMYPOGOS + WINGS | COMPLEXSKIPS + FULLCLAW + $SHADESKIP[2HITS] + SPELLAIRSTALL + $CASTSPELL[1,1,before:ROOMSOUL] + $TAKEDAMAGE[2] | Fungus2_23 + WINGS + $SHADESKIP[3HITS] + COMPLEXSKIPS + DIFFICULTSKIPS + $TAKEDAMAGE[2])",
+        "logic": "Fungus2_23[right1] + ((ANYCLAW | WINGS) + Collapser-Bretta | FULLCLAW + FULLDASH | FULLCLAW + FULLSUPERDASH | LEFTCLAW + WINGS | RIGHTCLAW + ENEMYPOGOS + WINGS | COMPLEXSKIPS + FULLCLAW + $SHADESKIP[2HITS] + SPELLAIRSTALL + $CASTSPELL[1,1,before:ROOMSOUL] + $TAKEDAMAGE[2] | WINGS + $SHADESKIP[3HITS] + COMPLEXSKIPS + DIFFICULTSKIPS + $TAKEDAMAGE[2])",
         "logicOverrides": {
             "Rescued_Bretta": "ORIG | Fungus2_23[right1] + (ANYCLAW | WINGS) + Collapser-Bretta"
         },
@@ -4359,8 +4374,10 @@
         "gameObject": "/Collapser Small",
         "fsmType": "collapse small",
         "sceneName": "White_Palace_02",
-        "x": 0.5,
-        "y": -0.9,
+        "x": -0.1,
+        "y": 0.25,
+        "backupX": 0.5,
+        "backupY": -0.9,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
         "alsoDestroy": [],
@@ -4378,8 +4395,10 @@
         "gameObject": "/Collapser Small",
         "fsmType": "collapse small",
         "sceneName": "White_Palace_17",
-        "x": 0.8,
-        "y": -0.9,
+        "x": 0.2,
+        "y": -0.15,
+        "backupX": 0.8,
+        "backupY": -0.9,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
         "alsoDestroy": [],

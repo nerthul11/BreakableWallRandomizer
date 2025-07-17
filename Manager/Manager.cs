@@ -39,7 +39,7 @@ namespace BreakableWallRandomizer.Manager
             foreach (WallObject wall in wallList)
             {
                 BreakableWallItem wallItem = new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType, wall.persistentBool, wall.sprite, wall.extra, wall.groupWalls);
-                BreakableWallLocation wallLocation = new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType, wall.alsoDestroy, wall.x, wall.y, wall.groupWalls, wall.pinType);
+                BreakableWallLocation wallLocation = new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType, wall.alsoDestroy, wall.x, wall.y, wall.groupWalls, wall.pinType, wall.backupX, wall.backupY);
                 Finder.DefineCustomItem(wallItem);
                 Finder.DefineCustomLocation(wallLocation);
             }
@@ -51,7 +51,7 @@ namespace BreakableWallRandomizer.Manager
             foreach (WallObject group in groupList)
             {
                 BreakableWallItem groupItem = new(group.name, group.sceneName, group.gameObject, group.fsmType, group.persistentBool, group.sprite, group.extra, group.groupWalls);
-                BreakableWallLocation groupLocation = new(group.name, group.sceneName, group.gameObject, group.fsmType, group.alsoDestroy, group.x, group.y, group.groupWalls);
+                BreakableWallLocation groupLocation = new(group.name, group.sceneName, group.gameObject, group.fsmType, group.alsoDestroy, group.x, group.y, group.groupWalls, group.pinType, group.backupX, group.backupY);
                 Finder.DefineCustomItem(groupItem);
                 Finder.DefineCustomLocation(groupLocation);
             }

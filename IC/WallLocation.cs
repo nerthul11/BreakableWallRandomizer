@@ -22,7 +22,8 @@ namespace BreakableWallRandomizer.IC
         public string pinType;
         public BreakableWallLocation(
             string name, string sceneName, string objectName, string fsmType, List<string> alsoDestroy, 
-            float x, float y, List<CondensedWallObject> groupWalls, string pinType = "Map"
+            float x, float y, List<CondensedWallObject> groupWalls,
+            string pinType = "Map", float backupX = 0.0f, float backupY = 0.0f
         )
         {
             this.name = name;
@@ -33,10 +34,10 @@ namespace BreakableWallRandomizer.IC
             this.groupWalls = groupWalls;
             this.pinType = pinType;
             flingType = FlingType.DirectDeposit;
-            tags = [BreakableWallLocationTag(x, y)];
+            tags = [BreakableWallLocationTag(x, y, backupX, backupY)];
         }
 
-        private InteropTag BreakableWallLocationTag(float x, float y)
+        private InteropTag BreakableWallLocationTag(float x, float y, float backupX, float backupY)
         {
             // Define sprite by location type
             string sprite = "";
@@ -75,7 +76,22 @@ namespace BreakableWallRandomizer.IC
             string mapSceneName = sceneName;
             if (sceneOverride.ContainsKey(sceneName))
                 mapSceneName = sceneOverride[sceneName];
-            tag.Properties[pinType == "World" ? "WorldMapLocations" : "MapLocations"] = new (string, float, float)[] {(mapSceneName, x, y)};
+            if (pinType == "World")
+            {
+                tag.Properties["WorldMapLocations"] = new (string, float, float)[] { (sceneName, x, y) };
+            }
+            else
+            {
+                if (sceneName != mapSceneName && mapSceneName == "Abyss_05")
+                {
+                    tag.Properties["MapLocations"] = new (string, float, float)[] { (sceneName, x, y), (mapSceneName, backupX, backupY) };
+                }
+                else
+                {
+                    tag.Properties["MapLocations"] = new (string, float, float)[] { (mapSceneName, x, y) };
+                }
+                
+            }
             tag.Message = "RandoSupplementalMetadata";
             return tag;
         }
@@ -118,9 +134,10 @@ namespace BreakableWallRandomizer.IC
             try
             {
                 Vector3 coordinates = GameObject.Find(objectName).transform.position;
+                BreakableWallRandomizer.Instance.LogDebug($"{name} - ({coordinates.x}, {coordinates.y})");
             }
             catch
-            {}
+            { }
             List<CondensedWallObject> wallList = [];
             if (groupWalls.Count > 0)
             {

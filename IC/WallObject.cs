@@ -12,6 +12,8 @@ namespace BreakableWallRandomizer.IC
         public string sceneName;
         public float x;
         public float y;
+        public float backupX;
+        public float backupY;
         public string persistentBool;
         public string sprite;
         public List<string> alsoDestroy;

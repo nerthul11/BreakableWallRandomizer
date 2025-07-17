@@ -9,7 +9,7 @@ namespace BreakableWallRandomizer
     public class BreakableWallRandomizer : Mod, IGlobalSettings<BWR_Settings>
     {
         new public string GetName() => "Breakable Wall Randomizer";
-        public override string GetVersion() => "4.0.0.6";
+        public override string GetVersion() => "4.0.1.0";
         public BWR_Settings GS { get; set; } = new();
         private static BreakableWallRandomizer _instance;
         public BreakableWallRandomizer() : base()
@@ -50,14 +50,14 @@ namespace BreakableWallRandomizer
                     "Wall-Catacombs_Grub",
                     "Wall-Crossroads_Grub",
                     "Wall-Deepnest_Mimics",
-                    "Wall-Deepnest_Springs_Grub",
+                    "Wall-Nosk_Entrance",
                     "Wall-Edge_Camp_Grub",
                     "Wall-Peak_Mimic",
                     "Wall-Waterways_Grub"
                 ]
             );
 
-            CondensedSpoilerLogger.AddCategory("Access Walls", () => BWR_Manager.Settings.Enabled, 
+            CondensedSpoilerLogger.AddCategory("Useful Walls", () => BWR_Manager.Settings.Enabled, 
                 [
                     "Dive_Floor-Flukemarm",
                     "Dive_Floor-Peak_Entrance",
