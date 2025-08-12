@@ -63,5 +63,10 @@
         "name": "GG_Atrium_Roof",
         "logic": "GG_Atrium + (LEFTCLAW | $SHRIEKPOGO[6]) + Defeated_Pantheon_1 + Defeated_Pantheon_2 + Defeated_Pantheon_3 + Defeated_Pantheon_4",
         "Stateless": false
+    },
+    {
+        "name": "Ruins1_32",
+        "logic": "Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) | Ruins1_32[right2] + Dive_Floor-Inner_Sanctum_2 + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Lever + Dive_Floor-Inner_Sanctum_Seal + (LEFTCLAW | RIGHTCLAW + WINGS | ENEMYPOGOS + (RIGHTCLAW | WINGS)) | Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub + WINGS + (LEFTSUPERDASH + ANYCLAW | ENEMYPOGOS))",
+        "Stateless": false
     }
 ]

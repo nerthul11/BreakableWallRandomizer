@@ -130,17 +130,13 @@
     },
     {
         "name": "Lever-Sanctum_West_Upper",
-        "logicOverride": "(ORIG) | (Ruins1_32[right2] + Dive_Floor-Inner_Sanctum_2 + (Lever-Sanctum_West_Lower + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub)))",
-        "logicSubstitutions": {
-            "QUAKE": "Dive_Floor-Inner_Sanctum_1"
-        }
+        "logicOverride": "Ruins1_32",
+        "logicSubstitutions": {}
     },
     {
         "name": "Lever-Sanctum_West_Lower",
-        "logicOverride": "Ruins1_32[right2] | (ORIG) + Dive_Floor-Inner_Sanctum_2 + (Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Bottom | Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + Lever-Sanctum_West_Lower)",
-        "logicSubstitutions": {
-            "QUAKE": "Dive_Floor-Inner_Sanctum_1"
-        }
+        "logicOverride": "Ruins1_32[right2] | Ruins1_32 + (Dive_Floor-Inner_Sanctum_2 + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + Lever-Sanctum_West_Lower | Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Bottom + (ANYCLAW | WINGS | ENEMYPOGOS))",
+        "logicSubstitutions": {}
     },
     {
         "name": "Marissa",
@@ -194,6 +190,23 @@
         "logicOverride": "",
         "logicSubstitutions": {
             "Bench-Crypts": "Bench-Crypts + Collapser-Catacombs_Entrance + Plank-Catacombs_Elevator"
+        }
+    },
+    {
+        "name": "Switch-Petra_Arena",
+        "logicOverride": "ORIG | (Fungus3_05[left1] | Fungus3_05[right1] | Fungus3_05[right2] + Switch-Petra_Arena) + Plank-Petra_Arena",
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Vine-Stag_Journal",
+        "logicOverride": "(Fungus1_22[left1] | Fungus1_22[top1]) + (Wall-Greenpath_Stag | Vine-Stag_Journal + (WINGS + ENEMYPOGOS | RIGHTCLAW)) + Can_Break_Vines",
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Zote_Deepnest",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Deepnest_33[top1]": "(Deepnest_33[top1] | (Deepnest_33[top2] | Deepnest_33[bot1]) + Collapser-Deepnest_Zote)"
         }
     }
 ]

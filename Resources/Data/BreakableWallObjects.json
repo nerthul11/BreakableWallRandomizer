@@ -1192,7 +1192,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Deepnest_East_11[top1] + (SIDESLASH | CYCLONE | GREATSLASH | (FIREBALL | QUAKE) + $CASTSPELL) | Deepnest_East_11[right1] + (LEFTCLAW | WINGS + BACKGROUNDPOGOS) + UPWALLBREAK | (Deepnest_East_11[left1] | Deepnest_East_11[bot1]) + (WINGS | FULLCLAW + $SHADESKIP | ENEMYPOGOS + DANGEROUSSKIPS) + (LEFTCLAW | WINGS + BACKGROUNDPOGOS) + UPWALLBREAK",
+        "logic": "Deepnest_East_11[top1] + (SIDESLASH | CYCLONE | GREATSLASH | (FIREBALL | QUAKE) + $CASTSPELL) | Deepnest_East_11[right1] + (LEFTCLAW | WINGS + BACKGROUNDPOGOS | SCREAM + $CASTSPELL) + UPWALLBREAK | (Deepnest_East_11[left1] | Deepnest_East_11[bot1]) + (WINGS | FULLCLAW + $SHADESKIP | ENEMYPOGOS + DANGEROUSSKIPS) + (LEFTCLAW | WINGS + BACKGROUNDPOGOS) + UPWALLBREAK",
         "logicOverrides": {
             "Broke_Camp_Bench_Wall": "Wall-Edge_Camp"
         },
@@ -1282,7 +1282,7 @@
         "group": "",
         "logic": "Fungus1_22[left1] | Fungus1_22[top1]",
         "logicOverrides": {
-            "Wanderer's_Journal-Greenpath_Stag": "(ORIG) + Wall-Greenpath_Stag"
+            "Wanderer's_Journal-Greenpath_Stag": "(ORIG) + (Wall-Greenpath_Stag | Vine-Stag_Journal?FALSE + (WINGS + ENEMYPOGOS | RIGHTCLAW))"
         },
         "logicSubstitutions": {}
     },
@@ -1549,7 +1549,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "(Fungus3_05[left1] | Fungus3_05[right1]) + ((WINGS | (LEFTDASH | RIGHTCLAW + LEFTSUPERDASH | FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM) + $CASTSPELL[2,before:ROOMSOUL,after:ROOMSOUL]) + (RIGHTDASH | RIGHTSUPERDASH | FIREBALLSKIPS + (LEFTFIREBALL | SCREAM) + (LEFTCLAW + $CASTSPELL[1] | $CASTSPELL[2,1]))) + (RIGHTCLAW | LEFTCLAW + WINGS) | Plank-Petra_Arena)",
+        "logic": "(Fungus3_05[left1] | Fungus3_05[right1] | Fungus3_05[right2] + Switch-Petra_Arena?FALSE) + (Plank-Petra_Arena | (WINGS | (LEFTDASH | RIGHTCLAW + LEFTSUPERDASH | FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM) + $CASTSPELL[2,before:ROOMSOUL,after:ROOMSOUL]) + (RIGHTDASH | RIGHTSUPERDASH | FIREBALLSKIPS + (LEFTFIREBALL | SCREAM) + (LEFTCLAW + $CASTSPELL[1] | $CASTSPELL[2,1]))) + (RIGHTCLAW | LEFTCLAW + WINGS))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1670,7 +1670,7 @@
         "group": "",
         "logic": "Mines_05",
         "logicOverrides": {
-            "Mines_05[left2]": "Mines_05[left2] | (ORIG) + Wall-Deep_Focus"
+            "Mines_05[left2]": "Mines_05[left2] + Wall-Deep_Focus | (ORIG) + Wall-Deep_Focus"
         },
         "logicSubstitutions": {
             "Mines_05": {
@@ -2894,7 +2894,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "Ruins1_32[right1] + (ANYCLAW | $SHRIEKPOGO[before:AREASOUL] | Lever-Sanctum_West_Upper?FALSE + Dive_Floor-Inner_Sanctum_1 + WINGS + ENEMYPOGOS) + QUAKE + $CASTSPELL[before:AREASOUL]",
+        "logic": "(Ruins1_32[right1] + (ANYCLAW | Lever-Sanctum_West_Upper?FALSE + WINGS + ENEMYPOGOS) | Ruins1_32 + WINGS + ENEMYPOGOS + (Lever-Sanctum_West_Upper?TRUE | Dive_Floor-Inner_Sanctum_1)) + QUAKE",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2911,7 +2911,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "(Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) | (Ruins1_32[right2] + Dive_Floor-Inner_Sanctum_2 + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub)))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logic": "Ruins1_32 + QUAKE",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2928,7 +2928,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "((Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + Dive_Floor-Inner_Sanctum_2 | (Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub))))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logic": "(Ruins1_32 + Dive_Floor-Inner_Sanctum_2 | Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Lever + Dive_Floor-Inner_Sanctum_Seal + (LEFTCLAW | RIGHTCLAW + WINGS | ENEMYPOGOS + (RIGHTCLAW | WINGS)) | Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub + WINGS + (LEFTSUPERDASH + ANYCLAW | ENEMYPOGOS))) + QUAKE",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2945,7 +2945,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "((Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + Dive_Floor-Inner_Sanctum_2 | (Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ANYCLAW + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Seal))))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logic": "(Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + Dive_Floor-Inner_Sanctum_2 + Dive_Floor-Inner_Sanctum_Seal | Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | WINGS + ENEMYPOGOS) | WINGS + ANYCLAW + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Seal)) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2962,7 +2962,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "((Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + Dive_Floor-Inner_Sanctum_2 + Dive_Floor-Inner_Sanctum_Grub | (Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom))))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logic": "(Ruins1_32 + Dive_Floor-Inner_Sanctum_2 + Dive_Floor-Inner_Sanctum_Grub | Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Lever + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Grub + (LEFTCLAW | RIGHTCLAW + WINGS | ENEMYPOGOS + (RIGHTCLAW | WINGS)) | Dive_Floor-Inner_Sanctum_Bottom + WINGS + (LEFTSUPERDASH + ANYCLAW | ENEMYPOGOS))) + QUAKE",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2979,7 +2979,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "Ruins1_32[right1] + (ANYCLAW | Lever-Sanctum_West_Upper?FALSE + Dive_Floor-Inner_Sanctum_1 + WINGS + ENEMYPOGOS) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logic": "(Ruins1_32[right1] + (ANYCLAW | Lever-Sanctum_West_Upper?FALSE + WINGS + ENEMYPOGOS) | Ruins1_32 + WINGS + ENEMYPOGOS + (Lever-Sanctum_West_Upper?TRUE | Dive_Floor-Inner_Sanctum_1)) + QUAKE",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -2996,7 +2996,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Inner_Sanctum",
-        "logic": "((Ruins1_32[right1] + (Lever-Sanctum_West_Upper?FALSE | ANYCLAW + Dive_Floor-Inner_Sanctum_1) + Dive_Floor-Inner_Sanctum_2) | (Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + (LEFTCLAW | RIGHTCLAW + (ENEMYPOGOS | WINGS) | (WINGS + ENEMYPOGOS)) | (WINGS + ENEMYPOGOS + Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub)))) + QUAKE + $CASTSPELL[before:ROOMSOUL]",
+        "logic": "(Ruins1_32 + Dive_Floor-Inner_Sanctum_2 | Ruins1_32[right2] + (Lever-Sanctum_West_Lower?TRUE + Dive_Floor-Inner_Sanctum_Lever + Dive_Floor-Inner_Sanctum_Seal + (LEFTCLAW | RIGHTCLAW + WINGS | ENEMYPOGOS + (RIGHTCLAW | WINGS)) | Dive_Floor-Inner_Sanctum_Bottom + Dive_Floor-Inner_Sanctum_Grub + WINGS + (LEFTSUPERDASH + ANYCLAW | ENEMYPOGOS))) + QUAKE",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3515,7 +3515,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "Deepnest_30[top1] + Collapser-Deepnest_Hot_Springs_Path + Collapser-Deepnest_Hot_Springs_Path_2",
+        "logic": "Deepnest_30[top1] + (RIGHTDASH | RIGHTSUPERDASH | ANYCLAW | WINGS) + Collapser-Deepnest_Hot_Springs_Path + Collapser-Deepnest_Hot_Springs_Path_2",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3535,14 +3535,14 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "Deepnest_30[top1]",
+        "logic": "Deepnest_30[top1] + (RIGHTDASH | RIGHTSUPERDASH | ANYCLAW | WINGS)",
         "logicOverrides": {},
         "logicSubstitutions": {
             "Deepnest_30[left1]": {
-                "Deepnest_30[top1]": "Deepnest_30[top1] + Collapser-Deepnest_Hot_Springs_Path + Collapser-Deepnest_Hot_Springs_Path_2"
+                "Deepnest_30[top1]": "Deepnest_30[top1] + (RIGHTDASH | RIGHTSUPERDASH | ANYCLAW | WINGS) + Collapser-Deepnest_Hot_Springs_Path + Collapser-Deepnest_Hot_Springs_Path_2"
             },
             "Deepnest_30[right1]": {
-                "Deepnest_30[top1]": "Deepnest_30[top1] + Collapser-Deepnest_Hot_Springs_Path + Collapser-Deepnest_Hot_Springs_Path_2"
+                "Deepnest_30[top1]": "Deepnest_30[top1] + (RIGHTDASH | RIGHTSUPERDASH | ANYCLAW | WINGS) + Collapser-Deepnest_Hot_Springs_Path + Collapser-Deepnest_Hot_Springs_Path_2"
             }
         }
     },
@@ -3562,7 +3562,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "Deepnest_30[top1] + Collapser-Deepnest_Hot_Springs_Path",
+        "logic": "Deepnest_30[top1] + (RIGHTDASH | RIGHTSUPERDASH | ANYCLAW | WINGS) + Collapser-Deepnest_Hot_Springs_Path",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -4082,9 +4082,9 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "Fungus2_25[top2] | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left + (WINGS | RIGHTCLAW | $SLOPEBALL) | Collapser-Deepnest_Mask_Shard_Right + (WINGS | ANYCLAW))",
+        "logic": "Fungus2_25[top2] | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left + (WINGS | LEFTCLAW | $SLOPEBALL) | Collapser-Deepnest_Mask_Shard_Right + (WINGS | ANYCLAW))",
         "logicOverrides": {
-            "Mask_Shard-Deepnest": "ORIG | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left + (WINGS | RIGHTCLAW | $SLOPEBALL) | Collapser-Deepnest_Mask_Shard_Right + (WINGS | ANYCLAW))"
+            "Mask_Shard-Deepnest": "ORIG | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left + (WINGS | LEFTCLAW | RIGHTCLAW + $SLOPEBALL) | Collapser-Deepnest_Mask_Shard_Right + (WINGS | ANYCLAW))"
         },
         "logicSubstitutions": {
             "Deepnest_Map-Right": {
@@ -4121,7 +4121,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "Fungus2_25[top2] | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left + (WINGS | RIGHTCLAW | $SLOPEBALL) | Collapser-Deepnest_Mask_Shard_Right + (WINGS | ANYCLAW))",
+        "logic": "Fungus2_25[top2] | (Fungus2_25[top1] | Fungus2_25[right1]) + (Collapser-Deepnest_Mask_Shard_Left + (WINGS | RIGHTCLAW + $SLOPEBALL) | Collapser-Deepnest_Mask_Shard_Right + (WINGS | ANYCLAW))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
