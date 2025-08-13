@@ -69,6 +69,8 @@ namespace BreakableWallRandomizer.Modules
                         UnlockedDives.Add(wall.name);
                     if (wallType == "Collapser" && !UnlockedCollapsers.Contains(wall.name))
                         UnlockedCollapsers.Add(wall.name);
+                    if (!UnlockedBreakables.Contains(wall.name))
+                        UnlockedBreakables.Add(wall.name);
                 }
                 CompletedChallenges();
             }
@@ -76,8 +78,8 @@ namespace BreakableWallRandomizer.Modules
 
         public delegate void Achieved_BWR(List<string> marks);
         public event Achieved_BWR OnAchievedBreakableWall;
-        public delegate void WallObtained();
-        public event WallObtained OnWallObtained;
+        public delegate void ObtainedWalls(int walls);
+        public event ObtainedWalls OnWallObtained;
 
         // On Hook events
         public void CompletedChallenges()
@@ -150,7 +152,7 @@ namespace BreakableWallRandomizer.Modules
                 completed.Add("All broken breakables.");
 
             OnAchievedBreakableWall?.Invoke(completed);
-            OnWallObtained?.Invoke();
+            OnWallObtained?.Invoke(UnlockedBreakables.Count);
         }
 
         public T GetVariable<T>(string propertyName) {

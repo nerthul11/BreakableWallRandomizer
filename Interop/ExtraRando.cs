@@ -18,7 +18,7 @@ internal static class ExtraRando_Interop
         VictoryModule.RequestConditions += VictoryModule_RequestConditions;
     }
 
-    private static void VictoryModule_RequestConditions(List<ExtraRando.Data.IVictoryCondition> conditionList) => conditionList.Add(new WallVictory());
+    private static void VictoryModule_RequestConditions(List<IVictoryCondition> conditionList) => conditionList.Add(new WallVictory());
 }
 
 public class WallVictory : IVictoryCondition
@@ -29,11 +29,11 @@ public class WallVictory : IVictoryCondition
 
     public int RequiredAmount { get; set; }
 
-    public int ClampAvailableRange(int setAmount) => Math.Min(210, Math.Max(setAmount, 0));
+    public int ClampAvailableRange(int setAmount) => Math.Min(211, Math.Max(setAmount, 0));
 
     public string GetMenuName() => "Breakable Walls";
 
-    public string PrepareLogic(LogicManagerBuilder logicBuilder) => "Total_Broken_Walls";
+    public string PrepareLogic(LogicManagerBuilder logicBuilder) => $"Total_Broken_Walls>{RequiredAmount - 1}";
 
     public void StartListening() => BreakableWallModule.Instance.OnWallObtained += CheckForWinCon;
 
@@ -48,19 +48,16 @@ public class WallVictory : IVictoryCondition
                 continue;
 
             if (item is BreakableWallItem)
-                BreakableWallRandomizer.Instance.Log(item.name);
-
-            if (!item.name.StartsWith("Wall-") && !item.name.StartsWith("Plank-") && !item.name.StartsWith("Dive_Floor-") && !item.name.StartsWith("Collapser-"))
-                continue;
-
-            string area = item.RandoLocation()?.LocationDef?.MapArea ?? "an unknown place.";
-            if (!leftItems.ContainsKey(area))
-                leftItems.Add(area, 0);
-            leftItems[area]++;
+            {
+                string area = item.RandoLocation()?.LocationDef?.MapArea ?? "an unknown place.";
+                if (!leftItems.ContainsKey(area))
+                    leftItems.Add(area, 0);
+                leftItems[area]++;
+            }
         }
         if (leftItems.Count == 0)
             return null;
-        string text = "You're missing walls in these areas:";
+        string text = $"You're missing at least {RequiredAmount - CurrentAmount} walls. <br>Randomized walls can be found in these areas:";
         foreach (string item in leftItems.Keys)
             text += $"<br>{leftItems[item]} in {item}";
         return text;
@@ -68,8 +65,9 @@ public class WallVictory : IVictoryCondition
 
     #endregion
 
-    private void CheckForWinCon()
+    private void CheckForWinCon(int walls)
     {
+        CurrentAmount = walls;
         ItemChangerMod.Modules.Get<VictoryModule>().CheckForFinish();
     }
 }

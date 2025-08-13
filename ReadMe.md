@@ -25,13 +25,14 @@ This setting will include the two walls in the Hall of Gods (both leading to the
 ## Settings
 
 - Enabled --> Boolean to define if the connection should be active or not.
-- Wooden Planks --> Boolean to define if one-way walls should be randomized or not.
-- Rock Walls --> Boolean to define if standard walls should be randomized or not.
-- Dive Floors --> Boolean to define if Dive breakable floors should be randomized or not.
-- Collapsers --> Boolean to define if collapsing floors should be randomized or not.
-- Godhome Walls --> Boolean to define if Godhome walls are included or not.
-- Extra Walls --> Boolean to define if additional, small and numerous walls like Ancestral Mound Planks or Hive pillars should be included or not. (Not available at the time)
-- Group Walls --> Transforms all breakable items in all rooms into a single check. For groups with multiple wall types (mainly Walls + Planks or Walls + Collapsers), the vanilla objects will behave normally, and only the randomized objects will follow the group rules.
+- Each of Walls, Planks, Dive Floors and Collapsers have available:
+  - A boolean to set them as Enabled/Disabled.
+  - A Split Group they're placed into.
+  - A boolean that adds Additional Walls:
+    - This setting does nothing to Walls, Planks or Dive Floors - though it will on future releases impact Walls & Planks.
+    - For Collapsers, this setting places the collapsers that are immediately above spike floors in the pool.
+- Godhome Walls --> Boolean to define if the 3 available Godhome walls are included or not.
+- Group Walls --> Transforms all breakable items in all rooms into a single check. For groups with multiple wall types (mainly Walls + Planks or Walls + Collapsers), the vanilla objects will behave normally, and only the randomized objects will follow the group rules. (Will be refactored into grouping walls by room eventually)
 
 ### Myla Shop
 - Enabled --> Boolean to define if the Wall Shop should appear or not.
@@ -46,6 +47,7 @@ This setting will include the two walls in the Hall of Gods (both leading to the
 - RandomizerCore
 
 ## Integrations:
+- Extra Rando: Walls are available as a Victory Condition for Extra Rando. At the moment, only the total wall count, which will include both randomized and vanilla walls, will be used.
 - FStats: When enabled, a new page for diverse Wall achievements will be added, and it'll display the achievements regardless of randomization settings for them.
 - More Locations: Having the mod enabled will allow for walls to be included as currency for the Junk Shop.
 - RandoSettingsManager

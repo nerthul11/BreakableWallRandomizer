@@ -37,9 +37,8 @@ namespace BreakableWallRandomizer
 
             if (ModHooks.GetMod("Randomizer 4") is Mod)
             { 
-                // Temporally disabled
-                //if (ModHooks.GetMod("ExtraRando") is Mod)
-                //    ExtraRando_Interop.Hook();
+                if (ModHooks.GetMod("ExtraRando") is Mod)
+                    ExtraRando_Interop.Hook();
                 if (ModHooks.GetMod("MoreLocations") is Mod)
                     MoreLocations_Interop.Hook();
                 

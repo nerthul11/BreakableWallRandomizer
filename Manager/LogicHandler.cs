@@ -61,7 +61,7 @@ namespace BreakableWallRandomizer.Manager
             StreamReader reader = new(stream);
             List<WallObject> wallList = jsonSerializer.Deserialize<List<WallObject>>(new JsonTextReader(reader));
 
-            lmb.GetOrAddTerm("Total_Broken_Walls");
+            lmb.GetOrAddTerm("Total_Broken_Walls", TermType.Int);
             lmb.GetOrAddTerm("Broken_Walls");
             lmb.GetOrAddTerm("Broken_Planks");
             lmb.GetOrAddTerm("Broken_Dive_Floors");
