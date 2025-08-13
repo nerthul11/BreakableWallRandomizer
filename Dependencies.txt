@@ -1,4 +1,4 @@
-ExtraRando
+Extra Rando
 FStats
 ItemChanger
 MenuChanger
