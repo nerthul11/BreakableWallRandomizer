@@ -9,7 +9,7 @@ namespace BreakableWallRandomizer
     public class BreakableWallRandomizer : Mod, IGlobalSettings<BWR_Settings>
     {
         new public string GetName() => "Breakable Wall Randomizer";
-        public override string GetVersion() => "4.0.1.1";
+        public override string GetVersion() => "4.1.0.0";
         public BWR_Settings GS { get; set; } = new();
         private static BreakableWallRandomizer _instance;
         public BreakableWallRandomizer() : base()
@@ -37,6 +37,9 @@ namespace BreakableWallRandomizer
 
             if (ModHooks.GetMod("Randomizer 4") is Mod)
             { 
+                // Temporally disabled
+                //if (ModHooks.GetMod("ExtraRando") is Mod)
+                //    ExtraRando_Interop.Hook();
                 if (ModHooks.GetMod("MoreLocations") is Mod)
                     MoreLocations_Interop.Hook();
                 

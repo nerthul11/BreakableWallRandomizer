@@ -1,28 +1,32 @@
+using System;
+
 namespace BreakableWallRandomizer.Settings
 {
     public class BWR_Settings
     {
-        public bool Enabled = false;
-        public bool WoodenPlanks = false;
-        public bool RockWalls = false;
-        public bool DiveFloors = false;
-        public bool Collapsers = false;
-        // Extra Walls are not yet implemented on this patch
-        //public bool ExtraWalls = false;
-        public bool GodhomeWalls = false;
+        public bool Enabled { get; set; } = false;
+        public WallSettings WoodenPlanks { get; set; } = new();
+        public WallSettings RockWalls { get; set; } = new();
+        public WallSettings DiveFloors { get; set; } = new();
+        public WallSettings Collapsers { get; set; } = new();
+        public bool GodhomeWalls { get; set; } = false;
+        public bool GroupWalls { get; set; } = false;
+        public MylaShopSettings MylaShop { get; set; } = new();
+        public T GetVariable<T>(string propertyName) {
+            var property = typeof(BWR_Settings).GetProperty(propertyName);
+            if (property == null) {
+                throw new ArgumentException($"Property '{propertyName}' not found in class.");
+            }
+            return (T)property.GetValue(this);
+        }
 
-        [MenuChanger.Attributes.MenuRange(-1, 99)]
-        public int WoodenPlankWallGroup = -1;
-
-        [MenuChanger.Attributes.MenuRange(-1, 99)]
-        public int RockWallGroup = -1;
-
-        [MenuChanger.Attributes.MenuRange(-1, 99)]
-        public int DiveFloorGroup = -1;
-        [MenuChanger.Attributes.MenuRange(-1, 99)]
-        public int CollapserGroup = -1;        
-        public bool GroupWalls = false;
-        
-        public MylaShopSettings MylaShop = new();
+        public void SetVariable<T>(string propertyName, T value) {
+            var property = typeof(BWR_Settings).GetProperty(propertyName);
+            if (property == null) {
+                throw new ArgumentException($"Property '{propertyName}' not found in class.");
+            }
+            property.SetValue(this, value);
+        }
     }
+    
 }

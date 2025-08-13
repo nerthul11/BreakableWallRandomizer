@@ -36,7 +36,7 @@ namespace BreakableWallRandomizer.Manager
             using Stream stream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Data.BreakableWallObjects.json");
             StreamReader reader = new(stream);
             List<WallObject> wallList = jsonSerializer.Deserialize<List<WallObject>>(new JsonTextReader(reader));
-
+            System.Random rng = new();
             foreach (WallObject wall in wallList)
             {
                 BreakableWallItem wallItem = new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType, wall.persistentBool, wall.sprite, wall.extra, wall.groupWalls);
@@ -44,7 +44,7 @@ namespace BreakableWallRandomizer.Manager
                 wallItem.UIDef = new MsgUIDef()
                 {
                     name = new BoxedString(wall.name.Replace("_", " ").Replace("-", " - ")),
-                    shopDesc = GenerateShopDescription(),
+                    shopDesc = GenerateShopDescription(rng),
                     sprite = new WallSprite(wall.sprite)
                 };
                 Finder.DefineCustomItem(wallItem);
@@ -66,7 +66,7 @@ namespace BreakableWallRandomizer.Manager
             Finder.DefineCustomLocation(new WallShop());
         }
 
-        public static BoxedString GenerateShopDescription()
+        public static BoxedString GenerateShopDescription(System.Random rng)
         {
             string[] descriptions = {
             "What am I supposed to put in this description? It's a wall.",
@@ -120,9 +120,7 @@ namespace BreakableWallRandomizer.Manager
             "Hot Loading Screen Tip: They say a fluke thing who sells junk might accept your wall credit card.",
             "Hot Loading Screen Tip: Breakable Walls in the Abyssal Temple follow the Abyssal Temple Rando setting."
             };
-
-            System.Random rng = new();
-            return new BoxedString(descriptions[rng.Next(0, descriptions.Length)]);
+            return new BoxedString(descriptions[rng.Next(descriptions.Length)]);
         }
     }
 }

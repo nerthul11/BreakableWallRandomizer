@@ -27,8 +27,8 @@ namespace BreakableWallRandomizer.Manager
                 return;
 
             List<string> keys = new (startDefs.Keys);
-            bool planks = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.WoodenPlanks;
-            bool collapsers = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.Collapsers;
+            bool planks = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.WoodenPlanks.Enabled;
+            bool collapsers = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.Collapsers.Enabled;
             foreach (var startName in keys)
             {
                 var start = startDefs[startName];
@@ -60,7 +60,8 @@ namespace BreakableWallRandomizer.Manager
             using Stream stream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Data.BreakableWallObjects.json");
             StreamReader reader = new(stream);
             List<WallObject> wallList = jsonSerializer.Deserialize<List<WallObject>>(new JsonTextReader(reader));
-            
+
+            lmb.GetOrAddTerm("Total_Broken_Walls");
             lmb.GetOrAddTerm("Broken_Walls");
             lmb.GetOrAddTerm("Broken_Planks");
             lmb.GetOrAddTerm("Broken_Dive_Floors");
@@ -72,7 +73,7 @@ namespace BreakableWallRandomizer.Manager
             foreach (WallObject wall in wallList)
             {
                 lmb.GetOrAddTerm(wall.name);
-                lmb.AddItem(new StringItemTemplate(wall.name, $"Broken_{wall.name.Split('-')[0]}s++ >> {wall.name}++"));
+                lmb.AddItem(new StringItemTemplate(wall.name, $"Total_Broken_Walls++ >> Broken_{wall.name.Split('-')[0]}s++ >> {wall.name}++"));
             }
 
             foreach (WallObject wall in wallList)
@@ -126,13 +127,13 @@ namespace BreakableWallRandomizer.Manager
                     }
                 }
                 if (wallCount > 0)
-                    effect += $"Broken_Walls+{(wallCount > 1 ? $"={wallCount}" : '+')} >> ";
+                    effect += $"Total_Broken_Walls+{(floorCount > 1 ? $"={floorCount}" : '+')} >> Broken_Walls+{(wallCount > 1 ? $"={wallCount}" : '+')} >> ";
                 if (plankCount > 0)
-                    effect += $"Broken_Planks+{(plankCount > 1 ? $"={plankCount}" : '+')} >> ";
+                    effect += $"Total_Broken_Walls+{(floorCount > 1 ? $"={floorCount}" : '+')} >> Broken_Planks+{(plankCount > 1 ? $"={plankCount}" : '+')} >> ";
                 if (floorCount > 0)
-                    effect += $"Broken_Dive_Floors+{(floorCount > 1 ? $"={floorCount}" : '+')} >> ";
+                    effect += $"Total_Broken_Walls+{(floorCount > 1 ? $"={floorCount}" : '+')} >> Broken_Dive_Floors+{(floorCount > 1 ? $"={floorCount}" : '+')} >> ";
                 if (collapserCount > 0)
-                    effect += $"Broken_Collapsers+{(floorCount > 1 ? $"={floorCount}" : '+')} >> "; 
+                    effect += $"Total_Broken_Walls+{(floorCount > 1 ? $"={floorCount}" : '+')} >> Broken_Collapsers+{(floorCount > 1 ? $"={floorCount}" : '+')} >> "; 
                 effect += wallTerms;
                 effect = effect.Remove(effect.Length - 4);
 

@@ -8,8 +8,8 @@
     <Product>BreakableWallRandomizer</Product>
     <Description>A Randomizer add-on for wall and floor objects.</Description>
     <Copyright>Copyright ©2023</Copyright>
-    <AssemblyVersion>4.0.1.1</AssemblyVersion>
-    <FileVersion>4.0.1.1</FileVersion>
+    <AssemblyVersion>4.1.0.0</AssemblyVersion>
+    <FileVersion>4.1.0.0</FileVersion>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
@@ -72,6 +72,9 @@
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>$(LocalRefs)/Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="ExtraRando">
+      <HintPath>$(LocalRefs)/Mods/Extra Rando/ExtraRando.dll</HintPath>
     </Reference>
     <Reference Include="FStats">
       <HintPath>$(LocalRefs)/Mods/FStats/FStats.dll</HintPath>

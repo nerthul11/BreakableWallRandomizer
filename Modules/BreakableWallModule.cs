@@ -76,12 +76,14 @@ namespace BreakableWallRandomizer.Modules
 
         public delegate void Achieved_BWR(List<string> marks);
         public event Achieved_BWR OnAchievedBreakableWall;
+        public delegate void WallObtained();
+        public event WallObtained OnWallObtained;
 
         // On Hook events
         public void CompletedChallenges()
         {
             List<string> completed = [];
-            
+
             int grimmWallCount = 0;
             int noskWallCount = 0;
             int villageWallCount = 0;
@@ -109,9 +111,9 @@ namespace BreakableWallRandomizer.Modules
                 if (s.Contains("Nosk"))
                     noskWallCount += 1;
                 if (s.Contains("Village"))
-                    villageWallCount += 1;    
+                    villageWallCount += 1;
                 if (s.Contains("Catacombs"))
-                    catacombsWallCount += 1;               
+                    catacombsWallCount += 1;
             }
 
             foreach (string s in UnlockedDives)
@@ -121,7 +123,7 @@ namespace BreakableWallRandomizer.Modules
                 if (s.Contains("Inner_Sanctum"))
                     sanctumWallCount += 1;
             }
-            
+
             if (grimmWallCount == 3)
                 completed.Add("All Grimm Walls");
             if (noskWallCount == 3)
@@ -148,6 +150,7 @@ namespace BreakableWallRandomizer.Modules
                 completed.Add("All broken breakables.");
 
             OnAchievedBreakableWall?.Invoke(completed);
+            OnWallObtained?.Invoke();
         }
 
         public T GetVariable<T>(string propertyName) {

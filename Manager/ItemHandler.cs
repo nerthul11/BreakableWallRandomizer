@@ -34,10 +34,10 @@ namespace BreakableWallRandomizer.Manager
             if (!BWR_Manager.Settings.Enabled)
                 return;
             
-            int wallSettings = BWR_Manager.Settings.RockWallGroup;
-            int plankSettings = BWR_Manager.Settings.WoodenPlankWallGroup;
-            int diveSettings = BWR_Manager.Settings.DiveFloorGroup;
-            int collapserSettings = BWR_Manager.Settings.CollapserGroup;
+            int wallSettings = BWR_Manager.Settings.RockWalls.Group;
+            int plankSettings = BWR_Manager.Settings.WoodenPlanks.Group;
+            int diveSettings = BWR_Manager.Settings.DiveFloors.Group;
+            int collapserSettings = BWR_Manager.Settings.Collapsers.Group;
 
             if (rb.gs.SplitGroupSettings.RandomizeOnStart && wallSettings >= 0 && wallSettings <= 2)
             {
@@ -192,13 +192,13 @@ namespace BreakableWallRandomizer.Manager
                     Random rng = factory.rng;
                     List<string> availableTerms = [];
                     List<string> usedTerms = [];
-                    if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.RockWalls)
+                    if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.RockWalls.Enabled)
                         availableTerms.Add("Walls");
-                    if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.WoodenPlanks)
+                    if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.WoodenPlanks.Enabled)
                         availableTerms.Add("Planks");
-                    if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.DiveFloors)
+                    if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.DiveFloors.Enabled)
                         availableTerms.Add("Dives");
-                    if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.Collapsers)
+                    if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.Collapsers.Enabled)
                         availableTerms.Add("Collapsers");
                     for (int i = 0; i < rng.Next(1, 1 + availableTerms.Count); i++)
                     {
@@ -277,13 +277,12 @@ namespace BreakableWallRandomizer.Manager
             bool useGroups = BWR_Manager.Settings.GroupWalls;
             foreach (WallObject wall in wallList)
             {
-                bool include = wall.name.StartsWith("Wall") && BWR_Manager.Settings.RockWalls;
-                include |= wall.name.StartsWith("Plank") && BWR_Manager.Settings.WoodenPlanks;
-                include |= wall.name.StartsWith("Dive_Floor") && BWR_Manager.Settings.DiveFloors;
-                include |= wall.name.StartsWith("Collapser") && BWR_Manager.Settings.Collapsers;
+                bool include = wall.name.StartsWith("Wall") && BWR_Manager.Settings.RockWalls.Enabled && (!wall.extra || BWR_Manager.Settings.RockWalls.AdditionalWalls);
+                include |= wall.name.StartsWith("Plank") && BWR_Manager.Settings.WoodenPlanks.Enabled && (!wall.extra || BWR_Manager.Settings.WoodenPlanks.AdditionalWalls);
+                include |= wall.name.StartsWith("Dive_Floor") && BWR_Manager.Settings.DiveFloors.Enabled && (!wall.extra || BWR_Manager.Settings.DiveFloors.AdditionalWalls);
+                include |= wall.name.StartsWith("Collapser") && BWR_Manager.Settings.Collapsers.Enabled && (!wall.extra || BWR_Manager.Settings.Collapsers.AdditionalWalls);
                 if (wall.name.Contains("White_Palace") || wall.name.Contains("Path_of_Pain"))
                     include = include && rb.gs.LongLocationSettings.WhitePalaceRando != LongLocationSettings.WPSetting.ExcludeWhitePalace;
-                //include = include && (!wall.extra || BWR_Manager.Settings.ExtraWalls);
                 include = include && (!(wall.name.Contains("Godhome") || wall.name.Contains("Eternal_Ordeal")) || BWR_Manager.Settings.GodhomeWalls);
 
                 if (include)
@@ -331,13 +330,12 @@ namespace BreakableWallRandomizer.Manager
                     {
                         if (wall.group == group.name.Split('-')[1])
                         {
-                            bool include = wall.name.StartsWith("Wall") && BWR_Manager.Settings.RockWalls;
-                            include |= wall.name.StartsWith("Plank") && BWR_Manager.Settings.WoodenPlanks;
-                            include |= wall.name.StartsWith("Dive_Floor") && BWR_Manager.Settings.DiveFloors;
-                            include |= wall.name.StartsWith("Collapser") && BWR_Manager.Settings.Collapsers;
+                            bool include = wall.name.StartsWith("Wall") && BWR_Manager.Settings.RockWalls.Enabled && (!wall.extra || BWR_Manager.Settings.RockWalls.AdditionalWalls);
+                            include |= wall.name.StartsWith("Plank") && BWR_Manager.Settings.WoodenPlanks.Enabled && (!wall.extra || BWR_Manager.Settings.WoodenPlanks.AdditionalWalls);
+                            include |= wall.name.StartsWith("Dive_Floor") && BWR_Manager.Settings.DiveFloors.Enabled && (!wall.extra || BWR_Manager.Settings.DiveFloors.AdditionalWalls);
+                            include |= wall.name.StartsWith("Collapser") && BWR_Manager.Settings.Collapsers.Enabled && (!wall.extra || BWR_Manager.Settings.Collapsers.AdditionalWalls);
                             if (wall.name.Contains("White_Palace") || wall.name.Contains("Path_of_Pain"))
                                 include = include && rb.gs.LongLocationSettings.WhitePalaceRando != LongLocationSettings.WPSetting.ExcludeWhitePalace;
-                            //include = include && (!wall.extra || BWR_Manager.Settings.ExtraWalls);
                             if (include)
                                 group.groupWalls.Add(new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType));
                         }

@@ -18,19 +18,19 @@ namespace BreakableWallRandomizer.Interop
         }
         private static bool IncludeWalls() {
             bool include = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.MylaShop.Enabled && BWR_Manager.Settings.MylaShop.IncludeInJunkShop;
-            return include && (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.RockWalls);
+            return include && (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.RockWalls.Enabled);
         }
         private static bool IncludePlanks() {
             bool include = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.MylaShop.Enabled && BWR_Manager.Settings.MylaShop.IncludeInJunkShop;
-            return include && (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.WoodenPlanks);
+            return include && (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.WoodenPlanks.Enabled);
         }
         private static bool IncludeDives() {
             bool include = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.MylaShop.Enabled && BWR_Manager.Settings.MylaShop.IncludeInJunkShop;
-            return include && (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.DiveFloors);
+            return include && (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.DiveFloors.Enabled);
         }
         private static bool IncludeCollapsers() {
             bool include = BWR_Manager.Settings.Enabled && BWR_Manager.Settings.MylaShop.Enabled && BWR_Manager.Settings.MylaShop.IncludeInJunkShop;
-            return include && (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.Collapsers);
+            return include && (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.Collapsers.Enabled);
         }
         private static WallCostProvider WallCostProvider() => new();
         private static PlankCostProvider PlankCostProvider() => new();

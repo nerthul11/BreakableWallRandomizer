@@ -1,7 +1,6 @@
 ﻿using BreakableWallRandomizer.Modules;
 using ItemChanger;
 using ItemChanger.Tags;
-using ItemChanger.UIDefs;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
