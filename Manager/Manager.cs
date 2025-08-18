@@ -97,10 +97,10 @@ namespace BreakableWallRandomizer.Manager
             "I'm sure this is the one wall you need for Myla's shop.",
             "Is this even a wall? Or is it a plank? Or is it a dive floor? Or is it a collapser? You know, I do not.",
             "Don't look at me, I'm just a description.",
-            "There are 56 rock walls in the game.",
+            "There are 57 rock walls in the game.",
             "There are 51 wooden planks in the game.",
             "There are 45 dive floors in the game.",
-            "There are many collapsers in the game.",
+            "There are 58 collapsers in the game.",
 
             "Dearest Homothety (AKA \"Moth\") (AKA \"Randoman\"): I am writing to inform you of a glaring error in your randomization algorithm for the game Hollow Knight. Though I was assured that the item locations were random, and indeed was swayed by your very name, there was not one but TWO so-called \"vanilla\" locations. Please, I implore you, fix your game.",
             "I'll cast some Bad Magic to break this wall for ya -- for a small fee.",

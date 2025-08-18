@@ -17,14 +17,48 @@
         "logicSubstitutions": {}
     },
     {
+        "name": "Bench-Hive_Exterior",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Deepnest_East_01[bot1]": "Deepnest_East_01[bot1] + Plank-Hive_Exit",
+            "Deepnest_East_01[top1]": "Deepnest_East_01[top1] + Plank-Hive_Exit"
+        }
+    },
+    {
         "name": "Bench-Mimic's_Secret",
         "logicOverride": "(ORIG) | Mines_35[left1] + (UPWALLBREAK | (((LEFTSUPERDASH + RIGHTCLAW) | (RIGHTSUPERDASH + LEFTCLAW + WINGS + BACKGROUNDPOGOS)) + OBSCURESKIPS)) + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW | WINGS | (FIREBALLSKIPS + (LEFTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Plank-Crystallized_Mound + (RIGHTCLAW | WINGS + LEFTCLAW + BACKGROUNDPOGOS)",
+        "logicSubstitutions": {}
+    },
+    {
+        "name": "Bench-Zote's_Folly",
+        "logicOverride": "(ORIG) | (Deepnest_33[top2] | Deepnest_33[bot1]) + Collapser-Deepnest_Zote",
         "logicSubstitutions": {}
     },
     {
         "name": "Chandelier-Watcher_Knights",
         "logicOverride": "ORIG + Wall-Chandelier",
         "logicSubstitutions": {}
+    },
+    {
+        "name": "Deepnest_33[bot1]",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Bench-Zote's_Folly": "Bench-Zote's_Folly + Collapser-Deepnest_Zote"
+        }
+    },
+    {
+        "name": "Deepnest_East_01[bot1]",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Bench-Hive_Exterior": "Bench-Hive_Exterior + Plank-Hive_Exit"
+        }
+    },
+    {
+        "name": "Deepnest_East_01[top1]",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Bench-Hive_Exterior": "Bench-Hive_Exterior + Plank-Hive_Exit"
+        }
     },
     {
         "name": "Deepnest_East_04",
@@ -170,6 +204,13 @@
         "name": "MoreDoors-Archive_Key-Ooma-Canyon_Charm_Notch",
         "logicOverride": "Fungus3_28[right1] + (ACID | ACIDSKIPS + (LEFTSKIPACID | WINGS + LEFTDASH | WINGS + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[before:ROOMSOUL] | DAMAGEBOOSTS + $TAKEDAMAGE + FULLCLAW + FULLDASH)) + (RIGHTCLAW | LEFTCLAW + WINGS | LEFTCLAW + ENEMYPOGOS)",
         "logicSubstitutions": {}
+    },
+    {
+        "name": "MoreDoors-Crown_Key-Crystal_Hunter-Crystallized_Mound",
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "QUAKE": "Dive_Floor-Crystallized_Mound"
+        }
     },
     {
         "name": "Mr_Mushroom-Kingdom's_Edge",

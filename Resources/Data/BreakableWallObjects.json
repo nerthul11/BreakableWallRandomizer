@@ -152,12 +152,15 @@
         },
         "logicSubstitutions": {
             "Abyss_19": {
-                "Abyss_19[right1]": "(Abyss_19[right1] + Plank-Broken_Vessel_Shortcut)"
+                "Abyss_19[bot1]": "(Abyss_19[bot1] + Plank-Broken_Vessel_Shortcut)"
             },
             "Abyss_19[right1]": {
                 "Abyss_19[bot1]": "(Abyss_19[bot1] + Plank-Broken_Vessel_Shortcut)"
             },
             "Abyss_19[bot2]": {
+                "Abyss_19[bot1]": "(Abyss_19[bot1] + Plank-Broken_Vessel_Shortcut)"
+            },
+            "Geo_Rock-Basin_Before_Broken_Vessel": {
                 "Abyss_19[bot1]": "(Abyss_19[bot1] + Plank-Broken_Vessel_Shortcut)"
             }
         }

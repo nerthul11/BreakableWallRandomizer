@@ -3,6 +3,7 @@ using ItemChanger;
 using ItemChanger.Tags;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace BreakableWallRandomizer.IC
@@ -28,7 +29,7 @@ namespace BreakableWallRandomizer.IC
             this.persistentBool = persistentBool;
             this.extra = extra;
             this.groupWalls = groupWalls;
-            tags = [BreakableWallItemTag()];
+            tags = [BreakableWallItemTag(), CurseTag()];
         }
 
         private InteropTag BreakableWallItemTag()
@@ -51,6 +52,25 @@ namespace BreakableWallRandomizer.IC
             tag.Message = "RandoSupplementalMetadata";
             return tag;
         }
+        
+        private InteropTag CurseTag()
+        {
+            InteropTag tag = new();
+            string uiName = name.Replace("_", " ").Replace("-", " - ");
+            List<string> mimicNames = [
+                uiName.Replace(" -", ""),
+                uiName.Split('-')[1]
+            ];
+            List<string> options = ["Wall", "Plank", "Dive_Floor", "Collapser"];
+            options.Remove(name.Split('-')[0]);
+            foreach (string option in options)
+                mimicNames.Add($"{option.Replace('_', ' ')} - {uiName.Split('-')[1].Replace("ee", "eee").Replace("ll", "l").Replace("k", "")}");
+            tag.Properties["CanMimic"] = new BoxedBool(true);
+            tag.Properties["MimicNames"] = mimicNames.ToArray();
+            tag.Properties["Weight"] = 0.2f;
+            tag.Message = "CurseData";
+            return tag;
+        }
 
         public override void GiveImmediate(GiveInfo info)
         {
@@ -67,7 +87,7 @@ namespace BreakableWallRandomizer.IC
                         BreakableWallModule.Instance.UnlockedDives.Add(wall.name);
                     if (name.StartsWith("Collapser") && !BreakableWallModule.Instance.UnlockedCollapsers.Contains(name))
                         BreakableWallModule.Instance.UnlockedCollapsers.Add(name);
-                    
+
                     // If we're already in the same scene as the wall, break it.
                     if (GameManager.instance.sceneName == wall.sceneName)
                         GameObject.Find(wall.gameObject).LocateMyFSM(wall.fsmType).SetState("BreakSameScene");
@@ -97,10 +117,10 @@ namespace BreakableWallRandomizer.IC
                     GameObject.Find(wall.gameObject).LocateMyFSM(wall.fsmType).SetState("BreakSameScene");
             }
             if (!BreakableWallModule.Instance.UnlockedBreakables.Contains(name))
-                    BreakableWallModule.Instance.UnlockedBreakables.Add(name);
+                BreakableWallModule.Instance.UnlockedBreakables.Add(name);
             if (persistentBool != "")
                 PlayerData.instance.SetBool(persistentBool, true);
-            
+
             BreakableWallModule.Instance.CompletedChallenges();
         }
     }

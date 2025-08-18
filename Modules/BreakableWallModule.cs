@@ -2,15 +2,18 @@ using BreakableWallRandomizer.IC;
 using BreakableWallRandomizer.Manager;
 using ItemChanger;
 using ItemChanger.Modules;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace BreakableWallRandomizer.Modules
 {
     [Serializable]
-    public class BreakableWallModule : Module
+    public class BreakableWallModule : ItemChanger.Modules.Module
     {
         public static BreakableWallModule Instance => ItemChangerMod.Modules.GetOrAdd<BreakableWallModule>();
         public List<CondensedWallObject> vanillaWalls = [];
@@ -22,6 +25,14 @@ namespace BreakableWallRandomizer.Modules
         public List<string> UnlockedCollapsers = [];
         public override void Initialize() 
         {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            JsonSerializer jsonSerializer = new() {TypeNameHandling = TypeNameHandling.Auto};   
+            using Stream stream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Data.BreakableWallObjects.json");
+            StreamReader reader = new(stream);
+            List<BreakableWallItem> wallList = jsonSerializer.Deserialize<List<BreakableWallItem>>(new JsonTextReader(reader));
+            foreach (BreakableWallItem wall in wallList)
+                vanillaWalls.Add(new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType));
+                
             On.HutongGames.PlayMaker.Actions.ActivateGameObject.OnEnter += VanillaTracker;
             if (ItemChangerMod.Modules?.Get<InventoryTracker>() is InventoryTracker it)
                 it.OnGenerateFocusDesc += AddWallProgress;

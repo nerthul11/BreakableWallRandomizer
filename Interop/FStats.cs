@@ -1,16 +1,12 @@
-using BreakableWallRandomizer.IC;
 using BreakableWallRandomizer.Manager;
 using BreakableWallRandomizer.Modules;
 using FStats;
 using FStats.StatControllers;
 using FStats.Util;
 using ItemChanger;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace BreakableWallRandomizer.Interop
 {
@@ -28,16 +24,6 @@ namespace BreakableWallRandomizer.Interop
             
             ItemChangerMod.Modules.GetOrAdd<BreakableWallModule>();
             generateStats(new BreakableWallStats());
-
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            JsonSerializer jsonSerializer = new() {TypeNameHandling = TypeNameHandling.Auto};
-            
-            using Stream stream = assembly.GetManifestResourceStream("BreakableWallRandomizer.Resources.Data.BreakableWallObjects.json");
-            StreamReader reader = new(stream);
-            List<BreakableWallItem> wallList = jsonSerializer.Deserialize<List<BreakableWallItem>>(new JsonTextReader(reader));
-            BreakableWallModule module = BreakableWallModule.Instance;
-            foreach (BreakableWallItem wall in wallList)
-                module.vanillaWalls.Add(new(wall.name, wall.sceneName, wall.gameObject, wall.fsmType));
         }
     }
 
