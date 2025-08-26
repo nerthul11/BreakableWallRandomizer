@@ -20,14 +20,15 @@
         "name": "Bench-Hive_Exterior",
         "logicOverride": "",
         "logicSubstitutions": {
-            "Deepnest_East_01[bot1]": "Deepnest_East_01[bot1] + Plank-Hive_Exit",
-            "Deepnest_East_01[top1]": "Deepnest_East_01[top1] + Plank-Hive_Exit"
+            "Deepnest_East_01[right1]": "Deepnest_East_01[bot1] + Plank-Hive_Exit"
         }
     },
     {
         "name": "Bench-Mimic's_Secret",
-        "logicOverride": "(ORIG) | Mines_35[left1] + (UPWALLBREAK | (((LEFTSUPERDASH + RIGHTCLAW) | (RIGHTSUPERDASH + LEFTCLAW + WINGS + BACKGROUNDPOGOS)) + OBSCURESKIPS)) + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW | WINGS | (FIREBALLSKIPS + (LEFTFIREBALL | SCREAM)) + $CASTSPELL[3]) + Plank-Crystallized_Mound + (RIGHTCLAW | WINGS + LEFTCLAW + BACKGROUNDPOGOS)",
-        "logicSubstitutions": {}
+        "logicOverride": "",
+        "logicSubstitutions": {
+            "Mines_16[top1]": "Mines_16[top1] + Wall-Peak_Mimic"
+        }
     },
     {
         "name": "Bench-Zote's_Folly",
@@ -44,20 +45,6 @@
         "logicOverride": "",
         "logicSubstitutions": {
             "Bench-Zote's_Folly": "Bench-Zote's_Folly + Collapser-Deepnest_Zote"
-        }
-    },
-    {
-        "name": "Deepnest_East_01[bot1]",
-        "logicOverride": "",
-        "logicSubstitutions": {
-            "Bench-Hive_Exterior": "Bench-Hive_Exterior + Plank-Hive_Exit"
-        }
-    },
-    {
-        "name": "Deepnest_East_01[top1]",
-        "logicOverride": "",
-        "logicSubstitutions": {
-            "Bench-Hive_Exterior": "Bench-Hive_Exterior + Plank-Hive_Exit"
         }
     },
     {
@@ -122,6 +109,11 @@
         "logicSubstitutions": {
             "Cliffs_02[bot1]": "Cliffs_02[bot1] + Plank-Cliff's_Pass"
         }
+    },
+    {
+        "name": "Hornet_Deepnest",
+        "logicOverride": "(Beast_Den_Trap_Entrance + Collapser-Beast's_Den_Grub + ((Herrah | Collapser-Beast's_Den_Herrah) + COMBAT[Left_Devout] | COMBAT[Any_Devout]) + (FULLCLAW | ENEMYPOGOS + $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[2,before:ROOMSOUL] + $SHRIEKPOGO[3,before:ROOMSOUL]) | Beast_Den_Secret_Entrance + (LEFTCLAW + WINGS + (Herrah | COMBAT[Right_Devout]) | RIGHTCLAW + WINGS + Collapser-Beast's_Den_Herrah | FULLCLAW + (Herrah | COMBAT[Right_Devout] | Collapser-Beast's_Den_Herrah))) + DREAMNAIL + HORNET>3 + LISTEN?TRUE",
+        "logicSubstitutions": {}
     },
     {
         "name": "Lever-Palace_Entrance_Orb",

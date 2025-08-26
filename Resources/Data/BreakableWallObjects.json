@@ -238,7 +238,9 @@
         "groupWalls": [],
         "group": "",
         "logic": "Cliffs_02[bot1] + (ANYCLAW | WINGS) | (Cliffs_02 + Plank-Cliff's_Pass)",
-        "logicOverrides": {},
+        "logicOverrides": {
+            "Cliffs_02[bot1]": "ORIG | Cliffs_02 + Plank-Cliff's_Pass"
+        },
         "logicSubstitutions": {
             "Cliffs_02": {
                 "Cliffs_02[bot1]": "(Cliffs_02[bot1] + Plank-Cliff's_Pass)"
@@ -569,8 +571,10 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Deepnest_01b[right1] | Deepnest_01b[top2] + Plank-Upper_Deepnest",
-        "logicOverrides": {},
+        "logic": "Deepnest_01b[right1] | (Deepnest_01b[top1] + (RIGHTDASH | WINGS | RIGHTCLAW | LEFTCLAW + SPELLAIRSTALL + $CASTSPELL[1]) | Deepnest_01b) + Plank-Upper_Deepnest",
+        "logicOverrides": {
+            "Deepnest_01[right1]": "ORIG | (Deepnest_01b[top1] + (RIGHTDASH | WINGS | RIGHTCLAW | LEFTCLAW + SPELLAIRSTALL + $CASTSPELL[1]) | Deepnest_01b) + Plank-Upper_Deepnest"
+        },
         "logicSubstitutions": {
             "Deepnest_01b": {
                 "Deepnest_01b[right1]": "Deepnest_01b[right1] + Plank-Upper_Deepnest"
@@ -642,7 +646,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Nosk_Walls",
-        "logic": "Deepnest_31[right1] + Plank-Nosk_Exit | Deepnest_31[right2] + (RIGHTCLAW | LEFTCLAW + (WINGS | BACKGROUNDPOGOS) | (ANYCLAW | WINGS) + Wall-Nosk_Outer + Wall-Nosk_Inner)",
+        "logic": "Deepnest_31[right1] + Plank-Nosk_Exit | Deepnest_31[right2] + (RIGHTCLAW | LEFTCLAW + (WINGS | BACKGROUNDPOGOS) | (ANYCLAW | WINGS) + Wall-Nosk_Outer + Wall-Nosk_Inner + Plank-Nosk_Exit)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1245,7 +1249,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "Den_Walls",
-        "logic": "Deepnest_Spider_Town[left1] + WINGS + (RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH | FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM) + $CASTSPELL[1]) | LEFTCLAW + RIGHTSUPERDASH) | Bench-Beast's_Den + ANYCLAW + Plank-Den_Secret_Entrance | Beast_Den_Trap_Entrance + (WINGS + ANYCLAW | FULLCLAW + COMBAT[Left_Devout]) + Plank-Den_Secret_Entrance",
+        "logic": "Deepnest_Spider_Town[left1] + WINGS + (RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH | FIREBALLSKIPS + (RIGHTFIREBALL | SCREAM) + $CASTSPELL[1]) | LEFTCLAW + RIGHTSUPERDASH) | Bench-Beast's_Den + ANYCLAW + Plank-Den_Secret_Entrance | Beast_Den_Trap_Entrance + Collapser-Beast's_Den_Grub + (WINGS + ANYCLAW | FULLCLAW + COMBAT[Left_Devout]) + Plank-Den_Secret_Entrance",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1315,7 +1319,7 @@
         "logicSubstitutions": {}
     },
     {
-        "name": "Plank-Baldur_Shell",
+        "name": "Plank-Baldur_Shell_Lower",
         "gameObject": "/One Way Wall",
         "fsmType": "break_floor",
         "sceneName": "Fungus1_28",
@@ -1330,7 +1334,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "(Fungus1_28[left1] | Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | $SHADESKIP)) + LEFTBALDURS | (Fungus1_28[left1] | Fungus1_28[left2]) + Plank-Baldur_Shell",
+        "logic": "(Fungus1_28[left1] | Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | $SHADESKIP)) + LEFTBALDURS | (Fungus1_28[left1] | Fungus1_28[left2]) + Plank-Baldur_Shell_Lower",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -1814,7 +1818,9 @@
         "y": 1.5,
         "persistentBool": "",
         "sprite": "rest_grounds_break_wall_90deg",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "/Breakable Wall (7)/Masks"
+        ],
         "extra": false,
         "groupWalls": [],
         "group": "Catacombs_Walls",
@@ -2272,7 +2278,12 @@
             "Soul_Totem-Waterways_Flukemarm": "ORIG | Waterways_08[top1] + Plank-Junk_Pit_Exit",
             "Waterways_08[left1]": "ORIG | Waterways_08[top1] + Plank-Junk_Pit_Exit"
         },
-        "logicSubstitutions": {}
+        "logicSubstitutions": {
+            "Waterways_08[top1]": {
+                "Waterways_08[left1]": "(Waterways_08[left1] + (Plank-Junk_Pit_Exit | (WINGS + ANYCLAW | LEFTCLAW + FULLDASH + ENEMYPOGOS + DANGEROUSSKIPS))",
+                "Waterways_08[left2]": "(Waterways_08[left2] + Wall-Junk_Pit_Entrance + (Plank-Junk_Pit_Exit | (WINGS + ANYCLAW | LEFTCLAW + FULLDASH + ENEMYPOGOS + DANGEROUSSKIPS))"
+            }
+        }
     },
     {
         "name": "Wall-Junk_Pit_Entrance",
@@ -2296,9 +2307,6 @@
                 "Waterways_08[left2]": "(Waterways_08[left2] + Wall-Junk_Pit_Entrance)"
             },
             "Geo_Rock-Waterways_Flukemarm": {
-                "Waterways_08[left2]": "(Waterways_08[left2] + Wall-Junk_Pit_Entrance)"
-            },
-            "Waterways_08[top1]": {
                 "Waterways_08[left2]": "(Waterways_08[left2] + Wall-Junk_Pit_Entrance)"
             },
             "Waterways_08[left1]": {
@@ -4307,7 +4315,9 @@
         "y": 12.92,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "/Breakable Wall/Masks"
+        ],
         "extra": false,
         "groupWalls": [],
         "group": "",
@@ -4325,7 +4335,9 @@
         "y": 12.87,
         "persistentBool": "",
         "sprite": "collapser_short_0deg",
-        "alsoDestroy": [],
+        "alsoDestroy": [
+            "/Breakable Wall (2)/Masks"
+        ],
         "extra": false,
         "groupWalls": [],
         "group": "",
