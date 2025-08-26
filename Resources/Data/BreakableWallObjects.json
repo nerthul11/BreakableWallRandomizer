@@ -2280,8 +2280,8 @@
         },
         "logicSubstitutions": {
             "Waterways_08[top1]": {
-                "Waterways_08[left1]": "(Waterways_08[left1] + (Plank-Junk_Pit_Exit | (WINGS + ANYCLAW | LEFTCLAW + FULLDASH + ENEMYPOGOS + DANGEROUSSKIPS))",
-                "Waterways_08[left2]": "(Waterways_08[left2] + Wall-Junk_Pit_Entrance + (Plank-Junk_Pit_Exit | (WINGS + ANYCLAW | LEFTCLAW + FULLDASH + ENEMYPOGOS + DANGEROUSSKIPS))"
+                "Waterways_08[left1]": "(Waterways_08[left1] + (Plank-Junk_Pit_Exit | (WINGS + ANYCLAW | LEFTCLAW + FULLDASH + ENEMYPOGOS + DANGEROUSSKIPS)))",
+                "Waterways_08[left2]": "(Waterways_08[left2] + Wall-Junk_Pit_Entrance + (Plank-Junk_Pit_Exit | (WINGS + ANYCLAW | LEFTCLAW + FULLDASH + ENEMYPOGOS + DANGEROUSSKIPS)))"
             }
         }
     },
