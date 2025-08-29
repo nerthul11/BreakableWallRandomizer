@@ -111,6 +111,10 @@ namespace BreakableWallRandomizer.Manager
                 {
                     diveGroup = igb;
                 }
+                if (igb.label == RBConsts.SplitGroupPrefix + collapserSettings)
+                {
+                    collapserGroup = igb;
+                }
             }
 
             rb.OnGetGroupFor.Subscribe(0.07f, ResolveGroups);

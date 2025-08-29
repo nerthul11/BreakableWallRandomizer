@@ -136,6 +136,11 @@
         }
     },
     {
+        "name": "Junk_Shop",
+        "logicOverride": "*Geo_Rock-Fluke_Hermit_Dupe + (SWIM | RIGHTSKIPACID | (DIFFICULTSKIPS + ACIDSKIPS + RIGHTDASH + RIGHTCLAW + WINGS + (SPELLAIRSTALL + $CASTSPELL[3] | RIGHTSHARPSHADOW))) + (LISTEN ? TRUE) + Wall-Fluke_Hermit",
+        "logicSubstitutions": {}
+    },
+    {
         "name": "Lever-Palace_Final",
         "logicOverride": "(ORIG) | White_Palace_12[bot1] + RIGHTCLAW + LEFTSUPERDASH + Wall-White_Palace_Shortcut + Plank-White_Palace_Shortcut_Exit",
         "logicSubstitutions": {}

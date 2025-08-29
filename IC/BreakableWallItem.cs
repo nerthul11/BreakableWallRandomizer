@@ -59,15 +59,15 @@ namespace BreakableWallRandomizer.IC
             string uiName = name.Replace("_", " ").Replace("-", " - ");
             List<string> mimicNames = [
                 uiName.Replace(" -", ""),
-                uiName.Split('-')[1]
+                uiName.Split('-')[1].Replace('a', 'e')
             ];
-            List<string> options = ["Wall", "Plank", "Dive_Floor", "Collapser"];
+            List<string> options = ["Wall", "Plank", "Dive_Floor", "Collapser", "Wal", "Dive Flour", "Punk", "Collapzer"];
             options.Remove(name.Split('-')[0]);
             foreach (string option in options)
                 mimicNames.Add($"{option.Replace('_', ' ')} - {uiName.Split('-')[1].Replace("ee", "eee").Replace("ll", "l").Replace("k", "")}");
             tag.Properties["CanMimic"] = new BoxedBool(true);
             tag.Properties["MimicNames"] = mimicNames.ToArray();
-            tag.Properties["Weight"] = 0.2f;
+            tag.Properties["Weight"] = 1f / 6f;
             tag.Message = "CurseData";
             return tag;
         }
