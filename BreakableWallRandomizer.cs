@@ -9,7 +9,7 @@ namespace BreakableWallRandomizer
     public class BreakableWallRandomizer : Mod, IGlobalSettings<BWR_Settings>
     {
         new public string GetName() => "Breakable Wall Randomizer";
-        public override string GetVersion() => "4.1.1.3";
+        public override string GetVersion() => "4.1.1.4";
         public BWR_Settings GS { get; set; } = new();
         private static BreakableWallRandomizer _instance;
         public BreakableWallRandomizer() : base()

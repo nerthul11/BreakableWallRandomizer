@@ -573,7 +573,7 @@
         "group": "",
         "logic": "Deepnest_01b[right1] | (Deepnest_01b[top1] + (RIGHTDASH | WINGS | RIGHTCLAW | LEFTCLAW + SPELLAIRSTALL + $CASTSPELL[1]) | Deepnest_01b) + Plank-Upper_Deepnest",
         "logicOverrides": {
-            "Deepnest_01[right1]": "ORIG | (Deepnest_01b[top1] + (RIGHTDASH | WINGS | RIGHTCLAW | LEFTCLAW + SPELLAIRSTALL + $CASTSPELL[1]) | Deepnest_01b) + Plank-Upper_Deepnest"
+            "Deepnest_01b[right1]": "ORIG | (Deepnest_01b[top1] + (RIGHTDASH | WINGS | RIGHTCLAW | LEFTCLAW + SPELLAIRSTALL + $CASTSPELL[1]) | Deepnest_01b) + Plank-Upper_Deepnest"
         },
         "logicSubstitutions": {
             "Deepnest_01b": {
