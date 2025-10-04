@@ -166,7 +166,7 @@
     },
     {
         "name": "Lever-Sanctum_West_Lower",
-        "logicOverride": "Ruins1_32[right2] | Ruins1_32 + (Dive_Floor-Inner_Sanctum_2 + Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + Lever-Sanctum_West_Lower | Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Bottom + (ANYCLAW | WINGS | ENEMYPOGOS))",
+        "logicOverride": "Ruins1_32[right2] | Ruins1_32 + Dive_Floor-Inner_Sanctum_2 + (Dive_Floor-Inner_Sanctum_Seal + Dive_Floor-Inner_Sanctum_Lever + Lever-Sanctum_West_Lower | Dive_Floor-Inner_Sanctum_Grub + Dive_Floor-Inner_Sanctum_Bottom + (ANYCLAW | WINGS | ENEMYPOGOS))",
         "logicSubstitutions": {}
     },
     {

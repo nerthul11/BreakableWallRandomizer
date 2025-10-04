@@ -571,9 +571,9 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Deepnest_01b[right1] | (Deepnest_01b[top1] + (RIGHTDASH | WINGS | RIGHTCLAW | LEFTCLAW + SPELLAIRSTALL + $CASTSPELL[1]) | Deepnest_01b) + Plank-Upper_Deepnest",
+        "logic": "Deepnest_01b[right1] | (Deepnest_01b[top1] + (RIGHTDASH | WINGS | RIGHTCLAW | LEFTCLAW + SPELLAIRSTALL + $CASTSPELL[1]) | Deepnest_01b[top2] | Deepnest_01b + (ANYCLAW + WINGS | (ANYCLAW | WINGS) + $SHADESKIP | $SHRIEKPOGO[1,1,before:ROOMSOUL,after:ROOMSOUL])) + Plank-Upper_Deepnest",
         "logicOverrides": {
-            "Deepnest_01b[right1]": "ORIG | (Deepnest_01b[top1] + (RIGHTDASH | WINGS | RIGHTCLAW | LEFTCLAW + SPELLAIRSTALL + $CASTSPELL[1]) | Deepnest_01b) + Plank-Upper_Deepnest"
+            "Deepnest_01b[right1]": "ORIG | (Deepnest_01b[top1] + (RIGHTDASH | WINGS | RIGHTCLAW | LEFTCLAW + SPELLAIRSTALL + $CASTSPELL[1]) | Deepnest_01b[top2] | Deepnest_01b + (ANYCLAW + WINGS | (ANYCLAW | WINGS) + $SHADESKIP | $SHRIEKPOGO[1,1,before:ROOMSOUL,after:ROOMSOUL])) + Plank-Upper_Deepnest"
         },
         "logicSubstitutions": {
             "Deepnest_01b": {
