@@ -16,7 +16,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Fungus1_08[left1] + (Plank-Hunter_Upper | Plank-Hunter_Lower + (LEFTCLAW | RIGHTCLAW + WINGS) + HUNTERNOTES>144?FALSE)",
+        "logic": "Fungus1_08[left1] + (Plank-Hunter_Upper | Plank-Hunter_Lower + (LEFTCLAW | RIGHTCLAW + WINGS) + (HUNTERNOTES?FALSE > 144))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -36,7 +36,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Fungus1_08[left1] + (Plank-Hunter_Upper + Plank-Hunter_Lower | HUNTERNOTES>144?FALSE)",
+        "logic": "Fungus1_08[left1] + (Plank-Hunter_Upper + Plank-Hunter_Lower | (HUNTERNOTES?FALSE > 144))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
