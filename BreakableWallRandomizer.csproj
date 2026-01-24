@@ -8,8 +8,8 @@
     <Product>BreakableWallRandomizer</Product>
     <Description>A Randomizer add-on for wall and floor objects.</Description>
     <Copyright>Copyright ©2023</Copyright>
-    <AssemblyVersion>4.1.1.6</AssemblyVersion>
-    <FileVersion>4.1.1.6</FileVersion>
+    <AssemblyVersion>4.1.1.7</AssemblyVersion>
+    <FileVersion>4.1.1.7</FileVersion>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
