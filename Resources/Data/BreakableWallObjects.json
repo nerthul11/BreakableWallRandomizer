@@ -871,7 +871,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Deepnest_44[top1] + Plank-Sharp_Shadow | Deepnest_44[top1] + RIGHTSHADOWDASH + (LEFTSHADOWDASH | DAMAGEBOOSTS + ($TAKEDAMAGE + $TAKEDAMAGE + $TAKEDAMAGE | LEFTDASH + $TAKEDAMAGE + $TAKEDAMAGE | QUAKE + $CASTSPELL[2] + $TAKEDAMAGE))",
+        "logic": "Deepnest_44[top1] + Plank-Sharp_Shadow | Deepnest_44[top1] + Shade_Gate-Sharp_Shadow?RIGHTSHADOWDASH + (LEFTSHADOWDASH | DAMAGEBOOSTS + ($TAKEDAMAGE + $TAKEDAMAGE + $TAKEDAMAGE | LEFTDASH + $TAKEDAMAGE + $TAKEDAMAGE | QUAKE + $CASTSPELL[2] + $TAKEDAMAGE))",
         "logicOverrides": {
             "Sharp_Shadow": "(ORIG) | Deepnest_44[top1] + Plank-Sharp_Shadow"
         },
@@ -1199,7 +1199,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "Deepnest_East_11[top1] + (SIDESLASH | CYCLONE | GREATSLASH | (FIREBALL | QUAKE) + $CASTSPELL) | Deepnest_East_11[right1] + (LEFTCLAW | WINGS + BACKGROUNDPOGOS | SCREAM + $CASTSPELL) + UPWALLBREAK | (Deepnest_East_11[left1] | Deepnest_East_11[bot1]) + (WINGS | FULLCLAW + $SHADESKIP | ENEMYPOGOS + DANGEROUSSKIPS) + (LEFTCLAW | WINGS + BACKGROUNDPOGOS) + UPWALLBREAK",
+        "logic": "Deepnest_East_11[top1] + (SIDESLASH | CYCLONE | GREATSLASH | (FIREBALL | QUAKE) + $CASTSPELL) | Deepnest_East_11[right1] + (UPSLASH | GREATSLASH | LEFTCLAW | WINGS | SCREAM + $CASTSPELL) + UPWALLBREAK | (Deepnest_East_11[left1] | Deepnest_East_11[bot1]) + (WINGS | FULLCLAW + $SHADESKIP | ENEMYPOGOS + DANGEROUSSKIPS) + (UPSLASH | GREATSLASH | LEFTCLAW | WINGS | SCREAM + $CASTSPELL) + UPWALLBREAK",
         "logicOverrides": {
             "Broke_Camp_Bench_Wall": "Wall-Edge_Camp"
         },
