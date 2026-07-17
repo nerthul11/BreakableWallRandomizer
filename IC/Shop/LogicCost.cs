@@ -30,7 +30,7 @@ namespace BreakableWallRandomizer.IC.Shop
 
         public Cost GetIcCost()
         {
-            return converter?.Invoke(logicCost) ?? throw new InvalidOperationException("Cost converter is undefined");
+            return converter?.Invoke(logicCost) ?? null;
         }
 
         public override string ToString()

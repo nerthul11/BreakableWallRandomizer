@@ -148,7 +148,8 @@
             "Abyss_19[left1]": "(ORIG) | Abyss_19[right1] + Plank-Broken_Vessel_Shortcut + Defeated_Broken_Vessel",
             "Abyss_19[bot1]": "(ORIG) | Abyss_19[right1] + Plank-Broken_Vessel_Shortcut",
             "Boss_Essence-Lost_Kin": "(ORIG) | (Abyss_19[right1] | Abyss_19[bot2] + WINGS) + Plank-Broken_Vessel_Shortcut + DREAMNAIL + Defeated_Broken_Vessel + Defeated_Lost_Kin",
-            "Defeated_Broken_Vessel": "(ORIG) | (Abyss_19[right1] | Abyss_19[bot2] + WINGS) + Plank-Broken_Vessel_Shortcut + COMBAT[Broken_Vessel]"
+            "Defeated_Broken_Vessel": "(ORIG) | (Abyss_19[right1] | Abyss_19[bot2] + WINGS) + Plank-Broken_Vessel_Shortcut + COMBAT[Broken_Vessel]",
+            "Defeated_Lost_Kin": "(ORIG) | (Abyss_19[right1] | Abyss_19[bot2] + WINGS) + Plank-Broken_Vessel_Shortcut + DREAMNAIL + Defeated_Broken_Vessel + COMBAT[Lost_Kin]"
         },
         "logicSubstitutions": {
             "Abyss_19": {
@@ -1493,7 +1494,8 @@
         "persistentBool": "",
         "sprite": "ancient_wall_pieces_0000_a_mushroom_270deg",
         "alsoDestroy": [
-            "Secret Mask"
+            "Secret Mask",
+            "Secret Mask (1)"
         ],
         "extra": false,
         "groupWalls": [],

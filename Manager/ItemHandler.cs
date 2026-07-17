@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using BreakableWallRandomizer.IC;
 using BreakableWallRandomizer.IC.Shop;
@@ -17,6 +18,7 @@ namespace BreakableWallRandomizer.Manager
 {
     internal static class ItemHandler
     {
+        public static Dictionary<string, int> buyoutCost;
         internal static void Hook()
         {
             ProgressionInitializer.OnCreateProgressionInitializer += AddTolerance;
@@ -177,6 +179,17 @@ namespace BreakableWallRandomizer.Manager
             if (!BWR_Manager.Settings.Enabled || !BWR_Manager.Settings.MylaShop.Enabled)
                 return;
             
+            List<string> availableTerms = [];
+            if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.RockWalls.Enabled)
+                availableTerms.Add("Walls");
+            if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.WoodenPlanks.Enabled)
+                availableTerms.Add("Planks");
+            if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.DiveFloors.Enabled)
+                availableTerms.Add("Dive_Floors");
+            if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.Collapsers.Enabled)
+                availableTerms.Add("Collapsers");
+            buyoutCost = availableTerms.ToDictionary(term => term, term => 0);
+
             builder.CostConverters.Subscribe(150f, RandomizeCost);
             builder.EditLocationRequest("Myla_Shop", info =>
             {
@@ -194,16 +207,7 @@ namespace BreakableWallRandomizer.Manager
                 {
                     LogicManager lm = factory.lm;
                     Random rng = factory.rng;
-                    List<string> availableTerms = [];
                     List<string> usedTerms = [];
-                    if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.RockWalls.Enabled)
-                        availableTerms.Add("Walls");
-                    if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.WoodenPlanks.Enabled)
-                        availableTerms.Add("Planks");
-                    if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.DiveFloors.Enabled)
-                        availableTerms.Add("Dives");
-                    if (BWR_Manager.Settings.MylaShop.IncludeVanillaItems || BWR_Manager.Settings.Collapsers.Enabled)
-                        availableTerms.Add("Collapsers");
                     for (int i = 0; i < rng.Next(1, 1 + availableTerms.Count); i++)
                     {
                         int termNo = rng.Next(availableTerms.Count);
@@ -213,7 +217,9 @@ namespace BreakableWallRandomizer.Manager
                             int minCost = Math.Max((int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost), 1);
                             int maxCost = Math.Max((int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost), 1);
                             usedTerms.Add("Walls");
-                            rl.AddCost(new WallLogicCost(lm.GetTermStrict("Broken_Walls"), rng.Next(minCost, maxCost), amount => new WallCost(amount)));
+                            int usedCost = rng.Next(minCost, maxCost);
+                            buyoutCost["Walls"] = Math.Max(usedCost, buyoutCost["Walls"]);
+                            rl.AddCost(new WallLogicCost(lm.GetTermStrict("Broken_Walls"), usedCost, amount => new WallCost(amount)));
                         }
 
                         if (availableTerms.IndexOf("Planks") == termNo && !usedTerms.Contains("Planks")) // Planks
@@ -222,16 +228,20 @@ namespace BreakableWallRandomizer.Manager
                             int minCost = Math.Max((int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost), 1);
                             int maxCost = Math.Max((int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost), 1);
                             usedTerms.Add("Planks");
-                            rl.AddCost(new WallLogicCost(lm.GetTermStrict("Broken_Planks"), rng.Next(minCost, maxCost), amount => new PlankCost(amount)));
+                            int usedCost = rng.Next(minCost, maxCost);
+                            buyoutCost["Planks"] = Math.Max(usedCost, buyoutCost["Planks"]);
+                            rl.AddCost(new WallLogicCost(lm.GetTermStrict("Broken_Planks"), usedCost, amount => new PlankCost(amount)));
                         }
 
-                        if (availableTerms.IndexOf("Dives") == termNo && !usedTerms.Contains("Dives")) // Dives
+                        if (availableTerms.IndexOf("Dive_Floors") == termNo && !usedTerms.Contains("Dive_Floors")) // Dives
                         {
                             int wallCount = BWR_Manager.TotalDives;
                             int minCost = Math.Max((int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost), 1);
                             int maxCost = Math.Max((int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost), 1);
-                            usedTerms.Add("Dives");
-                            rl.AddCost(new WallLogicCost(lm.GetTermStrict("Broken_Dive_Floors"), rng.Next(minCost, maxCost), amount => new DiveCost(amount)));
+                            usedTerms.Add("Dive_Floors");
+                            int usedCost = rng.Next(minCost, maxCost);
+                            buyoutCost["Dive_Floors"] = Math.Max(usedCost, buyoutCost["Dive_Floors"]);
+                            rl.AddCost(new WallLogicCost(lm.GetTermStrict("Broken_Dive_Floors"), usedCost, amount => new DiveCost(amount)));
                         }
 
                         if (availableTerms.IndexOf("Collapsers") == termNo && !usedTerms.Contains("Collapsers")) // Collapsers
@@ -240,8 +250,23 @@ namespace BreakableWallRandomizer.Manager
                             int minCost = Math.Max((int)(wallCount * BWR_Manager.Settings.MylaShop.MinimumCost), 1);
                             int maxCost = Math.Max((int)(wallCount * BWR_Manager.Settings.MylaShop.MaximumCost), 1);
                             usedTerms.Add("Collapsers");
-                            rl.AddCost(new WallLogicCost(lm.GetTermStrict("Broken_Collapsers"), rng.Next(minCost, maxCost), amount => new CollapserCost(amount)));
+                            int usedCost = rng.Next(minCost, maxCost);
+                            buyoutCost["Collapsers"] = Math.Max(usedCost, buyoutCost["Collapsers"]);
+                            rl.AddCost(new WallLogicCost(lm.GetTermStrict("Broken_Collapsers"), usedCost, amount => new CollapserCost(amount)));
                         }
+                    }
+                };
+            });
+
+            builder.EditLocationRequest("Kill_Myla", info =>
+            {
+                info.onRandoLocationCreation += (factory, rl) =>
+                {
+                    LogicManager lm = factory.lm;
+                    foreach (string term in buyoutCost.Keys)
+                    {
+                        if (buyoutCost[term] > 0)
+                            rl.AddCost(new WallLogicCost(lm.GetTermStrict($"Broken_{term}"), buyoutCost[term], _ => null));
                     }
                 };
             });

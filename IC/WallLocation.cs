@@ -1,4 +1,5 @@
 ﻿using BreakableWallRandomizer.Fsm;
+using BreakableWallRandomizer.Manager;
 using BreakableWallRandomizer.Modules;
 using HutongGames.PlayMaker.Actions;
 using ItemChanger;
@@ -131,6 +132,9 @@ namespace BreakableWallRandomizer.IC
 
         private void ModifyWallBehaviour(PlayMakerFSM fsm)
         {
+            if (!BWR_Manager.Settings.Enabled)
+                return;
+
             try
             {
                 Vector3 coordinates = GameObject.Find(objectName).transform.position;
