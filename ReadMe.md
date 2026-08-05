@@ -47,9 +47,11 @@ This setting will include the two walls in the Hall of Gods (both leading to the
 - RandomizerCore
 
 ## Integrations:
+- ConnectionSettingsRando
 - Extra Rando: Walls are available as a Victory Condition for Extra Rando. At the moment, only the total wall count, which will include both randomized and vanilla walls, will be used.
 - FStats: When enabled, a new page for diverse Wall achievements will be added, and it'll display the achievements regardless of randomization settings for them.
 - More Locations: Having the mod enabled will allow for walls to be included as currency for the Junk Shop.
+- MurderRando / MylaFlower: Both Myla affecting mods are now logically affected by Myla Shop.
 - RandoSettingsManager
 
 ## Acknowledgements

@@ -258,18 +258,22 @@ namespace BreakableWallRandomizer.Manager
                 };
             });
 
-            builder.EditLocationRequest("Kill_Myla", info =>
+            List<string> mylaLocations = ["Myla_Flower", "Kill_Myla"];
+            foreach (string loc in mylaLocations)
             {
-                info.onRandoLocationCreation += (factory, rl) =>
+                builder.EditLocationRequest(loc, info =>
                 {
-                    LogicManager lm = factory.lm;
-                    foreach (string term in buyoutCost.Keys)
+                    info.onRandoLocationCreation += (factory, rl) =>
                     {
-                        if (buyoutCost[term] > 0)
-                            rl.AddCost(new WallLogicCost(lm.GetTermStrict($"Broken_{term}"), buyoutCost[term], _ => null));
-                    }
-                };
-            });
+                        LogicManager lm = factory.lm;
+                        foreach (string term in buyoutCost.Keys)
+                        {
+                            if (buyoutCost[term] > 0)
+                                rl.AddCost(new WallLogicCost(lm.GetTermStrict($"Broken_{term}"), buyoutCost[term], _ => null));
+                        }
+                    };
+                });
+            };
         }
 
         private static bool RandomizeCost(LogicCost logicCost, out Cost cost)

@@ -1,3 +1,4 @@
+ConnectionSettingsRando
 Extra Rando
 FStats
 ItemChanger
