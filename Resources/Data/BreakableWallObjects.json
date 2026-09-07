@@ -1765,7 +1765,7 @@
         "extra": false,
         "groupWalls": [],
         "group": "",
-        "logic": "(Mines_33[left1] | Mines_33[right1]) + (LANTERN | NOLANTERN?NONE) | Mines_33[right1] + Plank-Peak_Toll + DARKROOMS",
+        "logic": "(Mines_33[left1] | Mines_33[right1]) + (Toll-Peak?FALSE + DARKROOMS | Toll-Peak?TRUE + LANTERN) | Mines_33[right1] + Plank-Peak_Toll + DARKROOMS",
         "logicOverrides": {
             "Geo_Rock-Crystal_Peak_Entrance": "(ORIG) | Mines_33[right1] + Plank-Peak_Toll + (LANTERN | (NOLANTERN ? FALSE) | DARKROOMS)"
         },
@@ -3785,7 +3785,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_41[left1] | (Deepnest_41[right1] | Deepnest_41 + Plank-Village_Upper) + Collapser-Distant_Village_Path + (LANTERN | NOLANTERN?FALSE | DARKROOMS) + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + ENEMYPOGOS))",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_41[left1] | (Deepnest_41[right1] + Toll-Deepnest?TRUE | Deepnest_41 + Plank-Village_Upper) + Collapser-Distant_Village_Path + (LANTERN | NOLANTERN?FALSE | DARKROOMS) + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + ENEMYPOGOS))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3803,7 +3803,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + ((Deepnest_41[right1] | Deepnest_41 + Plank-Village_Upper) + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | RIGHTDASH + OBSCURESKIPS)) | Deepnest_41[left1] + (RIGHTCLAW | WINGS + LEFTCLAW) + Collapser-Distant_Village_Path)",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + ((Deepnest_41[right1] + Toll-Deepnest?TRUE | Deepnest_41 + Plank-Village_Upper) + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | RIGHTDASH + OBSCURESKIPS)) | Deepnest_41[left1] + (RIGHTCLAW | WINGS + LEFTCLAW) + Collapser-Distant_Village_Path)",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3821,7 +3821,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + ((Deepnest_41[right1] | Deepnest_41 + Plank-Village_Upper) + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | RIGHTDASH + OBSCURESKIPS)) | Deepnest_41[left1] + Collapser-Distant_Village_Path + (RIGHTCLAW | WINGS + (LEFTCLAW | MARKOFPRIDE)))",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + ((Deepnest_41[right1] + Toll-Deepnest?TRUE | Deepnest_41 + Plank-Village_Upper) + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + (ENEMYPOGOS | RIGHTDASH + OBSCURESKIPS)) | Deepnest_41[left1] + Collapser-Distant_Village_Path + (RIGHTCLAW | WINGS + (LEFTCLAW | MARKOFPRIDE)))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
@@ -3839,7 +3839,7 @@
         "groupWalls": [],
         "group": "",
         "pinType": "World",
-        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_41[left1] | (Deepnest_41 + Plank-Village_Upper | Deepnest_41[right1]) + Collapser-Distant_Village_Path + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + ENEMYPOGOS))",
+        "logic": "(LANTERN | (NOLANTERN ? FALSE) | DARKROOMS) + (Deepnest_41[left1] | (Deepnest_41 + Plank-Village_Upper | Deepnest_41[right1] + Toll-Deepnest?TRUE) + Collapser-Distant_Village_Path + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS) | RIGHTCLAW + ENEMYPOGOS))",
         "logicOverrides": {},
         "logicSubstitutions": {}
     },
